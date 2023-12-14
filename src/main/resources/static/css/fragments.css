@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Montserrat";
+}
+
+header{
+    padding: 0.5em 4em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #d8d7fe;
+    align-items: center;
+}
+
+.dropdown-menu{
+    display: none;
+}
+
+.dropdown-content{
+    display: none;
+}
+
+header img{
+    width: 100px;
+    height: 100px;
+}
+
+.navbar-buttons{
+    display: inline-block;
+}
+
+.navbar-buttons a{
+    text-decoration: none;
+    color: #5d54c3;
+}
+
+.navbar-buttons a {
+    cursor: pointer;
+    background-color: #d8d7fe;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 600;
+    height: 40px;
+    line-height: 20px;
+    list-style: none;
+    margin-top: 0.5em;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.navbar-buttons a:hover {
+    color: #d8d7fe;
+}
+
+.navbar-buttons a:hover {
+    background-color: #5d54c3;
+}
+
+body{
+    margin: 0 auto;
+}
+
+.main-section-wrap{
+    padding: 5em;
+    background-color: #5d54c3;
+}
+
+.main-section{
+    background-image: url(../images/33.jpg);
+    opacity: 0.7;
+    padding:15em;
+    border-style: none;
+    border-radius: 30px;
+    text-align: center;
+    justify-content: center;
+}
+
+.main-section h3{
+    font-size:40px;
+}
+
+.main-section p{
+    font-size: large;
+    font-weight: 500;
+}
+
+.main-section a{
+    color: #5d54c3;
+}
+
+footer{
+    text-align: center;
+    padding: 2em;
+    margin-bottom: 0;
+    font-weight: 500;
+    font-size: medium;
+    background-color: #d8d7fe;
+    color:#5d54c3;
+}
+
