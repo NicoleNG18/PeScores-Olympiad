@@ -1,12 +1,10 @@
 package pmgkn.pescores.pescores.web;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pmgkn.pescores.pescores.domain.dto.UserRegistrationDTO;
 import pmgkn.pescores.pescores.repositories.UserRepository;
 import pmgkn.pescores.pescores.service.UserService;
@@ -24,15 +22,28 @@ public class UserController {
         this.userService=userService;
     }
 
+    @GetMapping("/register")
+    public String getRegister(){
+        return "register";
+    }
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody UserRegistrationDTO userRegistrationDTO) {
+    public String postRegister(@Valid UserRegistrationDTO registerDto,
+                               BindingResult bindingResult,
+                               RedirectAttributes redirectAttributes) {
 
-        if (userRepository.findByEmail(userRegistrationDTO.email()).isEmpty()) {
-            return new ResponseEntity<>("User with that email is already registered", HttpStatus.BAD_REQUEST);
+        if(bindingResult.hasErrors()){
+
+            redirectAttributes.addFlashAttribute("registerDto",registerDto);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerDto"
+                    ,bindingResult);
+
+            return "redirect:/users/register";
+
         }
 
-        userService.registerUser(userRegistrationDTO);
+        this.userService.registerUser(registerDto);
 
-        return new ResponseEntity<>("User registered success!", HttpStatus.OK);
+        return "redirect:/login";
     }
+
 }
