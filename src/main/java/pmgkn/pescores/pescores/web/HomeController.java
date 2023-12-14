@@ -10,4 +10,21 @@ public class HomeController {
     public String getHome(){
         return "home";
     }
+
+    @GetMapping("/contact")
+    public String getContact(){
+        return "contact";
+    }
+
+    @GetMapping("/register")
+    public String getRegister(){
+        return "register";
+    }
+
+
+    @GetMapping("/login")
+    public String getLogin(){
+        return "login";
+    }
+
 }

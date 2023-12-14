@@ -1,0 +1,64 @@
+<head>
+  <title>Register</title>
+  <th:block th:insert="~{/fragments/head}"></th:block>
+  <link rel="stylesheet" th:href="@{/css/register.css}">
+</head>
+<body>
+
+<div>
+  <th:block th:insert="~{/fragments/header}"></th:block>
+</div>
+
+<section class="main-section">
+
+  <form class="form">
+    <h3>Sign up</h3>
+    <div class="row-form">
+      <div class="element">
+        <label for="firstname" class="label">First name</label>
+        <input type="text"
+               placeholder="First name"
+               id="firstname"
+               class="input"/>
+      </div>
+      <div class="element">
+        <label for="lastname" class="label">Last name</label>
+        <input type="text" placeholder="Last name" id="lastname" class="input"/>
+      </div>
+    </div>
+    <div class="row-form">
+      <div class="element">
+        <label for="email" class="label">Email</label>
+        <input
+                type="text" placeholder="Email" id="email" class="input"/>
+      </div>
+      <div class="element">
+        <label for="school" class="label">School</label>
+        <input
+                type="text" placeholder="School" id="school" class="input"/>
+      </div>
+    </div>
+    <div class="row-form">
+      <div class="element">
+        <label for="password" class="label">Password</label>
+        <input
+                type="password" placeholder="Password" id="password" class="input"/>
+      </div>
+      <div class="element">
+        <label for="confirmpassword" class="label">Confirm Password</label>
+        <input
+                type="password" placeholder="Confirm password" id="confirmpassword" class="input"/>
+      </div>
+    </div>
+    <button class="register-btn">Sign up</button>
+  </form>
+
+</section>
+
+<th:block th:insert="~{/fragments/footer}"></th:block>
+</body>
+
+
+
+
+

@@ -43,7 +43,7 @@ public class SecurityConfiguration {
 //                        .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
 //                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         // Allow anyone to see the home page, the registration page and the login form
-                        .requestMatchers("/", "/users/login", "/users/register", "/users/login-error").permitAll()
+                        .requestMatchers("/", "/contact", "/register", "/login").permitAll()
                         // all other requests are authenticated.
                         .anyRequest().authenticated()
         ).formLogin(
