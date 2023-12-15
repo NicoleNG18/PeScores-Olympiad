@@ -14,13 +14,75 @@ import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMes
 @FieldMatch(firstField = PASSWORD,
         secondField = CONFIRM_PASSWORD,
         message = MATCHING_PASSWORDS)
-public record UserRegistrationDTO(@ValidPersonName String firstName,
-                                  @ValidPersonName String lastName,
-                                  @ValidEmail
-                                  @UniqueUserEmail(message = EMAIL_UNIQUE) String email,
-                                  String school,
-                                  @ValidPassword String password,
-                                  String confirmPassword) {
+public class UserRegistrationDTO {
 
+    @ValidPersonName
+    private String firstName;
+    @ValidPersonName
+    private String lastName;
+    @ValidEmail
+    @UniqueUserEmail(message = EMAIL_UNIQUE)
+    private String email;
+    private String school;
+    @ValidPassword
+    private String password;
+    private  String confirmPassword;
+
+    public UserRegistrationDTO() {
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public UserRegistrationDTO setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public UserRegistrationDTO setLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public UserRegistrationDTO setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public UserRegistrationDTO setSchool(String school) {
+        this.school = school;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public UserRegistrationDTO setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public UserRegistrationDTO setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+        return this;
+    }
 }
 

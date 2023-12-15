@@ -2,10 +2,6 @@ package pmgkn.pescores.pescores.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pmgkn.pescores.pescores.domain.dto.UserRegistrationDTO;
@@ -16,8 +12,6 @@ import pmgkn.pescores.pescores.repositories.UserRepository;
 
 @Service
 public class UserService {
-
-    private final PEUserDetailsService peUserDetailsService;
     private final ModelMapper modelMapper;
     private final UserRoleService userRoleService;
 
@@ -28,12 +22,10 @@ public class UserService {
 
 
     @Autowired
-    public UserService(PEUserDetailsService peUserDetailsService,
-                       UserRoleService userRoleService,
+    public UserService(UserRoleService userRoleService,
                        ModelMapper modelMapper,
                        PasswordEncoder passwordEncoder,
                        UserRepository userRepository) {
-        this.peUserDetailsService = peUserDetailsService;
         this.userRoleService = userRoleService;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
@@ -48,30 +40,10 @@ public class UserService {
 
     }
 
-
-    public void createUserIfNotExist(String email, String names) {
-        // Create manually a user in the database
-        // password not necessary
-    }
-
     public UserEntity mapToUserEntity(UserRegistrationDTO userRegistrationDTO) {
         final UserRoleEntity userRole = this.userRoleService.getRole(UserRoleEnum.USER);
         return this.modelMapper.map(userRegistrationDTO,UserEntity.class)
                 .setRole(userRole)
-                .setPassword(passwordEncoder.encode(userRegistrationDTO.password()));
-    }
-
-    public Authentication login(String email) {
-        UserDetails userDetails = peUserDetailsService.loadUserByUsername(email);
-
-        Authentication auth = new UsernamePasswordAuthenticationToken(
-                userDetails,
-                userDetails.getPassword(),
-                userDetails.getAuthorities()
-        );
-
-        SecurityContextHolder.getContext().setAuthentication(auth);
-
-        return auth;
+                .setPassword(passwordEncoder.encode(userRegistrationDTO.getPassword()));
     }
 }

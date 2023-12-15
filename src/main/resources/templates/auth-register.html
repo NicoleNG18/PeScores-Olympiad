@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
 <head>
   <title>Register</title>
   <th:block th:insert="~{/fragments/head}"></th:block>
@@ -11,52 +16,73 @@
 
 <section class="main-section">
 
-  <form class="form">
+  <form class="form"
+        th:method="POST"
+        th:action="@{/register}"
+        th:object="${registerDto}"
+  >
     <h3>Sign up</h3>
     <div class="row-form">
       <div class="element">
         <label for="firstname" class="label">First name</label>
         <input type="text"
+               name="firstName"
+               th:field="*{firstName}"
                placeholder="First name"
                id="firstname"
                class="input"/>
       </div>
       <div class="element">
         <label for="lastname" class="label">Last name</label>
-        <input type="text" placeholder="Last name" id="lastname" class="input"/>
+        <input type="text" placeholder="Last name"
+               th:field="*{lastName}"
+               id="lastname" class="input"/>
       </div>
     </div>
     <div class="row-form">
       <div class="element">
         <label for="email" class="label">Email</label>
         <input
-                type="text" placeholder="Email" id="email" class="input"/>
+                type="text" placeholder="Email"
+                th:field="*{email}"
+                id="email" class="input"/>
       </div>
       <div class="element">
         <label for="school" class="label">School</label>
         <input
-                type="text" placeholder="School" id="school" class="input"/>
+                type="text" placeholder="School"
+                th:field="*{school}"
+                id="school" class="input"/>
       </div>
     </div>
     <div class="row-form">
       <div class="element">
         <label for="password" class="label">Password</label>
         <input
-                type="password" placeholder="Password" id="password" class="input"/>
+                type="password" placeholder="Password"
+                th:field="*{password}"
+                id="password" class="input"/>
       </div>
       <div class="element">
         <label for="confirmpassword" class="label">Confirm Password</label>
         <input
-                type="password" placeholder="Confirm password" id="confirmpassword" class="input"/>
+                type="password"
+                th:field="*{confirmPassword}"
+                placeholder="Confirm password" id="confirmpassword" class="input"/>
       </div>
     </div>
-    <button class="register-btn">Sign up</button>
+    <button  type="submit" class="register-btn">Sign up</button>
+
+
   </form>
 
 </section>
 
 <th:block th:insert="~{/fragments/footer}"></th:block>
+
 </body>
+
+</html>
 
 
 

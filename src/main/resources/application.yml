@@ -39,3 +39,8 @@ spring:
             client-secret: ${GOOGLE_CLIENT_SECRET}
 server:
   port: 8080
+
+  google.recaptcha:
+    site: ${RECAPTCHA_SITE_KEY}
+    secret: ${RECAPTCHA_SITE_SECRET}
+

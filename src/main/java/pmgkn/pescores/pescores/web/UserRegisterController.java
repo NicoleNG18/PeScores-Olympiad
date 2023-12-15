@@ -1,31 +1,32 @@
 package pmgkn.pescores.pescores.web;
 
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pmgkn.pescores.pescores.domain.dto.UserRegistrationDTO;
-import pmgkn.pescores.pescores.repositories.UserRepository;
 import pmgkn.pescores.pescores.service.UserService;
 
-@RestController
-@RequestMapping("/users")
-public class UserController {
+@Controller
+public class UserRegisterController {
 
-    private UserRepository userRepository;
-    private UserService userService;
+    private final UserService userService;
 
-    @Autowired
-    public UserController(UserRepository userRepository, UserService userService){
-        this.userRepository=userRepository;
-        this.userService=userService;
+    public UserRegisterController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @ModelAttribute("registerDto")
+    public UserRegistrationDTO initRegisterDto() {
+        return new UserRegistrationDTO();
     }
 
     @GetMapping("/register")
     public String getRegister(){
-        return "register";
+        return "auth-register";
     }
+
     @PostMapping("/register")
     public String postRegister(@Valid UserRegistrationDTO registerDto,
                                BindingResult bindingResult,
@@ -37,7 +38,7 @@ public class UserController {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerDto"
                     ,bindingResult);
 
-            return "redirect:/users/register";
+            return "redirect:/register";
 
         }
 

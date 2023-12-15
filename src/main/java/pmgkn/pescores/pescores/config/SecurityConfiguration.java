@@ -1,7 +1,5 @@
 package pmgkn.pescores.pescores.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,22 +9,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import pmgkn.pescores.pescores.service.oauth.OAuthSuccessHandler;
-import pmgkn.pescores.pescores.service.PEUserDetailsService;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
-
-
-//    private PEUserDetailsService peUserDetailsService;
-//    private final String rememberMeKey;
-//
-//    public SecurityConfiguration(PEUserDetailsService peUserDetailsService,
-//                                 @Value("${pescores.remember.key}") String rememberMeKey) {
-//        this.peUserDetailsService = peUserDetailsService;
-//        this.rememberMeKey = rememberMeKey;
-//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
