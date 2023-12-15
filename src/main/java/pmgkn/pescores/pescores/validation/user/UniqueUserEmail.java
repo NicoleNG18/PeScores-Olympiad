@@ -8,7 +8,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import static bg.softuni.fooddelivery.domain.entities.constants.ValidationErrorMessages.UNIQUE_EMAIL;
+import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMessages.UNIQUE_EMAIL;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)

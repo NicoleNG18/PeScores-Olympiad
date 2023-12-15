@@ -8,7 +8,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import static bg.softuni.fooddelivery.domain.entities.constants.ValidationErrorMessages.FIELDS_MATCH;
+import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMessages.FIELDS_MATCH;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

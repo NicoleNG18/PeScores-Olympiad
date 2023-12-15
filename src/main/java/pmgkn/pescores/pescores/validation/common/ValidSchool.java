@@ -3,7 +3,7 @@ package pmgkn.pescores.pescores.validation.common;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
-import pmgkn.pescores.pescores.validation.product.ValidProductNameValidator;
+
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -15,7 +15,7 @@ import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMes
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-@Constraint(validatedBy = ValidProductNameValidator.class)
+@Constraint(validatedBy = ValidSchoolValidator.class)
 public @interface ValidSchool {
     String message() default INVALID_SCHOOL_NAME;
 

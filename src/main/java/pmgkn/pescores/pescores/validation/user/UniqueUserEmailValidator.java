@@ -1,8 +1,8 @@
 package pmgkn.pescores.pescores.validation.user;
 
-import bg.softuni.fooddelivery.repositories.UserRepository;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import pmgkn.pescores.pescores.repositories.UserRepository;
 
 public class UniqueUserEmailValidator implements ConstraintValidator<UniqueUserEmail, String> {
 
