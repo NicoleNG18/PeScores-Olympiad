@@ -2,6 +2,7 @@ package pmgkn.pescores.pescores.domain.dto;
 
 import pmgkn.pescores.pescores.validation.common.ValidEmail;
 import pmgkn.pescores.pescores.validation.common.ValidPersonName;
+import pmgkn.pescores.pescores.validation.common.ValidSchool;
 import pmgkn.pescores.pescores.validation.user.FieldMatch;
 import pmgkn.pescores.pescores.validation.user.UniqueUserEmail;
 import pmgkn.pescores.pescores.validation.user.ValidPassword;
@@ -23,6 +24,7 @@ public class UserRegistrationDTO {
     @ValidEmail
     @UniqueUserEmail(message = EMAIL_UNIQUE)
     private String email;
+    @ValidSchool
     private String school;
     @ValidPassword
     private String password;
