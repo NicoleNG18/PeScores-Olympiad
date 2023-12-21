@@ -67,6 +67,17 @@
     color: #362bb7;
 }
 
+.errors-login{
+    width:95%;
+    border-radius: 4px;
+    text-align: center;
+    font-weight:500;
+    margin-top: 3px;
+    font-size: 11px;
+    background-color: #d8d7fe;
+    color:red;
+}
+
 .login-btn{
     margin-top: 1.5em;
     width: 100%;

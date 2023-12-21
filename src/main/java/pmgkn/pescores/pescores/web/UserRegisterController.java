@@ -9,6 +9,7 @@ import pmgkn.pescores.pescores.domain.dto.UserRegistrationDTO;
 import pmgkn.pescores.pescores.service.UserService;
 
 @Controller
+@RequestMapping("/users")
 public class UserRegisterController {
 
     private final UserService userService;
@@ -38,13 +39,13 @@ public class UserRegisterController {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerDto"
                     ,bindingResult);
 
-            return "redirect:/register";
+            return "redirect:/users/register";
 
         }
 
         this.userService.registerUser(registerDto);
 
-        return "redirect:/login";
+        return "redirect:/users/login";
     }
 
 }

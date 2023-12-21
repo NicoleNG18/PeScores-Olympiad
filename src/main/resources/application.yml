@@ -1,46 +1,33 @@
 logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
-        orm:
-          jdbc:
-            bind: TRACE
-
-  pescores:
-    remember.key: ${REMEMBER_ME_KEY}
-spring:
-  datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    password: ${DB_PASSWORD}
-    url: jdbc:mysql://localhost:3306/pe_scores?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
-    username: ${DB_USERNAME}
-  jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
-    defer-datasource-initialization: true
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        format_sql: true
-  mvc:
-    hidden-method:
-      filter:
-        enabled: true
-  sql:
-    init:
-      mode: never
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: ${GOOGLE_CLIENT_ID}
-            client-secret: ${GOOGLE_CLIENT_SECRET}
+    level:
+        org:
+            hibernate:
+                SQL: DEBUG
+                orm:
+                    jdbc:
+                        bind: TRACE
+pescores:
+    rememberMeKey: ${KEY_REMEMBER_ME}
 server:
-  port: 8080
-
-  google.recaptcha:
-    site: ${RECAPTCHA_SITE_KEY}
-    secret: ${RECAPTCHA_SITE_SECRET}
-
+    port: 8080
+spring:
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        password: ${DB_PASSWORD}
+        url: jdbc:mysql://localhost:3306/pe_scores?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+        username: ${DB_USERNAME}
+    jpa:
+        database-platform: org.hibernate.dialect.MySQLDialect
+        defer-datasource-initialization: true
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                format_sql: true
+    mvc:
+        hidden-method:
+            filter:
+                enabled: true
+    sql:
+        init:
+            mode: never
