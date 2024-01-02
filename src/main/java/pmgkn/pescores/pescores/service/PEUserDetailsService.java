@@ -1,6 +1,7 @@
 package pmgkn.pescores.pescores.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.quartz.QuartzTransactionManager;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -13,10 +14,7 @@ import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.domain.entity.UserRoleEntity;
 import pmgkn.pescores.pescores.repositories.UserRepository;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,12 +28,14 @@ public class PEUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository
-                .findByEmail(username)
+    @Transactional
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<UserEntity> byEmail = userRepository.findByEmail(email);
+        return byEmail
                 .map(this::mapToUserDetails)
-                .orElseThrow(() -> new UsernameNotFoundException("User with username " + username + " was not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("User with username " + email + " was not found"));
     }
+
 
     private UserDetails mapToUserDetails(UserEntity userEntity) {
         return new User(
@@ -54,18 +54,6 @@ public class PEUserDetailsService implements UserDetailsService {
         return new SimpleGrantedAuthority("ROLE_" + userRoleEntity.getRole().name());
     }
 
-//    @Override
-//    @Transactional
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        UserEntity user = userRepository
-//                .findByEmail(username)
-//                .orElseThrow(() -> new UsernameNotFoundException("Username not found"));
-//        return new User(user.getEmail(), user.getPassword(),mapRolesToAuthorities(Collections.singletonList(user.getRole())));
-//    }
-//
-//    private Collection<GrantedAuthority> mapRolesToAuthorities(List<UserRoleEntity> roles) {
-//        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getRole().name())).collect(Collectors.toList());
-//    }
 }
 
 

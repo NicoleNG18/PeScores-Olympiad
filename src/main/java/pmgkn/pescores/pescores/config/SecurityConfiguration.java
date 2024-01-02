@@ -28,7 +28,10 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity.authorizeHttpRequests(
+        return httpSecurity
+                .csrf()
+                .disable()
+                .authorizeHttpRequests(
                         // Define which urls are visible by which users
                         authorizeRequests -> authorizeRequests
                                 // All static resources which are situated in js, images, css are available for anyone
@@ -48,8 +51,8 @@ public class SecurityConfiguration {
                                     // also this is the page where we perform login.
                                     .loginPage("/users/login")
                                     // The names of the input fields (in our case in auth-login.html)
-                                    .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
-                                    .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
+                                    .usernameParameter("email")
+                                    .passwordParameter("password")
                                     .defaultSuccessUrl("/")
                                     .failureForwardUrl("/users/login-error");
                         }

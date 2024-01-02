@@ -12,23 +12,23 @@
 
 <section class="main-section">
     <form class="form"
-          th:method="post"
-          th:action="@{/users/login}">
+          th:method="POST"
+          th:action="@{/users/login}"
+          th:object="${userLoginDto}">
         <h3>Login</h3>
 
-        <label for="username" class="label">Email</label>
-        <input type="text" placeholder="Email" id="username"
-               th:value="${username}"
+        <label for="email" class="label">Email</label>
+        <input type="text" placeholder="Email" id="email"
+               th:field="*{email}"
                class="input"/>
 
         <label for="password" class="label">Password</label>
         <input type="password" placeholder="Password" id="password" class="input"/>
 
         <div class="mt-2" >
-            <input
-                    type="checkbox"
+            <input type="checkbox"
                     id="remember-me"
-                    name="remember-me">
+                    name="remember-me"/>
             <span class="text-light">
                     Remember me
                 </span>
