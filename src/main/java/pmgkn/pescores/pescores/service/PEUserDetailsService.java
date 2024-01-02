@@ -17,7 +17,7 @@ import pmgkn.pescores.pescores.repositories.UserRepository;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Service("userDetailsService")
+@Service
 public class PEUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
@@ -29,11 +29,11 @@ public class PEUserDetailsService implements UserDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserEntity> byEmail = userRepository.findByEmail(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<UserEntity> byEmail = userRepository.findByEmail(email);
         return byEmail
                 .map(this::mapToUserDetails)
-                .orElseThrow(() -> new UsernameNotFoundException("User with username " + username + " was not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("User with username " + email + " was not found"));
     }
 
 
@@ -52,7 +52,7 @@ public class PEUserDetailsService implements UserDetailsService {
     }
 
     private GrantedAuthority mapRole(UserRoleEntity userRoleEntity) {
-        return new SimpleGrantedAuthority("ROLE_" + userRoleEntity.getRole().name());
+        return new SimpleGrantedAuthority( "ROLE_"+userRoleEntity.getRole().name());
     }
 
 }
