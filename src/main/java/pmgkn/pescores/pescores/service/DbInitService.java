@@ -45,6 +45,7 @@ public class DbInitService {
         List<UserRoleEntity> roles = new ArrayList<>();
 
         roles.add(new UserRoleEntity().setRole(UserRoleEnum.USER));
+        roles.add(new UserRoleEntity().setRole(UserRoleEnum.ADMIN));
 
         return roles;
     }

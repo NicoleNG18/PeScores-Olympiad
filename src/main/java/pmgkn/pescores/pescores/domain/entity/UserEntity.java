@@ -31,10 +31,19 @@ public class UserEntity extends BaseEntity {
     @OneToMany(mappedBy = "teacher")
     private List<ClassEntity> classes;
 
-    @ManyToOne
-    private UserRoleEntity role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<UserRoleEntity> roles = new ArrayList<>();
 //    private YearEntity year;
 
+
+    public List<UserRoleEntity> getRoles() {
+        return roles;
+    }
+
+    public UserEntity setRoles(List<UserRoleEntity> roles) {
+        this.roles = roles;
+        return this;
+    }
 
     public UserEntity() {
         this.tasks=new ArrayList<>();
@@ -56,15 +65,6 @@ public class UserEntity extends BaseEntity {
 
     public UserEntity setClasses(List<ClassEntity> classes) {
         this.classes = classes;
-        return this;
-    }
-
-    public UserRoleEntity getRole() {
-        return role;
-    }
-
-    public UserEntity setRole(UserRoleEntity role) {
-        this.role = role;
         return this;
     }
 

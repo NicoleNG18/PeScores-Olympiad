@@ -10,6 +10,9 @@ import pmgkn.pescores.pescores.domain.entity.UserRoleEntity;
 import pmgkn.pescores.pescores.domain.enums.UserRoleEnum;
 import pmgkn.pescores.pescores.repositories.UserRepository;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 @Service
 public class UserService {
     private final ModelMapper modelMapper;
@@ -43,7 +46,7 @@ public class UserService {
     public UserEntity mapToUserEntity(UserRegistrationDTO userRegistrationDTO) {
         final UserRoleEntity userRole = this.userRoleService.getRole(UserRoleEnum.USER);
         return this.modelMapper.map(userRegistrationDTO,UserEntity.class)
-                .setRole(userRole)
+                .setRoles(new ArrayList<>(Collections.singletonList(userRole)))
                 .setPassword(passwordEncoder.encode(userRegistrationDTO.getPassword()));
     }
 }
