@@ -37,6 +37,22 @@ header img{
     color: #5d54c3;
 }
 
+.logout input{
+    background-color: #d8d7fe;
+    color: #5d54c3;
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 20px;
+    list-style: none;
+    cursor: pointer;
+}
+
+.logout input:hover{
+    background-color: #5d54c3;
+    color: #d8d7fe;
+}
+
 .navbar-buttons a {
     cursor: pointer;
     background-color: #d8d7fe;
@@ -60,7 +76,7 @@ header img{
     touch-action: manipulation;
 }
 
-.navbar-buttons a:hover {
+.navbar-buttons a:hover{
     color: #d8d7fe;
 }
 

@@ -1,10 +1,20 @@
-<header>
+<header xmlns:sec="http://www.w3.org/1999/xhtml">
     <a th:href="@{/}"><img src="/images/pe%20scores-final.png" alt="pe scores logo"/></a>
 
     <nav class="navbar">
-        <ul class="navbar-buttons">
+        <ul class="navbar-buttons" sec:authorize="!isAuthenticated()">
             <a th:href="@{/users/login}">Log in</a>
             <a th:href="@{/users/register}">Sign up</a>
+            <a th:href="@{/contact}">Contact us</a>
+        </ul>
+
+
+        <ul class="navbar-buttons" sec:authorize="isAuthenticated()">
+            <a>
+                <form class="logout" th:method="post" th:action="@{/users/logout}">
+                    <input class="dropdown-item btn-link nav-link" type="submit" value="Logout">
+                </form>
+            </a>
             <a th:href="@{/contact}">Contact us</a>
         </ul>
     </nav>
