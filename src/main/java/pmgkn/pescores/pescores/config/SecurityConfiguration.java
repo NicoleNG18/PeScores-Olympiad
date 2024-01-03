@@ -43,6 +43,7 @@ public class SecurityConfiguration {
                                         "/",
                                         "/notes",
                                         "/classes",
+                                        "/api/notes/{id}",
                                         "/contact").permitAll()
                                 // all other requests are authenticated.
                                 .anyRequest().authenticated()

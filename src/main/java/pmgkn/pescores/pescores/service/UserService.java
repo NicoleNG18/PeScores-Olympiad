@@ -35,6 +35,11 @@ public class UserService {
         this.userRepository=userRepository;
     }
 
+
+    public UserEntity getUserByEmail(String username) {
+        return this.userRepository.findByEmail(username).get();
+    }
+
     public void registerUser(UserRegistrationDTO userRegistrationDTO) {
 
         UserEntity userToSave = this.mapToUserEntity(userRegistrationDTO);

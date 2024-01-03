@@ -1,6 +1,6 @@
 package pmgkn.pescores.pescores.domain.enums;
 
 public enum TaskStatusEnum {
-    IN_PROGRESS,COMPLETED
+    IN_PROGRESS,COMPLETED,DELETED
 }
 
