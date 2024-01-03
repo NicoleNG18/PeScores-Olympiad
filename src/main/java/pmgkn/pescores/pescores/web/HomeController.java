@@ -16,4 +16,9 @@ public class HomeController {
         return "contact";
     }
 
+    @GetMapping("/notes")
+    public String getNotes(){
+        return "notes";
+    }
+
 }

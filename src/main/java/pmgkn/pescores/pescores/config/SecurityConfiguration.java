@@ -41,6 +41,8 @@ public class SecurityConfiguration {
                                         ,"/users/register",
                                         "/users/login-error",
                                         "/",
+                                        "/notes",
+                                        "/classes",
                                         "/contact").permitAll()
                                 // all other requests are authenticated.
                                 .anyRequest().authenticated()
