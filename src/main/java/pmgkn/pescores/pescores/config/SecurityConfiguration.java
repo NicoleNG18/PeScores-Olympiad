@@ -53,7 +53,7 @@ public class SecurityConfiguration {
                                     // The names of the input fields (in our case in auth-login.html)
                                     .usernameParameter("email")
                                     .passwordParameter("password")
-                                    .defaultSuccessUrl("/")
+                                    .defaultSuccessUrl("/classes")
                                     .failureForwardUrl("/users/login-error");
                         }
                 ).logout(
