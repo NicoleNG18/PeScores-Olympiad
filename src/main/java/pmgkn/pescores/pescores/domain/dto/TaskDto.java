@@ -7,6 +7,10 @@ public class TaskDto {
     public TaskDto() {
     }
 
+    public TaskDto(String description) {
+        this.description=description;
+    }
+
     public String getDescription() {
         return description;
     }

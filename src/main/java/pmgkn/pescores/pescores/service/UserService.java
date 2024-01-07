@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pmgkn.pescores.pescores.domain.dto.UserRegistrationDTO;
+import pmgkn.pescores.pescores.domain.entity.TaskEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.domain.entity.UserRoleEntity;
 import pmgkn.pescores.pescores.domain.enums.UserRoleEnum;
@@ -12,6 +13,7 @@ import pmgkn.pescores.pescores.repositories.UserRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -45,6 +47,12 @@ public class UserService {
         UserEntity userToSave = this.mapToUserEntity(userRegistrationDTO);
 
         this.userRepository.saveAndFlush(userToSave);
+
+    }
+
+    public List<TaskEntity> getAllTasks(String username){
+
+         return this.userRepository.findByEmail(username).get().getTasks();
 
     }
 
