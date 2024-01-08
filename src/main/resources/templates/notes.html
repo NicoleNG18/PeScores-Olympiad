@@ -7,6 +7,9 @@
     <title>Notes</title>
     <th:block th:insert="~{/fragments/head}"></th:block>
     <link rel="stylesheet" th:href="@{/css/notes.css}">
+<!--    <meta name="_csrf" th:content="${_csrf.token}"/>-->
+<!--    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
+    <meta id="csrf" hidden th:name="${_csrf.getHeaderName()}" th:value="${_csrf.getToken()}">
 </head>
 <body>
 
@@ -23,17 +26,19 @@
 <!--             th:each="err :${#fields.errors('description')}"-->
 <!--             th:text="${err}"/>-->
 
-        <form class="add-todo">
+        <form class="add-todo" th:method="POST" th:action="@{/api/notes/save(descr=${descr})}">
+
 <!--              th:method="POST"-->
 <!--              th:action="@{/notes}"-->
 <!--              th:object="${taskDto}"-->
 
             <label for="todo">Add ToDo</label>
-            <input type="text" id="todo"/>
+            <input type="text" id="todo"
+                   th:name="descr"/>
 <!--                   th:errorclass="is-invalid">-->
-<!--                   th:field="*{description}"-->
 
-            <button id="add-btn" type="submit">Add</button>
+
+            <button id="add-btn" type="submit" >Add</button>
         </form>
 <!--/*th:value="${idAtr}"*/-->
         <input type="hidden" name="taskId" id="taskId" >
@@ -66,7 +71,12 @@
         </table>
     </div>
 
+<!--    <input id="csrf"-->
+<!--           type="hidden"-->
+<!--           th:name="${_csrf.headerName}"-->
+<!--           th:value="${_csrf.token}"/>-->
 </section>
+
 
 
 <th:block th:insert="~{/fragments/footer}"></th:block>

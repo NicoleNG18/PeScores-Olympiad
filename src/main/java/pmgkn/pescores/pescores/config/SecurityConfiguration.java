@@ -29,8 +29,8 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-                .csrf()
-                .disable()
+//                .csrf()
+//                .disable()
                 .authorizeHttpRequests(
                         // Define which urls are visible by which users
                         authorizeRequests -> authorizeRequests

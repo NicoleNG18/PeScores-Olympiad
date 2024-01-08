@@ -1,21 +1,35 @@
 let addButton = document.getElementById('add-btn');
 
 // addButton.addEventListener('submit', onClickAdd);
-addButton.addEventListener('click',onClickSave);
+let csrfHeaderName = document.getElementById("csrf").getAttribute("name");
+let csrfHeaderToken = document.getElementById("csrf").getAttribute("value");
 
-let toDo= document.querySelector("#todo").value;
 
-function onClickSave(){
+// addButton.addEventListener('click',onClickSave);
 
-        let taskDto={
-                description: toDo
-        }
+// let toDo= document.querySelector("#todo").value;
 
-                fetch("http://localhost:8080/notes/save", {
-                        method: "POST",
-                        body: JSON.stringify(taskDto),
-                }).then((resp) => resp.json());
-}
+// function onClickSave(toDo){
+//
+//         // const csrfHeaderName = $("meta[name='_csrf_header']").attr("content");
+//         // const csrfHeaderToken = $("meta[name='_csrf']").attr("content");
+//
+//         let taskDto={
+//                 description: toDo
+//         }
+//
+//                 fetch("http://localhost:8080/notes/save", {
+//                         method: "POST",
+//                         body: JSON.stringify(taskDto),
+//                         headers: {
+//                                 [csrfHeaderName]: csrfHeaderToken
+//                         }
+//                         // headers: {
+//                         //         'Content-type': 'application/json',
+//                         //         [csrfHeaderName]: csrfHeaderToken
+//                         // }
+//                 }).then((resp) => resp.json());
+// }
 
 // function onClickAdd() {
 //     let id = document.getElementById('taskId').getAttribute('value');
