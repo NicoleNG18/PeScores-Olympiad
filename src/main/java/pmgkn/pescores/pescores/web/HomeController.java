@@ -18,12 +18,6 @@ import java.util.UUID;
 @Controller
 public class HomeController {
 
-    private final TaskService taskService;
-
-    public HomeController(TaskService taskService) {
-        this.taskService = taskService;
-    }
-
     @GetMapping("/")
     public String getHome(){
         return "home";
@@ -34,12 +28,6 @@ public class HomeController {
         return "contact";
     }
 
-    @GetMapping("/notes")
-    public String getNotes(Model model,Principal principal){
 
-        model.addAttribute("tasks",this.taskService.getAllTasksByUser(principal.getName()));
-
-        return "notes";
-    }
 
 }

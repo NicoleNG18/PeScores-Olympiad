@@ -32,7 +32,7 @@ public class TaskService {
 
 
     @Transactional
-    public UUID addTask(TaskDto taskDto, String username){
+    public void addTask(TaskDto taskDto, String username){
 
         TaskEntity task = new TaskEntity();
 
@@ -45,9 +45,6 @@ public class TaskService {
         user.getTasks().add(task);
 
         this.taskRepository.saveAndFlush(task);
-
-        return task.getId();
-
     }
 
     public List<TaskDto> getAllTasksByUser(String username){

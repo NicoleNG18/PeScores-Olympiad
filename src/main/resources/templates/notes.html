@@ -23,16 +23,14 @@
 <!--        <div class="invalid-feedback errors-register alert-danger"-->
 <!--             th:each="err :${#fields.errors('description')}"-->
 <!--             th:text="${err}"/>-->
-
         <form class="add-todo" th:method="POST" th:action="@{/api/notes/save(descr=${descr})}">
 
             <label for="todo">Add ToDo</label>
             <input type="text" id="todo"
                    th:name="descr"/>
-<!--                   th:errorclass="is-invalid">-->
-            <button id="add-btn" type="submit" th:onclick="|displayTodo(descr.value)|" >Add</button>
+            <!--                   th:errorclass="is-invalid">-->
+            <button id="add-btn" type="submit" onclick="displayTodo()">Add</button>
         </form>
-<!--/*th:value="${idAtr}"*/-->
         <input type="hidden" name="taskId" id="taskId" >
 
         <table class="table-notes">
