@@ -7,8 +7,6 @@
     <title>Notes</title>
     <th:block th:insert="~{/fragments/head}"></th:block>
     <link rel="stylesheet" th:href="@{/css/notes.css}">
-<!--    <meta name="_csrf" th:content="${_csrf.token}"/>-->
-<!--    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
     <meta id="csrf" hidden th:name="${_csrf.getHeaderName()}" th:value="${_csrf.getToken()}">
 </head>
 <body>
@@ -28,17 +26,11 @@
 
         <form class="add-todo" th:method="POST" th:action="@{/api/notes/save(descr=${descr})}">
 
-<!--              th:method="POST"-->
-<!--              th:action="@{/notes}"-->
-<!--              th:object="${taskDto}"-->
-
             <label for="todo">Add ToDo</label>
             <input type="text" id="todo"
                    th:name="descr"/>
 <!--                   th:errorclass="is-invalid">-->
-
-
-            <button id="add-btn" type="submit" >Add</button>
+            <button id="add-btn" type="submit" th:onclick="|displayTodo(descr.value)|" >Add</button>
         </form>
 <!--/*th:value="${idAtr}"*/-->
         <input type="hidden" name="taskId" id="taskId" >
@@ -70,18 +62,13 @@
             </tbody>
         </table>
     </div>
-
-<!--    <input id="csrf"-->
-<!--           type="hidden"-->
-<!--           th:name="${_csrf.headerName}"-->
-<!--           th:value="${_csrf.token}"/>-->
 </section>
 
 
 
 <th:block th:insert="~{/fragments/footer}"></th:block>
 
-<script src="/js/notesjs.js"></script>
+<script src="/js/notes.js"></script>
 
 </body>
 

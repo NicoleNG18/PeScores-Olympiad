@@ -1,17 +1,12 @@
 package pmgkn.pescores.pescores.web;
 
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pmgkn.pescores.pescores.domain.dto.TaskDto;
 import pmgkn.pescores.pescores.service.TaskService;
 
 import java.security.Principal;
-import java.util.List;
-import java.util.UUID;
 
 @RestController
 public class NotesController {
@@ -25,9 +20,11 @@ public class NotesController {
     }
 
     @PostMapping("/api/notes/save")
-    public ResponseEntity<Object> inactivateUser (@RequestParam(value = "descr") String descr,Principal principal) {
+    public ResponseEntity<Object> inactivateUser (@RequestParam(value = "descr",required = true) String descr,Principal principal) {
 
-        this.taskService.addTask(new TaskDto(descr), principal.getName());
+        String taskDescription= descr.substring(1);
+
+        this.taskService.addTask(new TaskDto(taskDescription), principal.getName());
 
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)
@@ -43,53 +40,4 @@ public class NotesController {
 //                .status(HttpStatus.CREATED)
 //                .body(photoVM);
 //    }
-
-
-//    @GetMapping("/notes")
-//    public ResponseEntity<List<TaskDto>> displayTaskById(Principal principal){
-//
-//        List<TaskDto> task=this.taskService.getAllTasksByUser(principal.getName());
-//
-//        return ResponseEntity.ok(task);
-//    }
-////
-
-//    @GetMapping("/notes/{id}")
-//    public ResponseEntity<TaskDto> displayTaskById(@PathVariable("id") UUID id){
-//
-//        TaskDto task=this.taskService.getTaskById(id);
-//
-//        return ResponseEntity.ok(task);
-//    }
-
-//    @ModelAttribute("taskDto")
-//    public TaskDto initOrderDto() {
-//        return new TaskDto();
-//    }
-
-    @PostMapping("/notes/save")
-    public String addTask(@RequestBody TaskDto taskDto,
-//                          BindingResult bindingResult,
-//                          RedirectAttributes redirectAttributes,
-                          Principal principal){
-
-//        if (taskDto.getDescription().equals("")) {
-//
-//            redirectAttributes.addFlashAttribute("taskDto", taskDto);
-//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.taskDto"
-//                    , bindingResult);
-//
-//            return "redirect:/notes";
-//
-//        }
-
-//        UUID uuid = this.taskService.addTask(taskDto, principal.getName());
-
-        String test="Nikolee";
-
-//        return "redirect:/notes/" + uuid;
-        return "redirect:/notes/";
-
-    }
-
 }
