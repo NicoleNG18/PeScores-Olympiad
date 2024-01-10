@@ -38,13 +38,13 @@ public class SecurityConfiguration {
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 // Allow anyone to see the home page, the registration page and the login form
                                 .requestMatchers("/users/login"
-                                        ,"/users/register",
+                                        , "/users/register",
                                         "/users/login-error",
                                         "/",
-                                        "/notes",
-                                        "/classes",
-                                        "/api/notes/{id}",
+//                                        "/api/notes/{id}",
                                         "/contact").permitAll()
+                                .requestMatchers("/notes",
+                                        "/classes").authenticated()
                                 // all other requests are authenticated.
                                 .anyRequest().authenticated()
                 ).formLogin(

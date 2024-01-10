@@ -14,12 +14,22 @@
   <th:block th:insert="~{/fragments/header}"></th:block>
 </div>
 
-<div class="main-section-wrap">
+<div sec:authorize="!isAuthenticated()" class="main-section-wrap">
   <section class="main-section">
     <div class="main-text">
       <h3>Welcome to PE Scores.</h3>
       <p>If you have an account - <a href="/users/login">Log in</a> here.</p>
       <p>If you don't have an account - <a href="/users/register">Sign up</a> here.</p>
+    </div>
+  </section>
+</div>
+
+<div sec:authorize="isAuthenticated()" class="main-section-wrap">
+  <section class="main-section">
+    <div class="main-text">
+      <h3>Welcome to PE Scores.</h3>
+      <p><a href="/classes">Classes</a></p>
+      <p><a href="/notes">Tasks</a></p>
     </div>
   </section>
 </div>

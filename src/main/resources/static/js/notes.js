@@ -1,7 +1,8 @@
 // let csrfHeaderName = document.getElementById("csrf").getAttribute("name");
 // let csrfHeaderToken = document.getElementById("csrf").getAttribute("value");
 
-function displayTodo() {
+function displayTodo(e) {
+
     let tableBody = document.querySelector(".table-body");
     let tableRow = document.createElement("tr");
     let description = document.querySelector("#todo").value;
@@ -18,6 +19,4 @@ function displayTodo() {
                  </td>`;
 
     tableBody.appendChild(tableRow);
-
-    // document.querySelector("#todo").value="";
 }
