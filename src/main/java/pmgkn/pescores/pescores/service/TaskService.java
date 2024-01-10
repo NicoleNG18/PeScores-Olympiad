@@ -64,12 +64,4 @@ public class TaskService {
         return this.modelMapper.map(t, TaskDto.class);
     }
 
-
-    public TaskDto getTaskById(UUID id) {
-
-        TaskEntity task= this.taskRepository.findById(id).get();
-
-
-        return new TaskDto().setDescription(task.getDescription());
-    }
 }
