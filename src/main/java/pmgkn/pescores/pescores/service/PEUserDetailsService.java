@@ -1,7 +1,6 @@
 package pmgkn.pescores.pescores.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.quartz.QuartzTransactionManager;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -15,7 +14,6 @@ import pmgkn.pescores.pescores.domain.entity.UserRoleEntity;
 import pmgkn.pescores.pescores.repositories.UserRepository;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class PEUserDetailsService implements UserDetailsService {
@@ -30,7 +28,7 @@ public class PEUserDetailsService implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<UserEntity> byEmail = userRepository.findByEmail(email);
+        Optional<UserEntity> byEmail = userRepository.findUserEntityByEmail(email);
         return byEmail
                 .map(this::mapToUserDetails)
                 .orElseThrow(() -> new UsernameNotFoundException("User with username " + email + " was not found"));

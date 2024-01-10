@@ -32,25 +32,32 @@ public class TaskService {
 
 
     @Transactional
-    public void addTask(TaskDto taskDto, String username){
+    public void saveTask(TaskDto taskDto, String username){
 
         TaskEntity task = new TaskEntity();
 
         final UserEntity user = this.userService.getUserByEmail(username);
 
-        task.setDescription(taskDto.getDescription())
-                .setOwner(user)
-                .setStatus(TaskStatusEnum.IN_PROGRESS);
+        buildTask(taskDto, task, user);
 
         user.getTasks().add(task);
 
         this.taskRepository.saveAndFlush(task);
     }
 
+    private static void buildTask(TaskDto taskDto,
+                                  TaskEntity task,
+                                  UserEntity user) {
+        task.setDescription(taskDto.getDescription())
+                .setOwner(user)
+                .setStatus(TaskStatusEnum.IN_PROGRESS);
+    }
+
     public List<TaskDto> getAllTasksByUser(String username){
 
-        List<TaskEntity> allTasks = this.userService.getAllTasks(username);
-        return allTasks.stream().map(this::mapToTaskDto).collect(Collectors.toList());
+        List<TaskEntity> allTasksByUser = this.userService.getAllTasks(username);
+
+        return allTasksByUser.stream().map(this::mapToTaskDto).collect(Collectors.toList());
     }
 
     private TaskDto mapToTaskDto(TaskEntity t) {

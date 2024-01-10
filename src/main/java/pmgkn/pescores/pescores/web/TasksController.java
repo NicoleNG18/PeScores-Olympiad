@@ -8,20 +8,20 @@ import pmgkn.pescores.pescores.service.TaskService;
 import java.security.Principal;
 
 @Controller
-public class ToDoController {
+public class TasksController {
 
     private final TaskService taskService;
 
-    public ToDoController(TaskService taskService) {
+    public TasksController(TaskService taskService) {
         this.taskService = taskService;
     }
 
-    @GetMapping("/notes")
+    @GetMapping("/tasks")
     public String getNotes(Model model,
                            Principal principal){
 
         model.addAttribute("tasks",this.taskService.getAllTasksByUser(principal.getName()));
 
-        return "notes";
+        return "tasks";
     }
 }

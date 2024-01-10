@@ -11,23 +11,23 @@ import pmgkn.pescores.pescores.service.TaskService;
 import java.security.Principal;
 
 @RestController
-public class ToDosRestController {
+public class TasksRestController {
 
 
     private final TaskService taskService;
 
 
-    public ToDosRestController(TaskService taskService) {
+    public TasksRestController(TaskService taskService) {
         this.taskService = taskService;
     }
 
 
-    @PostMapping("/api/notes/save")
-    public ResponseEntity<Object> inactivateUser (@RequestParam(value = "descr",required = true) String descr, Principal principal) {
+    @PostMapping("/api/tasks/save")
+    public ResponseEntity<Object> saveTask (@RequestParam(value = "descr") String descr, Principal principal) {
 
         String taskDescription=descr.substring(1);
 
-        this.taskService.addTask(new TaskDto(taskDescription), principal.getName());
+        this.taskService.saveTask(new TaskDto(taskDescription), principal.getName());
 
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)
