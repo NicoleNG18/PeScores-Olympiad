@@ -40,11 +40,11 @@ public class SecurityConfiguration {
                                 .requestMatchers("/users/login"
                                         , "/users/register",
                                         "/users/login-error",
-                                        "/",
 //                                        "/api/notes/{id}",
                                         "/contact").permitAll()
                                 .requestMatchers("/notes",
                                         "/classes").authenticated()
+                                .requestMatchers("/").anonymous()
                                 // all other requests are authenticated.
                                 .anyRequest().authenticated()
                 ).formLogin(

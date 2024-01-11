@@ -27,11 +27,13 @@
 
             <label for="todo">Add ToDo</label>
             <input type="text" id="todo"
-                   th:name="descr"/>
+                   />
             <!--                   th:errorclass="is-invalid">-->
             <button id="add-btn" type="submit" onclick="displayTodo()">Add</button>
+            <input type="hidden" th:name="descr" id="taskDescr" >
         </form>
-        <input type="hidden" name="taskId" id="taskId" >
+<!--        TODO: check if that works with the input-->
+
 
         <table class="table-notes">
             <tbody class="table-body">
