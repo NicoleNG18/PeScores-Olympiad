@@ -20,7 +20,8 @@ public class TasksController {
     public String getNotes(Model model,
                            Principal principal){
 
-        model.addAttribute("tasks",this.taskService.getAllTasksByUser(principal.getName()));
+        model.addAttribute("tasks",this.taskService.getAllInProgressTasksByUser(principal.getName()));
+        model.addAttribute("tasksDone",this.taskService.getAllDoneTasksByUser(principal.getName()));
 
         return "tasks";
     }

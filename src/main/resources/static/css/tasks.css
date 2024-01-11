@@ -1,0 +1,188 @@
+.sections{
+    display: flex;
+    flex-direction: row;
+    background-color: #5d54c3;
+    padding: 5em 3em;
+    justify-content: space-between;
+}
+
+.notes-main{
+    width:55%;
+    display: flex;
+    flex-direction: row;
+}
+
+/*.notes-main{*/
+/*    padding: 5em;*/
+/*    background-color: #5d54c3;*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    gap:3em;*/
+/*    justify-content: center;*/
+/*}*/
+
+.notes-ready{
+    justify-content: right;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    float: right;
+}
+
+.to-do-list h2,.to-do-list-ready h2{
+    font-weight: 700;
+    margin-bottom: 1em;
+    color: #5d54c3;
+}
+
+/*.to-do-list h2{*/
+/*    font-weight: 700;*/
+/*    margin-bottom: 1em;*/
+/*    color: #5d54c3;*/
+/*}*/
+
+
+.to-do-list{
+    width: 80%;
+    background-color: #d8d7fe;
+    text-align: center;
+    border-radius: 1em;
+    box-shadow: -4px -3px 45px 21px rgba(0,0,0,0.35);
+    padding: 2em;
+}
+
+.to-do-list-ready{
+    width: 100%;
+    background-color: #d8d7fe;
+    text-align: center;
+    border-radius: 1em;
+    box-shadow: -4px -3px 45px 21px rgba(0,0,0,0.35);
+    padding: 2em;
+}
+
+/*.to-do-list{*/
+/*    width: 70%;*/
+/*    background-color: #d8d7fe;*/
+/*    text-align: center;*/
+/*    border-radius: 1em;*/
+/*    box-shadow: -4px -3px 45px 21px rgba(0,0,0,0.35);*/
+/*    padding: 2em;*/
+/*}*/
+
+
+.add-todo{
+    display: flex;
+    flex-direction: row;
+    gap:1em;
+    margin-bottom: 2em;
+    justify-content: center;
+}
+
+.add-todo input{
+    color: #5d54c3;
+}
+
+.to-do-list label{
+    color: #5d54c3;
+    font-weight: 600;
+}
+
+.to-do-list input{
+    outline-color: #5d54c3;
+    outline-style:auto;
+    background-color: #d8d7fe;
+    width: 35em;
+}
+
+.to-do-list button{
+    background-color:#d8d7fe;
+    color: #5d54c3;
+    border: 2px solid #5d54c3;
+    border-radius: 0.3em;
+    padding:0.1em 0.4em;
+    width: 6em;
+}
+
+/*.add-todo{*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    gap:1em;*/
+/*    justify-content: center;*/
+/*}*/
+
+/*.to-do-list label{*/
+/*    color: #5d54c3;*/
+/*    font-weight: 600;*/
+/*}*/
+
+/*.to-do-list input{*/
+/*    outline-color: #5d54c3;*/
+/*    outline-style:auto;*/
+/*    background-color: #d8d7fe;*/
+/*    width: 35em;*/
+/*}*/
+
+/*.to-do-list button{*/
+/*    background-color:#d8d7fe;*/
+/*    color: #5d54c3;*/
+/*    border: 2px solid #5d54c3;*/
+/*    border-radius: 0.3em;*/
+/*    padding:0.1em 0.4em;*/
+/*    width: 6em;*/
+/*}*/
+
+.to-do-list table{
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.to-do-list-ready table{
+    margin-top: 4em;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+/*.to-do-list table{*/
+/*    margin: 1em auto;*/
+/*    border-collapse: collapse;*/
+/*    width: 90%;*/
+/*}*/
+
+.to-do-list tbody td,.to-do-list-ready tbody td{
+    padding: 0.3em;
+    border-bottom: 2px solid #5d54c3;
+    color: #5d54c3;
+    text-align: center;
+}
+
+
+/*.to-do-list tbody td{*/
+/*    padding: 0.5em;*/
+/*    border-bottom: 2px solid #5d54c3;*/
+/*    color: #5d54c3;*/
+/*    text-align: left;*/
+/*}*/
+
+.done svg{
+    fill: green;
+}
+
+.remove svg{
+    fill: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,7 +1,12 @@
 package pmgkn.pescores.pescores.domain.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 import pmgkn.pescores.pescores.domain.enums.TaskStatusEnum;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tasks")
@@ -13,7 +18,8 @@ public class TaskEntity extends BaseEntity{
     @Column(nullable = true)
     private String description;
 
-//    private Date dueDate;
+    @Column(nullable = false,name = "due_date")
+    private LocalDate dueDate;
 
     @ManyToOne
     private UserEntity owner;
@@ -21,13 +27,21 @@ public class TaskEntity extends BaseEntity{
     public TaskEntity() {
     }
 
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public TaskEntity setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+        return this;
+    }
+
     public TaskStatusEnum getStatus() {
         return status;
     }
 
-    public TaskEntity setStatus(TaskStatusEnum status) {
+    public void setStatus(TaskStatusEnum status) {
         this.status = status;
-        return this;
     }
 
     public String getDescription() {

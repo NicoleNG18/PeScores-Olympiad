@@ -9,6 +9,7 @@ import pmgkn.pescores.pescores.domain.dto.TaskDto;
 import pmgkn.pescores.pescores.service.TaskService;
 
 import java.security.Principal;
+import java.time.LocalDate;
 
 @RestController
 public class TasksRestController {
@@ -23,11 +24,11 @@ public class TasksRestController {
 
 
     @PostMapping("/api/tasks/save")
-    public ResponseEntity<Object> saveTask (@RequestParam(value = "descr") String descr, Principal principal) {
+    public ResponseEntity<Object> saveTask (@RequestParam(value = "descr") String descr, @RequestParam(value = "dueDate") LocalDate dueDate, Principal principal) {
 
         String taskDescription=descr.substring(1);
 
-        this.taskService.saveTask(new TaskDto(taskDescription), principal.getName());
+        this.taskService.saveTask(new TaskDto(taskDescription,dueDate), principal.getName());
 
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)

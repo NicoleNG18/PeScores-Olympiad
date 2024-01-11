@@ -6,7 +6,7 @@
 <head>
     <title>Tasks</title>
     <th:block th:insert="~{/fragments/head}"></th:block>
-    <link rel="stylesheet" th:href="@{/css/notes.css}">
+    <link rel="stylesheet" th:href="@{/css/tasks.css}">
     <meta id="csrf" hidden th:name="${_csrf.getHeaderName()}" th:value="${_csrf.getToken()}">
 </head>
 <body>
@@ -15,43 +15,86 @@
     <th:block th:insert="~{/fragments/header}"></th:block>
 </div>
 
-
-<section class="notes-main">
-    <div class="to-do-list">
-        <h2>To Do List</h2>
-
-<!--        <div class="invalid-feedback errors-register alert-danger"-->
-<!--             th:each="err :${#fields.errors('description')}"-->
-<!--             th:text="${err}"/>-->
-        <form class="add-todo" th:method="POST" th:action="@{/api/tasks/save(descr=${descr})}">
-
-            <label for="todo">Add ToDo</label>
-            <input type="text" id="todo"
-                   />
-            <!--                   th:errorclass="is-invalid">-->
-            <button id="add-btn" type="submit" onclick="displayTodo()">Add</button>
-            <input type="hidden" th:name="descr" id="taskDescr" >
-        </form>
-<!--        TODO: check if that works with the input-->
+<div class="sections">
 
 
-        <table class="table-notes">
-            <tbody class="table-body">
-            <tr th:each="task: ${tasks}">
-                <td th:text="*{task.description}">task text</td>
-                <td class="done">
-                    <a href="#" title="Done"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg></a>
-                </td>
-                <td class="remove">
-                    <a href="#" title="Remove">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
-                    </a>
-                </td>
-            </tr>
-<!--            <tr>-->
-<!--                <td>todo text</td>-->
+    <section class="notes-main">
+        <div class="to-do-list">
+            <h2>To Do List</h2>
+            <form class="add-todo" th:method="POST" th:action="@{/api/tasks/save(descr=${descr})}">
+                <label for="todo">Add ToDo</label>
+                <input type="text" id="todo">
+                <label for="dueDate">Due date</label>
+                <input type="date" id="dueDate">
+                <button id="add-btn" type="submit" onclick="displayTodo()">Add</button>
+                <input type="hidden" th:name="descr" id="taskDescr" >
+                <input type="hidden" th:name="dueDate" id="dueDateField" >
+            </form>
+
+            <table class="table-notes">
+                <tbody class="table-body">
+                <tr th:each="task: ${tasks}">
+                    <td th:text="*{task.description}">todo text</td>
+                    <td th:text="|Finish until  *{task.dueDate}|">10-01-2024</td>
+                    <td class="done">
+                        <a href="#" title="Done"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+    <section class="notes-ready">
+        <div class="to-do-list-ready">
+            <h2>Done todos</h2>
+            <table  class="table-notes">
+                <tbody class="table-body">
+                <tr th:each="taskDone: ${tasksDone}">
+                    <td th:text="*{taskDone.description}">todo text</td>
+                    <td th:text="|Was up to  *{taskDone.description}|">10-01-2024</td>
+                    <td class="remove">
+                        <a href="#" title="Remove">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+
+</div>
+
+
+
+<!--<section class="notes-main">-->
+<!--    <div class="to-do-list">-->
+<!--        <h2>To Do List</h2>-->
+
+<!--&lt;!&ndash;        <div class="invalid-feedback errors-register alert-danger"&ndash;&gt;-->
+<!--&lt;!&ndash;             th:each="err :${#fields.errors('description')}"&ndash;&gt;-->
+<!--&lt;!&ndash;             th:text="${err}"/>&ndash;&gt;-->
+<!--        <form class="add-todo" th:method="POST" th:action="@{/api/tasks/save(descr=${descr})}">-->
+
+<!--            <label for="todo">Add ToDo</label>-->
+<!--            <input type="text" id="todo"-->
+<!--                   />-->
+<!--            &lt;!&ndash;                   th:errorclass="is-invalid">&ndash;&gt;-->
+<!--            <button id="add-btn" type="submit" onclick="displayTodo()">Add</button>-->
+<!--            <input type="hidden" th:name="descr" id="taskDescr" >-->
+<!--        </form>-->
+
+
+<!--        <table class="table-notes">-->
+<!--            <tbody class="table-body">-->
+<!--            <tr th:each="task: ${tasks}">-->
+<!--                <td th:text="*{task.description}">task text</td>-->
 <!--                <td class="done">-->
-<!--                    <a href="#" title="Done"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">&lt;!&ndash;!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.&ndash;&gt;<path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg></a>-->
+<!--                    <a href="#" title="Done"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg></a>-->
 <!--                </td>-->
 <!--                <td class="remove">-->
 <!--                    <a href="#" title="Remove">-->
@@ -59,10 +102,21 @@
 <!--                    </a>-->
 <!--                </td>-->
 <!--            </tr>-->
-            </tbody>
-        </table>
-    </div>
-</section>
+<!--&lt;!&ndash;            <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                <td>todo text</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                <td class="done">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a href="#" title="Done"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">&lt;!&ndash;!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.&ndash;&gt;<path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                <td class="remove">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a href="#" title="Remove">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">&lt;!&ndash;!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.&ndash;&gt;<path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                </td>&ndash;&gt;-->
+<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
+<!--</section>-->
 
 
 

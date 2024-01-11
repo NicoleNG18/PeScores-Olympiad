@@ -8,12 +8,14 @@ import pmgkn.pescores.pescores.domain.dto.UserRegistrationDTO;
 import pmgkn.pescores.pescores.domain.entity.TaskEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.domain.entity.UserRoleEntity;
+import pmgkn.pescores.pescores.domain.enums.TaskStatusEnum;
 import pmgkn.pescores.pescores.domain.enums.UserRoleEnum;
 import pmgkn.pescores.pescores.repositories.UserRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -49,10 +51,17 @@ public class UserService {
 
     }
 
-    public List<TaskEntity> getAllTasks(String email) {
+    public List<TaskEntity> getAllInProgressTasks(String email) {
 
         return this.userRepository.findByEmail(email)
-                .getTasks();
+                .getTasks().stream().filter(t-> t.getStatus()==TaskStatusEnum.IN_PROGRESS).collect(Collectors.toList());
+
+    }
+
+    public List<TaskEntity> getAllDoneTasks(String email) {
+
+        return this.userRepository.findByEmail(email)
+                .getTasks().stream().filter(t-> t.getStatus()==TaskStatusEnum.COMPLETED).collect(Collectors.toList());
 
     }
 
