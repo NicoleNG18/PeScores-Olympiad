@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 public class TaskDto {
-@NotNull
+    @NotNull
     private String description;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")

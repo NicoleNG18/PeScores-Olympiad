@@ -1,8 +1,12 @@
 package pmgkn.pescores.pescores.web;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pmgkn.pescores.pescores.domain.dto.TaskDto;
 import pmgkn.pescores.pescores.service.TaskService;
 
 import java.security.Principal;
@@ -25,4 +29,47 @@ public class TasksController {
 
         return "tasks";
     }
+
+    @PatchMapping("/tasks/done/")
+    public String doneTask(@RequestParam(value = "descr") String descr, Principal principal){
+//                              BindingResult bindingResult,
+//                              RedirectAttributes redirectAttributes) {
+
+//        if (bindingResult.hasErrors()) {
+//
+//            redirectAttributes.addFlashAttribute("taskDto", taskDto);
+//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.editedProductDto"
+//                    , bindingResult);
+//
+//            return "redirect:/products/edit/{id}";
+//
+//        }
+
+        this.taskService.makeTaskDone(descr,principal.getName());
+
+
+        return "redirect:/tasks";
+    }
+
+    @DeleteMapping("/tasks/delete/")
+    public String deleteTask(@RequestParam(value = "descr") String descr, Principal principal){
+//                              BindingResult bindingResult,
+//                              RedirectAttributes redirectAttributes) {
+
+//        if (bindingResult.hasErrors()) {
+//
+//            redirectAttributes.addFlashAttribute("taskDto", taskDto);
+//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.editedProductDto"
+//                    , bindingResult);
+//
+//            return "redirect:/products/edit/{id}";
+//
+//        }
+
+        this.taskService.deleteTask(descr,principal.getName());
+
+
+        return "redirect:/tasks";
+    }
+
 }

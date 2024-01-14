@@ -4,6 +4,7 @@
     background-color: #5d54c3;
     padding: 5em 3em;
     justify-content: space-between;
+    min-height: 350px;
 }
 
 .notes-main{
@@ -96,6 +97,15 @@
 }
 
 .to-do-list button{
+    background-color:#d8d7fe;
+    color: #5d54c3;
+    border: 2px solid #5d54c3;
+    border-radius: 0.3em;
+    padding:0.1em 0.4em;
+    width: 6em;
+}
+
+.to-do-list-ready button{
     background-color:#d8d7fe;
     color: #5d54c3;
     border: 2px solid #5d54c3;

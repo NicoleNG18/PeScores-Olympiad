@@ -9,6 +9,7 @@ import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.domain.enums.TaskStatusEnum;
 import pmgkn.pescores.pescores.repositories.TaskRepository;
 
+import java.security.Principal;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -58,15 +59,9 @@ public class TaskService {
     public List<TaskDto> getAllInProgressTasksByUser(String username){
 
         List<TaskEntity> allTasksByUser = this.userService.getAllInProgressTasks(username);
-//        List<TaskDto> allTasksDtos = allTasksByUser.stream().map(this::mapToTaskDto).collect(Collectors.toList());
 
-////        allTasksDtos.stream()
-////                .sorted(Comparator.comparing(TaskDto::getDueDate))
-////                .collect(Collectors.toList());
-//
-//                Comparator<TaskDto> comparatorAsc = (task1, task2) -> (task1.getDueDate().isBefore(task2.getDueDate()) ? 1 : 0);
-//
-//        allTasksDtos.sort(comparatorAsc);
+        Comparator<TaskEntity> compareByDate= Comparator.comparing(TaskEntity::getDueDate);
+        allTasksByUser.sort(compareByDate);
 
         return allTasksByUser.stream().map(this::mapToTaskDto).collect(Collectors.toList());
     }
@@ -74,17 +69,10 @@ public class TaskService {
     public List<TaskDto> getAllDoneTasksByUser(String username){
 
         List<TaskEntity> allTasksByUser = this.userService.getAllDoneTasks(username);
-//        List<TaskDto> allTasksDtos = allTasksByUser.stream().map(this::mapToTaskDto).collect(Collectors.toList());
 
-//        return allTasksByUser.stream().map(this::mapToTaskDto).collect(Collectors.toList());
-//        Comparator<TaskDto> comparatorAsc = (task1, task2) -> task1.getDueDate()
-//                .compareTo(task2.getDueDate());
-//
-//        allTasksDtos.sort(comparatorAsc);
-//
-//        allTasksDtos.stream()
-//                .sorted(Comparator.comparing(TaskDto::getDueDate))
-//                .collect(Collectors.toList());
+        Comparator<TaskEntity> compareByDate= Comparator.comparing(TaskEntity::getDueDate);
+        allTasksByUser.sort(compareByDate);
+
 
         return allTasksByUser.stream().map(this::mapToTaskDto).collect(Collectors.toList());
     }
@@ -93,4 +81,22 @@ public class TaskService {
         return this.modelMapper.map(t, TaskDto.class);
     }
 
+    public void makeTaskDone(String descr,String email) {
+
+        UserEntity userByEmail = this.userService.getUserByEmail(email);
+
+        TaskEntity byOwnerAndDescription = this.taskRepository.findByOwnerAndDescription(userByEmail, descr);
+        byOwnerAndDescription.setStatus(TaskStatusEnum.COMPLETED);
+
+        this.taskRepository.saveAndFlush(byOwnerAndDescription);
+
+    }
+
+    public void deleteTask(String descr, String email){
+
+        UserEntity userByEmail = this.userService.getUserByEmail(email);
+        TaskEntity byOwnerAndDescription = this.taskRepository.findByOwnerAndDescription(userByEmail, descr);
+        this.taskRepository.delete(byOwnerAndDescription);
+
+    }
 }
