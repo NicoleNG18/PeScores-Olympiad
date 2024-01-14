@@ -5,8 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import pmgkn.pescores.pescores.domain.entity.BaseEntity;
 
+import static pmgkn.pescores.pescores.domain.entity.constants.TableNames.T_TEST;
+
 @Entity
-@Table(name = "t_test")
+@Table(name = T_TEST)
 public class TTestEntity extends BaseEntity {
 
     @Column

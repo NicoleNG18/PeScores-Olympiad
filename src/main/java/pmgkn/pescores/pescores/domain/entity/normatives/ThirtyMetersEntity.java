@@ -5,8 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import pmgkn.pescores.pescores.domain.entity.BaseEntity;
 
+import static pmgkn.pescores.pescores.domain.entity.constants.TableNames.THIRTY_METERS;
+
 @Entity
-@Table(name = "thirty_meters")
+@Table(name = THIRTY_METERS)
 public class ThirtyMetersEntity extends BaseEntity {
 
     @Column

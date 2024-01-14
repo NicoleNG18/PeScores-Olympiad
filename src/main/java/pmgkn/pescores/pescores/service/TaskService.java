@@ -3,16 +3,16 @@ package pmgkn.pescores.pescores.service;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pmgkn.pescores.pescores.domain.dto.TaskDto;
+import pmgkn.pescores.pescores.domain.dto.binding.TaskBindingDto;
+import pmgkn.pescores.pescores.domain.dto.view.TaskViewDto;
 import pmgkn.pescores.pescores.domain.entity.TaskEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.domain.enums.TaskStatusEnum;
 import pmgkn.pescores.pescores.repositories.TaskRepository;
 
-import java.security.Principal;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,7 +20,7 @@ public class TaskService {
 
     private final UserService userService;
 
-    private  final TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
 
     private final ModelMapper modelMapper;
 
@@ -34,7 +34,8 @@ public class TaskService {
 
 
     @Transactional
-    public void saveTask(TaskDto taskDto, String username){
+    public void saveTask(TaskBindingDto taskDto,
+                         String username) {
 
         TaskEntity task = new TaskEntity();
 
@@ -47,7 +48,7 @@ public class TaskService {
         this.taskRepository.saveAndFlush(task);
     }
 
-    private static void buildTask(TaskDto taskDto,
+    private static void buildTask(TaskBindingDto taskDto,
                                   TaskEntity task,
                                   UserEntity user) {
         task.setDescription(taskDto.getDescription())
@@ -56,47 +57,50 @@ public class TaskService {
                 .setStatus(TaskStatusEnum.IN_PROGRESS);
     }
 
-    public List<TaskDto> getAllInProgressTasksByUser(String username){
+    public List<TaskViewDto> getAllInProgressTasksByUser(String username) {
 
-        List<TaskEntity> allTasksByUser = this.userService.getAllInProgressTasks(username);
+        List<TaskEntity> allInProgressTasks = getSortedTasks(username, TaskStatusEnum.IN_PROGRESS);
 
-        Comparator<TaskEntity> compareByDate= Comparator.comparing(TaskEntity::getDueDate);
-        allTasksByUser.sort(compareByDate);
-
-        return allTasksByUser.stream().map(this::mapToTaskDto).collect(Collectors.toList());
+        return allInProgressTasks.stream().map(this::mapToTaskDto).collect(Collectors.toList());
     }
 
-    public List<TaskDto> getAllDoneTasksByUser(String username){
+    public List<TaskViewDto> getAllDoneTasksByUser(String username) {
 
-        List<TaskEntity> allTasksByUser = this.userService.getAllDoneTasks(username);
+        List<TaskEntity> allDoneTasks = getSortedTasks(username, TaskStatusEnum.COMPLETED);
 
-        Comparator<TaskEntity> compareByDate= Comparator.comparing(TaskEntity::getDueDate);
-        allTasksByUser.sort(compareByDate);
-
-
-        return allTasksByUser.stream().map(this::mapToTaskDto).collect(Collectors.toList());
+        return allDoneTasks.stream().map(this::mapToTaskDto).collect(Collectors.toList());
     }
 
-    private TaskDto mapToTaskDto(TaskEntity t) {
-        return this.modelMapper.map(t, TaskDto.class);
+    private List<TaskEntity> getSortedTasks(String username,
+                                            TaskStatusEnum taskStatusEnum) {
+        List<TaskEntity> allInProgressTasks = taskStatusEnum.equals(TaskStatusEnum.IN_PROGRESS) ? this.userService.getAllInProgressTasks(username)
+                : this.userService.getAllDoneTasks(username);
+        sortTasks(allInProgressTasks);
+
+        return allInProgressTasks;
     }
 
-    public void makeTaskDone(String descr,String email) {
+    private static void sortTasks(List<TaskEntity> allInProgressTasks) {
+        Comparator<TaskEntity> compareByDate = Comparator.comparing(TaskEntity::getDueDate);
+        allInProgressTasks.sort(compareByDate);
+    }
 
-        UserEntity userByEmail = this.userService.getUserByEmail(email);
+    private TaskViewDto mapToTaskDto(TaskEntity t) {
+        return this.modelMapper.map(t, TaskViewDto.class);
+    }
 
-        TaskEntity byOwnerAndDescription = this.taskRepository.findByOwnerAndDescription(userByEmail, descr);
-        byOwnerAndDescription.setStatus(TaskStatusEnum.COMPLETED);
+    public void makeTaskDone(UUID descr) {
 
-        this.taskRepository.saveAndFlush(byOwnerAndDescription);
+        TaskEntity taskById = this.taskRepository.getReferenceById(descr);
+        taskById.setStatus(TaskStatusEnum.COMPLETED);
+
+        this.taskRepository.saveAndFlush(taskById);
 
     }
 
-    public void deleteTask(String descr, String email){
+    public void deleteTask(UUID descr) {
 
-        UserEntity userByEmail = this.userService.getUserByEmail(email);
-        TaskEntity byOwnerAndDescription = this.taskRepository.findByOwnerAndDescription(userByEmail, descr);
-        this.taskRepository.delete(byOwnerAndDescription);
+        this.taskRepository.deleteById(descr);
 
     }
 }

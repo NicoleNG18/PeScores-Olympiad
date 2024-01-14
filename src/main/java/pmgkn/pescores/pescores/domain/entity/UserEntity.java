@@ -1,17 +1,15 @@
 package pmgkn.pescores.pescores.domain.entity;
 
 import jakarta.persistence.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import pmgkn.pescores.pescores.domain.enums.UserRoleEnum;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+
+import static pmgkn.pescores.pescores.domain.entity.constants.TableNames.USERS;
 
 
 @Entity
-@Table(name = "users")
+@Table(name = USERS)
 public class UserEntity extends BaseEntity {
 
     @Column(nullable = false)

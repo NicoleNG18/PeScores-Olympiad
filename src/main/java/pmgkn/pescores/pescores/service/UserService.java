@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pmgkn.pescores.pescores.domain.dto.UserRegistrationDTO;
+import pmgkn.pescores.pescores.domain.dto.binding.UserRegistrationBindingDto;
 import pmgkn.pescores.pescores.domain.entity.TaskEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.domain.entity.UserRoleEntity;
@@ -43,7 +43,7 @@ public class UserService {
         return this.userRepository.findByEmail(username);
     }
 
-    public void registerUser(UserRegistrationDTO userRegistrationDTO) {
+    public void registerUser(UserRegistrationBindingDto userRegistrationDTO) {
 
         UserEntity userToSave = this.mapToUserEntity(userRegistrationDTO);
 
@@ -54,18 +54,18 @@ public class UserService {
     public List<TaskEntity> getAllInProgressTasks(String email) {
 
         return this.userRepository.findByEmail(email)
-                .getTasks().stream().filter(t-> t.getStatus()==TaskStatusEnum.IN_PROGRESS).collect(Collectors.toList());
+                .getTasks().stream().filter(t -> t.getStatus() == TaskStatusEnum.IN_PROGRESS).collect(Collectors.toList());
 
     }
 
     public List<TaskEntity> getAllDoneTasks(String email) {
 
         return this.userRepository.findByEmail(email)
-                .getTasks().stream().filter(t-> t.getStatus()==TaskStatusEnum.COMPLETED).collect(Collectors.toList());
+                .getTasks().stream().filter(t -> t.getStatus() == TaskStatusEnum.COMPLETED).collect(Collectors.toList());
 
     }
 
-    public UserEntity mapToUserEntity(UserRegistrationDTO userRegistrationDTO) {
+    public UserEntity mapToUserEntity(UserRegistrationBindingDto userRegistrationDTO) {
         final UserRoleEntity userRole = this.userRoleService.getRole(UserRoleEnum.USER);
         return this.modelMapper.map(userRegistrationDTO, UserEntity.class)
                 .setRoles(new ArrayList<>(Collections.singletonList(userRole)))

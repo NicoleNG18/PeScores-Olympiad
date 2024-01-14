@@ -8,14 +8,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMessages.INVALID_CONTACT_NAME;
+import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMessages.INVALID_PERSON_NAME;
 
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @Constraint(validatedBy = ValidPersonNameValidator.class)
 public @interface ValidPersonName {
-    String message() default INVALID_CONTACT_NAME;
+    String message() default INVALID_PERSON_NAME;
 
     Class<?>[] groups() default {};
 

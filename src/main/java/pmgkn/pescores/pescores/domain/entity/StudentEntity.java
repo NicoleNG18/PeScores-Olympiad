@@ -6,8 +6,10 @@ import pmgkn.pescores.pescores.domain.entity.normatives.ThirtyMetersEntity;
 import pmgkn.pescores.pescores.domain.entity.normatives.TwoHundredMetersEntity;
 import pmgkn.pescores.pescores.domain.entity.normatives.TTestEntity;
 
+import static pmgkn.pescores.pescores.domain.entity.constants.TableNames.STUDENTS;
+
 @Entity
-@Table(name = "students")
+@Table(name = STUDENTS)
 public class StudentEntity extends BaseEntity {
 
     @Column(nullable = false)

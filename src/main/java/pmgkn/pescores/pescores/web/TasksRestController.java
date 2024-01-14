@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pmgkn.pescores.pescores.domain.dto.TaskDto;
+import pmgkn.pescores.pescores.domain.dto.binding.TaskBindingDto;
 import pmgkn.pescores.pescores.service.TaskService;
 
 import java.security.Principal;
@@ -28,7 +28,7 @@ public class TasksRestController {
 
         String taskDescription=descr.substring(1);
 
-        this.taskService.saveTask(new TaskDto(taskDescription,dueDate), principal.getName());
+        this.taskService.saveTask(new TaskBindingDto(taskDescription,dueDate), principal.getName());
 
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)

@@ -4,9 +4,11 @@ public enum ValidationErrorMessages {
     ;
     public static final String EMAIL_UNIQUE = "Email should be unique.";
 
+    public static final String MIN_DESCRIPTION = "At least 3 symbols";
+
     public static final String MATCHING_PASSWORDS = "Passwords should match.";
 
-    public static final String INVALID_CONTACT_NAME = "Between 2 and 15 letters.";
+    public static final String INVALID_PERSON_NAME = "Between 2 and 15 letters.";
     public static final String INVALID_EMAIL = "Email should be valid";
 
     public static final String INVALID_SCHOOL_NAME = "At least 15 symbols.";

@@ -1,4 +1,4 @@
-package pmgkn.pescores.pescores.domain.dto;
+package pmgkn.pescores.pescores.domain.dto.binding;
 
 import pmgkn.pescores.pescores.validation.common.ValidEmail;
 import pmgkn.pescores.pescores.validation.common.ValidPersonName;
@@ -15,7 +15,7 @@ import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMes
 @FieldMatch(firstField = PASSWORD,
         secondField = CONFIRM_PASSWORD,
         message = MATCHING_PASSWORDS)
-public class UserRegistrationDTO {
+public class UserRegistrationBindingDto {
 
     @ValidPersonName
     private String firstName;
@@ -30,14 +30,14 @@ public class UserRegistrationDTO {
     private String password;
     private  String confirmPassword;
 
-    public UserRegistrationDTO() {
+    public UserRegistrationBindingDto() {
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public UserRegistrationDTO setFirstName(String firstName) {
+    public UserRegistrationBindingDto setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -46,7 +46,7 @@ public class UserRegistrationDTO {
         return lastName;
     }
 
-    public UserRegistrationDTO setLastName(String lastName) {
+    public UserRegistrationBindingDto setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -55,7 +55,7 @@ public class UserRegistrationDTO {
         return email;
     }
 
-    public UserRegistrationDTO setEmail(String email) {
+    public UserRegistrationBindingDto setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -64,7 +64,7 @@ public class UserRegistrationDTO {
         return school;
     }
 
-    public UserRegistrationDTO setSchool(String school) {
+    public UserRegistrationBindingDto setSchool(String school) {
         this.school = school;
         return this;
     }
@@ -73,7 +73,7 @@ public class UserRegistrationDTO {
         return password;
     }
 
-    public UserRegistrationDTO setPassword(String password) {
+    public UserRegistrationBindingDto setPassword(String password) {
         this.password = password;
         return this;
     }
@@ -82,7 +82,7 @@ public class UserRegistrationDTO {
         return confirmPassword;
     }
 
-    public UserRegistrationDTO setConfirmPassword(String confirmPassword) {
+    public UserRegistrationBindingDto setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
         return this;
     }

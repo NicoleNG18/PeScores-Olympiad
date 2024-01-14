@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import pmgkn.pescores.pescores.domain.dto.UserRegistrationDTO;
+import pmgkn.pescores.pescores.domain.dto.binding.UserRegistrationBindingDto;
 import pmgkn.pescores.pescores.service.UserService;
 
 @Controller
@@ -19,8 +19,8 @@ public class UserRegisterController {
     }
 
     @ModelAttribute("registerDto")
-    public UserRegistrationDTO initRegisterDto() {
-        return new UserRegistrationDTO();
+    public UserRegistrationBindingDto initRegisterDto() {
+        return new UserRegistrationBindingDto();
     }
 
     @GetMapping("/register")
@@ -29,7 +29,7 @@ public class UserRegisterController {
     }
 
     @PostMapping("/register")
-    public String postRegister(@Valid UserRegistrationDTO registerDto,
+    public String postRegister(@Valid UserRegistrationBindingDto registerDto,
                                BindingResult bindingResult,
                                RedirectAttributes redirectAttributes) {
 

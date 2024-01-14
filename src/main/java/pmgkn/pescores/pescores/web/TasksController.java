@@ -1,15 +1,12 @@
 package pmgkn.pescores.pescores.web;
 
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import pmgkn.pescores.pescores.domain.dto.TaskDto;
 import pmgkn.pescores.pescores.service.TaskService;
 
 import java.security.Principal;
+import java.util.UUID;
 
 @Controller
 public class TasksController {
@@ -31,7 +28,7 @@ public class TasksController {
     }
 
     @PatchMapping("/tasks/done/")
-    public String doneTask(@RequestParam(value = "descr") String descr, Principal principal){
+    public String doneTask(@RequestParam(value = "descr") UUID descr){
 //                              BindingResult bindingResult,
 //                              RedirectAttributes redirectAttributes) {
 
@@ -45,29 +42,16 @@ public class TasksController {
 //
 //        }
 
-        this.taskService.makeTaskDone(descr,principal.getName());
+        this.taskService.makeTaskDone(descr);
 
 
         return "redirect:/tasks";
     }
 
     @DeleteMapping("/tasks/delete/")
-    public String deleteTask(@RequestParam(value = "descr") String descr, Principal principal){
-//                              BindingResult bindingResult,
-//                              RedirectAttributes redirectAttributes) {
+    public String deleteTask(@RequestParam(value = "descr") UUID descr){
 
-//        if (bindingResult.hasErrors()) {
-//
-//            redirectAttributes.addFlashAttribute("taskDto", taskDto);
-//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.editedProductDto"
-//                    , bindingResult);
-//
-//            return "redirect:/products/edit/{id}";
-//
-//        }
-
-        this.taskService.deleteTask(descr,principal.getName());
-
+        this.taskService.deleteTask(descr);
 
         return "redirect:/tasks";
     }

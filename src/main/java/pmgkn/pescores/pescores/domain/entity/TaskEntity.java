@@ -8,8 +8,10 @@ import pmgkn.pescores.pescores.domain.enums.TaskStatusEnum;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import static pmgkn.pescores.pescores.domain.entity.constants.TableNames.TASKS;
+
 @Entity
-@Table(name = "tasks")
+@Table(name = TASKS)
 public class TaskEntity extends BaseEntity{
 
     @Column(nullable = false)

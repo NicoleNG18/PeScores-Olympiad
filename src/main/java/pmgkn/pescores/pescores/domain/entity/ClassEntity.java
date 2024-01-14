@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
+import static pmgkn.pescores.pescores.domain.entity.constants.TableNames.CLASSES;
+
 @Entity
-@Table(name = "classes")
+@Table(name = CLASSES)
 public class ClassEntity extends BaseEntity {
 
     @Column(nullable = false)

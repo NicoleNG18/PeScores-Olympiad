@@ -6,8 +6,10 @@ import pmgkn.pescores.pescores.domain.entity.BaseEntity;
 
 import java.util.List;
 
+import static pmgkn.pescores.pescores.domain.entity.constants.TableNames.DENSE_BALL;
+
 @Entity
-@Table(name = "dense_ball")
+@Table(name = DENSE_BALL)
 public class DenseBallEntity extends BaseEntity {
 
     @Column
