@@ -14,18 +14,22 @@ public class UserLoginController {
 
     @GetMapping("/login")
     public String login(Model model) {
+
         if (!model.containsAttribute("userLoginDto")) {
             model.addAttribute("userLoginDto", new UserLoginBindingDto());
             model.addAttribute("bad_credentials", false);
         }
+
         return "login";
     }
 
     @PostMapping("/login-error")
-    public String errorLogin(UserLoginBindingDto userLoginDto,
-                             RedirectAttributes redirectAttributes) {
+    public String onFailedLogin(UserLoginBindingDto userLoginDto,
+                                RedirectAttributes redirectAttributes) {
+
         redirectAttributes.addFlashAttribute("userLoginDto", userLoginDto);
         redirectAttributes.addFlashAttribute("bad_credentials", true);
+        
         return "redirect:/users/login";
     }
 

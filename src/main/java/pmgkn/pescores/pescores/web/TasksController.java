@@ -18,7 +18,7 @@ public class TasksController {
     }
 
     @GetMapping("/tasks")
-    public String getNotes(Model model,
+    public String getTasks(Model model,
                            Principal principal){
 
         model.addAttribute("tasks",this.taskService.getAllInProgressTasksByUser(principal.getName()));
@@ -48,10 +48,10 @@ public class TasksController {
         return "redirect:/tasks";
     }
 
-    @DeleteMapping("/tasks/delete/")
+    @PatchMapping("/tasks/delete/")
     public String deleteTask(@RequestParam(value = "descr") UUID descr){
 
-        this.taskService.deleteTask(descr);
+        this.taskService.makeTaskDeleted(descr);
 
         return "redirect:/tasks";
     }

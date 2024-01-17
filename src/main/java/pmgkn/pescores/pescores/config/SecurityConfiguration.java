@@ -9,16 +9,15 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
-    private final String remember;
+    private final String rememberMeKey;
 
     public SecurityConfiguration(@Value("${pescores.rememberMeKey}")
-                                 String remember) {
-        this.remember = remember;
+                                 String rememberMeKey) {
+        this.rememberMeKey = rememberMeKey;
     }
 
     @Bean
@@ -72,7 +71,9 @@ public class SecurityConfiguration {
                 )
                 .rememberMe(rememberMe ->
                         rememberMe
-                                .key(remember)
+                                .key(rememberMeKey)
+                                .rememberMeParameter("rememberme")
+                                .rememberMeCookieName("rememberme")
                                 .tokenValiditySeconds(5 * 24 * 60 * 60))
                 .build();
 

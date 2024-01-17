@@ -24,8 +24,8 @@ public class UserRegisterController {
     }
 
     @GetMapping("/register")
-    public String getRegister(){
-        return "auth-register";
+    public String getRegister() {
+        return "register";
     }
 
     @PostMapping("/register")
@@ -33,11 +33,11 @@ public class UserRegisterController {
                                BindingResult bindingResult,
                                RedirectAttributes redirectAttributes) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
 
-            redirectAttributes.addFlashAttribute("registerDto",registerDto);
+            redirectAttributes.addFlashAttribute("registerDto", registerDto);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerDto"
-                    ,bindingResult);
+                    , bindingResult);
 
             return "redirect:/users/register";
 

@@ -98,9 +98,13 @@ public class TaskService {
 
     }
 
-    public void deleteTask(UUID descr) {
+    public void makeTaskDeleted(UUID descr) {
 
-        this.taskRepository.deleteById(descr);
+        TaskEntity taskById = this.taskRepository.getReferenceById(descr);
+        taskById.setStatus(TaskStatusEnum.DELETED);
+
+        this.taskRepository.saveAndFlush(taskById);
 
     }
+
 }
