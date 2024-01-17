@@ -17,12 +17,18 @@ public class TasksController {
         this.taskService = taskService;
     }
 
+    @ModelAttribute("taskDto")
+    public TaskBindingDto initTaskDto() {
+        return new TaskBindingDto();
+    }
+
+
     @GetMapping("/tasks")
     public String getTasks(Model model,
-                           Principal principal){
+                           Principal principal) {
 
-        model.addAttribute("tasks",this.taskService.getAllInProgressTasksByUser(principal.getName()));
-        model.addAttribute("tasksDone",this.taskService.getAllDoneTasksByUser(principal.getName()));
+        model.addAttribute("tasks", this.taskService.getAllInProgressTasksByUser(principal.getName()));
+        model.addAttribute("tasksDone", this.taskService.getAllDoneTasksByUser(principal.getName()));
 
         return "tasks";
     }

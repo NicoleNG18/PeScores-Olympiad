@@ -1,5 +1,7 @@
 package pmgkn.pescores.pescores.domain.dto.binding;
 
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -7,15 +9,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 import static pmgkn.pescores.pescores.domain.entity.constants.Messages.DATE_PATTERN;
-import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMessages.MIN_DESCRIPTION;
+import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMessages.*;
 
 public class TaskBindingDto {
-    @NotNull
-    @Size(min = 3, message = MIN_DESCRIPTION)
+
+    @NotEmpty(message = DESCRIPTION_REQUIRED)
     private String description;
 
     @DateTimeFormat(pattern = DATE_PATTERN)
-    @NotNull
+    @NotNull(message = DATE_PRESENT)
+    @FutureOrPresent(message = DATE_PRESENT)
     private LocalDate dueDate;
 
     public TaskBindingDto() {
