@@ -21,14 +21,42 @@
     <section class="notes-main">
         <div class="to-do-list">
             <h2>To Do List</h2>
-            <form class="add-todo" th:method="POST" th:action="@{/api/tasks/save(descr=${descr})}">
+            <form class="add-todo"
+                  th:method="POST"
+                  th:action="@{/tasks/save}"
+                  th:object="${taskDto}">
+
+<!--                <input-->
+<!--                        class="form-control rounded-3 mycol-config my-input"-->
+<!--                        type="number"-->
+<!--                        id="taskId"-->
+<!--                        name="taskId"-->
+<!--                        th:field="*{taskId}"-->
+<!--                        hidden-->
+<!--                >-->
+
                 <label for="todo">Add ToDo</label>
-                <input type="text" id="todo">
+                <input type="text" id="todo"
+                       th:field="*{description}"
+                       th:errorclass="is-invalid"
+                        th:name="description">
+                <div class="invalid-feedback errors-tasks alert-danger"
+                     th:each="err :${#fields.errors('description')}"
+                     th:text="${err}"/>
+<!--                <div th:unless="${check}" class="invalid-feedback errors-register alert-danger"-->
+<!--                     th:text="${text}"/>-->
                 <label for="dueDate">Due date</label>
-                <input type="date" id="dueDate">
+                <input type="date" id="dueDate"
+                       th:field="*{dueDate}"
+                       th:errorclass="is-invalid"
+                       th:name="dueDate">
+                <div class="invalid-feedback errors-tasks alert-danger"
+                     th:each="err :${#fields.errors('dueDate')}"
+                     th:text="${err}"/>
+
                 <button id="add-btn" type="submit" onclick="displayTodo()">Add</button>
-                <input type="hidden" th:name="descr" id="taskDescr" >
-                <input type="hidden" th:name="dueDate" id="dueDateField">
+
+                <input type="hidden"  id="taskId" name="taskId">
             </form>
 
             <table class="table-notes">
@@ -57,7 +85,7 @@
                     <td th:text="*{taskDone.description}">todo text</td>
                     <td th:text="|Was up to  *{taskDone.dueDate}|">10-01-2024</td>
                     <td class="remove">
-                        <form  th:method="DELETE"  th:action="@{/tasks/delete/(descr=${taskDone.id})}" th:object="${taskDone}">
+                        <form  th:method="PATCH"  th:action="@{/tasks/delete/(descr=${taskDone.id})}" th:object="${taskDone}">
                         <button type="submit" title="Remove">
                             <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
                         </button>

@@ -108,6 +108,17 @@
     text-align: center;
 }
 
+.errors-tasks{
+    width:95%;
+    border-radius: 4px;
+    text-align: center;
+    font-weight:500;
+    font-size: 13px;
+    background-color: #5d54c3;
+    color:red;
+    margin: 1em auto;
+}
+
 .done svg{
     fill: green;
 }

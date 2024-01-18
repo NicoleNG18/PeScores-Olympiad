@@ -17,8 +17,8 @@ public class TaskBindingDto {
     private String description;
 
     @DateTimeFormat(pattern = DATE_PATTERN)
-    @NotNull(message = DATE_PRESENT)
     @FutureOrPresent(message = DATE_PRESENT)
+    @NotNull(message = DATE_PRESENT)
     private LocalDate dueDate;
 
     public TaskBindingDto() {

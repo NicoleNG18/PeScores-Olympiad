@@ -1,8 +1,12 @@
 package pmgkn.pescores.pescores.web;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pmgkn.pescores.pescores.domain.dto.binding.TaskBindingDto;
 import pmgkn.pescores.pescores.service.TaskService;
 
 import java.security.Principal;
@@ -33,29 +37,37 @@ public class TasksController {
         return "tasks";
     }
 
-    @PatchMapping("/tasks/done/")
-    public String doneTask(@RequestParam(value = "descr") UUID descr){
-//                              BindingResult bindingResult,
-//                              RedirectAttributes redirectAttributes) {
+    @PostMapping("/tasks/save")
+    public String saveTask (@Valid TaskBindingDto taskDto,
+                            BindingResult bindingResult,
+                            RedirectAttributes redirectAttributes,
+                            Principal principal) {
 
-//        if (bindingResult.hasErrors()) {
-//
-//            redirectAttributes.addFlashAttribute("taskDto", taskDto);
-//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.editedProductDto"
-//                    , bindingResult);
-//
-//            return "redirect:/products/edit/{id}";
-//
-//        }
+        if (bindingResult.hasErrors()) {
+
+            redirectAttributes.addFlashAttribute("taskDto", taskDto);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.taskDto"
+                    , bindingResult);
+
+            return "redirect:/tasks";
+
+        }
+
+        this.taskService.saveTask(taskDto,principal.getName());
+
+        return "redirect:/tasks";
+    }
+
+    @PatchMapping("/tasks/done/")
+    public String doneTask(@RequestParam(value = "descr") UUID descr) {
 
         this.taskService.makeTaskDone(descr);
-
 
         return "redirect:/tasks";
     }
 
     @PatchMapping("/tasks/delete/")
-    public String deleteTask(@RequestParam(value = "descr") UUID descr){
+    public String deleteTask(@RequestParam(value = "descr") UUID descr) {
 
         this.taskService.makeTaskDeleted(descr);
 
