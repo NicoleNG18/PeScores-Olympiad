@@ -1,5 +1,6 @@
 package pmgkn.pescores.pescores.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -13,12 +14,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
-    private final String rememberMeKey;
+//    private final String rememberMeKey;
 
-    public SecurityConfiguration(@Value("${pescores.rememberMeKey}")
-                                 String rememberMeKey) {
-        this.rememberMeKey = rememberMeKey;
-    }
+//    @Autowired
+//    public SecurityConfiguration(@Value("${pescores.rememberMeKey}")
+//                                 String rememberMeKey) {
+//        this.rememberMeKey = rememberMeKey;
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -69,12 +71,12 @@ public class SecurityConfiguration {
                                     .invalidateHttpSession(true);
                         }
                 )
-                .rememberMe(rememberMe ->
-                        rememberMe
-                                .key(rememberMeKey)
-                                .rememberMeParameter("rememberme")
-                                .rememberMeCookieName("rememberme")
-                                .tokenValiditySeconds(5 * 24 * 60 * 60))
+//                .rememberMe(rememberMe ->
+//                        rememberMe
+//                                .key(rememberMeKey)
+//                                .rememberMeParameter("rememberme")
+//                                .rememberMeCookieName("rememberme")
+//                                .tokenValiditySeconds(5 * 24 * 60 * 60))
                 .build();
 
     }

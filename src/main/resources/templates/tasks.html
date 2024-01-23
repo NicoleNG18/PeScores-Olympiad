@@ -26,15 +26,6 @@
                   th:action="@{/tasks/save}"
                   th:object="${taskDto}">
 
-<!--                <input-->
-<!--                        class="form-control rounded-3 mycol-config my-input"-->
-<!--                        type="number"-->
-<!--                        id="taskId"-->
-<!--                        name="taskId"-->
-<!--                        th:field="*{taskId}"-->
-<!--                        hidden-->
-<!--                >-->
-
                 <label for="todo">Add ToDo</label>
                 <input type="text" id="todo"
                        th:field="*{description}"
@@ -43,8 +34,6 @@
                 <div class="invalid-feedback errors-tasks alert-danger"
                      th:each="err :${#fields.errors('description')}"
                      th:text="${err}"/>
-<!--                <div th:unless="${check}" class="invalid-feedback errors-register alert-danger"-->
-<!--                     th:text="${text}"/>-->
                 <label for="dueDate">Due date</label>
                 <input type="date" id="dueDate"
                        th:field="*{dueDate}"
