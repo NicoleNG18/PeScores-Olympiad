@@ -2,13 +2,17 @@ package pmgkn.pescores.pescores.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import pmgkn.pescores.pescores.domain.entity.TaskEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.domain.entity.UserRoleEntity;
+import pmgkn.pescores.pescores.domain.enums.TaskStatusEnum;
 import pmgkn.pescores.pescores.domain.enums.UserRoleEnum;
 import pmgkn.pescores.pescores.repositories.TaskRepository;
 import pmgkn.pescores.pescores.repositories.UserRepository;
 import pmgkn.pescores.pescores.repositories.UserRoleRepository;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 
 @Component
@@ -56,6 +60,17 @@ public class TestDataUtils {
                         .toList());
 
         return userRepository.save(testUser);
+    }
+
+    public TaskEntity createTask(){
+
+        TaskEntity taskEntity=new TaskEntity()
+                .setDescription("todo description")
+                .setDueDate(LocalDate.of(2017, Month.JANUARY,25))
+                .setOwner(createTestUser("testEmail@abv.bg"))
+                .setStatus(TaskStatusEnum.IN_PROGRESS);
+
+        return taskRepository.save(taskEntity);
     }
 
     public void cleanUpDatabase() {

@@ -42,8 +42,9 @@ public class TaskEntity extends BaseEntity{
         return status;
     }
 
-    public void setStatus(TaskStatusEnum status) {
+    public TaskEntity setStatus(TaskStatusEnum status) {
         this.status = status;
+        return this;
     }
 
     public String getDescription() {
