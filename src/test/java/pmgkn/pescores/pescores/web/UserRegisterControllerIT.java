@@ -8,8 +8,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -23,5 +22,33 @@ public class UserRegisterControllerIT {
         mockMvc.perform(MockMvcRequestBuilders.get("/users/register")
                         .with(csrf())).andExpect(status().isOk())
                 .andExpect(view().name("register"));
+    }
+
+    @Test
+    void testRegistrationWorksCorrectly() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/register")
+                        .param("firstName","Nicole")
+                        .param("lastName","Georgieva")
+                        .param("email","testEmail@abv.bg")
+                        .param("school","PMG Prof Emanuil Ivanov")
+                        .param("password","Test1234@")
+                        .param("confirmPassword","Test1234@")
+                .with(csrf())).andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/users/login"));
+
+    }
+
+    @Test
+    void testRegistrationWithIncorrectData() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/register")
+                        .param("firstName","Nicole")
+                        .param("lastName","")
+                        .param("email","testEmail@abv.bg")
+                        .param("school","PMG Prof Emanuil Ivanov")
+                        .param("password","Test")
+                        .param("confirmPassword","Test")
+                        .with(csrf())).andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/users/register"));
+
     }
 }
