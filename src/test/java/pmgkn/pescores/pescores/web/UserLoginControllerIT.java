@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import pmgkn.pescores.pescores.util.TestDataUtils;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -25,6 +26,16 @@ public class UserLoginControllerIT {
         mockMvc.perform(MockMvcRequestBuilders.get("/users/login"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("login"));
+    }
+
+    @Test
+    @WithAnonymousUser
+    void testLoginWrongInput_ShouldRedirect() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/login-error")
+                        .param("email", "nicole")
+                        .param("password", "topsecret12")
+                        .with(csrf()))
+                .andExpect(status().is3xxRedirection());
     }
 
 }
