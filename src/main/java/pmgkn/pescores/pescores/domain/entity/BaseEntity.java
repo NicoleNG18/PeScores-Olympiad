@@ -14,9 +14,13 @@ public abstract class BaseEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    public UUID getId(){
+    public UUID getId() {
         return this.id;
     }
 
+    public BaseEntity setId(UUID id) {
+        this.id = id;
+        return this;
+    }
 }
 

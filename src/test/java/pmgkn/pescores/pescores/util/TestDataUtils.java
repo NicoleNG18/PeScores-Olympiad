@@ -18,9 +18,6 @@ import java.util.ArrayList;
 @Component
 public class TestDataUtils {
 
-    //add users
-    //add tasks
-
     private final TaskRepository taskRepository;
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
@@ -62,12 +59,12 @@ public class TestDataUtils {
         return userRepository.save(testUser);
     }
 
-    public TaskEntity createTask(){
+    public TaskEntity createTask(UserEntity userEntity){
 
         TaskEntity taskEntity=new TaskEntity()
                 .setDescription("todo description")
                 .setDueDate(LocalDate.of(2017, Month.JANUARY,25))
-                .setOwner(createTestUser("testEmail@abv.bg"))
+                .setOwner(userEntity)
                 .setStatus(TaskStatusEnum.IN_PROGRESS);
 
         return taskRepository.save(taskEntity);
