@@ -10,6 +10,7 @@ import pmgkn.pescores.pescores.domain.dto.binding.ClassAddBindingDto;
 import pmgkn.pescores.pescores.service.ClassesService;
 
 import java.security.Principal;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/classes")
@@ -57,9 +58,22 @@ public class ClassesController {
 
         }
 
-        this.classesService.saveClass(classAddBindingDto,principal.getName());
+        UUID classId = this.classesService.saveClass(classAddBindingDto, principal.getName());
 
-       return "redirect:/classes";
+        return "redirect:/classes/"+ classId;
     }
+
+    @GetMapping("/{id}")
+    public String getOrderDetails(@PathVariable("id") UUID id,
+                                  Model model,
+                                  Principal principal) {
+
+        model.addAttribute("classes", this.classesService.getAllClassesByUser(principal.getName()));
+        model.addAttribute("currentClass", this.classesService.getClassById(id));
+        model.addAttribute("id", id);
+
+        return "current-class";
+    }
+
 
 }

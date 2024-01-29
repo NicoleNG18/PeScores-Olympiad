@@ -5,7 +5,7 @@
 
 <head>
 <!--  TODO: to make title like current class-->
-  <title>Class page</title>
+  <title th:text="${currentClass.className}">Class page</title>
   <th:block th:insert="~{/fragments/head}"></th:block>
   <link rel="stylesheet" th:href="@{/css/current-class.css}">
 </head>
@@ -27,7 +27,7 @@
   </div>
 
     <div class="classes-table">
-      <h2>7a</h2>
+      <h2 th:text="${currentClass.className}">7a</h2>
       <table>
         <thead>
         <tr>
