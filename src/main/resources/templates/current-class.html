@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+<!--  TODO: to make title like current class-->
+  <title>Class page</title>
+  <th:block th:insert="~{/fragments/head}"></th:block>
+  <link rel="stylesheet" th:href="@{/css/current-class.css}">
+</head>
+<body>
+
+<div>
+  <th:block th:insert="~{/fragments/header}"></th:block>
+</div>
+
+<section class="main-section-classes">
+
+  <div class="my-classes">
+    <h2>My classes</h2>
+
+    <ul th:each="class: ${classes}">
+      <li><a th:text="*{class.className}"
+             th:href="@{/classes/{id}(id=${class.id})}">class</a></li>
+    </ul>
+  </div>
+
+    <div class="classes-table">
+      <h2>7a</h2>
+      <table>
+        <thead>
+        <tr>
+          <th scope="col">№</th>
+          <th scope="col">Name</th>
+          <th scope="col">30m</th>
+          <th scope="col">200m</th>
+          <th scope="col">T-test</th>
+          <th scope="col">Dense ball</th>
+          <th scope="col">Average score</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+        </tr>
+        <tr>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+        </tr>
+        <tr>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+        </tr>
+        <tr>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+        </tr>
+        <tr>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+          <td><input type="text" name="" id=""></td>
+        </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+
+
+</section>
+
+
+
+<th:block th:insert="~{/fragments/footer}"></th:block>
+
+</body>
+
+</html>

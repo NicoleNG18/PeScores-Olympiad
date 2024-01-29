@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
@@ -21,83 +19,77 @@
   <div class="my-classes">
     <h2>My classes</h2>
 
-    <ul>
-      <li><a href="">7a</a></li>
-      <li><a href="">7a</a></li>
-      <li><a href="">7a</a></li>
-      <li><a href="">7a</a></li>
-      <li><a href="">7a</a></li>
-      <li><a href="">7a</a></li>
-      <li><a href="">7a</a></li>
+    <ul th:each="class: ${classes}">
+      <li><a th:text="*{class.className}"
+             th:href="@{/classes/{id}(id=${class.id})}">class</a></li>
     </ul>
-
   </div>
 
-  <div class="classes-table">
-    <h2>7a</h2>
-    <table>
-      <thead>
-      <tr>
-        <th scope="col">№</th>
-        <th scope="col">Name</th>
-        <th scope="col">30m</th>
-        <th scope="col">200m</th>
-        <th scope="col">T-test</th>
-        <th scope="col">Dense ball</th>
-        <th scope="col">Average score</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-      </tr>
-      <tr>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-      </tr>
-      <tr>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-      </tr>
-      <tr>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-      </tr>
-      <tr>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-        <td><input type="text" name="" id=""></td>
-      </tr>
-      </tbody>
-    </table>
+<!--  <div class="classes-table">-->
+<!--    <h2>7a</h2>-->
+<!--    <table>-->
+<!--      <thead>-->
+<!--      <tr>-->
+<!--        <th scope="col">№</th>-->
+<!--        <th scope="col">Name</th>-->
+<!--        <th scope="col">30m</th>-->
+<!--        <th scope="col">200m</th>-->
+<!--        <th scope="col">T-test</th>-->
+<!--        <th scope="col">Dense ball</th>-->
+<!--        <th scope="col">Average score</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--      <tr>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--        <td><input type="text" name="" id=""></td>-->
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
 
 
-  </div>
+<!--  </div>-->
 
 
 </section>

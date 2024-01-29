@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pmgkn.pescores.pescores.domain.dto.binding.UserRegistrationBindingDto;
+import pmgkn.pescores.pescores.domain.entity.ClassEntity;
 import pmgkn.pescores.pescores.domain.entity.TaskEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.domain.entity.UserRoleEntity;
@@ -70,5 +71,10 @@ public class UserService {
         return this.modelMapper.map(userRegistrationDTO, UserEntity.class)
                 .setRoles(new ArrayList<>(Collections.singletonList(userRole)))
                 .setPassword(passwordEncoder.encode(userRegistrationDTO.getPassword()));
+    }
+
+    public List<ClassEntity> getClassesByUser(String name) {
+        return this.userRepository.findByEmail(name)
+                .getClasses();
     }
 }
