@@ -28,7 +28,7 @@
                    placeholder="Ex: 7A"
                    id="clasName"
                    class="input">
-            <div class="invalid-feedback errors-register alert-danger"
+            <div class="invalid-feedback errors-class alert-danger"
                  th:each="err :${#fields.errors('className')}"
                  th:text="${err}"></div>
 
@@ -43,7 +43,7 @@
                    max="12"
                    step="1"
                    placeholder="classNum">
-            <div class="invalid-feedback errors-register alert-danger"
+            <div class="invalid-feedback errors-class alert-danger"
                  th:each="err :${#fields.errors('classNum')}"
                  th:text="${err}"></div>
 

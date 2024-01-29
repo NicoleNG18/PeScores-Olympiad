@@ -2,6 +2,7 @@ package pmgkn.pescores.pescores.domain.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static pmgkn.pescores.pescores.domain.entity.constants.TableNames.CLASSES;
@@ -23,7 +24,7 @@ public class ClassEntity extends BaseEntity {
     private UserEntity teacher;
 
     public ClassEntity() {
-
+        this.students = new ArrayList<>();
     }
 
     public String getClassName() {

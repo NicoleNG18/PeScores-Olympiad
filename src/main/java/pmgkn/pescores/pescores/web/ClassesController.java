@@ -8,6 +8,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pmgkn.pescores.pescores.domain.dto.binding.ClassAddBindingDto;
 import pmgkn.pescores.pescores.service.ClassesService;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/classes")
 public class ClassesController {
@@ -18,7 +20,7 @@ public class ClassesController {
         this.classesService = classesService;
     }
 
-    @ModelAttribute("productDto")
+    @ModelAttribute("classAddDto")
     public ClassAddBindingDto initClassAddDto() {
         return new ClassAddBindingDto();
     }
@@ -36,7 +38,8 @@ public class ClassesController {
     @PostMapping("/add")
     public String postAddClass(@Valid ClassAddBindingDto classAddBindingDto,
                                  BindingResult bindingResult,
-                                 RedirectAttributes redirectAttributes){
+                                 RedirectAttributes redirectAttributes,
+                                 Principal principal){
 
 
         if (bindingResult.hasErrors()) {
@@ -49,9 +52,9 @@ public class ClassesController {
 
         }
 
-        this.classesService.saveClass();
+        this.classesService.saveClass(classAddBindingDto,principal.getName());
 
-       return "classes";
+       return "redirect:/classes";
     }
 
 }
