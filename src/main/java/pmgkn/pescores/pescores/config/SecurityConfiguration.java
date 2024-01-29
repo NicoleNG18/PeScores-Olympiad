@@ -44,7 +44,7 @@ public class SecurityConfiguration {
 //                                        "/api/notes/{id}",
                                         "/contact").permitAll()
                                 .requestMatchers("/notes",
-                                        "/classes").authenticated()
+                                        "/classes","/classes/add").authenticated()
                                 .requestMatchers("/").anonymous()
                                 // all other requests are authenticated.
                                 .anyRequest().authenticated()
