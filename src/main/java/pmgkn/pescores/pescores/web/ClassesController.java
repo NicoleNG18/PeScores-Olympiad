@@ -75,5 +75,14 @@ public class ClassesController {
         return "current-class";
     }
 
+    @GetMapping("/edit/{id}")
+    public String getEditClass(@PathVariable("id") UUID id,
+                               Model model){
+
+        model.addAttribute("class",this.classesService.getClassById(id));
+
+        return "classes-edit";
+    }
+
 
 }

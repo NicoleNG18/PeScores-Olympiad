@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <title>My classes</title>
+    <th:block th:insert="~{/fragments/head}"></th:block>
+    <link rel="stylesheet" th:href="@{/css/edit-class.css}">
+</head>
+<body>
+
+<div>
+    <th:block th:insert="~{/fragments/header}"></th:block>
+</div>
+
+<section class="main-section">
+
+    <form class="form"
+          th:method="PATCH"
+          th:action="@{/classes/edit/}"
+          th:object="${class}">
+
+        <h3>Edit class</h3>
+
+        <label for="clasName" class="label">Class name</label>
+        <input type="text"
+               name="className"
+               th:errorclass="is-invalid"
+               th:field="*{className}"
+               placeholder="Ex: 7A"
+               id="clasName"
+               class="input">
+        <div class="invalid-feedback errors-class alert-danger"
+             th:each="err :${#fields.errors('className')}"
+             th:text="${err}"></div>
+
+        <label for="classNum">Class Number</label>
+        <input type="number"
+               id="classNum"
+               name="classNum"
+               class="input"
+               th:errorclass="is-invalid"
+               th:field="*{classNum}"
+               min="1"
+               max="12"
+               step="1"
+               placeholder="classNum">
+        <div class="invalid-feedback errors-class alert-danger"
+             th:each="err :${#fields.errors('classNum')}"
+             th:text="${err}"></div>
+
+        <button class="submit-btn">Edit</button>
+    </form>
+
+
+
+
+
+
+
+
+</section>
+
+
+<th:block th:insert="~{/fragments/footer}"></th:block>
+
+</body>
+
+</html>
