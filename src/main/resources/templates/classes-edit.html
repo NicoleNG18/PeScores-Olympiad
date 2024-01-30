@@ -18,7 +18,7 @@
 
     <form class="form"
           th:method="PATCH"
-          th:action="@{/classes/edit/}"
+          th:action="@{/classes/edited/{id}(id=${class.id})}"
           th:object="${class}">
 
         <h3>Edit class</h3>

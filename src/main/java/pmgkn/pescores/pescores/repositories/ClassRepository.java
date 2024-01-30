@@ -8,4 +8,6 @@ import java.util.UUID;
 
 @Repository
 public interface ClassRepository extends JpaRepository<ClassEntity, UUID> {
+
+    ClassEntity findClassById(UUID id);
 }

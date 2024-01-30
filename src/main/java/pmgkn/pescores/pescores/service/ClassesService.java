@@ -65,4 +65,16 @@ public class ClassesService {
     public ClassViewDto getClassById(UUID id) {
         return this.modelMapper.map(this.classRepository.getReferenceById(id), ClassViewDto.class);
     }
+
+    public void editClass(UUID id,
+                          ClassAddBindingDto classEdit) {
+
+        ClassEntity classEntity = this.classRepository.findClassById(id);
+
+        classEntity
+                .setClassName(classEdit.getClassName())
+                .setClassNum(classEdit.getClassNum());
+
+        this.classRepository.saveAndFlush(classEntity);
+    }
 }

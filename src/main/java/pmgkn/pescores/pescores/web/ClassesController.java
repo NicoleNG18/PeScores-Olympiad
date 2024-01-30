@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pmgkn.pescores.pescores.domain.dto.binding.ClassAddBindingDto;
+import pmgkn.pescores.pescores.domain.dto.binding.ClassEditBindingDto;
 import pmgkn.pescores.pescores.service.ClassesService;
 
 import java.security.Principal;
@@ -25,6 +26,11 @@ public class ClassesController {
     @ModelAttribute("classAddDto")
     public ClassAddBindingDto initClassAddDto() {
         return new ClassAddBindingDto();
+    }
+
+    @ModelAttribute("classEdit")
+    public ClassEditBindingDto initClassEdit() {
+        return new ClassEditBindingDto();
     }
 
     @GetMapping
@@ -84,5 +90,25 @@ public class ClassesController {
         return "classes-edit";
     }
 
+    @PatchMapping("/edited/{id}")
+    public String editClass(@PathVariable("id") UUID id,
+                            @Valid ClassAddBindingDto classEdit,
+                            BindingResult bindingResult,
+                            RedirectAttributes redirectAttributes){
+
+        if (bindingResult.hasErrors()) {
+
+            redirectAttributes.addFlashAttribute("classEdit", classEdit);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.classEdit"
+                    , bindingResult);
+
+            return "redirect:/classes/edit/{id}";
+
+        }
+
+        this.classesService.editClass(id, classEdit);
+
+        return "redirect:/classes/" + id;
+    }
 
 }
