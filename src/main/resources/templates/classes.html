@@ -20,8 +20,9 @@
     <h2>My classes</h2>
 
     <ul th:each="class: ${classes}">
-      <li><a th:text="*{class.className}"
+      <li><a class="className" th:text="*{class.className}"
              th:href="@{/classes/{id}(id=${class.id})}">class</a></li>
+      <li><a class="edit" th:href="@{/classes/edit/{id}(id=${class.id})}">Edit</a></li>
     </ul>
   </div>
 

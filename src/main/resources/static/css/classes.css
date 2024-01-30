@@ -4,7 +4,6 @@
     display: flex;
     background-color: #5d54c3;
     justify-content: center;
-    height: 400px;
 }
 
 .my-classes h2{
@@ -26,6 +25,10 @@
     list-style: none;
     color: #5d54c3;
     margin-bottom: 1.5em;
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    justify-content: center;
 }
 
 .my-classes li{
@@ -34,16 +37,30 @@
     text-align: center;
 }
 
-.my-classes li a{
+.className{
     text-decoration: none;
     font-size: 20px;
-    padding:0.2em 6.2em;
+    padding:0.2em 2em;
     color: #5d54c3;
 }
 
-.my-classes li a:hover{
+.className:hover{
     color: #d8d7fe;
     background-color: #5d54c3;
+    border-radius: 5px;
+}
+
+.edit{
+    color:#d8d7fe;
+    background-color: #5d54c3;
+    border-radius: 5px;
+    padding: 0.5em 1em;
+    text-decoration: none;
+}
+
+.edit:hover{
+    color:#5d54c3;
+    background-color: #d8d7fe;
 }
 
 

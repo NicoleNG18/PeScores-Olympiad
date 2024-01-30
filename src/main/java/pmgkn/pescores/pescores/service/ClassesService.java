@@ -8,7 +8,6 @@ import pmgkn.pescores.pescores.domain.dto.view.ClassViewDto;
 import pmgkn.pescores.pescores.domain.entity.ClassEntity;
 import pmgkn.pescores.pescores.repositories.ClassRepository;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -50,6 +49,13 @@ public class ClassesService {
     public List<ClassViewDto> getAllClassesByUser(String name) {
 
         List<ClassEntity> classesByUser = this.userService.getClassesByUser(name);
+
+        classesByUser.sort((b1, b2) -> {
+            if (b1.getClassNum() >= b2.getClassNum()) {
+                return 1;
+            }
+            return 0;
+        });
 
         classesByUser.sort((c1, c2) -> c1.getClassName().compareTo(c2.getClassName()));
 
