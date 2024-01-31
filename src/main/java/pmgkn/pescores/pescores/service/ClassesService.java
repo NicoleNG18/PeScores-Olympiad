@@ -77,4 +77,8 @@ public class ClassesService {
 
         this.classRepository.saveAndFlush(classEntity);
     }
+
+    public void deleteClass(UUID id) {
+        this.classRepository.deleteById(id);
+    }
 }

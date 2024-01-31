@@ -111,4 +111,13 @@ public class ClassesController {
         return "redirect:/classes/" + id;
     }
 
+    @DeleteMapping("/delete/{id}")
+    public String deleteClass(@PathVariable("id") UUID id) {
+
+        this.classesService.deleteClass(id);
+
+        return "redirect:/classes";
+    }
+
+
 }
