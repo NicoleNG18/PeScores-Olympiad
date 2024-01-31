@@ -13,10 +13,10 @@ import static pmgkn.pescores.pescores.domain.entity.constants.TableNames.STUDENT
 public class StudentEntity extends BaseEntity {
 
     @Column(nullable = false)
-    private String firstName;
+    private String studentName;
 
     @Column(nullable = false)
-    private String lastName;
+    private Integer studentNumber;
 
     @OneToOne
     private DenseBallEntity denseBall;
@@ -30,21 +30,21 @@ public class StudentEntity extends BaseEntity {
     @ManyToOne
     private ClassEntity studentClass;
 
-    public String getFirstName() {
-        return firstName;
+    public String getStudentName() {
+        return studentName;
     }
 
-    public StudentEntity setFirstName(String firstName) {
-        this.firstName = firstName;
+    public StudentEntity setStudentName(String studentName) {
+        this.studentName = studentName;
         return this;
     }
 
-    public String getLastName() {
-        return lastName;
+    public Integer getStudentNumber() {
+        return studentNumber;
     }
 
-    public StudentEntity setLastName(String lastName) {
-        this.lastName = lastName;
+    public StudentEntity setStudentNumber(Integer studentNumber) {
+        this.studentNumber = studentNumber;
         return this;
     }
 

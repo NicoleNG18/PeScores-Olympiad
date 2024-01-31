@@ -1,0 +1,71 @@
+<head>
+    <title>Add student</title>
+    <th:block th:insert="~{/fragments/head}"></th:block>
+    <link rel="stylesheet" th:href="@{/css/add-student.css}">
+</head>
+
+<div>
+    <th:block th:insert="~{/fragments/header}"></th:block>
+</div>
+
+
+<body>
+
+<section class="main-section">
+
+    <form class="form"
+          th:method="POST"
+          th:action="@{/students/add}"
+          th:object="${studentAddDto}">
+
+        <h3>Add student</h3>
+
+        <label for="studentName" class="label">Student name</label>
+        <input type="text"
+               name="studentName"
+               th:errorclass="is-invalid"
+               th:field="*{studentName}"
+               placeholder="Ex: Aleksandur"
+               id="studentName"
+               class="input">
+        <div class="invalid-feedback errors-class alert-danger"
+             th:each="err :${#fields.errors('studentName')}"
+             th:text="${err}"></div>
+
+        <label for="studentNumber" class="label">Student number</label>
+        <input type="number"
+               name="studentNumber"
+               th:errorclass="is-invalid"
+               th:field="*{studentNumber}"
+               id="studentNumber"
+               class="input"
+               min="1"
+               max="35"
+               step="1">
+        <div class="invalid-feedback errors-class alert-danger"
+             th:each="err :${#fields.errors('studentNumber')}"
+             th:text="${err}"></div>
+
+
+        <label for="studentClass" class="label">Student class</label>
+        <select id="studentClass"
+                th:field="*{studentClass}"
+                th:errorclass="is-invalid"
+                class="form-select text-secondary">
+          <option value="">Select category</option>
+          <option th:each="class: ${classes}"
+                  th:text="${class.className}"
+                  th:value="${class}">7a
+          </option>
+        </select>
+      <div class="invalid-feedback errors-class alert-danger"
+           th:each="err :${#fields.errors('studentClass')}"
+           th:text="${err}"></div>
+
+        <button class="submit-btn">Submit</button>
+    </form>
+
+</section>
+
+<th:block th:insert="~{/fragments/footer}"></th:block>
+</body>
