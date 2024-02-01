@@ -83,6 +83,9 @@
     border-bottom: 2px solid #5d54c3;
     border-right: 2px solid #5d54c3;
     color: #5d54c3;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .classes-table tbody td input{

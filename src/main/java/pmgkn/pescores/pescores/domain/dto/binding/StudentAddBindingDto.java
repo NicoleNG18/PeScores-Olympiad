@@ -1,10 +1,10 @@
 package pmgkn.pescores.pescores.domain.dto.binding;
 
 import jakarta.validation.constraints.Positive;
-import pmgkn.pescores.pescores.validation.common.ValidPersonName;
+import pmgkn.pescores.pescores.validation.common.ValidStudentName;
 
 public class StudentAddBindingDto {
-    @ValidPersonName
+    @ValidStudentName
     private String studentName;
     @Positive
     private Integer studentNumber;
