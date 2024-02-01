@@ -62,5 +62,9 @@ public class ClassEntity extends BaseEntity {
         this.teacher = teacher;
         return this;
     }
+
+    public void addStudent(StudentEntity student){
+        this.students.add(student);
+    }
 }
 

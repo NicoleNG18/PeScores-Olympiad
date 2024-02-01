@@ -4,7 +4,6 @@
 
 
 <head>
-<!--  TODO: to make title like current class-->
   <title th:text="${currentClass.className}">Class page</title>
   <th:block th:insert="~{/fragments/head}"></th:block>
   <link rel="stylesheet" th:href="@{/css/current-class.css}">
@@ -41,51 +40,51 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-        </tr>
-        <tr>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
+        <tr th:each="student: ${students}">
+          <td th:text="*{student.studentNumber}">1</td>
+          <td th:text="*{student.studentName}">Ivan</td>
           <td><input type="text" name="" id=""></td>
           <td><input type="text" name="" id=""></td>
           <td><input type="text" name="" id=""></td>
           <td><input type="text" name="" id=""></td>
           <td><input type="text" name="" id=""></td>
         </tr>
-        <tr>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-        </tr>
-        <tr>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-        </tr>
-        <tr>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-        </tr>
+<!--        <tr>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--          <td><input type="text" name="" id=""></td>-->
+<!--        </tr>-->
         </tbody>
       </table>
 

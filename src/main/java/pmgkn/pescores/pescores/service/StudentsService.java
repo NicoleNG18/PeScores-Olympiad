@@ -38,6 +38,8 @@ public class StudentsService {
 
         this.studentRepository.saveAndFlush(studentToSave);
 
+        this.classesService.addStudent(studentToSave,studentAddBindingDto.getStudentClass(),name);
+
         return this.classesService.getClassById(studentToSave.getStudentClass().getId()).getId();
     }
 

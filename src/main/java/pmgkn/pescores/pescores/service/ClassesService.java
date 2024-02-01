@@ -4,8 +4,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pmgkn.pescores.pescores.domain.dto.binding.ClassAddBindingDto;
+import pmgkn.pescores.pescores.domain.dto.binding.StudentAddBindingDto;
 import pmgkn.pescores.pescores.domain.dto.view.ClassViewDto;
 import pmgkn.pescores.pescores.domain.entity.ClassEntity;
+import pmgkn.pescores.pescores.domain.entity.StudentEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.repositories.ClassRepository;
 
@@ -67,11 +69,12 @@ public class ClassesService {
         return this.modelMapper.map(this.classRepository.getReferenceById(id), ClassViewDto.class);
     }
 
-    public ClassEntity getClassEntityByNameAndTeacher(String className,String teacher) {
+    public ClassEntity getClassEntityByNameAndTeacher(String className,
+                                                      String teacher) {
 
-        UserEntity teacherEntity=this.userService.getUserByEmail(teacher);
+        UserEntity teacherEntity = this.userService.getUserByEmail(teacher);
 
-        return this.classRepository.findByClassNameAndTeacher(className,teacherEntity);
+        return this.classRepository.findByClassNameAndTeacher(className, teacherEntity);
     }
 
     public void editClass(UUID id,
@@ -88,5 +91,13 @@ public class ClassesService {
 
     public void deleteClass(UUID id) {
         this.classRepository.deleteById(id);
+    }
+
+    public void addStudent(StudentEntity studentToSave,
+                           String className,
+                           String teacherName) {
+        ClassEntity classEntity = this.getClassEntityByNameAndTeacher(className, teacherName);
+        classEntity.addStudent(studentToSave);
+        this.classRepository.saveAndFlush(classEntity);
     }
 }

@@ -70,12 +70,13 @@ public class ClassesController {
     }
 
     @GetMapping("/{id}")
-    public String getOrderDetails(@PathVariable("id") UUID id,
+    public String getCurrentClass(@PathVariable("id") UUID id,
                                   Model model,
                                   Principal principal) {
 
         model.addAttribute("classes", this.classesService.getAllClassesByUser(principal.getName()));
         model.addAttribute("currentClass", this.classesService.getClassById(id));
+        model.addAttribute("students",this.classesService.getClassById(id).getStudents());
         model.addAttribute("id", id);
 
         return "current-class";
