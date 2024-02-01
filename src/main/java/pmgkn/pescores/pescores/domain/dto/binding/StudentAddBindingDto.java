@@ -1,6 +1,10 @@
 package pmgkn.pescores.pescores.domain.dto.binding;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import pmgkn.pescores.pescores.domain.enums.GenderEnum;
 import pmgkn.pescores.pescores.validation.common.ValidStudentName;
 
 public class StudentAddBindingDto {
@@ -11,7 +15,20 @@ public class StudentAddBindingDto {
 
     private String studentClass;
 
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private GenderEnum gender;
+
     public StudentAddBindingDto() {
+    }
+
+    public GenderEnum getGender() {
+        return gender;
+    }
+
+    public StudentAddBindingDto setGender(GenderEnum gender) {
+        this.gender = gender;
+        return this;
     }
 
     public String getStudentName() {

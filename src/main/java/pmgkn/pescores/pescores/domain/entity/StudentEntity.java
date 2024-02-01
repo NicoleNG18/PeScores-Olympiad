@@ -5,6 +5,7 @@ import pmgkn.pescores.pescores.domain.entity.normatives.DenseBallEntity;
 import pmgkn.pescores.pescores.domain.entity.normatives.ThirtyMetersEntity;
 import pmgkn.pescores.pescores.domain.entity.normatives.TwoHundredMetersEntity;
 import pmgkn.pescores.pescores.domain.entity.normatives.TTestEntity;
+import pmgkn.pescores.pescores.domain.enums.GenderEnum;
 
 import java.math.BigDecimal;
 
@@ -29,6 +30,10 @@ public class StudentEntity extends BaseEntity {
     @OneToOne
     private TwoHundredMetersEntity twoHundredMeters;
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private GenderEnum gender;
+
     @Column
     private BigDecimal averageGrade;
 
@@ -37,6 +42,15 @@ public class StudentEntity extends BaseEntity {
 
     @ManyToOne
     private ClassEntity studentClass;
+
+    public GenderEnum getGender() {
+        return gender;
+    }
+
+    public StudentEntity setGender(GenderEnum gender) {
+        this.gender = gender;
+        return this;
+    }
 
     public BigDecimal getAverageGrade() {
         return averageGrade;

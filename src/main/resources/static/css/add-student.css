@@ -8,7 +8,7 @@
 }
 
 .form{
-    height: 400px;
+    height: 550px;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
     border-radius: 10px;
@@ -25,7 +25,6 @@
     font-size: 16px;
     font-weight: 500;
     margin-top: 0.5em;
-    width: 100px;
     text-align: center;
     border-radius: 5px;
 }
@@ -46,9 +45,9 @@ option {
 }
 
 .form h3{
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 500;
-    line-height: 42px;
+    line-height: 35px;
     text-align: center;
 }
 

@@ -1,11 +1,20 @@
 package pmgkn.pescores.pescores.domain.dto.binding;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.NotNull;
+import pmgkn.pescores.pescores.domain.enums.GenderEnum;
+
 import java.math.BigDecimal;
 import java.util.UUID;
 
 public class StudentUpdateDto {
 
     private UUID id;
+
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private GenderEnum gender;
     private BigDecimal thirtyMeters;
     private BigDecimal twoHundredMeters;
     private BigDecimal tTest;
@@ -13,6 +22,15 @@ public class StudentUpdateDto {
     private BigDecimal jump;
 
     public StudentUpdateDto() {
+    }
+
+    public GenderEnum getGender() {
+        return gender;
+    }
+
+    public StudentUpdateDto setGender(GenderEnum gender) {
+        this.gender = gender;
+        return this;
     }
 
     public UUID getId() {
