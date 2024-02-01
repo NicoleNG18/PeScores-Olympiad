@@ -28,6 +28,9 @@ public class StudentEntity extends BaseEntity {
     private TwoHundredMetersEntity twoHundredMeters;
 
     @ManyToOne
+    private UserEntity teacher;
+
+    @ManyToOne
     private ClassEntity studentClass;
 
     public String getStudentName() {
@@ -90,6 +93,15 @@ public class StudentEntity extends BaseEntity {
 
     public StudentEntity setStudentClass(ClassEntity studentClass) {
         this.studentClass = studentClass;
+        return this;
+    }
+
+    public UserEntity getTeacher() {
+        return teacher;
+    }
+
+    public StudentEntity setTeacher(UserEntity teacher) {
+        this.teacher = teacher;
         return this;
     }
 

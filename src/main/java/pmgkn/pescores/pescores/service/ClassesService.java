@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import pmgkn.pescores.pescores.domain.dto.binding.ClassAddBindingDto;
 import pmgkn.pescores.pescores.domain.dto.view.ClassViewDto;
 import pmgkn.pescores.pescores.domain.entity.ClassEntity;
+import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.repositories.ClassRepository;
 
 import java.util.List;
@@ -64,6 +65,13 @@ public class ClassesService {
 
     public ClassViewDto getClassById(UUID id) {
         return this.modelMapper.map(this.classRepository.getReferenceById(id), ClassViewDto.class);
+    }
+
+    public ClassEntity getClassEntityByNameAndTeacher(String className,String teacher) {
+
+        UserEntity teacherEntity=this.userService.getUserByEmail(teacher);
+
+        return this.classRepository.findByClassNameAndTeacher(className,teacherEntity);
     }
 
     public void editClass(UUID id,

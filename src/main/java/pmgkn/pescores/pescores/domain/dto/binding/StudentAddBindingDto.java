@@ -1,14 +1,15 @@
 package pmgkn.pescores.pescores.domain.dto.binding;
 
-import pmgkn.pescores.pescores.domain.dto.view.ClassViewDto;
+import jakarta.validation.constraints.Positive;
+import pmgkn.pescores.pescores.validation.common.ValidPersonName;
 
 public class StudentAddBindingDto {
-
+    @ValidPersonName
     private String studentName;
-
+    @Positive
     private Integer studentNumber;
 
-    private ClassViewDto studentClass;
+    private String studentClass;
 
     public StudentAddBindingDto() {
     }
@@ -31,11 +32,11 @@ public class StudentAddBindingDto {
         return this;
     }
 
-    public ClassViewDto getStudentClass() {
+    public String getStudentClass() {
         return studentClass;
     }
 
-    public StudentAddBindingDto setStudentClass(ClassViewDto studentClass) {
+    public StudentAddBindingDto setStudentClass(String studentClass) {
         this.studentClass = studentClass;
         return this;
     }

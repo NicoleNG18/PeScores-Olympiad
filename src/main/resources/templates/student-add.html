@@ -28,7 +28,7 @@
                placeholder="Ex: Aleksandur"
                id="studentName"
                class="input">
-        <div class="invalid-feedback errors-class alert-danger"
+        <div class="invalid-feedback errors-student alert-danger"
              th:each="err :${#fields.errors('studentName')}"
              th:text="${err}"></div>
 
@@ -42,7 +42,7 @@
                min="1"
                max="35"
                step="1">
-        <div class="invalid-feedback errors-class alert-danger"
+        <div class="invalid-feedback errors-student alert-danger"
              th:each="err :${#fields.errors('studentNumber')}"
              th:text="${err}"></div>
 
@@ -52,13 +52,12 @@
                 th:field="*{studentClass}"
                 th:errorclass="is-invalid"
                 class="form-select text-secondary">
-          <option value="">Select category</option>
           <option th:each="class: ${classes}"
                   th:text="${class.className}"
-                  th:value="${class}">7a
+                  th:value="${class.className}">7a
           </option>
         </select>
-      <div class="invalid-feedback errors-class alert-danger"
+      <div class="invalid-feedback errors-student alert-danger"
            th:each="err :${#fields.errors('studentClass')}"
            th:text="${err}"></div>
 

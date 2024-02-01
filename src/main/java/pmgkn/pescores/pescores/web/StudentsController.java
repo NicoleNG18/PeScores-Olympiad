@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pmgkn.pescores.pescores.domain.dto.binding.StudentAddBindingDto;
 import pmgkn.pescores.pescores.service.ClassesService;
+import pmgkn.pescores.pescores.service.StudentsService;
 
 import java.security.Principal;
 import java.util.UUID;
@@ -20,9 +21,12 @@ import java.util.UUID;
 public class StudentsController {
 
     private final ClassesService classesService;
+    private final StudentsService studentsService;
 
-    public StudentsController(ClassesService classesService) {
+    public StudentsController(ClassesService classesService,
+                              StudentsService studentsService) {
         this.classesService = classesService;
+        this.studentsService = studentsService;
     }
 
     @ModelAttribute("studentAddDto")
@@ -32,7 +36,7 @@ public class StudentsController {
 
     @GetMapping("/add")
     public String getAddStudent(Model model,
-                                Principal principal){
+                                Principal principal) {
 
         model.addAttribute("classes", this.classesService.getAllClassesByUser(principal.getName()));
 
@@ -43,7 +47,7 @@ public class StudentsController {
     public String postAddClass(@Valid StudentAddBindingDto studentAddBindingDto,
                                BindingResult bindingResult,
                                RedirectAttributes redirectAttributes,
-                               Principal principal){
+                               Principal principal) {
 
 
         if (bindingResult.hasErrors()) {
@@ -56,9 +60,9 @@ public class StudentsController {
 
         }
 
-//        UUID classId = this.studentsService.saveClass(studentAddBindingDto, principal.getName());
+        UUID classId = this.studentsService.saveStudent(principal.getName(), studentAddBindingDto);
 
-        return "redirect:/classes/"; /*+classId*/
+        return "redirect:/classes/" + classId;
     }
 
 
