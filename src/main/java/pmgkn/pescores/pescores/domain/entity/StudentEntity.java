@@ -6,6 +6,8 @@ import pmgkn.pescores.pescores.domain.entity.normatives.ThirtyMetersEntity;
 import pmgkn.pescores.pescores.domain.entity.normatives.TwoHundredMetersEntity;
 import pmgkn.pescores.pescores.domain.entity.normatives.TTestEntity;
 
+import java.math.BigDecimal;
+
 import static pmgkn.pescores.pescores.domain.entity.constants.TableNames.STUDENTS;
 
 @Entity
@@ -27,11 +29,23 @@ public class StudentEntity extends BaseEntity {
     @OneToOne
     private TwoHundredMetersEntity twoHundredMeters;
 
+    @Column
+    private BigDecimal averageGrade;
+
     @ManyToOne
     private UserEntity teacher;
 
     @ManyToOne
     private ClassEntity studentClass;
+
+    public BigDecimal getAverageGrade() {
+        return averageGrade;
+    }
+
+    public StudentEntity setAverageGrade(BigDecimal averageGrade) {
+        this.averageGrade = averageGrade;
+        return this;
+    }
 
     public String getStudentName() {
         return studentName;
@@ -106,6 +120,7 @@ public class StudentEntity extends BaseEntity {
     }
 
     public StudentEntity() {
+        this.averageGrade=BigDecimal.ZERO;
     }
 }
 

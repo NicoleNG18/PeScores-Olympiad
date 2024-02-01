@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import pmgkn.pescores.pescores.domain.dto.binding.ClassAddBindingDto;
 import pmgkn.pescores.pescores.domain.dto.binding.StudentAddBindingDto;
 import pmgkn.pescores.pescores.domain.dto.view.ClassViewDto;
+import pmgkn.pescores.pescores.domain.dto.view.StudentViewDto;
 import pmgkn.pescores.pescores.domain.entity.ClassEntity;
 import pmgkn.pescores.pescores.domain.entity.StudentEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
@@ -67,6 +68,12 @@ public class ClassesService {
 
     public ClassViewDto getClassById(UUID id) {
         return this.modelMapper.map(this.classRepository.getReferenceById(id), ClassViewDto.class);
+    }
+
+    public List<StudentViewDto> getStudentsSorted(UUID id) {
+        List<StudentEntity> students = this.classRepository.getReferenceById(id).getStudents();
+        students.sort((s1,s2) -> s1.getStudentNumber().compareTo(s2.getStudentNumber()));
+        return students.stream().map(s->this.modelMapper.map(s,StudentViewDto.class)).collect(Collectors.toList());
     }
 
     public ClassEntity getClassEntityByNameAndTeacher(String className,

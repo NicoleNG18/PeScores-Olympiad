@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pmgkn.pescores.pescores.domain.dto.binding.ClassAddBindingDto;
 import pmgkn.pescores.pescores.domain.dto.binding.ClassEditBindingDto;
+import pmgkn.pescores.pescores.domain.dto.binding.StudentUpdateDto;
 import pmgkn.pescores.pescores.service.ClassesService;
 
 import java.security.Principal;
@@ -76,7 +77,8 @@ public class ClassesController {
 
         model.addAttribute("classes", this.classesService.getAllClassesByUser(principal.getName()));
         model.addAttribute("currentClass", this.classesService.getClassById(id));
-        model.addAttribute("students",this.classesService.getClassById(id).getStudents());
+        model.addAttribute("students",this.classesService.getStudentsSorted(id));
+        model.addAttribute("studentUpdate",new StudentUpdateDto());
         model.addAttribute("id", id);
 
         return "current-class";

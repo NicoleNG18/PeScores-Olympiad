@@ -36,19 +36,59 @@
           <th scope="col">200m</th>
           <th scope="col">T-test</th>
           <th scope="col">Dense ball</th>
+          <th scope="col">Jump</th>
           <th scope="col">Average score</th>
+          <th scope="col">Submit results</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="student: ${students}">
-          <td th:text="*{student.studentNumber}">1</td>
-          <td th:text="*{student.studentName}">Ivan</td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
-          <td><input type="text" name="" id=""></td>
+          <form   th:method="PATCH"
+                  th:action="@{/students/update/{id}(id=${student.id})}"
+                  th:object="${studentUpdate}">
+            <input type="hidden" th:value="${student.id}"/>
+          <td th:text="${student.studentNumber}">1</td>
+          <td th:text="${student.studentName}">Ivan</td>
+          <td><input type="number"
+                     name="thirtyMeters"
+                     id="input-30"
+                     step="any"
+                     th:errorclass="is-invalid"
+                     th:field="*{thirtyMeters}"></td>
+          <td><input type="number"
+                     name="twoHundredMeters"
+                     id="input-200"
+                     step="any"
+                     th:errorclass="is-invalid"
+                     th:field="*{twoHundredMeters}"
+                     ></td>
+          <td><input
+                  type="number"
+                  name="tTest"
+                  id="input-t-test"
+                  step="any"
+                  th:errorclass="is-invalid"
+                  th:field="*{tTest}"></td>
+          <td><input type="number"
+                     name="denseBall"
+                     id="dense-ball"
+                     step="any"
+                     th:errorclass="is-invalid"
+                     th:field="*{denseBall}"></td>
+            <td><input type="number"
+                       name="jump"
+                       id="jump"
+                       step="any"
+                       th:errorclass="is-invalid"
+                       th:field="*{jump}"></td>
+          <td th:text="${student.averageGrade}">4.50</td>
+          <td><button>Submit</button></td>
+          </form>
         </tr>
+
+<!--        <tr>-->
+<!--          <button type="submit">Submit results</button>-->
+<!--        </tr>-->
 <!--        <tr>-->
 <!--          <td><input type="text" name="" id=""></td>-->
 <!--          <td><input type="text" name="" id=""></td>-->
