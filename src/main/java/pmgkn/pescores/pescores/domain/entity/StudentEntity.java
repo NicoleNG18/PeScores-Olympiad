@@ -21,14 +21,26 @@ public class StudentEntity extends BaseEntity {
     @Column(nullable = false)
     private Integer studentNumber;
 
-    @OneToOne
-    private DenseBallEntity denseBall;
-    @OneToOne
-    private TTestEntity tTest;
-    @OneToOne
-    private ThirtyMetersEntity thirtyMeters;
-    @OneToOne
-    private TwoHundredMetersEntity twoHundredMeters;
+    @Column(nullable = true)
+    private BigDecimal denseBall;
+    @Column(nullable = true)
+    private BigDecimal jump;
+    @Column(nullable = true)
+    private BigDecimal tTest;
+    @Column(nullable = true)
+    private BigDecimal thirtyMeters;
+    @Column(nullable = true)
+    private BigDecimal twoHundredMeters;
+
+    //TODO: MAKE THE NORMATIVES BIG DECIMAL
+//    @OneToOne
+//    private DenseBallEntity denseBall;
+//    @OneToOne
+//    private TTestEntity tTest;
+//    @OneToOne
+//    private ThirtyMetersEntity thirtyMeters;
+//    @OneToOne
+//    private TwoHundredMetersEntity twoHundredMeters;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -79,41 +91,86 @@ public class StudentEntity extends BaseEntity {
         return this;
     }
 
-    public DenseBallEntity getDenseBall() {
+    public BigDecimal getDenseBall() {
         return denseBall;
     }
 
-    public StudentEntity setDenseBall(DenseBallEntity denseBall) {
+    public StudentEntity setDenseBall(BigDecimal denseBall) {
         this.denseBall = denseBall;
         return this;
     }
 
-    public TTestEntity gettTest() {
+    public BigDecimal getJump() {
+        return jump;
+    }
+
+    public StudentEntity setJump(BigDecimal jump) {
+        this.jump = jump;
+        return this;
+    }
+
+    public BigDecimal gettTest() {
         return tTest;
     }
 
-    public StudentEntity settTest(TTestEntity tTest) {
+    public StudentEntity settTest(BigDecimal tTest) {
         this.tTest = tTest;
         return this;
     }
 
-    public ThirtyMetersEntity getThirtyMeters() {
+    public BigDecimal getThirtyMeters() {
         return thirtyMeters;
     }
 
-    public StudentEntity setThirtyMeters(ThirtyMetersEntity thirtyMeters) {
+    public StudentEntity setThirtyMeters(BigDecimal thirtyMeters) {
         this.thirtyMeters = thirtyMeters;
         return this;
     }
 
-    public TwoHundredMetersEntity getTwoHundredMeters() {
+    public BigDecimal getTwoHundredMeters() {
         return twoHundredMeters;
     }
 
-    public StudentEntity setTwoHundredMeters(TwoHundredMetersEntity twoHundredMeters) {
+    public StudentEntity setTwoHundredMeters(BigDecimal twoHundredMeters) {
         this.twoHundredMeters = twoHundredMeters;
         return this;
     }
+
+    //    public DenseBallEntity getDenseBall() {
+//        return denseBall;
+//    }
+//
+//    public StudentEntity setDenseBall(DenseBallEntity denseBall) {
+//        this.denseBall = denseBall;
+//        return this;
+//    }
+//
+//    public TTestEntity gettTest() {
+//        return tTest;
+//    }
+//
+//    public StudentEntity settTest(TTestEntity tTest) {
+//        this.tTest = tTest;
+//        return this;
+//    }
+//
+//    public ThirtyMetersEntity getThirtyMeters() {
+//        return thirtyMeters;
+//    }
+//
+//    public StudentEntity setThirtyMeters(ThirtyMetersEntity thirtyMeters) {
+//        this.thirtyMeters = thirtyMeters;
+//        return this;
+//    }
+
+//    public TwoHundredMetersEntity getTwoHundredMeters() {
+//        return twoHundredMeters;
+//    }
+//
+//    public StudentEntity setTwoHundredMeters(TwoHundredMetersEntity twoHundredMeters) {
+//        this.twoHundredMeters = twoHundredMeters;
+//        return this;
+//    }
 
     public ClassEntity getStudentClass() {
         return studentClass;
@@ -134,7 +191,12 @@ public class StudentEntity extends BaseEntity {
     }
 
     public StudentEntity() {
-        this.averageGrade=BigDecimal.ZERO;
+        this.denseBall=BigDecimal.ZERO;
+        this.thirtyMeters=BigDecimal.ZERO;
+        this.twoHundredMeters=BigDecimal.ZERO;
+        this.tTest=BigDecimal.ZERO;
+        this.jump=BigDecimal.ZERO;
+        this.averageGrade = BigDecimal.ZERO;
     }
 }
 

@@ -3,6 +3,7 @@ package pmgkn.pescores.pescores.service;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pmgkn.pescores.pescores.domain.dto.binding.ClassAddBindingDto;
 import pmgkn.pescores.pescores.domain.dto.binding.StudentAddBindingDto;
 import pmgkn.pescores.pescores.domain.dto.view.ClassViewDto;
@@ -50,6 +51,7 @@ public class ClassesService {
                 .setTeacher(this.userService.getUserByEmail(name));
     }
 
+    @Transactional
     public List<ClassViewDto> getAllClassesByUser(String name) {
 
         List<ClassEntity> classesByUser = this.userService.getClassesByUser(name);
@@ -66,16 +68,26 @@ public class ClassesService {
         return classesByUser.stream().map(c -> this.modelMapper.map(c, ClassViewDto.class)).collect(Collectors.toList());
     }
 
+    @Transactional
     public ClassViewDto getClassById(UUID id) {
-        return this.modelMapper.map(this.classRepository.getReferenceById(id), ClassViewDto.class);
+        ClassEntity referenceById = this.classRepository.getReferenceById(id);
+        return new ClassViewDto()
+                .setClassName(referenceById.getClassName())
+                .setClassNum(referenceById.getClassNum())
+                .setId(referenceById.getId())
+                .setStudents(referenceById.getStudents());
+//        return this.modelMapper.map(this.classRepository.getReferenceById(id), ClassViewDto.class);
+
     }
 
+    @Transactional
     public List<StudentViewDto> getStudentsSorted(UUID id) {
         List<StudentEntity> students = this.classRepository.getReferenceById(id).getStudents();
-        students.sort((s1,s2) -> s1.getStudentNumber().compareTo(s2.getStudentNumber()));
-        return students.stream().map(s->this.modelMapper.map(s,StudentViewDto.class)).collect(Collectors.toList());
+        students.sort((s1, s2) -> s1.getStudentNumber().compareTo(s2.getStudentNumber()));
+        return students.stream().map(s -> this.modelMapper.map(s, StudentViewDto.class)).collect(Collectors.toList());
     }
 
+    @Transactional
     public ClassEntity getClassEntityByNameAndTeacher(String className,
                                                       String teacher) {
 

@@ -1,38 +1,84 @@
 package pmgkn.pescores.pescores.service;
 
 import jakarta.annotation.PostConstruct;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pmgkn.pescores.pescores.domain.entity.UserRoleEntity;
+import pmgkn.pescores.pescores.domain.entity.normatives.DenseBallEntity;
+import pmgkn.pescores.pescores.domain.enums.GenderEnum;
 import pmgkn.pescores.pescores.domain.enums.UserRoleEnum;
-import pmgkn.pescores.pescores.repositories.UserRepository;
+import pmgkn.pescores.pescores.repositories.DenseBallRepository;
 import pmgkn.pescores.pescores.repositories.UserRoleRepository;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.UUID;
 
 @Service
 public class DbInitService {
 
     private final UserRoleRepository userRoleRepository;
+    private final DenseBallRepository denseBallRepository;
 //    private final PasswordEncoder passwordEncoder;
 //    private final UserRepository userRepository;
 
-    public DbInitService(UserRoleRepository userRoleRepository){
+    public DbInitService(UserRoleRepository userRoleRepository,
+                         DenseBallRepository denseBallRepository){
 //                                         PasswordEncoder passwordEncoder,
 //                                         UserRepository userRepository) {
         this.userRoleRepository = userRoleRepository;
 //        this.passwordEncoder = passwordEncoder;
 //        this.userRepository = userRepository;
+        this.denseBallRepository = denseBallRepository;
     }
 
     @PostConstruct
     public void init() {
         initRoles();
+        initDenseBall();
 //        initAdmin();
 //        initWorkers();
 //        initUsers();
+    }
+
+    private void initDenseBall() {
+        if (this.denseBallRepository.count() == 0) {
+            DenseBallEntity denseBallOne=new DenseBallEntity()
+                    .setClassNum(8)
+                    .setGender("MALE")
+                    .setMax(BigDecimal.valueOf(3.55))
+                    .setMin(BigDecimal.ZERO)
+                    .setGrade(2);
+            DenseBallEntity denseBallTwo=new DenseBallEntity()
+                    .setClassNum(8)
+                    .setGender("MALE")
+                    .setMax(BigDecimal.valueOf(4.84))
+                    .setMin(BigDecimal.valueOf(3.56))
+                    .setGrade(3);
+            DenseBallEntity denseBallThree=new DenseBallEntity()
+                    .setClassNum(8)
+                    .setGender("MALE")
+                    .setMax(BigDecimal.valueOf(7.09))
+                    .setMin(BigDecimal.valueOf(4.85))
+                    .setGrade(4);
+            DenseBallEntity denseBallFour=new DenseBallEntity()
+                    .setClassNum(8)
+                    .setGender("MALE")
+                    .setMax(BigDecimal.valueOf(8.06))
+                    .setMin(BigDecimal.valueOf(7.10))
+                    .setGrade(5);
+            DenseBallEntity denseBallFive=new DenseBallEntity()
+                    .setClassNum(8)
+                    .setGender("MALE")
+                    .setMax(BigDecimal.valueOf(15))
+                    .setMin(BigDecimal.valueOf(8.07))
+                    .setGrade(6);
+            this.denseBallRepository.saveAndFlush(denseBallOne);
+            this.denseBallRepository.saveAndFlush(denseBallTwo);
+            this.denseBallRepository.saveAndFlush(denseBallThree);
+            this.denseBallRepository.saveAndFlush(denseBallFour);
+            this.denseBallRepository.saveAndFlush(denseBallFive);
+        }
     }
 
     public void initRoles() {

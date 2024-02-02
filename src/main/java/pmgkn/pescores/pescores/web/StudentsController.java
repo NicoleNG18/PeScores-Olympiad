@@ -4,12 +4,10 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pmgkn.pescores.pescores.domain.dto.binding.StudentAddBindingDto;
+import pmgkn.pescores.pescores.domain.dto.binding.StudentUpdateDto;
 import pmgkn.pescores.pescores.service.ClassesService;
 import pmgkn.pescores.pescores.service.StudentsService;
 
@@ -32,6 +30,11 @@ public class StudentsController {
     @ModelAttribute("studentAddDto")
     public StudentAddBindingDto initStudentAddDto() {
         return new StudentAddBindingDto();
+    }
+
+    @ModelAttribute("studentUpdate")
+    public StudentUpdateDto initStudentUpdateDto() {
+        return new StudentUpdateDto();
     }
 
     @GetMapping("/add")
@@ -61,6 +64,29 @@ public class StudentsController {
         }
 
         UUID classId = this.studentsService.saveStudent(principal.getName(), studentAddBindingDto);
+
+        return "redirect:/classes/" + classId;
+    }
+
+    @PostMapping("/update/{id}")
+    public String editStudent(@PathVariable("id") UUID id,
+                              @Valid StudentUpdateDto studentUpdate,
+                              BindingResult bindingResult,
+                              RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+
+            redirectAttributes.addFlashAttribute("studentUpdate", studentUpdate);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.studentUpdate"
+                    , bindingResult);
+
+            return "redirect:/students/update/{id}";
+
+        }
+
+        UUID classId = this.studentsService.editStudent(studentUpdate, id);
+
+//        this.classesService.editClass(id, studentUpdate);
 
         return "redirect:/classes/" + classId;
     }
