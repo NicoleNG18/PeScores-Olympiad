@@ -96,7 +96,7 @@ public class StudentsService {
         String genderQuery=  studentEntity.getGender().name();
         BigDecimal resultQuery=studentUpdate.getDenseBall();
 
-        DenseBallEntity denseBall = this.denseBallRepository.getDenseBallEntityByGrade(classNumQuery,genderQuery,resultQuery);
+        DenseBallEntity denseBall = this.denseBallRepository.getDenseBallEntityByResult(classNumQuery,genderQuery,resultQuery);
 
 
         Integer denseBallGrade =denseBall.getGrade();

@@ -4,15 +4,15 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 import pmgkn.pescores.pescores.domain.entity.UserRoleEntity;
 import pmgkn.pescores.pescores.domain.entity.normatives.DenseBallEntity;
-import pmgkn.pescores.pescores.domain.enums.GenderEnum;
+import pmgkn.pescores.pescores.domain.entity.normatives.JumpEntity;
 import pmgkn.pescores.pescores.domain.enums.UserRoleEnum;
 import pmgkn.pescores.pescores.repositories.DenseBallRepository;
+import pmgkn.pescores.pescores.repositories.JumpRepository;
 import pmgkn.pescores.pescores.repositories.UserRoleRepository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import static pmgkn.pescores.pescores.domain.entity.constants.Messages.FEMALE;
 import static pmgkn.pescores.pescores.domain.entity.constants.Messages.MALE;
@@ -23,16 +23,21 @@ public class DbInitService {
     private final UserRoleRepository userRoleRepository;
     private final DenseBallRepository denseBallRepository;
 
+    private final JumpRepository jumpRepository;
+
     public DbInitService(UserRoleRepository userRoleRepository,
-                         DenseBallRepository denseBallRepository) {
+                         DenseBallRepository denseBallRepository,
+                         JumpRepository jumpRepository) {
         this.userRoleRepository = userRoleRepository;
         this.denseBallRepository = denseBallRepository;
+        this.jumpRepository = jumpRepository;
     }
 
     @PostConstruct
     public void init() {
         initRoles();
         initDenseBall();
+        initJump();
     }
 
     public void initRoles() {
@@ -63,6 +68,19 @@ public class DbInitService {
         }
     }
 
+    private void initJump() {
+        if (this.jumpRepository.count() == 0) {
+           jumpFifthGrade();
+           jumpSixthGrade();
+           jumpSeventhGrade();
+           jumpEightGrade();
+           jumpNinthGrade();
+           jumpTenthGrade();
+           jumpEleventhGrade();
+           jumpTwelfthGrade();
+        }
+    }
+
     private static DenseBallEntity getDenseBallEntity(Integer classNum,
                                                       String gender,
                                                       BigDecimal max,
@@ -74,6 +92,139 @@ public class DbInitService {
                 .setMax(max)
                 .setMin(min)
                 .setGrade(grade);
+    }
+
+    private static JumpEntity getJumpEntity(Integer classNum,
+                                            String gender,
+                                            BigDecimal max,
+                                            BigDecimal min,
+                                            int grade) {
+        return new JumpEntity()
+                .setClassNum(classNum)
+                .setGender(gender)
+                .setMax(max)
+                .setMin(min)
+                .setGrade(grade);
+    }
+
+    private void jumpFifthGrade() {
+        List<JumpEntity> jumpFifthGrade = new ArrayList<>();
+        jumpFifthGrade.add(getJumpEntity(5, MALE, BigDecimal.valueOf(1.12), BigDecimal.ZERO, 2));
+        jumpFifthGrade.add(getJumpEntity(5, MALE, BigDecimal.valueOf(1.35), BigDecimal.valueOf(1.13), 3));
+        jumpFifthGrade.add(getJumpEntity(5, MALE, BigDecimal.valueOf(1.76), BigDecimal.valueOf(1.36), 4));
+        jumpFifthGrade.add(getJumpEntity(5, MALE, BigDecimal.valueOf(1.93), BigDecimal.valueOf(1.77), 5));
+        jumpFifthGrade.add(getJumpEntity(5, MALE, BigDecimal.valueOf(5), BigDecimal.valueOf(1.94), 6));
+        jumpFifthGrade.add(getJumpEntity(5, FEMALE, BigDecimal.valueOf(1.02), BigDecimal.ZERO, 2));
+        jumpFifthGrade.add(getJumpEntity(5, FEMALE, BigDecimal.valueOf(1.25), BigDecimal.valueOf(1.03), 3));
+        jumpFifthGrade.add(getJumpEntity(5, FEMALE, BigDecimal.valueOf(1.65), BigDecimal.valueOf(1.26), 4));
+        jumpFifthGrade.add(getJumpEntity(5, FEMALE, BigDecimal.valueOf(1.82), BigDecimal.valueOf(1.66), 5));
+        jumpFifthGrade.add(getJumpEntity(5, FEMALE, BigDecimal.valueOf(5), BigDecimal.valueOf(1.83), 6));
+        this.jumpRepository.saveAllAndFlush(jumpFifthGrade);
+    }
+
+    private void jumpSixthGrade() {
+        List<JumpEntity> jumpSixthGrade = new ArrayList<>();
+        jumpSixthGrade.add(getJumpEntity(6, MALE, BigDecimal.valueOf(1.19), BigDecimal.ZERO, 2));
+        jumpSixthGrade.add(getJumpEntity(6, MALE, BigDecimal.valueOf(1.43), BigDecimal.valueOf(1.20), 3));
+        jumpSixthGrade.add(getJumpEntity(6, MALE, BigDecimal.valueOf(1.84), BigDecimal.valueOf(1.44), 4));
+        jumpSixthGrade.add(getJumpEntity(6, MALE, BigDecimal.valueOf(2.02), BigDecimal.valueOf(1.85), 5));
+        jumpSixthGrade.add(getJumpEntity(6, MALE, BigDecimal.valueOf(5), BigDecimal.valueOf(2.03), 6));
+        jumpSixthGrade.add(getJumpEntity(6, FEMALE, BigDecimal.valueOf(1.06), BigDecimal.ZERO, 2));
+        jumpSixthGrade.add(getJumpEntity(6, FEMALE, BigDecimal.valueOf(1.30), BigDecimal.valueOf(1.07), 3));
+        jumpSixthGrade.add(getJumpEntity(6, FEMALE, BigDecimal.valueOf(1.71), BigDecimal.valueOf(1.31), 4));
+        jumpSixthGrade.add(getJumpEntity(6, FEMALE, BigDecimal.valueOf(1.89), BigDecimal.valueOf(1.72), 5));
+        jumpSixthGrade.add(getJumpEntity(6, FEMALE, BigDecimal.valueOf(5), BigDecimal.valueOf(1.90), 6));
+        this.jumpRepository.saveAllAndFlush(jumpSixthGrade);
+    }
+
+    private void jumpSeventhGrade() {
+        List<JumpEntity> jumpSeventhGrade = new ArrayList<>();
+        jumpSeventhGrade.add(getJumpEntity(7, MALE, BigDecimal.valueOf(1.25), BigDecimal.ZERO, 2));
+        jumpSeventhGrade.add(getJumpEntity(7, MALE, BigDecimal.valueOf(1.50), BigDecimal.valueOf(1.26), 3));
+        jumpSeventhGrade.add(getJumpEntity(7, MALE, BigDecimal.valueOf(1.94), BigDecimal.valueOf(1.51), 4));
+        jumpSeventhGrade.add(getJumpEntity(7, MALE, BigDecimal.valueOf(2.12), BigDecimal.valueOf(1.95), 5));
+        jumpSeventhGrade.add(getJumpEntity(7, MALE, BigDecimal.valueOf(5), BigDecimal.valueOf(2.13), 6));
+        jumpSeventhGrade.add(getJumpEntity(7, FEMALE, BigDecimal.valueOf(1.08), BigDecimal.ZERO, 2));
+        jumpSeventhGrade.add(getJumpEntity(7, FEMALE, BigDecimal.valueOf(1.33), BigDecimal.valueOf(1.09), 3));
+        jumpSeventhGrade.add(getJumpEntity(7, FEMALE, BigDecimal.valueOf(1.75), BigDecimal.valueOf(1.34), 4));
+        jumpSeventhGrade.add(getJumpEntity(7, FEMALE, BigDecimal.valueOf(1.93), BigDecimal.valueOf(1.76), 5));
+        jumpSeventhGrade.add(getJumpEntity(7, FEMALE, BigDecimal.valueOf(5), BigDecimal.valueOf(1.94), 6));
+        this.jumpRepository.saveAllAndFlush(jumpSeventhGrade);
+    }
+
+    private void jumpEightGrade() {
+        List<JumpEntity> jumpEightGrade = new ArrayList<>();
+        jumpEightGrade.add(getJumpEntity(8, MALE, BigDecimal.valueOf(1.33), BigDecimal.ZERO, 2));
+        jumpEightGrade.add(getJumpEntity(8, MALE, BigDecimal.valueOf(1.59), BigDecimal.valueOf(1.34), 3));
+        jumpEightGrade.add(getJumpEntity(8, MALE, BigDecimal.valueOf(2.04), BigDecimal.valueOf(1.60), 4));
+        jumpEightGrade.add(getJumpEntity(8, MALE, BigDecimal.valueOf(2.24), BigDecimal.valueOf(2.05), 5));
+        jumpEightGrade.add(getJumpEntity(8, MALE, BigDecimal.valueOf(5), BigDecimal.valueOf(2.25), 6));
+        jumpEightGrade.add(getJumpEntity(8, FEMALE, BigDecimal.valueOf(1.10), BigDecimal.ZERO, 2));
+        jumpEightGrade.add(getJumpEntity(8, FEMALE, BigDecimal.valueOf(1.35), BigDecimal.valueOf(1.11), 3));
+        jumpEightGrade.add(getJumpEntity(8, FEMALE, BigDecimal.valueOf(1.78), BigDecimal.valueOf(1.36), 4));
+        jumpEightGrade.add(getJumpEntity(8, FEMALE, BigDecimal.valueOf(1.97), BigDecimal.valueOf(1.79), 5));
+        jumpEightGrade.add(getJumpEntity(8, FEMALE, BigDecimal.valueOf(5), BigDecimal.valueOf(1.98), 6));
+        this.jumpRepository.saveAllAndFlush(jumpEightGrade);
+    }
+
+    private void jumpNinthGrade() {
+        List<JumpEntity> jumpNinthGrade = new ArrayList<>();
+        jumpNinthGrade.add(getJumpEntity(9, MALE, BigDecimal.valueOf(1.40), BigDecimal.ZERO, 2));
+        jumpNinthGrade.add(getJumpEntity(9, MALE, BigDecimal.valueOf(1.66), BigDecimal.valueOf(1.41), 3));
+        jumpNinthGrade.add(getJumpEntity(9, MALE, BigDecimal.valueOf(2.13), BigDecimal.valueOf(1.67), 4));
+        jumpNinthGrade.add(getJumpEntity(9, MALE, BigDecimal.valueOf(2.34), BigDecimal.valueOf(2.14), 5));
+        jumpNinthGrade.add(getJumpEntity(9, MALE, BigDecimal.valueOf(5), BigDecimal.valueOf(2.35), 6));
+        jumpNinthGrade.add(getJumpEntity(9, FEMALE, BigDecimal.valueOf(1.12), BigDecimal.ZERO, 2));
+        jumpNinthGrade.add(getJumpEntity(9, FEMALE, BigDecimal.valueOf(1.37), BigDecimal.valueOf(1.13), 3));
+        jumpNinthGrade.add(getJumpEntity(9, FEMALE, BigDecimal.valueOf(1.81), BigDecimal.valueOf(1.38), 4));
+        jumpNinthGrade.add(getJumpEntity(9, FEMALE, BigDecimal.valueOf(2.00), BigDecimal.valueOf(1.82), 5));
+        jumpNinthGrade.add(getJumpEntity(9, FEMALE, BigDecimal.valueOf(5), BigDecimal.valueOf(2.01), 6));
+        this.jumpRepository.saveAllAndFlush(jumpNinthGrade);
+    }
+
+    private void jumpTenthGrade() {
+        List<JumpEntity> jumpTenthGrade = new ArrayList<>();
+        jumpTenthGrade.add(getJumpEntity(10, MALE, BigDecimal.valueOf(1.46), BigDecimal.ZERO, 2));
+        jumpTenthGrade.add(getJumpEntity(10, MALE, BigDecimal.valueOf(1.74), BigDecimal.valueOf(1.47), 3));
+        jumpTenthGrade.add(getJumpEntity(10, MALE, BigDecimal.valueOf(2.22), BigDecimal.valueOf(1.75), 4));
+        jumpTenthGrade.add(getJumpEntity(10, MALE, BigDecimal.valueOf(2.43), BigDecimal.valueOf(2.23), 5));
+        jumpTenthGrade.add(getJumpEntity(10, MALE, BigDecimal.valueOf(5), BigDecimal.valueOf(2.44), 6));
+        jumpTenthGrade.add(getJumpEntity(10, FEMALE, BigDecimal.valueOf(1.12), BigDecimal.ZERO, 2));
+        jumpTenthGrade.add(getJumpEntity(10, FEMALE, BigDecimal.valueOf(1.38), BigDecimal.valueOf(1.13), 3));
+        jumpTenthGrade.add(getJumpEntity(10, FEMALE, BigDecimal.valueOf(1.82), BigDecimal.valueOf(1.39), 4));
+        jumpTenthGrade.add(getJumpEntity(10, FEMALE, BigDecimal.valueOf(2.01), BigDecimal.valueOf(1.83), 5));
+        jumpTenthGrade.add(getJumpEntity(10, FEMALE, BigDecimal.valueOf(5), BigDecimal.valueOf(2.02), 6));
+        this.jumpRepository.saveAllAndFlush(jumpTenthGrade);
+    }
+
+    private void jumpEleventhGrade() {
+        List<JumpEntity> jumpEleventhGrade = new ArrayList<>();
+        jumpEleventhGrade.add(getJumpEntity(11, MALE, BigDecimal.valueOf(1.52), BigDecimal.ZERO, 2));
+        jumpEleventhGrade.add(getJumpEntity(11, MALE, BigDecimal.valueOf(1.80), BigDecimal.valueOf(1.53), 3));
+        jumpEleventhGrade.add(getJumpEntity(11, MALE, BigDecimal.valueOf(2.30), BigDecimal.valueOf(1.81), 4));
+        jumpEleventhGrade.add(getJumpEntity(11, MALE, BigDecimal.valueOf(2.51), BigDecimal.valueOf(2.31), 5));
+        jumpEleventhGrade.add(getJumpEntity(11, MALE, BigDecimal.valueOf(5), BigDecimal.valueOf(2.52), 6));
+        jumpEleventhGrade.add(getJumpEntity(11, FEMALE, BigDecimal.valueOf(1.12), BigDecimal.ZERO, 2));
+        jumpEleventhGrade.add(getJumpEntity(11, FEMALE, BigDecimal.valueOf(1.38), BigDecimal.valueOf(1.13), 3));
+        jumpEleventhGrade.add(getJumpEntity(11, FEMALE, BigDecimal.valueOf(1.82), BigDecimal.valueOf(1.39), 4));
+        jumpEleventhGrade.add(getJumpEntity(11, FEMALE, BigDecimal.valueOf(2.01), BigDecimal.valueOf(1.83), 5));
+        jumpEleventhGrade.add(getJumpEntity(11, FEMALE, BigDecimal.valueOf(5), BigDecimal.valueOf(2.02), 6));
+        this.jumpRepository.saveAllAndFlush(jumpEleventhGrade);
+    }
+
+    private void jumpTwelfthGrade() {
+        List<JumpEntity> jumpTwelfthGrade = new ArrayList<>();
+        jumpTwelfthGrade.add(getJumpEntity(12, MALE, BigDecimal.valueOf(1.55), BigDecimal.ZERO, 2));
+        jumpTwelfthGrade.add(getJumpEntity(12, MALE, BigDecimal.valueOf(1.84), BigDecimal.valueOf(1.56), 3));
+        jumpTwelfthGrade.add(getJumpEntity(12, MALE, BigDecimal.valueOf(2.35), BigDecimal.valueOf(1.85), 4));
+        jumpTwelfthGrade.add(getJumpEntity(12, MALE, BigDecimal.valueOf(2.57), BigDecimal.valueOf(2.36), 5));
+        jumpTwelfthGrade.add(getJumpEntity(12, MALE, BigDecimal.valueOf(5), BigDecimal.valueOf(2.58), 6));
+        jumpTwelfthGrade.add(getJumpEntity(12, FEMALE, BigDecimal.valueOf(1.12), BigDecimal.ZERO, 2));
+        jumpTwelfthGrade.add(getJumpEntity(12, FEMALE, BigDecimal.valueOf(1.38), BigDecimal.valueOf(1.13), 3));
+        jumpTwelfthGrade.add(getJumpEntity(12, FEMALE, BigDecimal.valueOf(1.82), BigDecimal.valueOf(1.39), 4));
+        jumpTwelfthGrade.add(getJumpEntity(12, FEMALE, BigDecimal.valueOf(2.01), BigDecimal.valueOf(1.83), 5));
+        jumpTwelfthGrade.add(getJumpEntity(12, FEMALE, BigDecimal.valueOf(5), BigDecimal.valueOf(2.02), 6));
+        this.jumpRepository.saveAllAndFlush(jumpTwelfthGrade);
     }
 
     private void denseBallFifthGrade() {

@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pmgkn.pescores.pescores.domain.entity.normatives.DenseBallEntity;
-import pmgkn.pescores.pescores.domain.enums.GenderEnum;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -14,7 +13,7 @@ import java.util.UUID;
 public interface DenseBallRepository extends JpaRepository<DenseBallEntity, UUID> {
 
     @Query("SELECT d FROM DenseBallEntity as d WHERE d.classNum = :n AND d.gender = :g AND :r >= d.min AND :r <= d.max")
-    DenseBallEntity getDenseBallEntityByGrade(@Param("n") Integer number,
-                                              @Param("g") String gender,
-                                              @Param("r") BigDecimal result);
+    DenseBallEntity getDenseBallEntityByResult(@Param("n") Integer number,
+                                               @Param("g") String gender,
+                                               @Param("r") BigDecimal result);
 }

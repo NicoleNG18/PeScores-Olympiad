@@ -5,6 +5,7 @@ public enum TableNames {
 
     public static final String DENSE_BALL = "dense_ball";
     public static final String THIRTY_METERS = "thirty_meters";
+    public static final String JUMP = "jump";
     public static final String T_TEST = "t_test";
     public static final String TWO_HUNDRED_METERS = "two_hundred_meters";
     public static final String CLASSES = "classes";
