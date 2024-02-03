@@ -5,5 +5,9 @@ public enum Messages {
     public static final String DATE_PATTERN = "yyyy-MM-dd";
     public static final String PASSWORD = "password";
     public static final String CONFIRM_PASSWORD = "confirmPassword";
+    public static final String MALE = "MALE";
+    public static final String FEMALE = "FEMALE";
+
+
 
 }
