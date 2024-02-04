@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import pmgkn.pescores.pescores.domain.entity.BaseEntity;
 
+import java.math.BigDecimal;
+
 import static pmgkn.pescores.pescores.domain.entity.constants.TableNames.TWO_HUNDRED_METERS;
 
 @Entity
@@ -12,7 +14,16 @@ import static pmgkn.pescores.pescores.domain.entity.constants.TableNames.TWO_HUN
 public class TwoHundredMetersEntity extends BaseEntity {
 
     @Column
-    private Double result;
+    private Integer classNum;
+
+    @Column
+    private String gender;
+
+    @Column
+    private BigDecimal min;
+
+    @Column
+    private BigDecimal max;
 
     @Column
     private int grade;
@@ -20,12 +31,39 @@ public class TwoHundredMetersEntity extends BaseEntity {
     public TwoHundredMetersEntity() {
     }
 
-    public Double getResult() {
-        return result;
+    public Integer getClassNum() {
+        return classNum;
     }
 
-    public TwoHundredMetersEntity setResult(Double result) {
-        this.result = result;
+    public TwoHundredMetersEntity setClassNum(Integer classNum) {
+        this.classNum = classNum;
+        return this;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public TwoHundredMetersEntity setGender(String gender) {
+        this.gender = gender;
+        return this;
+    }
+
+    public BigDecimal getMin() {
+        return min;
+    }
+
+    public TwoHundredMetersEntity setMin(BigDecimal min) {
+        this.min = min;
+        return this;
+    }
+
+    public BigDecimal getMax() {
+        return max;
+    }
+
+    public TwoHundredMetersEntity setMax(BigDecimal max) {
+        this.max = max;
         return this;
     }
 
