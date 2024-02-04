@@ -6,7 +6,6 @@
         <ul class="navbar-buttons" sec:authorize="!isAuthenticated()">
             <a th:href="@{/users/login}">Log in</a>
             <a th:href="@{/users/register}">Sign up</a>
-            <a th:href="@{/contact}">Contact us</a>
         </ul>
 
 
@@ -15,7 +14,6 @@
             <a th:href="@{/tasks}">Tasks</a>
             <a th:href="@{/classes/add}">Add class</a>
             <a th:href="@{/students/add}">Add student</a>
-            <a th:href="@{/contact}">Contact us</a>
             <a>
                 <form class="logout" th:method="post" th:action="@{/users/logout}">
                     <input class="dropdown-item btn-link nav-link" type="submit" value="Logout">

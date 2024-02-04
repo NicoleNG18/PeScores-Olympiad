@@ -5,14 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pmgkn.pescores.pescores.domain.dto.binding.ClassAddBindingDto;
-import pmgkn.pescores.pescores.domain.dto.binding.StudentAddBindingDto;
 import pmgkn.pescores.pescores.domain.dto.view.ClassViewDto;
 import pmgkn.pescores.pescores.domain.dto.view.StudentViewDto;
 import pmgkn.pescores.pescores.domain.entity.ClassEntity;
 import pmgkn.pescores.pescores.domain.entity.StudentEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.repositories.ClassRepository;
-
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -76,8 +74,6 @@ public class ClassesService {
                 .setClassNum(referenceById.getClassNum())
                 .setId(referenceById.getId())
                 .setStudents(referenceById.getStudents());
-//        return this.modelMapper.map(this.classRepository.getReferenceById(id), ClassViewDto.class);
-
     }
 
     @Transactional
