@@ -1,10 +1,6 @@
 package pmgkn.pescores.pescores.domain.entity;
 
 import jakarta.persistence.*;
-import pmgkn.pescores.pescores.domain.entity.normatives.DenseBallEntity;
-import pmgkn.pescores.pescores.domain.entity.normatives.ThirtyMetersEntity;
-import pmgkn.pescores.pescores.domain.entity.normatives.TwoHundredMetersEntity;
-import pmgkn.pescores.pescores.domain.entity.normatives.TTestEntity;
 import pmgkn.pescores.pescores.domain.enums.GenderEnum;
 
 import java.math.BigDecimal;
@@ -31,16 +27,6 @@ public class StudentEntity extends BaseEntity {
     private BigDecimal thirtyMeters;
     @Column(nullable = true)
     private BigDecimal twoHundredMeters;
-
-    //TODO: MAKE THE NORMATIVES BIG DECIMAL
-//    @OneToOne
-//    private DenseBallEntity denseBall;
-//    @OneToOne
-//    private TTestEntity tTest;
-//    @OneToOne
-//    private ThirtyMetersEntity thirtyMeters;
-//    @OneToOne
-//    private TwoHundredMetersEntity twoHundredMeters;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -135,42 +121,6 @@ public class StudentEntity extends BaseEntity {
         this.twoHundredMeters = twoHundredMeters;
         return this;
     }
-
-    //    public DenseBallEntity getDenseBall() {
-//        return denseBall;
-//    }
-//
-//    public StudentEntity setDenseBall(DenseBallEntity denseBall) {
-//        this.denseBall = denseBall;
-//        return this;
-//    }
-//
-//    public TTestEntity gettTest() {
-//        return tTest;
-//    }
-//
-//    public StudentEntity settTest(TTestEntity tTest) {
-//        this.tTest = tTest;
-//        return this;
-//    }
-//
-//    public ThirtyMetersEntity getThirtyMeters() {
-//        return thirtyMeters;
-//    }
-//
-//    public StudentEntity setThirtyMeters(ThirtyMetersEntity thirtyMeters) {
-//        this.thirtyMeters = thirtyMeters;
-//        return this;
-//    }
-
-//    public TwoHundredMetersEntity getTwoHundredMeters() {
-//        return twoHundredMeters;
-//    }
-//
-//    public StudentEntity setTwoHundredMeters(TwoHundredMetersEntity twoHundredMeters) {
-//        this.twoHundredMeters = twoHundredMeters;
-//        return this;
-//    }
 
     public ClassEntity getStudentClass() {
         return studentClass;

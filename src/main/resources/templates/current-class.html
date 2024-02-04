@@ -64,6 +64,7 @@
                                step="any"
                                min="0"
                                max="60"
+                               th:text="${student.thirtyMeters}"
                                th:errorclass="is-invalid"
                                th:field="*{thirtyMeters}"></td>
                     <td><input th:field="*{twoHundredMeters}"
@@ -72,6 +73,7 @@
                                id="input-200"
                                step="any"
                                min="0"
+                               th:text="${student.twoHundredMeters}"
                                max="300"
                                th:errorclass="is-invalid"
                     ></td>
@@ -81,6 +83,7 @@
                             id="input-t-test"
                             step="any"
                             min="0"
+                            th:text="${student.tTest}"
                             max="120"
                             th:errorclass="is-invalid"
                             th:field="*{tTest}"></td>
@@ -98,6 +101,7 @@
                                id="jump"
                                step="any"
                                min="0"
+                               th:text="${student.jump}"
                                max="5"
                                th:errorclass="is-invalid"
                                th:field="*{jump}"></td>

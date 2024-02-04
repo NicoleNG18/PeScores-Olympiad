@@ -1,4 +1,4 @@
-package pmgkn.pescores.pescores.domain.entity.normatives;
+package pmgkn.pescores.pescores.domain.entity.norms;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

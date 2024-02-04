@@ -3,7 +3,7 @@ package pmgkn.pescores.pescores.service;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 import pmgkn.pescores.pescores.domain.entity.UserRoleEntity;
-import pmgkn.pescores.pescores.domain.entity.normatives.*;
+import pmgkn.pescores.pescores.domain.entity.norms.*;
 import pmgkn.pescores.pescores.domain.enums.UserRoleEnum;
 import pmgkn.pescores.pescores.repositories.*;
 

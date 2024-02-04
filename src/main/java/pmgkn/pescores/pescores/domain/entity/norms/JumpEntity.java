@@ -1,4 +1,4 @@
-package pmgkn.pescores.pescores.domain.entity.normatives;
+package pmgkn.pescores.pescores.domain.entity.norms;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,11 +7,11 @@ import pmgkn.pescores.pescores.domain.entity.BaseEntity;
 
 import java.math.BigDecimal;
 
-import static pmgkn.pescores.pescores.domain.entity.constants.TableNames.THIRTY_METERS;
+import static pmgkn.pescores.pescores.domain.entity.constants.TableNames.JUMP;
 
 @Entity
-@Table(name = THIRTY_METERS)
-public class ThirtyMetersEntity extends BaseEntity {
+@Table(name = JUMP)
+public class JumpEntity extends BaseEntity {
 
     @Column
     private Integer classNum;
@@ -28,14 +28,14 @@ public class ThirtyMetersEntity extends BaseEntity {
     @Column
     private int grade;
 
-    public ThirtyMetersEntity() {
+    public JumpEntity() {
     }
 
     public Integer getClassNum() {
         return classNum;
     }
 
-    public ThirtyMetersEntity setClassNum(Integer classNum) {
+    public JumpEntity setClassNum(Integer classNum) {
         this.classNum = classNum;
         return this;
     }
@@ -44,7 +44,7 @@ public class ThirtyMetersEntity extends BaseEntity {
         return gender;
     }
 
-    public ThirtyMetersEntity setGender(String gender) {
+    public JumpEntity setGender(String gender) {
         this.gender = gender;
         return this;
     }
@@ -53,7 +53,7 @@ public class ThirtyMetersEntity extends BaseEntity {
         return min;
     }
 
-    public ThirtyMetersEntity setMin(BigDecimal min) {
+    public JumpEntity setMin(BigDecimal min) {
         this.min = min;
         return this;
     }
@@ -62,7 +62,7 @@ public class ThirtyMetersEntity extends BaseEntity {
         return max;
     }
 
-    public ThirtyMetersEntity setMax(BigDecimal max) {
+    public JumpEntity setMax(BigDecimal max) {
         this.max = max;
         return this;
     }
@@ -71,10 +71,8 @@ public class ThirtyMetersEntity extends BaseEntity {
         return grade;
     }
 
-    public ThirtyMetersEntity setGrade(int grade) {
+    public JumpEntity setGrade(int grade) {
         this.grade = grade;
         return this;
     }
 }
-
-

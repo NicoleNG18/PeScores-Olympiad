@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import pmgkn.pescores.pescores.domain.entity.normatives.DenseBallEntity;
+import pmgkn.pescores.pescores.domain.entity.norms.DenseBallEntity;
 
 import java.math.BigDecimal;
 import java.util.UUID;
