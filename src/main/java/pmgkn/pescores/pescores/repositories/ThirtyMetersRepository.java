@@ -12,7 +12,7 @@ import java.util.UUID;
 @Repository
 public interface ThirtyMetersRepository extends JpaRepository<ThirtyMetersEntity, UUID> {
 
-    @Query("SELECT tm FROM ThirtyMetersEntity as tm WHERE tm.classNum = :n AND tm.gender = :g AND :r >= tm.min AND :r <= tm.max")
+    @Query("SELECT tm FROM ThirtyMetersEntity as tm WHERE tm.classNum = :n AND tm.gender = :g AND :r <= tm.min AND :r >= tm.max")
     ThirtyMetersEntity getThirtyMetersEntityByResult(@Param("n") Integer number,
                                                      @Param("g") String gender,
                                                      @Param("r") BigDecimal result);

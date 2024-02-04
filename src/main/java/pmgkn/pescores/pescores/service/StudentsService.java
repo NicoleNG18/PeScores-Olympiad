@@ -90,19 +90,41 @@ public class StudentsService {
 
         int countNorms = getCount(studentEntity);
 
-        DenseBallEntity denseBall = this.denseBallRepository.getDenseBallEntityByResult(classNumQuery, genderQuery, studentEntity.getDenseBall());
-        JumpEntity jump = this.jumpRepository.getJumpEntityByResult(classNumQuery, genderQuery, studentEntity.getJump());
-        TTestEntity tTest = this.tTestRepository.getTTestEntityByResult(classNumQuery, genderQuery, studentEntity.gettTest());
-        ThirtyMetersEntity thirtyMeters = this.thirtyMetersRepository.getThirtyMetersEntityByResult(classNumQuery, genderQuery, studentEntity.getThirtyMeters());
-        TwoHundredMetersEntity twoHundredMeters = this.twoHundredMetersRepository.getTwoHundredMetersEntityByResult(classNumQuery, genderQuery, studentEntity.getTwoHundredMeters());
-
-        int averageGradeSum = denseBall.getGrade() + jump.getGrade() + tTest.getGrade() + thirtyMeters.getGrade() + twoHundredMeters.getGrade();
+        int averageGradeSum = getAverageGradeSum(studentEntity, classNumQuery, genderQuery);
 
         studentEntity.setAverageGrade(BigDecimal.valueOf(averageGradeSum).divide(BigDecimal.valueOf(countNorms)).round(new MathContext(2)));
 
         this.studentRepository.saveAndFlush(studentEntity);
 
         return studentEntity.getStudentClass().getId();
+    }
+
+    private int getAverageGradeSum(StudentEntity studentEntity,
+                                   Integer classNumQuery,
+                                   String genderQuery) {
+        int averageGradeSum = 0;
+
+        if (studentEntity.getJump().compareTo(BigDecimal.ZERO) != 0) {
+            JumpEntity jump = this.jumpRepository.getJumpEntityByResult(classNumQuery, genderQuery, studentEntity.getJump());
+            averageGradeSum += jump.getGrade();
+        }
+        if (studentEntity.getThirtyMeters().compareTo(BigDecimal.ZERO) != 0) {
+            ThirtyMetersEntity thirtyMeters = this.thirtyMetersRepository.getThirtyMetersEntityByResult(classNumQuery, genderQuery, studentEntity.getThirtyMeters());
+            averageGradeSum += thirtyMeters.getGrade();
+        }
+        if (studentEntity.getTwoHundredMeters().compareTo(BigDecimal.ZERO) != 0) {
+            TwoHundredMetersEntity twoHundredMeters = this.twoHundredMetersRepository.getTwoHundredMetersEntityByResult(classNumQuery, genderQuery, studentEntity.getTwoHundredMeters());
+            averageGradeSum += twoHundredMeters.getGrade();
+        }
+        if (studentEntity.gettTest().compareTo(BigDecimal.ZERO) != 0) {
+            TTestEntity tTest = this.tTestRepository.getTTestEntityByResult(classNumQuery, genderQuery, studentEntity.gettTest());
+            averageGradeSum += tTest.getGrade();
+        }
+        if (studentEntity.getDenseBall().compareTo(BigDecimal.ZERO) != 0) {
+            DenseBallEntity denseBall = this.denseBallRepository.getDenseBallEntityByResult(classNumQuery, genderQuery, studentEntity.getDenseBall());
+            averageGradeSum += denseBall.getGrade();
+        }
+        return averageGradeSum;
     }
 
     private static void setNorms(StudentUpdateDto studentUpdate,

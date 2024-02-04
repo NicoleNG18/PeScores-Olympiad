@@ -12,7 +12,7 @@ import java.util.UUID;
 @Repository
 public interface TTestRepository extends JpaRepository<TTestEntity, UUID> {
 
-    @Query("SELECT t FROM TTestEntity as t WHERE t.classNum = :n AND t.gender = :g AND :r >= t.min AND :r <= t.max")
+    @Query("SELECT t FROM TTestEntity as t WHERE t.classNum = :n AND t.gender = :g AND :r <= t.min AND :r >= t.max")
     TTestEntity getTTestEntityByResult(@Param("n") Integer number,
                                        @Param("g") String gender,
                                        @Param("r") BigDecimal result);

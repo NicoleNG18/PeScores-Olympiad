@@ -94,8 +94,6 @@ public class StudentsController {
 
         UUID classId = this.studentsService.editStudent(studentUpdate, id);
 
-//        this.classesService.editClass(id, studentUpdate);
-
         return "redirect:/classes/" + classId;
     }
 
