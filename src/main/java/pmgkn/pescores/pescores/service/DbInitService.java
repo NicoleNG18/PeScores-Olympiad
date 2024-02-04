@@ -5,10 +5,9 @@ import org.springframework.stereotype.Service;
 import pmgkn.pescores.pescores.domain.entity.UserRoleEntity;
 import pmgkn.pescores.pescores.domain.entity.normatives.DenseBallEntity;
 import pmgkn.pescores.pescores.domain.entity.normatives.JumpEntity;
+import pmgkn.pescores.pescores.domain.entity.normatives.TTestEntity;
 import pmgkn.pescores.pescores.domain.enums.UserRoleEnum;
-import pmgkn.pescores.pescores.repositories.DenseBallRepository;
-import pmgkn.pescores.pescores.repositories.JumpRepository;
-import pmgkn.pescores.pescores.repositories.UserRoleRepository;
+import pmgkn.pescores.pescores.repositories.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -25,12 +24,24 @@ public class DbInitService {
 
     private final JumpRepository jumpRepository;
 
+    private final TTestRepository tTestRepository;
+
+    private final ThirtyMetersRepository thirtyMetersRepository;
+
+    private final TwoHundredMetersRepository twoHundredMetersRepository;
+
     public DbInitService(UserRoleRepository userRoleRepository,
                          DenseBallRepository denseBallRepository,
-                         JumpRepository jumpRepository) {
+                         JumpRepository jumpRepository,
+                         TTestRepository tTestRepository,
+                         ThirtyMetersRepository thirtyMetersRepository,
+                         TwoHundredMetersRepository twoHundredMetersRepository) {
         this.userRoleRepository = userRoleRepository;
         this.denseBallRepository = denseBallRepository;
         this.jumpRepository = jumpRepository;
+        this.tTestRepository = tTestRepository;
+        this.thirtyMetersRepository = thirtyMetersRepository;
+        this.twoHundredMetersRepository = twoHundredMetersRepository;
     }
 
     @PostConstruct
@@ -38,6 +49,7 @@ public class DbInitService {
         initRoles();
         initDenseBall();
         initJump();
+        initTTest();
     }
 
     public void initRoles() {
@@ -70,15 +82,41 @@ public class DbInitService {
 
     private void initJump() {
         if (this.jumpRepository.count() == 0) {
-           jumpFifthGrade();
-           jumpSixthGrade();
-           jumpSeventhGrade();
-           jumpEightGrade();
-           jumpNinthGrade();
-           jumpTenthGrade();
-           jumpEleventhGrade();
-           jumpTwelfthGrade();
+            jumpFifthGrade();
+            jumpSixthGrade();
+            jumpSeventhGrade();
+            jumpEightGrade();
+            jumpNinthGrade();
+            jumpTenthGrade();
+            jumpEleventhGrade();
+            jumpTwelfthGrade();
         }
+    }
+
+    private void initTTest() {
+        if (this.tTestRepository.count() == 0) {
+            tTestFifthGrade();
+            tTestSixthGrade();
+            tTestSeventhGrade();
+            tTestEightGrade();
+            tTestNinthGrade();
+            tTestTenthGrade();
+            tTestEleventhGrade();
+            tTestTwelfthGrade();
+        }
+    }
+
+    private static TTestEntity getTTestEntity(Integer classNum,
+                                              String gender,
+                                              BigDecimal max,
+                                              BigDecimal min,
+                                              int grade) {
+        return new TTestEntity()
+                .setClassNum(classNum)
+                .setGender(gender)
+                .setMax(max)
+                .setMin(min)
+                .setGrade(grade);
     }
 
     private static DenseBallEntity getDenseBallEntity(Integer classNum,
@@ -106,6 +144,128 @@ public class DbInitService {
                 .setMin(min)
                 .setGrade(grade);
     }
+
+
+    private void tTestFifthGrade() {
+        List<TTestEntity> tTestFifthGrade = new ArrayList<>();
+        tTestFifthGrade.add(getTTestEntity(5, MALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(21.56), 2));
+        tTestFifthGrade.add(getTTestEntity(5, MALE, BigDecimal.valueOf(21.55), BigDecimal.valueOf(19.41), 3));
+        tTestFifthGrade.add(getTTestEntity(5, MALE, BigDecimal.valueOf(19.40), BigDecimal.valueOf(15.64), 4));
+        tTestFifthGrade.add(getTTestEntity(5, MALE, BigDecimal.valueOf(15.63), BigDecimal.valueOf(14.03), 5));
+        tTestFifthGrade.add(getTTestEntity(5, MALE, BigDecimal.valueOf(14.02), BigDecimal.ZERO, 6));
+        tTestFifthGrade.add(getTTestEntity(5, FEMALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(22.71), 2));
+        tTestFifthGrade.add(getTTestEntity(5, FEMALE, BigDecimal.valueOf(22.70), BigDecimal.valueOf(20.37), 3));
+        tTestFifthGrade.add(getTTestEntity(5, FEMALE, BigDecimal.valueOf(20.36), BigDecimal.valueOf(16.28), 4));
+        tTestFifthGrade.add(getTTestEntity(5, FEMALE, BigDecimal.valueOf(16.27), BigDecimal.valueOf(14.52), 5));
+        tTestFifthGrade.add(getTTestEntity(5, FEMALE, BigDecimal.valueOf(14.51), BigDecimal.ZERO, 6));
+        this.tTestRepository.saveAllAndFlush(tTestFifthGrade);
+    }
+
+    private void tTestSixthGrade() {
+        List<TTestEntity> tTestSixthGrade = new ArrayList<>();
+        tTestSixthGrade.add(getTTestEntity(6, MALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(21.04), 2));
+        tTestSixthGrade.add(getTTestEntity(6, MALE, BigDecimal.valueOf(21.03), BigDecimal.valueOf(18.93), 3));
+        tTestSixthGrade.add(getTTestEntity(6, MALE, BigDecimal.valueOf(18.92), BigDecimal.valueOf(15.23), 4));
+        tTestSixthGrade.add(getTTestEntity(6, MALE, BigDecimal.valueOf(15.22), BigDecimal.valueOf(13.65), 5));
+        tTestSixthGrade.add(getTTestEntity(6, MALE, BigDecimal.valueOf(13.64), BigDecimal.ZERO, 6));
+        tTestSixthGrade.add(getTTestEntity(6, FEMALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(22.51), 2));
+        tTestSixthGrade.add(getTTestEntity(6, FEMALE, BigDecimal.valueOf(22.50), BigDecimal.valueOf(20.18), 3));
+        tTestSixthGrade.add(getTTestEntity(6, FEMALE, BigDecimal.valueOf(20.17), BigDecimal.valueOf(16.11), 4));
+        tTestSixthGrade.add(getTTestEntity(6, FEMALE, BigDecimal.valueOf(16.10), BigDecimal.valueOf(14.36), 5));
+        tTestSixthGrade.add(getTTestEntity(6, FEMALE, BigDecimal.valueOf(14.35), BigDecimal.ZERO, 6));
+        this.tTestRepository.saveAllAndFlush(tTestSixthGrade);
+    }
+
+    private void tTestSeventhGrade() {
+        List<TTestEntity> tTestSeventhGrade = new ArrayList<>();
+        tTestSeventhGrade.add(getTTestEntity(7, MALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(20.69), 2));
+        tTestSeventhGrade.add(getTTestEntity(7, MALE, BigDecimal.valueOf(20.68), BigDecimal.valueOf(18.60), 3));
+        tTestSeventhGrade.add(getTTestEntity(7, MALE, BigDecimal.valueOf(18.59), BigDecimal.valueOf(14.95), 4));
+        tTestSeventhGrade.add(getTTestEntity(7, MALE, BigDecimal.valueOf(14.94), BigDecimal.valueOf(13.38), 5));
+        tTestSeventhGrade.add(getTTestEntity(7, MALE, BigDecimal.valueOf(13.37), BigDecimal.ZERO, 6));
+        tTestSeventhGrade.add(getTTestEntity(7, FEMALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(22.38), 2));
+        tTestSeventhGrade.add(getTTestEntity(7, FEMALE, BigDecimal.valueOf(22.37), BigDecimal.valueOf(20.06), 3));
+        tTestSeventhGrade.add(getTTestEntity(7, FEMALE, BigDecimal.valueOf(20.05), BigDecimal.valueOf(15.99), 4));
+        tTestSeventhGrade.add(getTTestEntity(7, FEMALE, BigDecimal.valueOf(15.98), BigDecimal.valueOf(14.25), 5));
+        tTestSeventhGrade.add(getTTestEntity(7, FEMALE, BigDecimal.valueOf(14.24), BigDecimal.ZERO, 6));
+        this.tTestRepository.saveAllAndFlush(tTestSeventhGrade);
+    }
+
+    private void tTestEightGrade() {
+        List<TTestEntity> tTestEightGrade = new ArrayList<>();
+        tTestEightGrade.add(getTTestEntity(8, MALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(20.33), 2));
+        tTestEightGrade.add(getTTestEntity(8, MALE, BigDecimal.valueOf(20.32), BigDecimal.valueOf(18.27), 3));
+        tTestEightGrade.add(getTTestEntity(8, MALE, BigDecimal.valueOf(18.26), BigDecimal.valueOf(14.67), 4));
+        tTestEightGrade.add(getTTestEntity(8, MALE, BigDecimal.valueOf(14.66), BigDecimal.valueOf(13.12), 5));
+        tTestEightGrade.add(getTTestEntity(8, MALE, BigDecimal.valueOf(13.11), BigDecimal.ZERO, 6));
+        tTestEightGrade.add(getTTestEntity(8, FEMALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(22.38), 2));
+        tTestEightGrade.add(getTTestEntity(8, FEMALE, BigDecimal.valueOf(22.37), BigDecimal.valueOf(20.06), 3));
+        tTestEightGrade.add(getTTestEntity(8, FEMALE, BigDecimal.valueOf(20.05), BigDecimal.valueOf(15.99), 4));
+        tTestEightGrade.add(getTTestEntity(8, FEMALE, BigDecimal.valueOf(15.98), BigDecimal.valueOf(14.25), 5));
+        tTestEightGrade.add(getTTestEntity(8, FEMALE, BigDecimal.valueOf(14.24), BigDecimal.ZERO, 6));
+        this.tTestRepository.saveAllAndFlush(tTestEightGrade);
+    }
+
+    private void tTestNinthGrade() {
+        List<TTestEntity> tTestNinthGrade = new ArrayList<>();
+        tTestNinthGrade.add(getTTestEntity(9, MALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(20.03), 2));
+        tTestNinthGrade.add(getTTestEntity(9, MALE, BigDecimal.valueOf(20.02), BigDecimal.valueOf(17.99), 3));
+        tTestNinthGrade.add(getTTestEntity(9, MALE, BigDecimal.valueOf(17.98), BigDecimal.valueOf(14.42), 4));
+        tTestNinthGrade.add(getTTestEntity(9, MALE, BigDecimal.valueOf(14.41), BigDecimal.valueOf(12.89), 5));
+        tTestNinthGrade.add(getTTestEntity(9, MALE, BigDecimal.valueOf(12.88), BigDecimal.ZERO, 6));
+        tTestNinthGrade.add(getTTestEntity(9, FEMALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(22.27), 2));
+        tTestNinthGrade.add(getTTestEntity(9, FEMALE, BigDecimal.valueOf(22.26), BigDecimal.valueOf(19.95), 3));
+        tTestNinthGrade.add(getTTestEntity(9, FEMALE, BigDecimal.valueOf(19.94), BigDecimal.valueOf(15.90), 4));
+        tTestNinthGrade.add(getTTestEntity(9, FEMALE, BigDecimal.valueOf(15.89), BigDecimal.valueOf(14.16), 5));
+        tTestNinthGrade.add(getTTestEntity(9, FEMALE, BigDecimal.valueOf(14.15), BigDecimal.ZERO, 6));
+        this.tTestRepository.saveAllAndFlush(tTestNinthGrade);
+    }
+
+    private void tTestTenthGrade() {
+        List<TTestEntity> tTestNinthGrade = new ArrayList<>();
+        tTestNinthGrade.add(getTTestEntity(10, MALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(19.74), 2));
+        tTestNinthGrade.add(getTTestEntity(10, MALE, BigDecimal.valueOf(19.73), BigDecimal.valueOf(17.72), 3));
+        tTestNinthGrade.add(getTTestEntity(10, MALE, BigDecimal.valueOf(17.71), BigDecimal.valueOf(14.19), 4));
+        tTestNinthGrade.add(getTTestEntity(10, MALE, BigDecimal.valueOf(14.18), BigDecimal.valueOf(12.68), 5));
+        tTestNinthGrade.add(getTTestEntity(10, MALE, BigDecimal.valueOf(12.67), BigDecimal.ZERO, 6));
+        tTestNinthGrade.add(getTTestEntity(10, FEMALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(22.27), 2));
+        tTestNinthGrade.add(getTTestEntity(10, FEMALE, BigDecimal.valueOf(22.26), BigDecimal.valueOf(19.96), 3));
+        tTestNinthGrade.add(getTTestEntity(10, FEMALE, BigDecimal.valueOf(19.95), BigDecimal.valueOf(15.90), 4));
+        tTestNinthGrade.add(getTTestEntity(10, FEMALE, BigDecimal.valueOf(15.89), BigDecimal.valueOf(14.17), 5));
+        tTestNinthGrade.add(getTTestEntity(10, FEMALE, BigDecimal.valueOf(14.16), BigDecimal.ZERO, 6));
+        this.tTestRepository.saveAllAndFlush(tTestNinthGrade);
+    }
+
+    private void tTestEleventhGrade() {
+        List<TTestEntity> tTestEleventhGrade = new ArrayList<>();
+        tTestEleventhGrade.add(getTTestEntity(11, MALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(19.51), 2));
+        tTestEleventhGrade.add(getTTestEntity(11, MALE, BigDecimal.valueOf(19.50), BigDecimal.valueOf(17.51), 3));
+        tTestEleventhGrade.add(getTTestEntity(11, MALE, BigDecimal.valueOf(17.50), BigDecimal.valueOf(14.01), 4));
+        tTestEleventhGrade.add(getTTestEntity(11, MALE, BigDecimal.valueOf(14.00), BigDecimal.valueOf(12.51), 5));
+        tTestEleventhGrade.add(getTTestEntity(11, MALE, BigDecimal.valueOf(12.50), BigDecimal.ZERO, 6));
+        tTestEleventhGrade.add(getTTestEntity(11, FEMALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(22.27), 2));
+        tTestEleventhGrade.add(getTTestEntity(11, FEMALE, BigDecimal.valueOf(22.26), BigDecimal.valueOf(19.95), 3));
+        tTestEleventhGrade.add(getTTestEntity(11, FEMALE, BigDecimal.valueOf(19.94), BigDecimal.valueOf(15.90), 4));
+        tTestEleventhGrade.add(getTTestEntity(11, FEMALE, BigDecimal.valueOf(15.89), BigDecimal.valueOf(14.16), 5));
+        tTestEleventhGrade.add(getTTestEntity(11, FEMALE, BigDecimal.valueOf(14.15), BigDecimal.ZERO, 6));
+        this.tTestRepository.saveAllAndFlush(tTestEleventhGrade);
+    }
+
+    private void tTestTwelfthGrade() {
+        List<TTestEntity> tTestTwelfthGrade = new ArrayList<>();
+        tTestTwelfthGrade.add(getTTestEntity(12, MALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(19.51), 2));
+        tTestTwelfthGrade.add(getTTestEntity(12, MALE, BigDecimal.valueOf(19.50), BigDecimal.valueOf(17.51), 3));
+        tTestTwelfthGrade.add(getTTestEntity(12, MALE, BigDecimal.valueOf(17.50), BigDecimal.valueOf(14.01), 4));
+        tTestTwelfthGrade.add(getTTestEntity(12, MALE, BigDecimal.valueOf(14.00), BigDecimal.valueOf(12.51), 5));
+        tTestTwelfthGrade.add(getTTestEntity(12, MALE, BigDecimal.valueOf(12.50), BigDecimal.ZERO, 6));
+        tTestTwelfthGrade.add(getTTestEntity(12, FEMALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(22.27), 2));
+        tTestTwelfthGrade.add(getTTestEntity(12, FEMALE, BigDecimal.valueOf(22.26), BigDecimal.valueOf(19.95), 3));
+        tTestTwelfthGrade.add(getTTestEntity(12, FEMALE, BigDecimal.valueOf(19.94), BigDecimal.valueOf(15.90), 4));
+        tTestTwelfthGrade.add(getTTestEntity(12, FEMALE, BigDecimal.valueOf(15.89), BigDecimal.valueOf(14.16), 5));
+        tTestTwelfthGrade.add(getTTestEntity(12, FEMALE, BigDecimal.valueOf(14.15), BigDecimal.ZERO, 6));
+        this.tTestRepository.saveAllAndFlush(tTestTwelfthGrade);
+    }
+
 
     private void jumpFifthGrade() {
         List<JumpEntity> jumpFifthGrade = new ArrayList<>();
@@ -308,7 +468,7 @@ public class DbInitService {
         denseBallTenthGrade.add(getDenseBallEntity(10, MALE, BigDecimal.valueOf(5.82), BigDecimal.valueOf(4.28), 3));
         denseBallTenthGrade.add(getDenseBallEntity(10, MALE, BigDecimal.valueOf(8.53), BigDecimal.valueOf(5.83), 4));
         denseBallTenthGrade.add(getDenseBallEntity(10, MALE, BigDecimal.valueOf(9.69), BigDecimal.valueOf(8.54), 5));
-        denseBallTenthGrade.add(getDenseBallEntity(10, MALE, BigDecimal.valueOf(25), BigDecimal.valueOf(9.70),6));
+        denseBallTenthGrade.add(getDenseBallEntity(10, MALE, BigDecimal.valueOf(25), BigDecimal.valueOf(9.70), 6));
         denseBallTenthGrade.add(getDenseBallEntity(10, FEMALE, BigDecimal.valueOf(2.99), BigDecimal.ZERO, 2));
         denseBallTenthGrade.add(getDenseBallEntity(10, FEMALE, BigDecimal.valueOf(4.19), BigDecimal.valueOf(3.00), 3));
         denseBallTenthGrade.add(getDenseBallEntity(10, FEMALE, BigDecimal.valueOf(6.29), BigDecimal.valueOf(4.20), 4));
@@ -346,8 +506,6 @@ public class DbInitService {
         denseBallTwelfthGrade.add(getDenseBallEntity(12, FEMALE, BigDecimal.valueOf(25), BigDecimal.valueOf(7.20), 6));
         this.denseBallRepository.saveAllAndFlush(denseBallTwelfthGrade);
     }
-
-
 
 
 }
