@@ -2,15 +2,19 @@ package pmgkn.pescores.pescores.domain.dto.binding;
 
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import pmgkn.pescores.pescores.domain.enums.GenderEnum;
 import pmgkn.pescores.pescores.validation.common.ValidStudentName;
+import pmgkn.pescores.pescores.validation.user.UniqueUserEmail;
 
 public class StudentAddBindingDto {
     @ValidStudentName
+    @NotNull
     private String studentName;
     @Positive
+    @NotNull(message = "number must not be empty")
     private Integer studentNumber;
 
     private String studentClass;

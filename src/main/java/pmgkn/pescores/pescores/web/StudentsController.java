@@ -63,6 +63,14 @@ public class StudentsController {
 
         }
 
+        if(this.studentsService.checkIfClassNumRepeats(studentAddBindingDto.getStudentClass(),principal.getName(),studentAddBindingDto.getStudentNumber())){
+
+            redirectAttributes.addFlashAttribute("isUnique",false);
+
+            return "redirect:/students/add";
+
+        }
+
         UUID classId = this.studentsService.saveStudent(principal.getName(), studentAddBindingDto);
 
         return "redirect:/classes/" + classId;

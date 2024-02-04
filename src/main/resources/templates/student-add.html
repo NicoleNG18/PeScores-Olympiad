@@ -45,6 +45,9 @@
         <div class="invalid-feedback errors-student alert-danger"
              th:each="err :${#fields.errors('studentNumber')}"
              th:text="${err}"></div>
+        <div class="invalid-feedback errors-student alert-danger"
+             th:if="${isUnique} == false"
+             >student number must be unique</div>
 
         <label for="gender" class="label">Label</label>
         <select id="gender"

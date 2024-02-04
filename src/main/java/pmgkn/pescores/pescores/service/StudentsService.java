@@ -5,13 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pmgkn.pescores.pescores.domain.dto.binding.StudentAddBindingDto;
 import pmgkn.pescores.pescores.domain.dto.binding.StudentUpdateDto;
+import pmgkn.pescores.pescores.domain.entity.ClassEntity;
 import pmgkn.pescores.pescores.domain.entity.StudentEntity;
 import pmgkn.pescores.pescores.domain.entity.norms.*;
 import pmgkn.pescores.pescores.repositories.*;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentsService {
@@ -144,5 +147,21 @@ public class StudentsService {
             count++;
         }
         return count;
+    }
+
+    public boolean checkIfClassNumRepeats(String studentClass,
+                                          String teacher,
+                                          Integer studentNumber) {
+
+        ClassEntity classEntityByNameAndTeacher = this.classesService.getClassEntityByNameAndTeacher(studentClass, teacher);
+
+        List<Integer> collect = classEntityByNameAndTeacher.
+                getStudents()
+                .stream()
+                .map(StudentEntity::getStudentNumber)
+                .filter(s -> s.equals(studentNumber))
+                .toList();
+
+        return collect.size() != 0;
     }
 }

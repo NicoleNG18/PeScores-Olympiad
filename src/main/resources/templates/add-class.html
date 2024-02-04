@@ -41,8 +41,7 @@
                    th:field="*{classNum}"
                    min="5"
                    max="12"
-                   step="1"
-                   placeholder="classNum">
+                   step="1">
             <div class="invalid-feedback errors-class alert-danger"
                  th:each="err :${#fields.errors('classNum')}"
                  th:text="${err}"></div>

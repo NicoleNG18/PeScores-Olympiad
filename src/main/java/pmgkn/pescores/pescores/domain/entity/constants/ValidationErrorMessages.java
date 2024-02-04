@@ -6,6 +6,7 @@ public enum ValidationErrorMessages {
 
     public static final String MIN_DESCRIPTION = "At least 3 symbols";
     public static final String DESCRIPTION_REQUIRED = "description is required";
+    public static final String CLASS_NUMBER_UNIQUE = "class number must be unique";
 
     public static final String CLASS_NAME_REQUIRED = "class name is required";
     public static final String CLASS_NUM_REQUIRED = "class number is required";
