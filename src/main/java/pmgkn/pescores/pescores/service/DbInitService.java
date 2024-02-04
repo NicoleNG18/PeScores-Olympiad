@@ -6,6 +6,7 @@ import pmgkn.pescores.pescores.domain.entity.UserRoleEntity;
 import pmgkn.pescores.pescores.domain.entity.normatives.DenseBallEntity;
 import pmgkn.pescores.pescores.domain.entity.normatives.JumpEntity;
 import pmgkn.pescores.pescores.domain.entity.normatives.TTestEntity;
+import pmgkn.pescores.pescores.domain.entity.normatives.TwoHundredMetersEntity;
 import pmgkn.pescores.pescores.domain.enums.UserRoleEnum;
 import pmgkn.pescores.pescores.repositories.*;
 
@@ -50,6 +51,7 @@ public class DbInitService {
         initDenseBall();
         initJump();
         initTTest();
+        initTwoHundredMeters();
     }
 
     public void initRoles() {
@@ -106,6 +108,19 @@ public class DbInitService {
         }
     }
 
+    private void initTwoHundredMeters() {
+        if (this.twoHundredMetersRepository.count() == 0) {
+            twoHundredMetersFifthGrade();
+            twoHundredMetersSixthGrade();
+            twoHundredMetersSeventhGrade();
+            twoHundredMetersEightGrade();
+            twoHundredMetersNinthGrade();
+            twoHundredMetersTenthGrade();
+            twoHundredMetersEleventhGrade();
+            twoHundredMetersTwelfthGrade();
+        }
+    }
+
     private static TTestEntity getTTestEntity(Integer classNum,
                                               String gender,
                                               BigDecimal max,
@@ -143,6 +158,139 @@ public class DbInitService {
                 .setMax(max)
                 .setMin(min)
                 .setGrade(grade);
+    }
+
+    private static TwoHundredMetersEntity getTwoHundredMetersEntity(Integer classNum,
+                                                                    String gender,
+                                                                    BigDecimal max,
+                                                                    BigDecimal min,
+                                                                    int grade) {
+        return new TwoHundredMetersEntity()
+                .setClassNum(classNum)
+                .setGender(gender)
+                .setMax(max)
+                .setMin(min)
+                .setGrade(grade);
+    }
+
+    private void twoHundredMetersFifthGrade() {
+        List<TwoHundredMetersEntity> twoHundredMetersFifthGrade = new ArrayList<>();
+        twoHundredMetersFifthGrade.add(getTwoHundredMetersEntity(5, MALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(60.58), 2));
+        twoHundredMetersFifthGrade.add(getTwoHundredMetersEntity(5, MALE, BigDecimal.valueOf(60.57), BigDecimal.valueOf(54.69), 3));
+        twoHundredMetersFifthGrade.add(getTwoHundredMetersEntity(5, MALE, BigDecimal.valueOf(54.68), BigDecimal.valueOf(44.37), 4));
+        twoHundredMetersFifthGrade.add(getTwoHundredMetersEntity(5, MALE, BigDecimal.valueOf(44.36), BigDecimal.valueOf(39.95), 5));
+        twoHundredMetersFifthGrade.add(getTwoHundredMetersEntity(5, MALE, BigDecimal.valueOf(39.94), BigDecimal.ZERO, 6));
+        twoHundredMetersFifthGrade.add(getTwoHundredMetersEntity(5, FEMALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(63.29), 2));
+        twoHundredMetersFifthGrade.add(getTwoHundredMetersEntity(5, FEMALE, BigDecimal.valueOf(63.28), BigDecimal.valueOf(57.03), 3));
+        twoHundredMetersFifthGrade.add(getTwoHundredMetersEntity(5, FEMALE, BigDecimal.valueOf(57.02), BigDecimal.valueOf(46.09), 4));
+        twoHundredMetersFifthGrade.add(getTwoHundredMetersEntity(5, FEMALE, BigDecimal.valueOf(46.08), BigDecimal.valueOf(41.39), 5));
+        twoHundredMetersFifthGrade.add(getTwoHundredMetersEntity(5, FEMALE, BigDecimal.valueOf(41.38), BigDecimal.ZERO, 6));
+        this.twoHundredMetersRepository.saveAllAndFlush(twoHundredMetersFifthGrade);
+    }
+
+    private void twoHundredMetersSixthGrade() {
+        List<TwoHundredMetersEntity> twoHundredMetersSixthGrade = new ArrayList<>();
+        twoHundredMetersSixthGrade.add(getTwoHundredMetersEntity(6, MALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(57.40), 2));
+        twoHundredMetersSixthGrade.add(getTwoHundredMetersEntity(6, MALE, BigDecimal.valueOf(57.39), BigDecimal.valueOf(51.93), 3));
+        twoHundredMetersSixthGrade.add(getTwoHundredMetersEntity(6, MALE, BigDecimal.valueOf(51.92), BigDecimal.valueOf(42.35), 4));
+        twoHundredMetersSixthGrade.add(getTwoHundredMetersEntity(6, MALE, BigDecimal.valueOf(42.34), BigDecimal.valueOf(38.24), 5));
+        twoHundredMetersSixthGrade.add(getTwoHundredMetersEntity(6, MALE, BigDecimal.valueOf(38.23), BigDecimal.ZERO, 6));
+        twoHundredMetersSixthGrade.add(getTwoHundredMetersEntity(6, FEMALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(62.01), 2));
+        twoHundredMetersSixthGrade.add(getTwoHundredMetersEntity(6, FEMALE, BigDecimal.valueOf(62.00), BigDecimal.valueOf(55.72), 3));
+        twoHundredMetersSixthGrade.add(getTwoHundredMetersEntity(6, FEMALE, BigDecimal.valueOf(55.71), BigDecimal.valueOf(44.71), 4));
+        twoHundredMetersSixthGrade.add(getTwoHundredMetersEntity(6, FEMALE, BigDecimal.valueOf(44.70), BigDecimal.valueOf(39.99), 5));
+        twoHundredMetersSixthGrade.add(getTwoHundredMetersEntity(6, FEMALE, BigDecimal.valueOf(39.98), BigDecimal.ZERO, 6));
+        this.twoHundredMetersRepository.saveAllAndFlush(twoHundredMetersSixthGrade);
+    }
+
+    private void twoHundredMetersSeventhGrade() {
+        List<TwoHundredMetersEntity> twoHundredMetersSeventhGrade = new ArrayList<>();
+        twoHundredMetersSeventhGrade.add(getTwoHundredMetersEntity(7, MALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(54.33), 2));
+        twoHundredMetersSeventhGrade.add(getTwoHundredMetersEntity(7, MALE, BigDecimal.valueOf(54.32), BigDecimal.valueOf(49.27), 3));
+        twoHundredMetersSeventhGrade.add(getTwoHundredMetersEntity(7, MALE, BigDecimal.valueOf(49.26), BigDecimal.valueOf(40.40), 4));
+        twoHundredMetersSeventhGrade.add(getTwoHundredMetersEntity(7, MALE, BigDecimal.valueOf(40.39), BigDecimal.valueOf(36.59), 5));
+        twoHundredMetersSeventhGrade.add(getTwoHundredMetersEntity(7, MALE, BigDecimal.valueOf(36.58), BigDecimal.ZERO, 6));
+        twoHundredMetersSeventhGrade.add(getTwoHundredMetersEntity(7, FEMALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(61.60), 2));
+        twoHundredMetersSeventhGrade.add(getTwoHundredMetersEntity(7, FEMALE, BigDecimal.valueOf(61.59), BigDecimal.valueOf(55.29), 3));
+        twoHundredMetersSeventhGrade.add(getTwoHundredMetersEntity(7, FEMALE, BigDecimal.valueOf(55.28), BigDecimal.valueOf(44.26), 4));
+        twoHundredMetersSeventhGrade.add(getTwoHundredMetersEntity(7, FEMALE, BigDecimal.valueOf(44.25), BigDecimal.valueOf(39.53), 5));
+        twoHundredMetersSeventhGrade.add(getTwoHundredMetersEntity(7, FEMALE, BigDecimal.valueOf(39.52), BigDecimal.ZERO, 6));
+        this.twoHundredMetersRepository.saveAllAndFlush(twoHundredMetersSeventhGrade);
+    }
+
+    private void twoHundredMetersEightGrade() {
+        List<TwoHundredMetersEntity> twoHundredMetersEightGrade = new ArrayList<>();
+        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, MALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(51.73), 2));
+        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, MALE, BigDecimal.valueOf(51.72), BigDecimal.valueOf(47.01), 3));
+        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, MALE, BigDecimal.valueOf(47.00), BigDecimal.valueOf(38.74), 4));
+        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, MALE, BigDecimal.valueOf(38.73), BigDecimal.valueOf(35.20), 5));
+        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, MALE, BigDecimal.valueOf(35.19), BigDecimal.ZERO, 6));
+        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, FEMALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(61.60), 2));
+        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, FEMALE, BigDecimal.valueOf(61.59), BigDecimal.valueOf(55.29), 3));
+        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, FEMALE, BigDecimal.valueOf(55.28), BigDecimal.valueOf(44.26), 4));
+        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, FEMALE, BigDecimal.valueOf(44.25), BigDecimal.valueOf(39.53), 5));
+        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, FEMALE, BigDecimal.valueOf(39.52), BigDecimal.ZERO, 6));
+        this.twoHundredMetersRepository.saveAllAndFlush(twoHundredMetersEightGrade);
+    }
+
+    private void twoHundredMetersNinthGrade() {
+        List<TwoHundredMetersEntity> twoHundredMetersNinthGrade = new ArrayList<>();
+        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, MALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(49.76), 2));
+        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, MALE, BigDecimal.valueOf(49.75), BigDecimal.valueOf(45.29), 3));
+        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, MALE, BigDecimal.valueOf(45.28), BigDecimal.valueOf(37.48), 4));
+        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, MALE, BigDecimal.valueOf(37.47), BigDecimal.valueOf(34.14), 5));
+        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, MALE, BigDecimal.valueOf(34.13), BigDecimal.ZERO, 6));
+        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, FEMALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(61.35), 2));
+        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, FEMALE, BigDecimal.valueOf(61.34), BigDecimal.valueOf(55.04), 3));
+        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, FEMALE, BigDecimal.valueOf(55.03), BigDecimal.valueOf(43.99), 4));
+        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, FEMALE, BigDecimal.valueOf(43.98), BigDecimal.valueOf(39.25), 5));
+        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, FEMALE, BigDecimal.valueOf(39.24), BigDecimal.ZERO, 6));
+        this.twoHundredMetersRepository.saveAllAndFlush(twoHundredMetersNinthGrade);
+    }
+
+    private void twoHundredMetersTenthGrade() {
+        List<TwoHundredMetersEntity> twoHundredMetersTenthGrade = new ArrayList<>();
+        twoHundredMetersTenthGrade.add(getTwoHundredMetersEntity(10, MALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(48.66), 2));
+        twoHundredMetersTenthGrade.add(getTwoHundredMetersEntity(10, MALE, BigDecimal.valueOf(48.65), BigDecimal.valueOf(44.34), 3));
+        twoHundredMetersTenthGrade.add(getTwoHundredMetersEntity(10, MALE, BigDecimal.valueOf(44.33), BigDecimal.valueOf(36.79), 4));
+        twoHundredMetersTenthGrade.add(getTwoHundredMetersEntity(10, MALE, BigDecimal.valueOf(36.78), BigDecimal.valueOf(33.55), 5));
+        twoHundredMetersTenthGrade.add(getTwoHundredMetersEntity(10, MALE, BigDecimal.valueOf(33.54), BigDecimal.ZERO, 6));
+        twoHundredMetersTenthGrade.add(getTwoHundredMetersEntity(10, FEMALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(61.27), 2));
+        twoHundredMetersTenthGrade.add(getTwoHundredMetersEntity(10, FEMALE, BigDecimal.valueOf(61.26), BigDecimal.valueOf(54.95), 3));
+        twoHundredMetersTenthGrade.add(getTwoHundredMetersEntity(10, FEMALE, BigDecimal.valueOf(54.94), BigDecimal.valueOf(43.90), 4));
+        twoHundredMetersTenthGrade.add(getTwoHundredMetersEntity(10, FEMALE, BigDecimal.valueOf(43.89), BigDecimal.valueOf(39.16), 5));
+        twoHundredMetersTenthGrade.add(getTwoHundredMetersEntity(10, FEMALE, BigDecimal.valueOf(39.15), BigDecimal.ZERO, 6));
+        this.twoHundredMetersRepository.saveAllAndFlush(twoHundredMetersTenthGrade);
+    }
+
+    private void twoHundredMetersEleventhGrade() {
+        List<TwoHundredMetersEntity> twoHundredMetersEleventhGrade = new ArrayList<>();
+        twoHundredMetersEleventhGrade.add(getTwoHundredMetersEntity(11, MALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(47.97), 2));
+        twoHundredMetersEleventhGrade.add(getTwoHundredMetersEntity(11, MALE, BigDecimal.valueOf(47.96), BigDecimal.valueOf(43.75), 3));
+        twoHundredMetersEleventhGrade.add(getTwoHundredMetersEntity(11, MALE, BigDecimal.valueOf(43.74), BigDecimal.valueOf(36.35), 4));
+        twoHundredMetersEleventhGrade.add(getTwoHundredMetersEntity(11, MALE, BigDecimal.valueOf(36.34), BigDecimal.valueOf(33.18), 5));
+        twoHundredMetersEleventhGrade.add(getTwoHundredMetersEntity(11, MALE, BigDecimal.valueOf(33.17), BigDecimal.ZERO, 6));
+        twoHundredMetersEleventhGrade.add(getTwoHundredMetersEntity(11, FEMALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(61.27), 2));
+        twoHundredMetersEleventhGrade.add(getTwoHundredMetersEntity(11, FEMALE, BigDecimal.valueOf(61.26), BigDecimal.valueOf(54.95), 3));
+        twoHundredMetersEleventhGrade.add(getTwoHundredMetersEntity(11, FEMALE, BigDecimal.valueOf(54.94), BigDecimal.valueOf(43.90), 4));
+        twoHundredMetersEleventhGrade.add(getTwoHundredMetersEntity(11, FEMALE, BigDecimal.valueOf(43.89), BigDecimal.valueOf(39.16), 5));
+        twoHundredMetersEleventhGrade.add(getTwoHundredMetersEntity(11, FEMALE, BigDecimal.valueOf(39.15), BigDecimal.ZERO, 6));
+        this.twoHundredMetersRepository.saveAllAndFlush(twoHundredMetersEleventhGrade);
+    }
+
+    private void twoHundredMetersTwelfthGrade() {
+        List<TwoHundredMetersEntity> twoHundredMetersTwelfthGrade = new ArrayList<>();
+        twoHundredMetersTwelfthGrade.add(getTwoHundredMetersEntity(12, MALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(47.85), 2));
+        twoHundredMetersTwelfthGrade.add(getTwoHundredMetersEntity(12, MALE, BigDecimal.valueOf(47.84), BigDecimal.valueOf(43.64), 3));
+        twoHundredMetersTwelfthGrade.add(getTwoHundredMetersEntity(12, MALE, BigDecimal.valueOf(43.63), BigDecimal.valueOf(36.27), 4));
+        twoHundredMetersTwelfthGrade.add(getTwoHundredMetersEntity(12, MALE, BigDecimal.valueOf(36.26), BigDecimal.valueOf(33.11), 5));
+        twoHundredMetersTwelfthGrade.add(getTwoHundredMetersEntity(12, MALE, BigDecimal.valueOf(33.10), BigDecimal.ZERO, 6));
+        twoHundredMetersTwelfthGrade.add(getTwoHundredMetersEntity(12, FEMALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(61.27), 2));
+        twoHundredMetersTwelfthGrade.add(getTwoHundredMetersEntity(12, FEMALE, BigDecimal.valueOf(61.26), BigDecimal.valueOf(54.95), 3));
+        twoHundredMetersTwelfthGrade.add(getTwoHundredMetersEntity(12, FEMALE, BigDecimal.valueOf(54.94), BigDecimal.valueOf(43.90), 4));
+        twoHundredMetersTwelfthGrade.add(getTwoHundredMetersEntity(12, FEMALE, BigDecimal.valueOf(43.89), BigDecimal.valueOf(39.16), 5));
+        twoHundredMetersTwelfthGrade.add(getTwoHundredMetersEntity(12, FEMALE, BigDecimal.valueOf(39.15), BigDecimal.ZERO, 6));
+        this.twoHundredMetersRepository.saveAllAndFlush(twoHundredMetersTwelfthGrade);
     }
 
 
