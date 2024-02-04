@@ -140,8 +140,8 @@ public class DbInitService {
         return new ThirtyMetersEntity()
                 .setClassNum(classNum)
                 .setGender(gender)
-                .setMax(max)
-                .setMin(min)
+                .setMin(max)
+                .setMax(min)
                 .setGrade(grade);
     }
 
@@ -153,8 +153,8 @@ public class DbInitService {
         return new TTestEntity()
                 .setClassNum(classNum)
                 .setGender(gender)
-                .setMax(max)
-                .setMin(min)
+                .setMin(max)
+                .setMax(min)
                 .setGrade(grade);
     }
 
@@ -192,8 +192,8 @@ public class DbInitService {
         return new TwoHundredMetersEntity()
                 .setClassNum(classNum)
                 .setGender(gender)
-                .setMax(max)
-                .setMin(min)
+                .setMin(max)
+                .setMax(min)
                 .setGrade(grade);
     }
 
@@ -249,11 +249,11 @@ public class DbInitService {
         thirtyMetersEightGrade.add(getThirtyMetersEntity(8, MALE, BigDecimal.valueOf(5.86), BigDecimal.valueOf(4.90), 4));
         thirtyMetersEightGrade.add(getThirtyMetersEntity(8, MALE, BigDecimal.valueOf(4.89), BigDecimal.valueOf(4.48), 5));
         thirtyMetersEightGrade.add(getThirtyMetersEntity(8, MALE, BigDecimal.valueOf(4.47), BigDecimal.ZERO, 6));
-        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, FEMALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(7.39), 2));
-        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, FEMALE, BigDecimal.valueOf(7.38), BigDecimal.valueOf(6.70), 3));
-        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, FEMALE, BigDecimal.valueOf(6.69), BigDecimal.valueOf(5.48), 4));
-        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, FEMALE, BigDecimal.valueOf(5.47), BigDecimal.valueOf(4.96), 5));
-        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, FEMALE, BigDecimal.valueOf(4.95), BigDecimal.ZERO, 6));
+        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, FEMALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(7.30), 2));
+        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, FEMALE, BigDecimal.valueOf(7.29), BigDecimal.valueOf(6.61), 3));
+        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, FEMALE, BigDecimal.valueOf(6.60), BigDecimal.valueOf(5.39), 4));
+        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, FEMALE, BigDecimal.valueOf(5.38), BigDecimal.valueOf(4.87), 5));
+        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, FEMALE, BigDecimal.valueOf(4.86), BigDecimal.ZERO, 6));
         this.thirtyMetersRepository.saveAllAndFlush(thirtyMetersEightGrade);
     }
 
@@ -264,11 +264,11 @@ public class DbInitService {
         thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, MALE, BigDecimal.valueOf(5.71), BigDecimal.valueOf(4.77), 4));
         thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, MALE, BigDecimal.valueOf(4.76), BigDecimal.valueOf(4.37), 5));
         thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, MALE, BigDecimal.valueOf(4.36), BigDecimal.ZERO, 6));
-        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, FEMALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(7.30), 2));
-        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, FEMALE, BigDecimal.valueOf(7.29), BigDecimal.valueOf(6.61), 3));
-        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, FEMALE, BigDecimal.valueOf(6.60), BigDecimal.valueOf(5.39), 4));
-        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, FEMALE, BigDecimal.valueOf(5.38), BigDecimal.valueOf(4.87), 5));
-        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, FEMALE, BigDecimal.valueOf(4.86), BigDecimal.ZERO, 6));
+        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, FEMALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(7.28), 2));
+        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, FEMALE, BigDecimal.valueOf(7.27), BigDecimal.valueOf(6.59), 3));
+        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, FEMALE, BigDecimal.valueOf(6.58), BigDecimal.valueOf(5.37), 4));
+        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, FEMALE, BigDecimal.valueOf(5.36), BigDecimal.valueOf(4.85), 5));
+        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, FEMALE, BigDecimal.valueOf(4.84), BigDecimal.ZERO, 6));
         this.thirtyMetersRepository.saveAllAndFlush(thirtyMetersNinthGrade);
     }
 
@@ -369,11 +369,11 @@ public class DbInitService {
         twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, MALE, BigDecimal.valueOf(47.00), BigDecimal.valueOf(38.74), 4));
         twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, MALE, BigDecimal.valueOf(38.73), BigDecimal.valueOf(35.20), 5));
         twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, MALE, BigDecimal.valueOf(35.19), BigDecimal.ZERO, 6));
-        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, FEMALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(61.60), 2));
-        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, FEMALE, BigDecimal.valueOf(61.59), BigDecimal.valueOf(55.29), 3));
-        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, FEMALE, BigDecimal.valueOf(55.28), BigDecimal.valueOf(44.26), 4));
-        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, FEMALE, BigDecimal.valueOf(44.25), BigDecimal.valueOf(39.53), 5));
-        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, FEMALE, BigDecimal.valueOf(39.52), BigDecimal.ZERO, 6));
+        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, FEMALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(61.35), 2));
+        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, FEMALE, BigDecimal.valueOf(61.34), BigDecimal.valueOf(55.04), 3));
+        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, FEMALE, BigDecimal.valueOf(55.03), BigDecimal.valueOf(43.99), 4));
+        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, FEMALE, BigDecimal.valueOf(43.98), BigDecimal.valueOf(39.25), 5));
+        twoHundredMetersEightGrade.add(getTwoHundredMetersEntity(8, FEMALE, BigDecimal.valueOf(39.24), BigDecimal.ZERO, 6));
         this.twoHundredMetersRepository.saveAllAndFlush(twoHundredMetersEightGrade);
     }
 
@@ -384,11 +384,11 @@ public class DbInitService {
         twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, MALE, BigDecimal.valueOf(45.28), BigDecimal.valueOf(37.48), 4));
         twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, MALE, BigDecimal.valueOf(37.47), BigDecimal.valueOf(34.14), 5));
         twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, MALE, BigDecimal.valueOf(34.13), BigDecimal.ZERO, 6));
-        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, FEMALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(61.35), 2));
-        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, FEMALE, BigDecimal.valueOf(61.34), BigDecimal.valueOf(55.04), 3));
-        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, FEMALE, BigDecimal.valueOf(55.03), BigDecimal.valueOf(43.99), 4));
-        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, FEMALE, BigDecimal.valueOf(43.98), BigDecimal.valueOf(39.25), 5));
-        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, FEMALE, BigDecimal.valueOf(39.24), BigDecimal.ZERO, 6));
+        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, FEMALE, BigDecimal.valueOf(300.00), BigDecimal.valueOf(61.27), 2));
+        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, FEMALE, BigDecimal.valueOf(61.26), BigDecimal.valueOf(54.95), 3));
+        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, FEMALE, BigDecimal.valueOf(54.94), BigDecimal.valueOf(43.90), 4));
+        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, FEMALE, BigDecimal.valueOf(43.89), BigDecimal.valueOf(39.16), 5));
+        twoHundredMetersNinthGrade.add(getTwoHundredMetersEntity(9, FEMALE, BigDecimal.valueOf(39.15), BigDecimal.ZERO, 6));
         this.twoHundredMetersRepository.saveAllAndFlush(twoHundredMetersNinthGrade);
     }
 
@@ -490,11 +490,11 @@ public class DbInitService {
         tTestEightGrade.add(getTTestEntity(8, MALE, BigDecimal.valueOf(18.26), BigDecimal.valueOf(14.67), 4));
         tTestEightGrade.add(getTTestEntity(8, MALE, BigDecimal.valueOf(14.66), BigDecimal.valueOf(13.12), 5));
         tTestEightGrade.add(getTTestEntity(8, MALE, BigDecimal.valueOf(13.11), BigDecimal.ZERO, 6));
-        tTestEightGrade.add(getTTestEntity(8, FEMALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(22.38), 2));
-        tTestEightGrade.add(getTTestEntity(8, FEMALE, BigDecimal.valueOf(22.37), BigDecimal.valueOf(20.06), 3));
-        tTestEightGrade.add(getTTestEntity(8, FEMALE, BigDecimal.valueOf(20.05), BigDecimal.valueOf(15.99), 4));
-        tTestEightGrade.add(getTTestEntity(8, FEMALE, BigDecimal.valueOf(15.98), BigDecimal.valueOf(14.25), 5));
-        tTestEightGrade.add(getTTestEntity(8, FEMALE, BigDecimal.valueOf(14.24), BigDecimal.ZERO, 6));
+        tTestEightGrade.add(getTTestEntity(8, FEMALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(22.27), 2));
+        tTestEightGrade.add(getTTestEntity(8, FEMALE, BigDecimal.valueOf(22.26), BigDecimal.valueOf(19.95), 3));
+        tTestEightGrade.add(getTTestEntity(8, FEMALE, BigDecimal.valueOf(19.94), BigDecimal.valueOf(15.90), 4));
+        tTestEightGrade.add(getTTestEntity(8, FEMALE, BigDecimal.valueOf(15.89), BigDecimal.valueOf(14.16), 5));
+        tTestEightGrade.add(getTTestEntity(8, FEMALE, BigDecimal.valueOf(14.15), BigDecimal.ZERO, 6));
         this.tTestRepository.saveAllAndFlush(tTestEightGrade);
     }
 
@@ -506,10 +506,10 @@ public class DbInitService {
         tTestNinthGrade.add(getTTestEntity(9, MALE, BigDecimal.valueOf(14.41), BigDecimal.valueOf(12.89), 5));
         tTestNinthGrade.add(getTTestEntity(9, MALE, BigDecimal.valueOf(12.88), BigDecimal.ZERO, 6));
         tTestNinthGrade.add(getTTestEntity(9, FEMALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(22.27), 2));
-        tTestNinthGrade.add(getTTestEntity(9, FEMALE, BigDecimal.valueOf(22.26), BigDecimal.valueOf(19.95), 3));
-        tTestNinthGrade.add(getTTestEntity(9, FEMALE, BigDecimal.valueOf(19.94), BigDecimal.valueOf(15.90), 4));
-        tTestNinthGrade.add(getTTestEntity(9, FEMALE, BigDecimal.valueOf(15.89), BigDecimal.valueOf(14.16), 5));
-        tTestNinthGrade.add(getTTestEntity(9, FEMALE, BigDecimal.valueOf(14.15), BigDecimal.ZERO, 6));
+        tTestNinthGrade.add(getTTestEntity(9, FEMALE, BigDecimal.valueOf(22.26), BigDecimal.valueOf(19.96), 3));
+        tTestNinthGrade.add(getTTestEntity(9, FEMALE, BigDecimal.valueOf(19.95), BigDecimal.valueOf(15.90), 4));
+        tTestNinthGrade.add(getTTestEntity(9, FEMALE, BigDecimal.valueOf(15.89), BigDecimal.valueOf(14.17), 5));
+        tTestNinthGrade.add(getTTestEntity(9, FEMALE, BigDecimal.valueOf(14.16), BigDecimal.ZERO, 6));
         this.tTestRepository.saveAllAndFlush(tTestNinthGrade);
     }
 
@@ -521,10 +521,10 @@ public class DbInitService {
         tTestNinthGrade.add(getTTestEntity(10, MALE, BigDecimal.valueOf(14.18), BigDecimal.valueOf(12.68), 5));
         tTestNinthGrade.add(getTTestEntity(10, MALE, BigDecimal.valueOf(12.67), BigDecimal.ZERO, 6));
         tTestNinthGrade.add(getTTestEntity(10, FEMALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(22.27), 2));
-        tTestNinthGrade.add(getTTestEntity(10, FEMALE, BigDecimal.valueOf(22.26), BigDecimal.valueOf(19.96), 3));
-        tTestNinthGrade.add(getTTestEntity(10, FEMALE, BigDecimal.valueOf(19.95), BigDecimal.valueOf(15.90), 4));
-        tTestNinthGrade.add(getTTestEntity(10, FEMALE, BigDecimal.valueOf(15.89), BigDecimal.valueOf(14.17), 5));
-        tTestNinthGrade.add(getTTestEntity(10, FEMALE, BigDecimal.valueOf(14.16), BigDecimal.ZERO, 6));
+        tTestNinthGrade.add(getTTestEntity(10, FEMALE, BigDecimal.valueOf(22.26), BigDecimal.valueOf(19.95), 3));
+        tTestNinthGrade.add(getTTestEntity(10, FEMALE, BigDecimal.valueOf(19.94), BigDecimal.valueOf(15.90), 4));
+        tTestNinthGrade.add(getTTestEntity(10, FEMALE, BigDecimal.valueOf(15.89), BigDecimal.valueOf(14.16), 5));
+        tTestNinthGrade.add(getTTestEntity(10, FEMALE, BigDecimal.valueOf(14.15), BigDecimal.ZERO, 6));
         this.tTestRepository.saveAllAndFlush(tTestNinthGrade);
     }
 
