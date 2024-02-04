@@ -5,14 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pmgkn.pescores.pescores.domain.dto.binding.StudentAddBindingDto;
 import pmgkn.pescores.pescores.domain.dto.binding.StudentUpdateDto;
-import pmgkn.pescores.pescores.domain.entity.ClassEntity;
 import pmgkn.pescores.pescores.domain.entity.StudentEntity;
 import pmgkn.pescores.pescores.domain.entity.norms.*;
 import pmgkn.pescores.pescores.repositories.*;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -56,10 +54,6 @@ public class StudentsService {
         this.thirtyMetersRepository = thirtyMetersRepository;
         this.tTestRepository = tTestRepository;
     }
-
-//    public void deleteStudent(UUID id){
-//        this.studentRepository.deleteById(id);
-//    }
 
     public UUID saveStudent(String name,
                             StudentAddBindingDto studentAddBindingDto
@@ -150,10 +144,5 @@ public class StudentsService {
             count++;
         }
         return count;
-    }
-
-    public void deleteAllStudentsByClass(ClassEntity classEntity) {
-        List<StudentEntity> allByStudentClass = this.studentRepository.getAllByStudentClass(classEntity);
-        this.studentRepository.deleteAll(allByStudentClass);
     }
 }
