@@ -3,10 +3,7 @@ package pmgkn.pescores.pescores.service;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 import pmgkn.pescores.pescores.domain.entity.UserRoleEntity;
-import pmgkn.pescores.pescores.domain.entity.normatives.DenseBallEntity;
-import pmgkn.pescores.pescores.domain.entity.normatives.JumpEntity;
-import pmgkn.pescores.pescores.domain.entity.normatives.TTestEntity;
-import pmgkn.pescores.pescores.domain.entity.normatives.TwoHundredMetersEntity;
+import pmgkn.pescores.pescores.domain.entity.normatives.*;
 import pmgkn.pescores.pescores.domain.enums.UserRoleEnum;
 import pmgkn.pescores.pescores.repositories.*;
 
@@ -52,6 +49,7 @@ public class DbInitService {
         initJump();
         initTTest();
         initTwoHundredMeters();
+        initThirtyMeters();
     }
 
     public void initRoles() {
@@ -121,6 +119,32 @@ public class DbInitService {
         }
     }
 
+    private void initThirtyMeters() {
+        if (this.thirtyMetersRepository.count() == 0) {
+            thirtyMetersFifthGrade();
+            thirtyMetersSixthGrade();
+            thirtyMetersSeventhGrade();
+            thirtyMetersEightGrade();
+            thirtyMetersNinthGrade();
+            thirtyMetersTenthGrade();
+            thirtyMetersEleventhGrade();
+            thirtyMetersTwelfthGrade();
+        }
+    }
+
+    private static ThirtyMetersEntity getThirtyMetersEntity(Integer classNum,
+                                                            String gender,
+                                                            BigDecimal max,
+                                                            BigDecimal min,
+                                                            int grade) {
+        return new ThirtyMetersEntity()
+                .setClassNum(classNum)
+                .setGender(gender)
+                .setMax(max)
+                .setMin(min)
+                .setGrade(grade);
+    }
+
     private static TTestEntity getTTestEntity(Integer classNum,
                                               String gender,
                                               BigDecimal max,
@@ -171,6 +195,126 @@ public class DbInitService {
                 .setMax(max)
                 .setMin(min)
                 .setGrade(grade);
+    }
+
+    private void thirtyMetersFifthGrade() {
+        List<ThirtyMetersEntity> twoHundredMetersFifthGrade = new ArrayList<>();
+        twoHundredMetersFifthGrade.add(getThirtyMetersEntity(5, MALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(7.13), 2));
+        twoHundredMetersFifthGrade.add(getThirtyMetersEntity(5, MALE, BigDecimal.valueOf(7.12), BigDecimal.valueOf(6.50), 3));
+        twoHundredMetersFifthGrade.add(getThirtyMetersEntity(5, MALE, BigDecimal.valueOf(6.49), BigDecimal.valueOf(5.40), 4));
+        twoHundredMetersFifthGrade.add(getThirtyMetersEntity(5, MALE, BigDecimal.valueOf(5.39), BigDecimal.valueOf(4.92), 5));
+        twoHundredMetersFifthGrade.add(getThirtyMetersEntity(5, MALE, BigDecimal.valueOf(4.91), BigDecimal.ZERO, 6));
+        twoHundredMetersFifthGrade.add(getThirtyMetersEntity(5, FEMALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(7.61), 2));
+        twoHundredMetersFifthGrade.add(getThirtyMetersEntity(5, FEMALE, BigDecimal.valueOf(7.60), BigDecimal.valueOf(6.91), 3));
+        twoHundredMetersFifthGrade.add(getThirtyMetersEntity(5, FEMALE, BigDecimal.valueOf(6.90), BigDecimal.valueOf(5.69), 4));
+        twoHundredMetersFifthGrade.add(getThirtyMetersEntity(5, FEMALE, BigDecimal.valueOf(5.68), BigDecimal.valueOf(5.16), 5));
+        twoHundredMetersFifthGrade.add(getThirtyMetersEntity(5, FEMALE, BigDecimal.valueOf(5.15), BigDecimal.ZERO, 6));
+        this.thirtyMetersRepository.saveAllAndFlush(twoHundredMetersFifthGrade);
+    }
+
+    private void thirtyMetersSixthGrade() {
+        List<ThirtyMetersEntity> thirtyMetersSixthGrade = new ArrayList<>();
+        thirtyMetersSixthGrade.add(getThirtyMetersEntity(6, MALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(6.86), 2));
+        thirtyMetersSixthGrade.add(getThirtyMetersEntity(6, MALE, BigDecimal.valueOf(6.85), BigDecimal.valueOf(6.26), 3));
+        thirtyMetersSixthGrade.add(getThirtyMetersEntity(6, MALE, BigDecimal.valueOf(6.25), BigDecimal.valueOf(5.21), 4));
+        thirtyMetersSixthGrade.add(getThirtyMetersEntity(6, MALE, BigDecimal.valueOf(5.20), BigDecimal.valueOf(4.76), 5));
+        thirtyMetersSixthGrade.add(getThirtyMetersEntity(6, MALE, BigDecimal.valueOf(4.75), BigDecimal.ZERO, 6));
+        thirtyMetersSixthGrade.add(getThirtyMetersEntity(6, FEMALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(7.49), 2));
+        thirtyMetersSixthGrade.add(getThirtyMetersEntity(6, FEMALE, BigDecimal.valueOf(7.48), BigDecimal.valueOf(6.79), 3));
+        thirtyMetersSixthGrade.add(getThirtyMetersEntity(6, FEMALE, BigDecimal.valueOf(6.78), BigDecimal.valueOf(5.57), 4));
+        thirtyMetersSixthGrade.add(getThirtyMetersEntity(6, FEMALE, BigDecimal.valueOf(5.56), BigDecimal.valueOf(5.05), 5));
+        thirtyMetersSixthGrade.add(getThirtyMetersEntity(6, FEMALE, BigDecimal.valueOf(5.04), BigDecimal.ZERO, 6));
+        this.thirtyMetersRepository.saveAllAndFlush(thirtyMetersSixthGrade);
+    }
+
+    private void thirtyMetersSeventhGrade() {
+        List<ThirtyMetersEntity> thirtyMetersSeventhGrade = new ArrayList<>();
+        thirtyMetersSeventhGrade.add(getThirtyMetersEntity(7, MALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(6.63), 2));
+        thirtyMetersSeventhGrade.add(getThirtyMetersEntity(7, MALE, BigDecimal.valueOf(6.62), BigDecimal.valueOf(6.05), 3));
+        thirtyMetersSeventhGrade.add(getThirtyMetersEntity(7, MALE, BigDecimal.valueOf(6.04), BigDecimal.valueOf(5.04), 4));
+        thirtyMetersSeventhGrade.add(getThirtyMetersEntity(7, MALE, BigDecimal.valueOf(5.03), BigDecimal.valueOf(4.60), 5));
+        thirtyMetersSeventhGrade.add(getThirtyMetersEntity(7, MALE, BigDecimal.valueOf(4.59), BigDecimal.ZERO, 6));
+        thirtyMetersSeventhGrade.add(getThirtyMetersEntity(7, FEMALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(7.39), 2));
+        thirtyMetersSeventhGrade.add(getThirtyMetersEntity(7, FEMALE, BigDecimal.valueOf(7.38), BigDecimal.valueOf(6.70), 3));
+        thirtyMetersSeventhGrade.add(getThirtyMetersEntity(7, FEMALE, BigDecimal.valueOf(6.69), BigDecimal.valueOf(5.48), 4));
+        thirtyMetersSeventhGrade.add(getThirtyMetersEntity(7, FEMALE, BigDecimal.valueOf(5.47), BigDecimal.valueOf(4.96), 5));
+        thirtyMetersSeventhGrade.add(getThirtyMetersEntity(7, FEMALE, BigDecimal.valueOf(4.95), BigDecimal.ZERO, 6));
+        this.thirtyMetersRepository.saveAllAndFlush(thirtyMetersSeventhGrade);
+    }
+
+    private void thirtyMetersEightGrade() {
+        List<ThirtyMetersEntity> thirtyMetersEightGrade = new ArrayList<>();
+        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, MALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(6.43), 2));
+        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, MALE, BigDecimal.valueOf(6.42), BigDecimal.valueOf(5.87), 3));
+        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, MALE, BigDecimal.valueOf(5.86), BigDecimal.valueOf(4.90), 4));
+        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, MALE, BigDecimal.valueOf(4.89), BigDecimal.valueOf(4.48), 5));
+        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, MALE, BigDecimal.valueOf(4.47), BigDecimal.ZERO, 6));
+        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, FEMALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(7.39), 2));
+        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, FEMALE, BigDecimal.valueOf(7.38), BigDecimal.valueOf(6.70), 3));
+        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, FEMALE, BigDecimal.valueOf(6.69), BigDecimal.valueOf(5.48), 4));
+        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, FEMALE, BigDecimal.valueOf(5.47), BigDecimal.valueOf(4.96), 5));
+        thirtyMetersEightGrade.add(getThirtyMetersEntity(8, FEMALE, BigDecimal.valueOf(4.95), BigDecimal.ZERO, 6));
+        this.thirtyMetersRepository.saveAllAndFlush(thirtyMetersEightGrade);
+    }
+
+    private void thirtyMetersNinthGrade() {
+        List<ThirtyMetersEntity> thirtyMetersNinthGrade = new ArrayList<>();
+        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, MALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(6.26), 2));
+        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, MALE, BigDecimal.valueOf(6.25), BigDecimal.valueOf(5.72), 3));
+        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, MALE, BigDecimal.valueOf(5.71), BigDecimal.valueOf(4.77), 4));
+        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, MALE, BigDecimal.valueOf(4.76), BigDecimal.valueOf(4.37), 5));
+        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, MALE, BigDecimal.valueOf(4.36), BigDecimal.ZERO, 6));
+        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, FEMALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(7.30), 2));
+        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, FEMALE, BigDecimal.valueOf(7.29), BigDecimal.valueOf(6.61), 3));
+        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, FEMALE, BigDecimal.valueOf(6.60), BigDecimal.valueOf(5.39), 4));
+        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, FEMALE, BigDecimal.valueOf(5.38), BigDecimal.valueOf(4.87), 5));
+        thirtyMetersNinthGrade.add(getThirtyMetersEntity(9, FEMALE, BigDecimal.valueOf(4.86), BigDecimal.ZERO, 6));
+        this.thirtyMetersRepository.saveAllAndFlush(thirtyMetersNinthGrade);
+    }
+
+    private void thirtyMetersTenthGrade() {
+        List<ThirtyMetersEntity> thirtyMetersTenthGrade = new ArrayList<>();
+        thirtyMetersTenthGrade.add(getThirtyMetersEntity(10, MALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(6.12), 2));
+        thirtyMetersTenthGrade.add(getThirtyMetersEntity(10, MALE, BigDecimal.valueOf(6.11), BigDecimal.valueOf(5.59), 3));
+        thirtyMetersTenthGrade.add(getThirtyMetersEntity(10, MALE, BigDecimal.valueOf(5.58), BigDecimal.valueOf(4.67), 4));
+        thirtyMetersTenthGrade.add(getThirtyMetersEntity(10, MALE, BigDecimal.valueOf(4.66), BigDecimal.valueOf(4.28), 5));
+        thirtyMetersTenthGrade.add(getThirtyMetersEntity(10, MALE, BigDecimal.valueOf(4.27), BigDecimal.ZERO, 6));
+        thirtyMetersTenthGrade.add(getThirtyMetersEntity(10, FEMALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(7.28), 2));
+        thirtyMetersTenthGrade.add(getThirtyMetersEntity(10, FEMALE, BigDecimal.valueOf(7.27), BigDecimal.valueOf(6.59), 3));
+        thirtyMetersTenthGrade.add(getThirtyMetersEntity(10, FEMALE, BigDecimal.valueOf(6.58), BigDecimal.valueOf(5.37), 4));
+        thirtyMetersTenthGrade.add(getThirtyMetersEntity(10, FEMALE, BigDecimal.valueOf(5.36), BigDecimal.valueOf(4.85), 5));
+        thirtyMetersTenthGrade.add(getThirtyMetersEntity(10, FEMALE, BigDecimal.valueOf(4.84), BigDecimal.ZERO, 6));
+        this.thirtyMetersRepository.saveAllAndFlush(thirtyMetersTenthGrade);
+    }
+
+    private void thirtyMetersEleventhGrade() {
+        List<ThirtyMetersEntity> thirtyMetersEleventhGrade = new ArrayList<>();
+        thirtyMetersEleventhGrade.add(getThirtyMetersEntity(11, MALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(5.99), 2));
+        thirtyMetersEleventhGrade.add(getThirtyMetersEntity(11, MALE, BigDecimal.valueOf(5.98), BigDecimal.valueOf(5.47), 3));
+        thirtyMetersEleventhGrade.add(getThirtyMetersEntity(11, MALE, BigDecimal.valueOf(5.46), BigDecimal.valueOf(4.58), 4));
+        thirtyMetersEleventhGrade.add(getThirtyMetersEntity(11, MALE, BigDecimal.valueOf(4.57), BigDecimal.valueOf(4.20), 5));
+        thirtyMetersEleventhGrade.add(getThirtyMetersEntity(11, MALE, BigDecimal.valueOf(4.19), BigDecimal.ZERO, 6));
+        thirtyMetersEleventhGrade.add(getThirtyMetersEntity(11, FEMALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(7.28), 2));
+        thirtyMetersEleventhGrade.add(getThirtyMetersEntity(11, FEMALE, BigDecimal.valueOf(7.27), BigDecimal.valueOf(6.59), 3));
+        thirtyMetersEleventhGrade.add(getThirtyMetersEntity(11, FEMALE, BigDecimal.valueOf(6.58), BigDecimal.valueOf(5.37), 4));
+        thirtyMetersEleventhGrade.add(getThirtyMetersEntity(11, FEMALE, BigDecimal.valueOf(5.36), BigDecimal.valueOf(4.85), 5));
+        thirtyMetersEleventhGrade.add(getThirtyMetersEntity(11, FEMALE, BigDecimal.valueOf(4.84), BigDecimal.ZERO, 6));
+        this.thirtyMetersRepository.saveAllAndFlush(thirtyMetersEleventhGrade);
+    }
+
+    private void thirtyMetersTwelfthGrade() {
+        List<ThirtyMetersEntity> thirtyMetersTwelfthGrade = new ArrayList<>();
+        thirtyMetersTwelfthGrade.add(getThirtyMetersEntity(12, MALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(5.93), 2));
+        thirtyMetersTwelfthGrade.add(getThirtyMetersEntity(12, MALE, BigDecimal.valueOf(5.92), BigDecimal.valueOf(5.42), 3));
+        thirtyMetersTwelfthGrade.add(getThirtyMetersEntity(12, MALE, BigDecimal.valueOf(5.41), BigDecimal.valueOf(4.54), 4));
+        thirtyMetersTwelfthGrade.add(getThirtyMetersEntity(12, MALE, BigDecimal.valueOf(4.53), BigDecimal.valueOf(4.16), 5));
+        thirtyMetersTwelfthGrade.add(getThirtyMetersEntity(12, MALE, BigDecimal.valueOf(4.15), BigDecimal.ZERO, 6));
+        thirtyMetersTwelfthGrade.add(getThirtyMetersEntity(12, FEMALE, BigDecimal.valueOf(60.00), BigDecimal.valueOf(7.28), 2));
+        thirtyMetersTwelfthGrade.add(getThirtyMetersEntity(12, FEMALE, BigDecimal.valueOf(7.27), BigDecimal.valueOf(6.59), 3));
+        thirtyMetersTwelfthGrade.add(getThirtyMetersEntity(12, FEMALE, BigDecimal.valueOf(6.58), BigDecimal.valueOf(5.37), 4));
+        thirtyMetersTwelfthGrade.add(getThirtyMetersEntity(12, FEMALE, BigDecimal.valueOf(5.36), BigDecimal.valueOf(4.85), 5));
+        thirtyMetersTwelfthGrade.add(getThirtyMetersEntity(12, FEMALE, BigDecimal.valueOf(4.84), BigDecimal.ZERO, 6));
+        this.thirtyMetersRepository.saveAllAndFlush(thirtyMetersTwelfthGrade);
     }
 
     private void twoHundredMetersFifthGrade() {
