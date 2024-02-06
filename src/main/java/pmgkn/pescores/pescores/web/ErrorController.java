@@ -12,9 +12,15 @@ public class ErrorController {
 
     @ExceptionHandler(ObjectNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ModelAndView onProductNotFound(ObjectNotFoundException objectNotFoundException){
+    public ModelAndView onNotFound(ObjectNotFoundException objectNotFoundException){
 
-        return new ModelAndView("object-not-found");
+        return new ModelAndView("error");
     }
+
+//    @ResponseStatus(HttpStatus.FORBIDDEN)
+//    public ModelAndView onProductNotFound(ObjectNotFoundException objectNotFoundException){
+//
+//        return new ModelAndView("object-not-found");
+//    }
 
 }

@@ -1,0 +1,48 @@
+.main-section-norm{
+    background-color: #5d54c3;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 4em 6em;
+}
+
+h1{
+    color: #d8d7fe;
+    margin: 0 auto;
+}
+
+table, th, td {
+    border: 3px solid #d8d7fe;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+.table table{
+    margin: 0 auto;
+}
+
+.table thead th {
+    padding: 1em;
+    font-weight: 600;
+    color: #d8d7fe;
+    text-align: center;
+}
+
+.table tbody td{
+    padding: 0.5em;
+    color: #d8d7fe;
+    text-align: center;
+    font-weight: 500;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tables{
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+}

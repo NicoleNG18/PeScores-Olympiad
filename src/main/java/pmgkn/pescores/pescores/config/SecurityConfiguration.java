@@ -41,9 +41,8 @@ public class SecurityConfiguration {
                                 .requestMatchers("/users/login"
                                         , "/users/register",
                                         "/users/login-error",
-//                                        "/api/notes/{id}",
                                         "/contact").permitAll()
-                                .requestMatchers("/notes",
+                                .requestMatchers("/tasks",
                                         "/classes/**","/classes/edit/**","/classes/delete/**"
                                         , "/students/**").authenticated()
                                 .requestMatchers("/").anonymous()

@@ -10,6 +10,11 @@
 
 
         <ul class="navbar-buttons" sec:authorize="isAuthenticated()">
+            <a th:href="@{/denseBall}">Dense ball</a>
+            <a th:href="@{/jump}">Jump</a>
+            <a th:href="@{/tTest}">T-test</a>
+            <a th:href="@{/thirty}">30 meters</a>
+            <a th:href="@{/twoHundred}">200 meters</a>
             <a th:href="@{/classes}">Classes</a>
             <a th:href="@{/tasks}">Tasks</a>
             <a th:href="@{/classes/add}">Add class</a>
