@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <title>Error</title>
+  <th:block th:insert="~{/fragments/head}"></th:block>
+  <link rel="stylesheet" th:href="@{/css/error.css}">
+</head>
+<body>
+  <section class="main-section-error">
+    <div class="main-text">
+      <h3>Hey, captain! Looks like you're heading to a wrong planet</h3>
+      <a th:href="@{/classes}" type="submit">Take me back to the homepage</a>
+    </div>
+  </section>
+
+</body>

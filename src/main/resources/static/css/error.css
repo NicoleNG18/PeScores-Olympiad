@@ -1,0 +1,26 @@
+.main-section-error{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 700px;
+    padding: 1em;
+    background-image: url(../images/2474065-1.png);
+    opacity: 60%;
+}
+
+.main-text h3{
+    background-color: #d8d7fe;
+    color: #362bb7;
+    padding: 2em;
+    border-radius: 5px;
+}
+
+a{
+    margin-left: 9em;
+    font-size: 18px;
+    color: #d8d7fe;
+    background-color: #362bb7;
+    padding: 1em;
+    text-decoration: none;
+}
