@@ -21,7 +21,7 @@
 
         <ul th:each="class: ${classes}">
             <li><a th:text="${class.className}"
-                   th:href="@{/classes/{id}(id=${class.id})}">class</a></li>
+                   th:href="@{/classes/{idTeacher}/{id}(idTeacher=${class.getTeacher().id},id=${class.id})}">class</a></li>
         </ul>
     </div>
 

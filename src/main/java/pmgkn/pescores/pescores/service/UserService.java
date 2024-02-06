@@ -16,6 +16,7 @@ import pmgkn.pescores.pescores.repositories.UserRepository;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,7 +39,9 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
     }
-
+    public UserEntity getUserById(UUID id) {
+        return this.userRepository.getReferenceById(id);
+    }
 
     public UserEntity getUserByEmail(String username) {
         return this.userRepository.findByEmail(username);

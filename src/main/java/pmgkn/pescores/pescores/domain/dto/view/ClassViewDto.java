@@ -1,6 +1,7 @@
 package pmgkn.pescores.pescores.domain.dto.view;
 
 import pmgkn.pescores.pescores.domain.entity.StudentEntity;
+import pmgkn.pescores.pescores.domain.entity.UserEntity;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,7 +16,18 @@ public class ClassViewDto {
 
     private List<StudentEntity> students;
 
+    private UserEntity teacher;
+
     public ClassViewDto() {
+    }
+
+    public UserEntity getTeacher() {
+        return teacher;
+    }
+
+    public ClassViewDto setTeacher(UserEntity teacher) {
+        this.teacher = teacher;
+        return this;
     }
 
     public UUID getId() {

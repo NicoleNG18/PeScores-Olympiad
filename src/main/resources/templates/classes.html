@@ -21,19 +21,21 @@
 
     <ul th:each="class: ${classes}">
       <li><a class="className" th:text="*{class.className}"
-             th:href="@{/classes/{id}(id=${class.id})}">class</a></li>
-      <li>
-        <form th:method="get"
-              th:action="@{/classes/edit/{id}(id=${class.id})}"
-              th:object="${class}"><button class="edit">Edit</button>
-        </form>
-       </li>
-      <li>
-        <form th:method="delete"
-              th:action="@{/classes/delete/{id}(id=${class.id})}"
-              th:object="${class}"><button class="delete">Delete</button>
-        </form>
+             th:href="@{/classes/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}">class</a>
       </li>
+        <li>
+            <form id="deleteForm"
+                  th:method="post"
+                  th:action="@{/classes/delete/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"
+                  th:object="${class}">
+                <button  class="delete" onclick="document.getElementById('deleteForm').submit();">Delete</button>
+            </form>
+        </li>
+      <li>
+          <a th:href="@{/classes/edit/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"
+              th:object="${class}" class="edit">Edit </a>
+       </li>
+
     </ul>
 
   </div>

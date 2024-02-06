@@ -43,4 +43,13 @@ public class ClassesControllerIT {
                 .andExpect(status().isOk())
                 .andExpect(view().name("classes"));
     }
+
+    @Test
+    @WithMockUser(username = "testEmail@abv.bg", roles = "USER")
+    void testAddClassPageShowsUp() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/classes/add")
+                        .with(csrf()))
+                .andExpect(status().isOk())
+                .andExpect(view().name("classes"));
+    }
 }
