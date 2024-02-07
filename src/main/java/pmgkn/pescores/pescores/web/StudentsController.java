@@ -1,7 +1,6 @@
 package pmgkn.pescores.pescores.web;
 
 import jakarta.validation.Valid;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,8 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pmgkn.pescores.pescores.domain.dto.binding.StudentAddBindingDto;
 import pmgkn.pescores.pescores.domain.dto.binding.StudentUpdateDto;
+import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.service.ClassesService;
 import pmgkn.pescores.pescores.service.StudentsService;
+import pmgkn.pescores.pescores.service.UserService;
 
 import java.security.Principal;
 import java.util.UUID;
@@ -22,10 +23,14 @@ public class StudentsController {
     private final ClassesService classesService;
     private final StudentsService studentsService;
 
+    private final UserService userService;
+
     public StudentsController(ClassesService classesService,
-                              StudentsService studentsService) {
+                              StudentsService studentsService,
+                              UserService userService) {
         this.classesService = classesService;
         this.studentsService = studentsService;
+        this.userService = userService;
     }
 
     @ModelAttribute("studentAddDto")
@@ -64,24 +69,26 @@ public class StudentsController {
 
         }
 
-        if(this.studentsService.checkIfClassNumRepeats(studentAddBindingDto.getStudentClass(),principal.getName(),studentAddBindingDto.getStudentNumber())){
+        if (this.studentsService.checkIfClassNumRepeats(studentAddBindingDto.getStudentClass(), principal.getName(), studentAddBindingDto.getStudentNumber())) {
 
-            redirectAttributes.addFlashAttribute("isUnique",false);
+            redirectAttributes.addFlashAttribute("isUnique", false);
 
             return "redirect:/students/add";
 
         }
 
         UUID classId = this.studentsService.saveStudent(principal.getName(), studentAddBindingDto);
+        UserEntity currentUser = this.userService.getUserByEmail(principal.getName());
 
-        return "redirect:/classes/" + classId;
+        return "redirect:/classes/" + currentUser.getId() + "/" + classId;
     }
 
     @PostMapping("/update/{id}")
     public String editStudent(@PathVariable("id") UUID id,
                               @Valid StudentUpdateDto studentUpdate,
                               BindingResult bindingResult,
-                              RedirectAttributes redirectAttributes) {
+                              RedirectAttributes redirectAttributes,
+                              Principal principal) {
 
         if (bindingResult.hasErrors()) {
 
@@ -94,8 +101,10 @@ public class StudentsController {
         }
 
         UUID classId = this.studentsService.editStudent(studentUpdate, id);
+        UserEntity currentUser = this.userService.getUserByEmail(principal.getName());
 
-        return "redirect:/classes/" + classId;
+
+        return "redirect:/classes/" + currentUser.getId() + "/" + classId;
     }
 
 

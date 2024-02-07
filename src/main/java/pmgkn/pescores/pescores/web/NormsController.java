@@ -10,4 +10,24 @@ public class NormsController {
     public String getDenseBall(){
         return "dense-ball";
     }
+
+    @GetMapping("/jump")
+    public String getJump(){
+        return "jump";
+    }
+
+    @GetMapping("/tTest")
+    public String getTtest(){
+        return "t-test";
+    }
+
+    @GetMapping("/thirty")
+    public String getThirtyMeters(){
+        return "thirty-meters";
+    }
+
+    @GetMapping("/twoHundred")
+    public String getTwoHundredMeters(){
+        return "two-hundred-meters";
+    }
 }

@@ -1,9 +1,9 @@
-
 .main-section-classes{
     padding: 5em;
     display: flex;
     flex-direction: row;
     gap: 3em;
+    min-height: 450px;
     background-color: #5d54c3;
 }
 
