@@ -12,6 +12,7 @@ import pmgkn.pescores.pescores.repositories.*;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -92,7 +93,8 @@ public class StudentsService {
 
         int averageGradeSum = getAverageGradeSum(studentEntity, classNumQuery, genderQuery);
 
-        studentEntity.setAverageGrade(BigDecimal.valueOf(averageGradeSum).divide(BigDecimal.valueOf(countNorms)).round(new MathContext(2)));
+        studentEntity.setAverageGrade(BigDecimal.valueOf(averageGradeSum).
+                divide(BigDecimal.valueOf(countNorms), 2, RoundingMode.HALF_UP));
 
         this.studentRepository.saveAndFlush(studentEntity);
 
