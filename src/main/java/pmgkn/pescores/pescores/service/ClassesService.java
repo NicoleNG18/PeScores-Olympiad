@@ -2,6 +2,7 @@ package pmgkn.pescores.pescores.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pmgkn.pescores.pescores.domain.dto.binding.ClassAddBindingDto;
@@ -11,6 +12,7 @@ import pmgkn.pescores.pescores.domain.entity.ClassEntity;
 import pmgkn.pescores.pescores.domain.entity.StudentEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.repositories.ClassRepository;
+
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -31,6 +33,38 @@ public class ClassesService {
         this.classRepository = classRepository;
         this.userService = userService;
         this.modelMapper = modelMapper;
+    }
+
+    @Scheduled(cron = "0 0 0 15 9 *")
+    public void updateClasses() {
+        for (ClassEntity classEntity : this.classRepository.findAll()) {
+
+            if (classEntity.getClassNum() == 12) {
+
+                this.deleteClass(classEntity.getId());
+
+            } else if (classEntity.getClassNum() >= 5 && classEntity.getClassNum() <= 9) {
+
+
+                StringBuilder sb = new StringBuilder(classEntity.getClassName());
+                sb.deleteCharAt(0);
+                sb.insert(0, String.valueOf(classEntity.getClassNum() + 1));
+                classEntity.setClassNum(classEntity.getClassNum() + 1);
+                classEntity.setClassName(sb.toString());
+                this.classRepository.saveAndFlush(classEntity);
+
+            } else if (classEntity.getClassNum() == 10 || classEntity.getClassNum() == 11) {
+                StringBuilder sb = new StringBuilder(classEntity.getClassName());
+                sb.deleteCharAt(0);
+                sb.deleteCharAt(0);
+                sb.insert(0, String.valueOf(classEntity.getClassNum() + 1));
+                classEntity.setClassNum(classEntity.getClassNum() + 1);
+                classEntity.setClassName(sb.toString());
+                this.classRepository.saveAndFlush(classEntity);
+            }
+
+        }
+
     }
 
     public UUID saveClass(ClassAddBindingDto classAddBindingDto,

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import pmgkn.pescores.pescores.domain.entity.ClassEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
 
+import java.util.List;
 import java.util.UUID;
 
 @Repository
@@ -13,4 +14,6 @@ public interface ClassRepository extends JpaRepository<ClassEntity, UUID> {
     ClassEntity findClassById(UUID id);
 
     ClassEntity findByClassNameAndTeacher(String name, UserEntity teacher);
+
+   List<ClassEntity> findAll();
 }
