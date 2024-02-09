@@ -44,7 +44,8 @@ public class SecurityConfiguration {
                                         "/contact").permitAll()
                                 .requestMatchers("/tasks",
                                         "/classes/**","/classes/edit/**","/classes/delete/**"
-                                        , "/students/**").authenticated()
+                                        , "/students/**","/denseBall","/jump"
+                                ,"/thirty","/twoHundred","/tTest").authenticated()
                                 .requestMatchers("/").anonymous()
                                 // all other requests are authenticated.
                                 .anyRequest().authenticated()

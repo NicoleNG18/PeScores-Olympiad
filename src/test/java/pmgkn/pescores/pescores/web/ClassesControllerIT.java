@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class ClassesControllerIT {
-
+//TODO:test here
     @Autowired
     private MockMvc mockMvc;
 
@@ -50,6 +50,6 @@ public class ClassesControllerIT {
         mockMvc.perform(MockMvcRequestBuilders.get("/classes/add")
                         .with(csrf()))
                 .andExpect(status().isOk())
-                .andExpect(view().name("classes"));
+                .andExpect(view().name("add-class"));
     }
 }
