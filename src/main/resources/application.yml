@@ -6,8 +6,6 @@ logging:
                 orm:
                     jdbc:
                         bind: TRACE
-#pescores:
-#    rememberMeKey: ${KEY_REMEMBER_ME}
 server:
     port: 8080
 spring:

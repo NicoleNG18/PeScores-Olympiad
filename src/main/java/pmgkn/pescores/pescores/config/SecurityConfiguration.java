@@ -14,13 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
-//    private final String rememberMeKey;
-
-//    @Autowired
-//    public SecurityConfiguration(@Value("${pescores.rememberMeKey}")
-//                                 String rememberMeKey) {
-//        this.rememberMeKey = rememberMeKey;
-//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -72,12 +65,6 @@ public class SecurityConfiguration {
                                     .invalidateHttpSession(true);
                         }
                 )
-//                .rememberMe(rememberMe ->
-//                        rememberMe
-//                                .key(rememberMeKey)
-//                                .rememberMeParameter("rememberme")
-//                                .rememberMeCookieName("rememberme")
-//                                .tokenValiditySeconds(5 * 24 * 60 * 60))
                 .build();
 
     }

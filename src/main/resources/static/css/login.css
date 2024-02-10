@@ -11,17 +11,6 @@
     margin-bottom: 2em;
 }
 
-.remember {
-    display: inline;
-    width: auto;
-    margin-top: 3em;
-}
-
-.remember-label{
-    display: inline;
-    margin-top: 1em;
-}
-
 .form{
     height: 520px;
     width: 400px;
