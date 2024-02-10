@@ -4,24 +4,24 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-  <title>Home</title>
-  <th:block th:insert="~{/fragments/head}"></th:block>
-  <link rel="stylesheet" th:href="@{/css/home.css}">
+    <title>Home</title>
+    <th:block th:insert="~{/fragments/head}"></th:block>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 <body>
 
 <div>
-  <th:block th:insert="~{/fragments/header}"></th:block>
+    <th:block th:insert="~{/fragments/header}"></th:block>
 </div>
 
 <div sec:authorize="!isAuthenticated()" class="main-section-wrap">
-  <section class="main-section">
-    <div class="main-text">
-      <h3>Welcome to PE Scores.</h3>
-      <p>If you have an account - <a href="/users/login">Log in</a> here.</p>
-      <p>If you don't have an account - <a href="/users/register">Sign up</a> here.</p>
-    </div>
-  </section>
+    <section class="main-section">
+        <div class="main-text">
+            <h3>Welcome to PE Scores.</h3>
+            <p>If you have an account - <a href="/users/login">Log in</a> here.</p>
+            <p>If you don't have an account - <a href="/users/register">Sign up</a> here.</p>
+        </div>
+    </section>
 </div>
 
 <th:block th:insert="~{/fragments/footer}"></th:block>

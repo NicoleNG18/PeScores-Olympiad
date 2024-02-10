@@ -11,45 +11,45 @@
 
 <body>
 
-    <section class="main-section">
+<section class="main-section">
 
-        <form class="form"
-              th:method="POST"
-              th:action="@{/classes/add}"
-              th:object="${classAddDto}">
+    <form class="form"
+          th:method="POST"
+          th:action="@{/classes/add}"
+          th:object="${classAddDto}">
 
-            <h3>Add class</h3>
+        <h3>Add class</h3>
 
-            <label for="clasName" class="label">Class name</label>
-            <input type="text"
-                   name="className"
-                   th:errorclass="is-invalid"
-                   th:field="*{className}"
-                   placeholder="Ex: 7A"
-                   id="clasName"
-                   class="input">
-            <div class="invalid-feedback errors-class alert-danger"
-                 th:each="err :${#fields.errors('className')}"
-                 th:text="${err}"></div>
+        <label for="clasName" class="label">Class name</label>
+        <input type="text"
+               name="className"
+               th:errorclass="is-invalid"
+               th:field="*{className}"
+               placeholder="Ex: 7A"
+               id="clasName"
+               class="input">
+        <div class="invalid-feedback errors-class alert-danger"
+             th:each="err :${#fields.errors('className')}"
+             th:text="${err}"></div>
 
-            <label for="classNum">Class Number</label>
-            <input type="number"
-                   id="classNum"
-                   name="classNum"
-                   class="input"
-                   th:errorclass="is-invalid"
-                   th:field="*{classNum}"
-                   min="5"
-                   max="12"
-                   step="1">
-            <div class="invalid-feedback errors-class alert-danger"
-                 th:each="err :${#fields.errors('classNum')}"
-                 th:text="${err}"></div>
+        <label for="classNum">Class Number</label>
+        <input type="number"
+               id="classNum"
+               name="classNum"
+               class="input"
+               th:errorclass="is-invalid"
+               th:field="*{classNum}"
+               min="5"
+               max="12"
+               step="1">
+        <div class="invalid-feedback errors-class alert-danger"
+             th:each="err :${#fields.errors('classNum')}"
+             th:text="${err}"></div>
 
-            <button class="submit-btn">Submit</button>
-        </form>
+        <button class="submit-btn">Submit</button>
+    </form>
 
-    </section>
+</section>
 
-    <th:block th:insert="~{/fragments/footer}"></th:block>
+<th:block th:insert="~{/fragments/footer}"></th:block>
 </body>

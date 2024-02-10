@@ -16,10 +16,11 @@
 
 <div class="sections">
 
-
     <section class="notes-main">
         <div class="to-do-list">
+
             <h2>To Do List</h2>
+
             <form class="add-todo"
                   th:method="POST"
                   th:action="@{/tasks/save}"
@@ -29,10 +30,11 @@
                 <input type="text" id="todo"
                        th:field="*{description}"
                        th:errorclass="is-invalid"
-                        th:name="description">
+                       th:name="description">
                 <div class="invalid-feedback errors-tasks alert-danger"
                      th:each="err :${#fields.errors('description')}"
                      th:text="${err}"/>
+
                 <label for="dueDate">Due date</label>
                 <input type="date" id="dueDate"
                        th:field="*{dueDate}"
@@ -44,7 +46,7 @@
 
                 <button id="add-btn" type="submit" onclick="displayTodo()">Add</button>
 
-                <input type="hidden"  id="taskId" name="taskId">
+                <input type="hidden" id="taskId" name="taskId">
             </form>
 
             <table class="table-notes">
@@ -53,8 +55,13 @@
                     <td th:text="*{task.description}">todo text</td>
                     <td th:text="|Finish until  *{task.dueDate}|">10-01-2024</td>
                     <td class="done">
-                        <form th:method="PATCH"  th:action="@{/tasks/done/(descr=${task.id})}" th:object="${task}">
-                        <button type="submit" title="Done"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg></button>
+                        <form th:method="PATCH" th:action="@{/tasks/done/(descr=${task.id})}" th:object="${task}">
+                            <button type="submit" title="Done">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
+                                    <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                                    <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+                                </svg>
+                            </button>
                         </form>
                     </td>
                 </tr>
@@ -67,16 +74,20 @@
     <section class="notes-ready">
         <div class="to-do-list-ready">
             <h2>Done todos</h2>
-            <table  class="table-notes">
+            <table class="table-notes">
                 <tbody class="table-body">
                 <tr th:each="taskDone: ${tasksDone}">
                     <td th:text="*{taskDone.description}">todo text</td>
                     <td th:text="|Was up to  *{taskDone.dueDate}|">10-01-2024</td>
                     <td class="remove">
-                        <form  th:method="PATCH"  th:action="@{/tasks/delete/(descr=${taskDone.id})}" th:object="${taskDone}">
-                        <button type="submit" title="Remove">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
-                        </button>
+                        <form th:method="PATCH" th:action="@{/tasks/delete/(descr=${taskDone.id})}"
+                              th:object="${taskDone}">
+                            <button type="submit" title="Remove">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
+                                    <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                                    <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+                                </svg>
+                            </button>
                         </form>
                     </td>
                 </tr>
@@ -84,8 +95,6 @@
             </table>
         </div>
     </section>
-
-
 
 </div>
 

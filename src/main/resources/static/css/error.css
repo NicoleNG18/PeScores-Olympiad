@@ -1,9 +1,8 @@
 .main-section-error{
-
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 700px;
+    min-height: 1000px;
     padding: 1em;
     background-image: url(../images/2474065-1.png);
     opacity: 60%;

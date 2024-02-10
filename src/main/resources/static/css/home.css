@@ -10,6 +10,7 @@
     border-style: none;
     border-radius: 30px;
     text-align: center;
+    min-height: 450px;
     justify-content: center;
 }
 

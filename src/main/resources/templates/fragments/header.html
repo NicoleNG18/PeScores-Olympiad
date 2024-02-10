@@ -1,13 +1,13 @@
 <header xmlns:sec="http://www.w3.org/1999/xhtml">
-    <a  sec:authorize="!isAuthenticated()" th:href="@{/}"><img src="/images/pe%20scores-final.png" alt="pe scores logo"/></a>
-    <a  sec:authorize="isAuthenticated()" th:href="@{/classes}"><img src="/images/pe%20scores-final.png" alt="pe scores logo"/></a>
+    <a sec:authorize="!isAuthenticated()" th:href="@{/}"><img src="/images/pe%20scores-final.png" alt="pe scores logo"/></a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/classes}"><img src="/images/pe%20scores-final.png"
+                                                                    alt="pe scores logo"/></a>
 
     <nav class="navbar">
         <ul class="navbar-buttons" sec:authorize="!isAuthenticated()">
             <a th:href="@{/users/login}">Log in</a>
             <a th:href="@{/users/register}">Sign up</a>
         </ul>
-
 
         <ul class="navbar-buttons" sec:authorize="isAuthenticated()">
             <a th:href="@{/denseBall}">Dense ball</a>

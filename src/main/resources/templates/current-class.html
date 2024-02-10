@@ -29,6 +29,7 @@
     <div class="classes-table">
         <h2 th:text="${currentClass.className}">7a</h2>
         <table>
+
             <thead>
             <tr>
                 <th scope="col">№</th>
@@ -43,23 +44,18 @@
                 <th scope="col">Delete student</th>
             </tr>
             </thead>
+
             <tbody>
             <tr th:each="student: ${students}">
-                <!--            <td th:text="*{student.studentNumber}">1</td>-->
-                <!--            <td th:text="*{student.studentName}">Ivan</td>-->
-                <!--            <td><input type="text" name="" id=""></td>-->
-                <!--            <td><input type="text" name="" id=""></td>-->
-                <!--            <td><input type="text" name="" id=""></td>-->
-                <!--            <td><input type="text" name="" id=""></td>-->
-                <!--            <td><input type="text" name="" id=""></td>-->
-                <!--            <td th:text="*{student.averageGrade}">Ivan</td>-->
+
                 <form th:method="POST"
                       th:action="@{/students/update/{id}(id=${student.id})}"
                       th:object="${studentUpdate}">
-                    <!--            <input type="hidden" th:value="${student.id}"/>-->
-                    <!--            <input type="hidden" th:value="${student.gender}" th:field="gender"/>-->
+
                     <td th:text="${student.studentNumber}">1</td>
+
                     <td th:text="${student.studentName}">Ivan</td>
+
                     <td><input type="number"
                                name="thirtyMeters"
                                id="input-30"
@@ -69,6 +65,7 @@
                                th:text="${student.thirtyMeters}"
                                th:errorclass="is-invalid"
                                th:field="*{thirtyMeters}"></td>
+
                     <td><input th:field="*{twoHundredMeters}"
                                type="number"
                                name="twoHundredMeters"
@@ -77,8 +74,8 @@
                                min="0"
                                th:text="${student.twoHundredMeters}"
                                max="300"
-                               th:errorclass="is-invalid"
-                    ></td>
+                               th:errorclass="is-invalid"></td>
+
                     <td><input
                             type="number"
                             name="tTest"
@@ -89,6 +86,7 @@
                             max="120"
                             th:errorclass="is-invalid"
                             th:field="*{tTest}"></td>
+
                     <td><input type="number"
                                name="denseBall"
                                id="dense-ball"
@@ -98,6 +96,7 @@
                                th:text="${student.denseBall}"
                                th:errorclass="is-invalid"
                                th:field="*{denseBall}"></td>
+
                     <td><input type="number"
                                name="jump"
                                id="jump"
@@ -107,11 +106,14 @@
                                max="5"
                                th:errorclass="is-invalid"
                                th:field="*{jump}"></td>
+
                     <td th:text="${student.averageGrade}">4.50</td>
+
                     <td>
                         <button type="submit">Submit</button>
                     </td>
                 </form>
+
                 <td>
                     <form id="deleteForm"
                           th:method="post"
@@ -121,55 +123,12 @@
                     </form>
                 </td>
             </tr>
-
-            <!--        <tr>-->
-            <!--          <button type="submit">Submit results</button>-->
-            <!--        </tr>-->
-            <!--        <tr>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--        </tr>-->
-            <!--        <tr>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--        </tr>-->
-            <!--        <tr>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--        </tr>-->
-            <!--        <tr>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--          <td><input type="text" name="" id=""></td>-->
-            <!--        </tr>-->
             </tbody>
         </table>
 
-
     </div>
 
-
 </section>
-
 
 <th:block th:insert="~{/fragments/footer}"></th:block>
 

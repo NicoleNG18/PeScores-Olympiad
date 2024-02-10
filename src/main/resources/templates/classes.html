@@ -2,48 +2,45 @@
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-
 <head>
-  <title>My classes</title>
-  <th:block th:insert="~{/fragments/head}"></th:block>
-  <link rel="stylesheet" th:href="@{/css/classes.css}">
+    <title>My classes</title>
+    <th:block th:insert="~{/fragments/head}"></th:block>
+    <link rel="stylesheet" th:href="@{/css/classes.css}">
 </head>
 <body>
 
 <div>
-  <th:block th:insert="~{/fragments/header}"></th:block>
+    <th:block th:insert="~{/fragments/header}"></th:block>
 </div>
 
 <section class="main-section-classes">
 
-  <div class="my-classes">
-    <h2>My classes</h2>
+    <div class="my-classes">
+        <h2>My classes</h2>
 
-    <ul th:each="class: ${classes}">
-      <li><a class="className" th:text="*{class.className}"
-             th:href="@{/classes/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}">class</a>
-      </li>
-        <div class="buttons">
-      <li>
-          <a th:href="@{/classes/edit/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"
-              th:object="${class}" class="edit">Edit </a>
-       </li>
-            <li>
-                <form id="deleteForm"
-                      th:method="post"
-                      th:action="@{/classes/delete/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"
-                      th:object="${class}">
-                    <button  class="delete" onclick="document.getElementById('deleteForm').submit();">Delete</button>
-                </form>
+        <ul th:each="class: ${classes}">
+            <li><a class="className" th:text="*{class.className}"
+                   th:href="@{/classes/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}">class</a>
             </li>
-        </div>
-    </ul>
+            <div class="buttons">
+                <li>
+                    <a th:href="@{/classes/edit/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"
+                       th:object="${class}" class="edit">Edit </a>
+                </li>
+                <li>
+                    <form id="deleteForm"
+                          th:method="post"
+                          th:action="@{/classes/delete/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"
+                          th:object="${class}">
+                        <button class="delete" onclick="document.getElementById('deleteForm').submit();">Delete</button>
+                    </form>
+                </li>
+            </div>
+        </ul>
 
-  </div>
+    </div>
 
 </section>
-
-
 
 <th:block th:insert="~{/fragments/footer}"></th:block>
 

@@ -2,103 +2,113 @@
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-
 <head>
-  <title>Register</title>
-  <th:block th:insert="~{/fragments/head}"></th:block>
-  <link rel="stylesheet" th:href="@{/css/register.css}">
+    <title>Register</title>
+    <th:block th:insert="~{/fragments/head}"></th:block>
+    <link rel="stylesheet" th:href="@{/css/register.css}">
 </head>
 <body>
 
 <div>
-  <th:block th:insert="~{/fragments/header}"></th:block>
+    <th:block th:insert="~{/fragments/header}"></th:block>
 </div>
 
 <section class="main-section">
 
-  <form class="form"
-        th:method="POST"
-        th:action="@{/users/register}"
-        th:object="${registerDto}">
+    <form class="form"
+          th:method="POST"
+          th:action="@{/users/register}"
+          th:object="${registerDto}">
 
-    <h3>Sign up</h3>
-    <div class="row-form">
-      <div class="element">
-        <label for="firstname" class="label">First name</label>
-        <input type="text"
-               name="firstName"
-               th:errorclass="is-invalid"
-               th:field="*{firstName}"
-               placeholder="First name"
-               id="firstname"
-               class="input"/>
-        <div class="invalid-feedback errors-register alert-danger"
-             th:each="err :${#fields.errors('firstName')}"
-             th:text="${err}"/>
-      </div>
-      <div class="element">
-        <label for="lastname" class="label">Last name</label>
-        <input type="text" placeholder="Last name"
-               th:field="*{lastName}"
-               th:errorclass="is-invalid"
-               id="lastname" class="input"/>
-        <div class="invalid-feedback errors-register alert-danger"
-             th:each="err :${#fields.errors('lastName')}"
-             th:text="${err}"/>
-      </div>
-    </div>
-    <div class="row-form">
-      <div class="element">
-        <label for="email" class="label">Email</label>
-        <input
-                type="text" placeholder="Email"
-                th:field="*{email}"
-                th:errorclass="is-invalid"
-                id="email" class="input"/>
-        <div class="invalid-feedback errors-register alert-danger"
-             th:each="err :${#fields.errors('email')}"
-             th:text="${err}"/>
-      </div>
-      <div class="element">
-        <label for="school" class="label">School</label>
-        <input
-                type="text" placeholder="School"
-                th:field="*{school}"
-                th:errorclass="is-invalid"
-                id="school" class="input"/>
-        <div class="invalid-feedback errors-register alert-danger"
-             th:each="err :${#fields.errors('school')}"
-             th:text="${err}"/>
-      </div>
-    </div>
-    <div class="row-form">
-      <div class="element">
-        <label for="password" class="label">Password</label>
-        <input
-                type="password" placeholder="Password"
-                th:field="*{password}"
-                th:errorclass="is-invalid"
-                id="password" class="input"/>
-        <div class="invalid-feedback errors-register alert-danger"
-             th:each="err :${#fields.errors('password')}"
-             th:text="${err}"/>
-      </div>
-      <div class="element">
-        <label for="confirmpassword" class="label">Confirm Password</label>
-        <input
-                type="password"
-                th:field="*{confirmPassword}"
-                th:errorclass="is-invalid"
-                placeholder="Confirm password" id="confirmpassword" class="input"/>
-        <div class="invalid-feedback errors-register alert-danger"
-             th:each="err :${#fields.errors('confirmPassword')}"
-             th:text="${err}"/>
-      </div>
-    </div>
-    <button  type="submit" class="register-btn">Sign up</button>
+        <h3>Sign up</h3>
 
+        <div class="row-form">
+            <div class="element">
 
-  </form>
+                <label for="firstname" class="label">First name</label>
+                <input type="text"
+                       name="firstName"
+                       th:errorclass="is-invalid"
+                       th:field="*{firstName}"
+                       placeholder="First name"
+                       id="firstname"
+                       class="input"/>
+                <div class="invalid-feedback errors-register alert-danger"
+                     th:each="err :${#fields.errors('firstName')}"
+                     th:text="${err}"/>
+            </div>
+
+            <div class="element">
+                <label for="lastname" class="label">Last name</label>
+                <input type="text" placeholder="Last name"
+                       th:field="*{lastName}"
+                       th:errorclass="is-invalid"
+                       id="lastname" class="input"/>
+                <div class="invalid-feedback errors-register alert-danger"
+                     th:each="err :${#fields.errors('lastName')}"
+                     th:text="${err}"/>
+            </div>
+
+        </div>
+
+        <div class="row-form">
+
+            <div class="element">
+                <label for="email" class="label">Email</label>
+                <input
+                        type="text" placeholder="Email"
+                        th:field="*{email}"
+                        th:errorclass="is-invalid"
+                        id="email" class="input"/>
+                <div class="invalid-feedback errors-register alert-danger"
+                     th:each="err :${#fields.errors('email')}"
+                     th:text="${err}"/>
+            </div>
+
+            <div class="element">
+                <label for="school" class="label">School</label>
+                <input
+                        type="text" placeholder="School"
+                        th:field="*{school}"
+                        th:errorclass="is-invalid"
+                        id="school" class="input"/>
+                <div class="invalid-feedback errors-register alert-danger"
+                     th:each="err :${#fields.errors('school')}"
+                     th:text="${err}"/>
+            </div>
+
+        </div>
+
+        <div class="row-form">
+
+            <div class="element">
+
+                <label for="password" class="label">Password</label>
+                <input
+                        type="password" placeholder="Password"
+                        th:field="*{password}"
+                        th:errorclass="is-invalid"
+                        id="password" class="input"/>
+                <div class="invalid-feedback errors-register alert-danger"
+                     th:each="err :${#fields.errors('password')}"
+                     th:text="${err}"/>
+            </div>
+
+            <div class="element">
+                <label for="confirmpassword" class="label">Confirm Password</label>
+                <input
+                        type="password"
+                        th:field="*{confirmPassword}"
+                        th:errorclass="is-invalid"
+                        placeholder="Confirm password" id="confirmpassword" class="input"/>
+                <div class="invalid-feedback errors-register alert-danger"
+                     th:each="err :${#fields.errors('confirmPassword')}"
+                     th:text="${err}"/>
+            </div>
+        </div>
+        <button type="submit" class="register-btn">Sign up</button>
+
+    </form>
 
 </section>
 
