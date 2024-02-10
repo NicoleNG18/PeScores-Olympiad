@@ -1,6 +1,5 @@
 package pmgkn.pescores.pescores.domain.dto.binding;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -11,7 +10,7 @@ import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMes
 public class ClassAddBindingDto {
 
     @NotEmpty(message = CLASS_NAME_REQUIRED)
-    private  String className;
+    private String className;
 
     @Positive
     @NotNull(message = CLASS_NUM_REQUIRED)

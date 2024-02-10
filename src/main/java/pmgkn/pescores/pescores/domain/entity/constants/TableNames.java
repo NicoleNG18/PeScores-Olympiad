@@ -2,7 +2,6 @@ package pmgkn.pescores.pescores.domain.entity.constants;
 
 public enum TableNames {
     ;
-
     public static final String DENSE_BALL = "dense_ball";
     public static final String THIRTY_METERS = "thirty_meters";
     public static final String JUMP = "jump";

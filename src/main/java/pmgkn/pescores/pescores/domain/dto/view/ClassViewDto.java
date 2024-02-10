@@ -10,7 +10,7 @@ public class ClassViewDto {
 
     private UUID id;
 
-    private  String className;
+    private String className;
 
     private int classNum;
 

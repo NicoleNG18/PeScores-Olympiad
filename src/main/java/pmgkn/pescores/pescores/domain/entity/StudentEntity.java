@@ -141,11 +141,11 @@ public class StudentEntity extends BaseEntity {
     }
 
     public StudentEntity() {
-        this.denseBall=BigDecimal.ZERO;
-        this.thirtyMeters=BigDecimal.ZERO;
-        this.twoHundredMeters=BigDecimal.ZERO;
-        this.tTest=BigDecimal.ZERO;
-        this.jump=BigDecimal.ZERO;
+        this.denseBall = BigDecimal.ZERO;
+        this.thirtyMeters = BigDecimal.ZERO;
+        this.twoHundredMeters = BigDecimal.ZERO;
+        this.tTest = BigDecimal.ZERO;
+        this.jump = BigDecimal.ZERO;
         this.averageGrade = BigDecimal.ZERO;
     }
 }

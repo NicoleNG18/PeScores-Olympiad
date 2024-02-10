@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import pmgkn.pescores.pescores.domain.dto.binding.TaskBindingDto;
+import pmgkn.pescores.pescores.domain.dto.binding.TaskAddBindingDto;
 import pmgkn.pescores.pescores.service.TaskService;
 
 import java.security.Principal;
@@ -22,8 +22,8 @@ public class TasksController {
     }
 
     @ModelAttribute("taskDto")
-    public TaskBindingDto initTaskDto() {
-        return new TaskBindingDto();
+    public TaskAddBindingDto initTaskDto() {
+        return new TaskAddBindingDto();
     }
 
 
@@ -38,7 +38,7 @@ public class TasksController {
     }
 
     @PostMapping("/tasks/save")
-    public String saveTask (@Valid TaskBindingDto taskDto,
+    public String saveTask (@Valid TaskAddBindingDto taskDto,
                             BindingResult bindingResult,
                             RedirectAttributes redirectAttributes,
                             Principal principal) {

@@ -1,8 +1,5 @@
 package pmgkn.pescores.pescores.domain.dto.view;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.validation.constraints.NotNull;
 import pmgkn.pescores.pescores.domain.entity.ClassEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.domain.enums.GenderEnum;

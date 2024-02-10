@@ -12,7 +12,7 @@ import static pmgkn.pescores.pescores.domain.entity.constants.TableNames.CLASSES
 public class ClassEntity extends BaseEntity {
 
     @Column(nullable = false)
-    private  String className;
+    private String className;
 
     @Column(nullable = false)
     private int classNum;
@@ -63,7 +63,7 @@ public class ClassEntity extends BaseEntity {
         return this;
     }
 
-    public void addStudent(StudentEntity student){
+    public void addStudent(StudentEntity student) {
         this.students.add(student);
     }
 }

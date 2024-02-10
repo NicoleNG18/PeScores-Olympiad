@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static pmgkn.pescores.pescores.domain.entity.constants.Messages.OWNER;
+import static pmgkn.pescores.pescores.domain.entity.constants.Messages.TEACHER;
 import static pmgkn.pescores.pescores.domain.entity.constants.TableNames.USERS;
 
 
@@ -16,20 +18,20 @@ public class UserEntity extends BaseEntity {
     private String firstName;
     @Column(nullable = false)
     private String lastName;
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
     @Column(nullable = false)
     private String school;
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = OWNER)
     private List<TaskEntity> tasks;
 
-    @OneToMany(mappedBy = "teacher")
+    @OneToMany(mappedBy = TEACHER)
     private List<ClassEntity> classes;
 
-    @OneToMany(mappedBy = "teacher")
+    @OneToMany(mappedBy = TEACHER)
     private List<StudentEntity> students;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -45,9 +47,9 @@ public class UserEntity extends BaseEntity {
     }
 
     public UserEntity() {
-        this.tasks=new ArrayList<>();
-        this.classes=new ArrayList<>();
-        this.students=new ArrayList<>();
+        this.tasks = new ArrayList<>();
+        this.classes = new ArrayList<>();
+        this.students = new ArrayList<>();
     }
 
     public List<StudentEntity> getStudents() {

@@ -10,7 +10,7 @@ import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMes
 public class ClassEditBindingDto {
 
     @NotEmpty(message = CLASS_NAME_REQUIRED)
-    private  String className;
+    private String className;
 
     @Positive
     @NotNull(message = CLASS_NUM_REQUIRED)

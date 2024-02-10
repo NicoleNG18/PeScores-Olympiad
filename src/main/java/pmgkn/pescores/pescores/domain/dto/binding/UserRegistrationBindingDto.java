@@ -28,7 +28,7 @@ public class UserRegistrationBindingDto {
     private String school;
     @ValidPassword
     private String password;
-    private  String confirmPassword;
+    private String confirmPassword;
 
     public UserRegistrationBindingDto() {
     }

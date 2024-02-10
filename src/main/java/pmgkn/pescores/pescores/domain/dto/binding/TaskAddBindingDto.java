@@ -3,7 +3,6 @@ package pmgkn.pescores.pescores.domain.dto.binding;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -11,7 +10,7 @@ import java.time.LocalDate;
 import static pmgkn.pescores.pescores.domain.entity.constants.Messages.DATE_PATTERN;
 import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMessages.*;
 
-public class TaskBindingDto {
+public class TaskAddBindingDto {
 
     @NotEmpty(message = DESCRIPTION_REQUIRED)
     private String description;
@@ -21,20 +20,14 @@ public class TaskBindingDto {
     @NotNull(message = DATE_PRESENT)
     private LocalDate dueDate;
 
-    public TaskBindingDto() {
-    }
-
-    public TaskBindingDto(String description,
-                          LocalDate dueDate) {
-        this.description=description;
-        this.dueDate=dueDate;
+    public TaskAddBindingDto() {
     }
 
     public LocalDate getDueDate() {
         return dueDate;
     }
 
-    public TaskBindingDto setDueDate(LocalDate dueDate) {
+    public TaskAddBindingDto setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
         return this;
     }
@@ -43,7 +36,7 @@ public class TaskBindingDto {
         return description;
     }
 
-    public TaskBindingDto setDescription(String description) {
+    public TaskAddBindingDto setDescription(String description) {
         this.description = description;
         return this;
     }

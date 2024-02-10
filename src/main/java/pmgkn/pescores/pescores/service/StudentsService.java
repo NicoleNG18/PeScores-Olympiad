@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pmgkn.pescores.pescores.domain.dto.binding.StudentAddBindingDto;
-import pmgkn.pescores.pescores.domain.dto.binding.StudentUpdateDto;
+import pmgkn.pescores.pescores.domain.dto.binding.StudentUpdateBindingDto;
 import pmgkn.pescores.pescores.domain.entity.ClassEntity;
 import pmgkn.pescores.pescores.domain.entity.StudentEntity;
 import pmgkn.pescores.pescores.domain.entity.norms.*;
@@ -78,7 +78,7 @@ public class StudentsService {
                 .setStudentClass(this.classesService.getClassEntityByNameAndTeacher(studentAddBindingDto.getStudentClass(), name));
     }
 
-    public UUID editStudent(StudentUpdateDto studentUpdate,
+    public UUID editStudent(StudentUpdateBindingDto studentUpdate,
                             UUID id) {
 
         StudentEntity studentEntity = this.studentRepository.findFirstById(id);
@@ -128,7 +128,7 @@ public class StudentsService {
         return averageGradeSum;
     }
 
-    private static void setNorms(StudentUpdateDto studentUpdate,
+    private static void setNorms(StudentUpdateBindingDto studentUpdate,
                                  StudentEntity studentEntity) {
         if (studentUpdate.getDenseBall() != null) {
             studentEntity.setDenseBall(studentUpdate.getDenseBall());

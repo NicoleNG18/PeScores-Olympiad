@@ -8,7 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pmgkn.pescores.pescores.domain.dto.binding.StudentAddBindingDto;
-import pmgkn.pescores.pescores.domain.dto.binding.StudentUpdateDto;
+import pmgkn.pescores.pescores.domain.dto.binding.StudentUpdateBindingDto;
 import pmgkn.pescores.pescores.domain.entity.ClassEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.service.ClassesService;
@@ -41,8 +41,8 @@ public class StudentsController {
     }
 
     @ModelAttribute("studentUpdate")
-    public StudentUpdateDto initStudentUpdateDto() {
-        return new StudentUpdateDto();
+    public StudentUpdateBindingDto initStudentUpdateDto() {
+        return new StudentUpdateBindingDto();
     }
 
     @GetMapping("/add")
@@ -87,7 +87,7 @@ public class StudentsController {
 
     @PostMapping("/update/{id}")
     public String editStudent(@PathVariable("id") UUID id,
-                              @Valid StudentUpdateDto studentUpdate,
+                              @Valid StudentUpdateBindingDto studentUpdate,
                               BindingResult bindingResult,
                               RedirectAttributes redirectAttributes,
                               Principal principal) {

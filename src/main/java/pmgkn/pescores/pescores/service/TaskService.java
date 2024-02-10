@@ -3,7 +3,7 @@ package pmgkn.pescores.pescores.service;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pmgkn.pescores.pescores.domain.dto.binding.TaskBindingDto;
+import pmgkn.pescores.pescores.domain.dto.binding.TaskAddBindingDto;
 import pmgkn.pescores.pescores.domain.dto.view.TaskViewDto;
 import pmgkn.pescores.pescores.domain.entity.TaskEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
@@ -34,7 +34,7 @@ public class TaskService {
 
 
     @Transactional
-    public void saveTask(TaskBindingDto taskDto,
+    public void saveTask(TaskAddBindingDto taskDto,
                          String username) {
 
         TaskEntity task = new TaskEntity();
@@ -48,7 +48,7 @@ public class TaskService {
         this.taskRepository.saveAndFlush(task);
     }
 
-    private static void buildTask(TaskBindingDto taskDto,
+    private static void buildTask(TaskAddBindingDto taskDto,
                                   TaskEntity task,
                                   UserEntity user) {
         task.setDescription(taskDto.getDescription())

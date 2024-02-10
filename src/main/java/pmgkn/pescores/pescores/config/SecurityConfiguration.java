@@ -1,7 +1,5 @@
 package pmgkn.pescores.pescores.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,12 +31,11 @@ public class SecurityConfiguration {
                                 // Allow anyone to see the home page, the registration page and the login form
                                 .requestMatchers("/users/login"
                                         , "/users/register",
-                                        "/users/login-error",
-                                        "/contact").permitAll()
+                                        "/users/login-error").permitAll()
                                 .requestMatchers("/tasks",
-                                        "/classes/**","/classes/edit/**","/classes/delete/**"
-                                        , "/students/**","/denseBall","/jump"
-                                ,"/thirty","/twoHundred","/tTest").authenticated()
+                                        "/classes/**", "/classes/edit/**", "/classes/delete/**"
+                                        , "/students/**",
+                                        "/denseBall", "/jump", "/thirty", "/twoHundred", "/tTest").authenticated()
                                 .requestMatchers("/").anonymous()
                                 // all other requests are authenticated.
                                 .anyRequest().authenticated()

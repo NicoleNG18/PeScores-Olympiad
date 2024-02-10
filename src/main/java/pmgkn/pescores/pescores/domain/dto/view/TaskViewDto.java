@@ -1,6 +1,5 @@
 package pmgkn.pescores.pescores.domain.dto.view;
 
-import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -18,13 +17,6 @@ public class TaskViewDto {
     private LocalDate dueDate;
 
     public TaskViewDto() {
-    }
-
-    public TaskViewDto(UUID id,String description,
-                          LocalDate dueDate) {
-        this.description=description;
-        this.dueDate=dueDate;
-        this.id=id;
     }
 
     public UUID getId() {
