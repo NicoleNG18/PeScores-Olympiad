@@ -24,7 +24,6 @@ public class StudentsController {
 
     private final ClassesService classesService;
     private final StudentsService studentsService;
-
     private final UserService userService;
 
     public StudentsController(ClassesService classesService,
@@ -60,7 +59,6 @@ public class StudentsController {
                                RedirectAttributes redirectAttributes,
                                Principal principal) {
 
-
         if (bindingResult.hasErrors()) {
 
             redirectAttributes.addFlashAttribute("studentAddDto", studentAddBindingDto);
@@ -68,7 +66,6 @@ public class StudentsController {
                     , bindingResult);
 
             return "redirect:/students/add";
-
         }
 
         if (this.studentsService.checkIfClassNumRepeats(studentAddBindingDto.getStudentClass(), principal.getName(), studentAddBindingDto.getStudentNumber())) {
@@ -76,7 +73,6 @@ public class StudentsController {
             redirectAttributes.addFlashAttribute("isUnique", false);
 
             return "redirect:/students/add";
-
         }
 
         UUID classId = this.studentsService.saveStudent(principal.getName(), studentAddBindingDto);
@@ -99,12 +95,10 @@ public class StudentsController {
                     , bindingResult);
 
             return "redirect:/students/update/{id}";
-
         }
 
         UUID classId = this.studentsService.editStudent(studentUpdate, id);
         UserEntity currentUser = this.userService.getUserByEmail(principal.getName());
-
 
         return "redirect:/classes/" + currentUser.getId() + "/" + classId;
     }
@@ -122,7 +116,4 @@ public class StudentsController {
 
         return "redirect:/classes";
     }
-
-
-
 }

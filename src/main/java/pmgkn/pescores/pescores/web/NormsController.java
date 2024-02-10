@@ -7,27 +7,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class NormsController {
 
     @GetMapping("/denseBall")
-    public String getDenseBall(){
+    public String getDenseBall() {
         return "dense-ball";
     }
 
     @GetMapping("/jump")
-    public String getJump(){
+    public String getJump() {
         return "jump";
     }
 
     @GetMapping("/tTest")
-    public String getTtest(){
+    public String getTtest() {
         return "t-test";
     }
 
     @GetMapping("/thirty")
-    public String getThirtyMeters(){
+    public String getThirtyMeters() {
         return "thirty-meters";
     }
 
     @GetMapping("/twoHundred")
-    public String getTwoHundredMeters(){
+    public String getTwoHundredMeters() {
         return "two-hundred-meters";
     }
 }

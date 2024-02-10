@@ -40,12 +40,10 @@ public class UserRegisterController {
                     , bindingResult);
 
             return "redirect:/users/register";
-
         }
 
         this.userService.registerUser(registerDto);
 
         return "redirect:/users/login";
     }
-
 }

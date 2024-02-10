@@ -36,7 +36,7 @@ public class ClassesService {
     }
 
     @Scheduled(cron = "0 0 0 15 9 *")
-    public void updateClasses() {
+    public void updateClassesEveryYear() {
         for (ClassEntity classEntity : this.classRepository.findAll()) {
 
             if (classEntity.getClassNum() == 12) {
@@ -45,26 +45,28 @@ public class ClassesService {
 
             } else if (classEntity.getClassNum() >= 5 && classEntity.getClassNum() <= 9) {
 
+                StringBuilder stringBuilder = new StringBuilder(classEntity.getClassName());
+                stringBuilder.deleteCharAt(0);
+                stringBuilder.insert(0, String.valueOf(classEntity.getClassNum() + 1));
 
-                StringBuilder sb = new StringBuilder(classEntity.getClassName());
-                sb.deleteCharAt(0);
-                sb.insert(0, String.valueOf(classEntity.getClassNum() + 1));
                 classEntity.setClassNum(classEntity.getClassNum() + 1);
-                classEntity.setClassName(sb.toString());
+                classEntity.setClassName(stringBuilder.toString());
+
                 this.classRepository.saveAndFlush(classEntity);
 
             } else if (classEntity.getClassNum() == 10 || classEntity.getClassNum() == 11) {
-                StringBuilder sb = new StringBuilder(classEntity.getClassName());
-                sb.deleteCharAt(0);
-                sb.deleteCharAt(0);
-                sb.insert(0, String.valueOf(classEntity.getClassNum() + 1));
+
+                StringBuilder stringBuilder = new StringBuilder(classEntity.getClassName());
+                stringBuilder.deleteCharAt(0);
+                stringBuilder.deleteCharAt(0);
+                stringBuilder.insert(0, String.valueOf(classEntity.getClassNum() + 1));
+
                 classEntity.setClassNum(classEntity.getClassNum() + 1);
-                classEntity.setClassName(sb.toString());
+                classEntity.setClassName(stringBuilder.toString());
+
                 this.classRepository.saveAndFlush(classEntity);
             }
-
         }
-
     }
 
     public UUID saveClass(ClassAddBindingDto classAddBindingDto,
@@ -103,6 +105,7 @@ public class ClassesService {
     @Transactional
     public ClassViewDto getClassById(UUID id) {
         ClassEntity referenceById = this.classRepository.getReferenceById(id);
+
         return new ClassViewDto()
                 .setClassName(referenceById.getClassName())
                 .setClassNum(referenceById.getClassNum())
@@ -114,6 +117,7 @@ public class ClassesService {
     public List<StudentViewDto> getStudentsSorted(UUID id) {
         List<StudentEntity> students = this.classRepository.getReferenceById(id).getStudents();
         students.sort((s1, s2) -> s1.getStudentNumber().compareTo(s2.getStudentNumber()));
+
         return students.stream().map(s -> this.modelMapper.map(s, StudentViewDto.class)).collect(Collectors.toList());
     }
 
@@ -145,8 +149,10 @@ public class ClassesService {
     public void addStudent(StudentEntity studentToSave,
                            String className,
                            String teacherName) {
+
         ClassEntity classEntity = this.getClassEntityByNameAndTeacher(className, teacherName);
         classEntity.addStudent(studentToSave);
+
         this.classRepository.saveAndFlush(classEntity);
     }
 
@@ -161,4 +167,5 @@ public class ClassesService {
 
         this.classRepository.saveAndFlush(studentClass);
     }
+
 }

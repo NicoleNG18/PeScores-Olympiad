@@ -29,8 +29,7 @@ public class UserLoginController {
 
         redirectAttributes.addFlashAttribute("userLoginDto", userLoginDto);
         redirectAttributes.addFlashAttribute("bad_credentials", true);
-        
+
         return "redirect:/users/login";
     }
-
 }

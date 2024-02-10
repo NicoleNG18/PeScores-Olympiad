@@ -23,7 +23,6 @@ import java.util.UUID;
 public class ClassesController {
 
     private final ClassesService classesService;
-
     private final UserService userService;
 
     public ClassesController(ClassesService classesService,
@@ -70,7 +69,6 @@ public class ClassesController {
                     , bindingResult);
 
             return "redirect:/classes/add";
-
         }
 
         UUID classId = this.classesService.saveClass(classAddBindingDto, principal.getName());
@@ -88,7 +86,6 @@ public class ClassesController {
         if (!this.userService.getUserById(idTeacher).equals(this.userService.getUserByEmail(principal.getName()))) {
             throw new ObjectNotFoundException("the info is not yours", ClassEntity.class);
         }
-
 
         model.addAttribute("classes", this.classesService.getAllClassesByUser(principal.getName()));
         model.addAttribute("currentClass", this.classesService.getClassById(id));
@@ -116,11 +113,11 @@ public class ClassesController {
 
     @PatchMapping("/edited/{id}")
     public String editClass(
-                            @PathVariable("id") UUID id,
-                            @Valid ClassAddBindingDto classEdit,
-                            BindingResult bindingResult,
-                            RedirectAttributes redirectAttributes,
-                            Principal principal) {
+            @PathVariable("id") UUID id,
+            @Valid ClassAddBindingDto classEdit,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes,
+            Principal principal) {
 
         if (bindingResult.hasErrors()) {
 
@@ -129,7 +126,6 @@ public class ClassesController {
                     , bindingResult);
 
             return "redirect:/classes/edit/{idTeacher}/{id}";
-
         }
 
         this.classesService.editClass(id, classEdit);
@@ -152,6 +148,4 @@ public class ClassesController {
 
         return "redirect:/classes";
     }
-
-
 }

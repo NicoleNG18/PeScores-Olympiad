@@ -26,7 +26,6 @@ public class TasksController {
         return new TaskAddBindingDto();
     }
 
-
     @GetMapping("/tasks")
     public String getTasks(Model model,
                            Principal principal) {
@@ -38,10 +37,10 @@ public class TasksController {
     }
 
     @PostMapping("/tasks/save")
-    public String saveTask (@Valid TaskAddBindingDto taskDto,
-                            BindingResult bindingResult,
-                            RedirectAttributes redirectAttributes,
-                            Principal principal) {
+    public String saveTask(@Valid TaskAddBindingDto taskDto,
+                           BindingResult bindingResult,
+                           RedirectAttributes redirectAttributes,
+                           Principal principal) {
 
         if (bindingResult.hasErrors()) {
 
@@ -50,10 +49,9 @@ public class TasksController {
                     , bindingResult);
 
             return "redirect:/tasks";
-
         }
 
-        this.taskService.saveTask(taskDto,principal.getName());
+        this.taskService.saveTask(taskDto, principal.getName());
 
         return "redirect:/tasks";
     }
@@ -73,5 +71,4 @@ public class TasksController {
 
         return "redirect:/tasks";
     }
-
 }

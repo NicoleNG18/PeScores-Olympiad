@@ -14,7 +14,7 @@ public class UserRoleService {
         this.userRoleRepository = userRoleRepository;
     }
 
-    public UserRoleEntity getRole(UserRoleEnum role){
+    public UserRoleEntity getRole(UserRoleEnum role) {
         return this.userRoleRepository.findByRole(role);
     }
 }

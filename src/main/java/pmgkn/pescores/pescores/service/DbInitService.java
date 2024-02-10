@@ -19,13 +19,9 @@ public class DbInitService {
 
     private final UserRoleRepository userRoleRepository;
     private final DenseBallRepository denseBallRepository;
-
     private final JumpRepository jumpRepository;
-
     private final TTestRepository tTestRepository;
-
     private final ThirtyMetersRepository thirtyMetersRepository;
-
     private final TwoHundredMetersRepository twoHundredMetersRepository;
 
     public DbInitService(UserRoleRepository userRoleRepository,
@@ -437,7 +433,6 @@ public class DbInitService {
         this.twoHundredMetersRepository.saveAllAndFlush(twoHundredMetersTwelfthGrade);
     }
 
-
     private void tTestFifthGrade() {
         List<TTestEntity> tTestFifthGrade = new ArrayList<>();
         tTestFifthGrade.add(getTTestEntity(5, MALE, BigDecimal.valueOf(100.00), BigDecimal.valueOf(21.56), 2));
@@ -557,7 +552,6 @@ public class DbInitService {
         tTestTwelfthGrade.add(getTTestEntity(12, FEMALE, BigDecimal.valueOf(14.15), BigDecimal.ZERO, 6));
         this.tTestRepository.saveAllAndFlush(tTestTwelfthGrade);
     }
-
 
     private void jumpFifthGrade() {
         List<JumpEntity> jumpFifthGrade = new ArrayList<>();
@@ -798,6 +792,4 @@ public class DbInitService {
         denseBallTwelfthGrade.add(getDenseBallEntity(12, FEMALE, BigDecimal.valueOf(25), BigDecimal.valueOf(7.20), 6));
         this.denseBallRepository.saveAllAndFlush(denseBallTwelfthGrade);
     }
-
-
 }

@@ -59,8 +59,7 @@ public class StudentsService {
     }
 
     public UUID saveStudent(String name,
-                            StudentAddBindingDto studentAddBindingDto
-    ) {
+                            StudentAddBindingDto studentAddBindingDto) {
 
         StudentEntity studentToSave = mapToStudentEntity(studentAddBindingDto, name);
 
@@ -125,6 +124,7 @@ public class StudentsService {
             DenseBallEntity denseBall = this.denseBallRepository.getDenseBallEntityByResult(classNumQuery, genderQuery, studentEntity.getDenseBall());
             averageGradeSum += denseBall.getGrade();
         }
+
         return averageGradeSum;
     }
 
@@ -133,19 +133,15 @@ public class StudentsService {
         if (studentUpdate.getDenseBall() != null) {
             studentEntity.setDenseBall(studentUpdate.getDenseBall());
         }
-
         if (studentUpdate.getJump() != null) {
             studentEntity.setJump(studentUpdate.getJump());
         }
-
         if (studentUpdate.gettTest() != null) {
             studentEntity.settTest(studentUpdate.gettTest());
         }
-
         if (studentUpdate.getThirtyMeters() != null) {
             studentEntity.setThirtyMeters(studentUpdate.getThirtyMeters());
         }
-
         if (studentUpdate.getTwoHundredMeters() != null) {
             studentEntity.setTwoHundredMeters(studentUpdate.getTwoHundredMeters());
         }
@@ -169,6 +165,7 @@ public class StudentsService {
         if (studentEntity.getDenseBall().compareTo(BigDecimal.ZERO) != 0) {
             count++;
         }
+
         return count;
     }
 
@@ -193,12 +190,10 @@ public class StudentsService {
         StudentEntity referenceById = this.studentRepository.findFirstById(id);
 
         this.classesService.removeStudentFromClass(referenceById);
+
         referenceById.setStudentClass(null);
         this.studentRepository.saveAndFlush(referenceById);
-        this.studentRepository.deleteById(id);
-    }
 
-    public StudentEntity getStudentById(UUID id) {
-        return this.studentRepository.findFirstById(id);
+        this.studentRepository.deleteById(id);
     }
 }

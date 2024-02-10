@@ -23,12 +23,8 @@ import java.util.stream.Collectors;
 public class UserService {
     private final ModelMapper modelMapper;
     private final UserRoleService userRoleService;
-
     private final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
-
-
     @Autowired
     public UserService(UserRoleService userRoleService,
                        ModelMapper modelMapper,
@@ -39,6 +35,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
     }
+
     public UserEntity getUserById(UUID id) {
         return this.userRepository.getReferenceById(id);
     }

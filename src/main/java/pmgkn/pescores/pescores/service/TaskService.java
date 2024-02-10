@@ -17,11 +17,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class TaskService {
-
     private final UserService userService;
-
     private final TaskRepository taskRepository;
-
     private final ModelMapper modelMapper;
 
     public TaskService(UserService userService,
@@ -32,20 +29,19 @@ public class TaskService {
         this.modelMapper = modelMapper;
     }
 
-
     @Transactional
     public void saveTask(TaskAddBindingDto taskDto,
                          String username) {
 
-        TaskEntity task = new TaskEntity();
+        TaskEntity taskToSave = new TaskEntity();
 
         final UserEntity user = this.userService.getUserByEmail(username);
 
-        buildTask(taskDto, task, user);
+        buildTask(taskDto, taskToSave, user);
 
-        user.getTasks().add(task);
+        user.getTasks().add(taskToSave);
 
-        this.taskRepository.saveAndFlush(task);
+        this.taskRepository.saveAndFlush(taskToSave);
     }
 
     private static void buildTask(TaskAddBindingDto taskDto,
@@ -73,8 +69,10 @@ public class TaskService {
 
     private List<TaskEntity> getSortedTasks(String username,
                                             TaskStatusEnum taskStatusEnum) {
+
         List<TaskEntity> allInProgressTasks = taskStatusEnum.equals(TaskStatusEnum.IN_PROGRESS) ? this.userService.getAllInProgressTasks(username)
                 : this.userService.getAllDoneTasks(username);
+
         sortTasks(allInProgressTasks);
 
         return allInProgressTasks;
@@ -95,7 +93,6 @@ public class TaskService {
         taskById.setStatus(TaskStatusEnum.COMPLETED);
 
         this.taskRepository.saveAndFlush(taskById);
-
     }
 
     public void makeTaskDeleted(UUID descr) {
@@ -104,7 +101,6 @@ public class TaskService {
         taskById.setStatus(TaskStatusEnum.DELETED);
 
         this.taskRepository.saveAndFlush(taskById);
-
     }
 
 }

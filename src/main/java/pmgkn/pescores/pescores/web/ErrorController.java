@@ -16,7 +16,7 @@ public class ErrorController {
 
     @ExceptionHandler(ObjectNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ModelAndView onNotFound(Principal principal){
+    public ModelAndView onNotFound() {
 
         return new ModelAndView("error");
     }
