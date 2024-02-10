@@ -149,4 +149,16 @@ public class ClassesService {
         classEntity.addStudent(studentToSave);
         this.classRepository.saveAndFlush(classEntity);
     }
+
+    public void removeStudentFromClass(StudentEntity referenceById) {
+
+        ClassEntity studentClass = referenceById.getStudentClass();
+
+        List<StudentEntity> students = studentClass.getStudents();
+        students.remove(referenceById);
+
+        studentClass.setStudents(students);
+
+        this.classRepository.saveAndFlush(studentClass);
+    }
 }

@@ -21,7 +21,8 @@
 
         <ul th:each="class: ${classes}">
             <li><a th:text="${class.className}"
-                   th:href="@{/classes/{idTeacher}/{id}(idTeacher=${class.getTeacher().id},id=${class.id})}">class</a></li>
+                   th:href="@{/classes/{idTeacher}/{id}(idTeacher=${class.getTeacher().id},id=${class.id})}">class</a>
+            </li>
         </ul>
     </div>
 
@@ -39,6 +40,7 @@
                 <th scope="col">Jump(m)</th>
                 <th scope="col">Average score</th>
                 <th scope="col">Submit results</th>
+                <th scope="col">Delete student</th>
             </tr>
             </thead>
             <tbody>
@@ -110,6 +112,14 @@
                         <button type="submit">Submit</button>
                     </td>
                 </form>
+                <td>
+                    <form id="deleteForm"
+                          th:method="post"
+                          th:action="@{/students/delete/{idTeacher}/{id}(idTeacher=${student.getTeacher().id}, id=${student.id})}"
+                          th:object="${student}">
+                        <button class="delete" onclick="document.getElementById('deleteForm').submit();">Delete</button>
+                    </form>
+                </td>
             </tr>
 
             <!--        <tr>-->

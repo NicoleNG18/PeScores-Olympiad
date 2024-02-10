@@ -7,6 +7,12 @@
     min-height: 350px;
 }
 
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
 .my-classes h2 {
     font-weight: 700;
     margin-bottom: 1em;
@@ -57,8 +63,8 @@
 }
 
 .edit {
-    color: #5d54c3;
-    background-color: #d8d7fe;
+    color: #d8d7fe;
+    background-color: #5d54c3;
     border-radius: 5px;
     padding: 0.5em 1em;
     text-decoration: none;
