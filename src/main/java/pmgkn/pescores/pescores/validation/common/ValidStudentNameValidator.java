@@ -8,12 +8,12 @@ public class ValidStudentNameValidator implements ConstraintValidator<ValidStude
     public boolean isValid(String value,
                            ConstraintValidatorContext context) {
 
-        if(value.length()<2 || value.length()>30){
+        if (value.length() < 2 || value.length() > 30) {
             return false;
         }
 
-        for(int i=0;i<value.length();i++){
-            if(!Character.isLetter(value.charAt(i)) && !Character.isWhitespace(value.charAt(i))){
+        for (int i = 0; i < value.length(); i++) {
+            if (!Character.isLetter(value.charAt(i)) && !Character.isWhitespace(value.charAt(i))) {
                 return false;
             }
         }

@@ -12,9 +12,9 @@ public class ValidPasswordValidator implements ConstraintValidator<ValidPassword
             return false;
         }
 
-        int countDigits=0;
-        for (int i=0;i<value.length();i++){
-            if(Character.isDigit(value.charAt(i))){
+        int countDigits = 0;
+        for (int i = 0; i < value.length(); i++) {
+            if (Character.isDigit(value.charAt(i))) {
                 countDigits++;
             }
         }

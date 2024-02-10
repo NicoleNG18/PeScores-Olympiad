@@ -14,6 +14,6 @@ public interface TwoHundredMetersRepository extends JpaRepository<TwoHundredMete
 
     @Query("SELECT th FROM TwoHundredMetersEntity as th WHERE th.classNum = :n AND th.gender = :g AND :r <= th.min AND :r >= th.max")
     TwoHundredMetersEntity getTwoHundredMetersEntityByResult(@Param("n") Integer number,
-                                               @Param("g") String gender,
-                                               @Param("r") BigDecimal result);
+                                                             @Param("g") String gender,
+                                                             @Param("r") BigDecimal result);
 }

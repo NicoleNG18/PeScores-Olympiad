@@ -13,7 +13,8 @@ public interface ClassRepository extends JpaRepository<ClassEntity, UUID> {
 
     ClassEntity findClassById(UUID id);
 
-    ClassEntity findByClassNameAndTeacher(String name, UserEntity teacher);
+    ClassEntity findByClassNameAndTeacher(String name,
+                                          UserEntity teacher);
 
-   List<ClassEntity> findAll();
+    List<ClassEntity> findAll();
 }

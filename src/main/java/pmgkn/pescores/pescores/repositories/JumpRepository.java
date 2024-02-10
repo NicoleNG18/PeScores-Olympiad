@@ -14,6 +14,6 @@ public interface JumpRepository extends JpaRepository<JumpEntity, UUID> {
 
     @Query("SELECT j FROM JumpEntity as j WHERE j.classNum = :n AND j.gender = :g AND :r >= j.min AND :r <= j.max")
     JumpEntity getJumpEntityByResult(@Param("n") Integer number,
-                                              @Param("g") String gender,
-                                              @Param("r") BigDecimal result);
+                                     @Param("g") String gender,
+                                     @Param("r") BigDecimal result);
 }
