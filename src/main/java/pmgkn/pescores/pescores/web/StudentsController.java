@@ -54,10 +54,10 @@ public class StudentsController {
     }
 
     @PostMapping("/add")
-    public String postAddClass(@Valid StudentAddBindingDto studentAddBindingDto,
-                               BindingResult bindingResult,
-                               RedirectAttributes redirectAttributes,
-                               Principal principal) {
+    public String postAddStudent(@Valid StudentAddBindingDto studentAddBindingDto,
+                                 BindingResult bindingResult,
+                                 RedirectAttributes redirectAttributes,
+                                 Principal principal) {
 
         if (bindingResult.hasErrors()) {
 

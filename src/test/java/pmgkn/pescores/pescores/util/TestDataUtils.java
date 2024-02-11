@@ -2,14 +2,10 @@ package pmgkn.pescores.pescores.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pmgkn.pescores.pescores.domain.entity.TaskEntity;
-import pmgkn.pescores.pescores.domain.entity.UserEntity;
-import pmgkn.pescores.pescores.domain.entity.UserRoleEntity;
+import pmgkn.pescores.pescores.domain.entity.*;
 import pmgkn.pescores.pescores.domain.enums.TaskStatusEnum;
 import pmgkn.pescores.pescores.domain.enums.UserRoleEnum;
-import pmgkn.pescores.pescores.repositories.TaskRepository;
-import pmgkn.pescores.pescores.repositories.UserRepository;
-import pmgkn.pescores.pescores.repositories.UserRoleRepository;
+import pmgkn.pescores.pescores.repositories.*;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -21,14 +17,20 @@ public class TestDataUtils {
     private final TaskRepository taskRepository;
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
+    private final ClassRepository classRepository;
+
+//    private final StudentRepository studentRepository;
 
     @Autowired
     public TestDataUtils(TaskRepository taskRepository,
                          UserRepository userRepository,
-                         UserRoleRepository userRoleRepository){
-        this.taskRepository=taskRepository;
-        this.userRepository=userRepository;
-        this.userRoleRepository=userRoleRepository;
+                         UserRoleRepository userRoleRepository,
+                         ClassRepository classRepository) {
+        this.taskRepository = taskRepository;
+        this.userRepository = userRepository;
+        this.userRoleRepository = userRoleRepository;
+        this.classRepository = classRepository;
+//        this.studentRepository = studentRepository;
     }
 
     private void initRoles() {
@@ -41,10 +43,19 @@ public class TestDataUtils {
         }
     }
 
-    public UserEntity createTestUser(String email){
+//    public StudentEntity createTestStudent(ClassEntity classEntity,UserEntity teacher){
+//        StudentEntity testStudent=new StudentEntity()
+//                .setStudentClass(classEntity)
+//                .setStudentName("Nikol Georgieva")
+//                .setStudentNumber(1)
+//                .setTeacher(teacher);
+//        return studentRepository.saveAndFlush(testStudent);
+//    }
+
+    public UserEntity createTestUser(String email) {
         initRoles();
 
-        UserEntity testUser=new UserEntity()
+        UserEntity testUser = new UserEntity()
                 .setFirstName("test")
                 .setLastName("testov")
                 .setEmail(email)
@@ -53,30 +64,39 @@ public class TestDataUtils {
                 .setTasks(new ArrayList<>())
                 .setClasses(new ArrayList<>())
                 .setRoles(userRoleRepository.findAll().stream()
-                        .filter(r->r.getRole()== UserRoleEnum.USER)
+                        .filter(r -> r.getRole() == UserRoleEnum.USER)
                         .toList());
 
-        return userRepository.save(testUser);
+        return userRepository.saveAndFlush(testUser);
     }
 
-    public TaskEntity createTask(UserEntity userEntity){
+    public ClassEntity createClass(UserEntity teacher) {
 
-        TaskEntity taskEntity=new TaskEntity()
+        ClassEntity classEntity = new ClassEntity()
+                .setClassName("8A")
+                .setClassNum(8)
+                .setTeacher(teacher);
+        return classRepository.saveAndFlush(classEntity);
+    }
+
+    public TaskEntity createTask(UserEntity userEntity) {
+
+        TaskEntity taskEntity = new TaskEntity()
                 .setDescription("todo description")
-                .setDueDate(LocalDate.of(2017, Month.JANUARY,25))
+                .setDueDate(LocalDate.of(2017, Month.JANUARY, 25))
                 .setOwner(userEntity)
                 .setStatus(TaskStatusEnum.IN_PROGRESS);
 
-        return taskRepository.save(taskEntity);
+        return taskRepository.saveAndFlush(taskEntity);
     }
 
     public void cleanUpDatabase() {
         taskRepository.deleteAll();
+        classRepository.deleteAll();
+//        studentRepository.deleteAll();
         userRepository.deleteAll();
         userRoleRepository.deleteAll();
     }
-
-
 
 
 }
