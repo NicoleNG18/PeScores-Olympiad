@@ -89,6 +89,7 @@ public class ClassesControllerIT {
                 .andExpect(status().is4xxClientError())
                 .andExpect(view().name("error"));
     }
+
     @Test
     @WithMockUser(username = "testEmail@abv.bg", roles = "USER")
     void testGetEditClassFails() throws Exception {
@@ -108,11 +109,12 @@ public class ClassesControllerIT {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/classes/" + testUser.getId() + "/" + testClass.getId()));
     }
+
     @Test
     @WithMockUser(username = "testEmail@abv.bg", roles = "USER")
     void testDeleteClass() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/classes/delete/{idTeacher}/{id}",UUID.randomUUID(),testClass.getId())
-                .with(csrf()))
+        mockMvc.perform(MockMvcRequestBuilders.post("/classes/delete/{idTeacher}/{id}", UUID.randomUUID(), testClass.getId())
+                        .with(csrf()))
                 .andExpect(status().is4xxClientError())
                 .andExpect(view().name("error"));
     }

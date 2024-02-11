@@ -19,8 +19,6 @@ public class TestDataUtils {
     private final UserRoleRepository userRoleRepository;
     private final ClassRepository classRepository;
 
-//    private final StudentRepository studentRepository;
-
     @Autowired
     public TestDataUtils(TaskRepository taskRepository,
                          UserRepository userRepository,
@@ -30,7 +28,6 @@ public class TestDataUtils {
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
         this.classRepository = classRepository;
-//        this.studentRepository = studentRepository;
     }
 
     private void initRoles() {
@@ -42,15 +39,6 @@ public class TestDataUtils {
             userRoleRepository.save(userRole);
         }
     }
-
-//    public StudentEntity createTestStudent(ClassEntity classEntity,UserEntity teacher){
-//        StudentEntity testStudent=new StudentEntity()
-//                .setStudentClass(classEntity)
-//                .setStudentName("Nikol Georgieva")
-//                .setStudentNumber(1)
-//                .setTeacher(teacher);
-//        return studentRepository.saveAndFlush(testStudent);
-//    }
 
     public UserEntity createTestUser(String email) {
         initRoles();
@@ -93,7 +81,6 @@ public class TestDataUtils {
     public void cleanUpDatabase() {
         taskRepository.deleteAll();
         classRepository.deleteAll();
-//        studentRepository.deleteAll();
         userRepository.deleteAll();
         userRoleRepository.deleteAll();
     }

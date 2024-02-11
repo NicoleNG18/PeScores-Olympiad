@@ -27,13 +27,13 @@ public class UserRegisterControllerIT {
     @Test
     void testRegistrationWorksCorrectly() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/users/register")
-                        .param("firstName","Nicole")
-                        .param("lastName","Georgieva")
-                        .param("email","testEmail@abv.bg")
-                        .param("school","PMG Prof Emanuil Ivanov")
-                        .param("password","Test1234@")
-                        .param("confirmPassword","Test1234@")
-                .with(csrf())).andExpect(status().is3xxRedirection())
+                        .param("firstName", "Nicole")
+                        .param("lastName", "Georgieva")
+                        .param("email", "testEmail@abv.bg")
+                        .param("school", "PMG Prof Emanuil Ivanov")
+                        .param("password", "Test1234@")
+                        .param("confirmPassword", "Test1234@")
+                        .with(csrf())).andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/users/login"));
 
     }
@@ -41,12 +41,12 @@ public class UserRegisterControllerIT {
     @Test
     void testRegistrationWithIncorrectData() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/users/register")
-                        .param("firstName","Nicole")
-                        .param("lastName","")
-                        .param("email","testEmail@abv.bg")
-                        .param("school","PMG Prof Emanuil Ivanov")
-                        .param("password","Test")
-                        .param("confirmPassword","Test")
+                        .param("firstName", "Nicole")
+                        .param("lastName", "")
+                        .param("email", "testEmail@abv.bg")
+                        .param("school", "PMG Prof Emanuil Ivanov")
+                        .param("password", "Test")
+                        .param("confirmPassword", "Test")
                         .with(csrf())).andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/users/register"));
 

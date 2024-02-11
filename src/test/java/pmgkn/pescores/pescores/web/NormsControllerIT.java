@@ -36,7 +36,7 @@ public class NormsControllerIT {
     }
 
     @Test
-    @WithMockUser(username = "testEmail@abv.bg",roles = "USER")
+    @WithMockUser(username = "testEmail@abv.bg", roles = "USER")
     void testJumpPageShowsUp() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/jump")
                         .with(csrf()))
@@ -46,7 +46,7 @@ public class NormsControllerIT {
     }
 
     @Test
-    @WithMockUser(username = "testEmail@abv.bg",roles = "USER")
+    @WithMockUser(username = "testEmail@abv.bg", roles = "USER")
     void testTtestPageShowsUp() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/tTest")
                         .with(csrf()))
@@ -56,7 +56,7 @@ public class NormsControllerIT {
     }
 
     @Test
-    @WithMockUser(username = "testEmail@abv.bg",roles = "USER")
+    @WithMockUser(username = "testEmail@abv.bg", roles = "USER")
     void testDenseBallPageShowsUp() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/denseBall")
                         .with(csrf()))
@@ -66,7 +66,7 @@ public class NormsControllerIT {
     }
 
     @Test
-    @WithMockUser(username = "testEmail@abv.bg",roles = "USER")
+    @WithMockUser(username = "testEmail@abv.bg", roles = "USER")
     void testThirtyMetersPageShowsUp() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/thirty")
                         .with(csrf()))
@@ -76,7 +76,7 @@ public class NormsControllerIT {
     }
 
     @Test
-    @WithMockUser(username = "testEmail@abv.bg",roles = "USER")
+    @WithMockUser(username = "testEmail@abv.bg", roles = "USER")
     void testTwoHundredMetersPageShowsUp() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/twoHundred")
                         .with(csrf()))

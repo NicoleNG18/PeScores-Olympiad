@@ -29,44 +29,46 @@ public class TasksControllerIT {
 
     @Autowired
     private TestDataUtils testDataUtils;
+
     @AfterEach
-    void tearDown(){
+    void tearDown() {
         testDataUtils.cleanUpDatabase();
     }
 
     @Test
-    @WithMockUser(username = "testEmail@abv.bg",roles = "USER")
+    @WithMockUser(username = "testEmail@abv.bg", roles = "USER")
     @Transactional
     void testGetTasksShowsUp() throws Exception {
         testDataUtils.createTask(testDataUtils.createTestUser("testEmail@abv.bg"));
         mockMvc.perform(MockMvcRequestBuilders.get("/tasks")
-                .with(csrf())) .andExpect(view().name("tasks"))
+                        .with(csrf())).andExpect(view().name("tasks"))
                 .andExpect(model().attributeExists("tasks", "tasksDone"))
                 .andExpect(status().isOk());
     }
+
     @Test
-    @WithMockUser(username = "testEmail@abv.bg",roles = "USER")
+    @WithMockUser(username = "testEmail@abv.bg", roles = "USER")
     void testAddTaskWorksCorrectly() throws Exception {
-       testDataUtils.createTask(testDataUtils.createTestUser("testEmail@abv.bg"));
+        testDataUtils.createTask(testDataUtils.createTestUser("testEmail@abv.bg"));
         mockMvc.perform(MockMvcRequestBuilders.post("/tasks/save")
-                        .param("description","task description")
-                        .param("dueDate","2045-01-23")
-                .with(csrf()))
+                        .param("description", "task description")
+                        .param("dueDate", "2045-01-23")
+                        .with(csrf()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/tasks"));
     }
 
     @Test
-    @WithMockUser(username = "testEmail@abv.bg",roles = "USER")
+    @WithMockUser(username = "testEmail@abv.bg", roles = "USER")
     void testAddTaskWithInvalidData() throws Exception {
-       testDataUtils.createTask(testDataUtils.createTestUser("testEmail@abv.bg"));
-        BindingResult result=mock(BindingResult.class);
+        testDataUtils.createTask(testDataUtils.createTestUser("testEmail@abv.bg"));
+        BindingResult result = mock(BindingResult.class);
 
         Mockito.when(result.hasErrors()).thenReturn(true);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/tasks/save")
-                        .param("description","")
-                        .param("dueDate","2023-01-23")
+                        .param("description", "")
+                        .param("dueDate", "2023-01-23")
                         .with(csrf()))
                 .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
                 .andExpect(flash().attributeExists("taskDto"))
@@ -74,12 +76,12 @@ public class TasksControllerIT {
     }
 
     @Test
-    @WithMockUser(username = "testEmail@abv.bg",roles = "USER")
+    @WithMockUser(username = "testEmail@abv.bg", roles = "USER")
     @Transactional
     void testMakingDoneTodoWorksCorrectly() throws Exception {
-        TaskEntity task=testDataUtils.createTask(testDataUtils.createTestUser("testEmail@abv.bg"));
+        TaskEntity task = testDataUtils.createTask(testDataUtils.createTestUser("testEmail@abv.bg"));
         mockMvc.perform(patch("/tasks/done/")
-                        .param("descr",task.getId().toString())
+                        .param("descr", task.getId().toString())
                         .with(csrf()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/tasks"));
@@ -87,12 +89,12 @@ public class TasksControllerIT {
     }
 
     @Test
-    @WithMockUser(username = "testEmail@abv.bg",roles = "USER")
+    @WithMockUser(username = "testEmail@abv.bg", roles = "USER")
     @Transactional
     void testDeletingTodoWorksCorrectly() throws Exception {
-        TaskEntity task=testDataUtils.createTask(testDataUtils.createTestUser("testEmail@abv.bg"));
+        TaskEntity task = testDataUtils.createTask(testDataUtils.createTestUser("testEmail@abv.bg"));
         mockMvc.perform(patch("/tasks/delete/")
-                        .param("descr",task.getId().toString())
+                        .param("descr", task.getId().toString())
                         .with(csrf()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/tasks"));
