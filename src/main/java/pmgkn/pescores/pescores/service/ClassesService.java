@@ -88,7 +88,8 @@ public class ClassesService {
     @Transactional
     public List<ClassViewDto> getAllClassesByUser(String name) {
 
-        List<ClassEntity> classesByUser = this.userService.getClassesByUser(name);
+        List<ClassEntity> classesByUser = this.userService.getClassesByUser(name);Я
+//        classesByUser.sort((c1, c2) -> c1.getClassName().compareTo(c2.getClassName()));
 
         classesByUser.sort((b1, b2) -> {
             if (b1.getClassNum() >= b2.getClassNum()) {
@@ -96,8 +97,6 @@ public class ClassesService {
             }
             return 0;
         });
-
-        classesByUser.sort((c1, c2) -> c1.getClassName().compareTo(c2.getClassName()));
 
         return classesByUser.stream().map(c -> this.modelMapper.map(c, ClassViewDto.class)).collect(Collectors.toList());
     }
