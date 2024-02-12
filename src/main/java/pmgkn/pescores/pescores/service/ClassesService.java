@@ -88,7 +88,7 @@ public class ClassesService {
     @Transactional
     public List<ClassViewDto> getAllClassesByUser(String name) {
 
-        List<ClassEntity> classesByUser = this.userService.getClassesByUser(name);Я
+        List<ClassEntity> classesByUser = this.userService.getClassesByUser(name);
 //        classesByUser.sort((c1, c2) -> c1.getClassName().compareTo(c2.getClassName()));
 
         classesByUser.sort((b1, b2) -> {
