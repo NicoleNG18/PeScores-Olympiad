@@ -7,8 +7,6 @@ spring:
       ddl-auto: update
     defer-datasource-initialization: true
     open-in-view: false
-pescores:
-    rememberMeKey: ${KEY_REMEMBER_ME}
 
 
 

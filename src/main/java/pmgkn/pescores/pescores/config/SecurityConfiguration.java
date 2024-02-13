@@ -8,6 +8,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.context.DelegatingSecurityContextRepository;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -53,17 +57,33 @@ public class SecurityConfiguration {
                         }
                 ).logout(
                         logout -> {
-                            logout
-                                    // the URL where we should POST something in order to perform the logout
-                                    .logoutUrl("/users/logout")
-                                    // where to go when logged out?
-                                    .logoutSuccessUrl("/")
-                                    // invalidate the HTTP session
-                                    .invalidateHttpSession(true);
+
+                            try {
+                                logout
+                                        // the URL where we should POST something in order to perform the logout
+                                        .logoutUrl("/users/logout")
+                                        // where to go when logged out?
+                                        .logoutSuccessUrl("/")
+                                        // invalidate the HTTP session
+                                        .invalidateHttpSession(true)
+                                        .and().
+                                        securityContext().
+                                        securityContextRepository(securityContextRepository());
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                 )
                 .build();
 
+    }
+
+    @Bean
+    public SecurityContextRepository securityContextRepository() {
+        return new DelegatingSecurityContextRepository(
+                new RequestAttributeSecurityContextRepository(),
+                new HttpSessionSecurityContextRepository()
+        );
     }
 
 }
