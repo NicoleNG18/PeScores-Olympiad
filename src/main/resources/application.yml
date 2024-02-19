@@ -1,32 +1,34 @@
 logging:
-    level:
-        org:
-            hibernate:
-                SQL: DEBUG
-                orm:
-                    jdbc:
-                        bind: TRACE
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        orm:
+          jdbc:
+            bind: TRACE
 server:
-    port: 8080
+  port: 8080
 spring:
-    datasource:
-        driverClassName: com.mysql.cj.jdbc.Driver
-        password: ${DB_PASSWORD}
-        url: jdbc:mysql://scores-pe-db-1.mysql.database.azure.com:3306/pe_scores?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
-        username: ${DB_USERNAME}
-    jpa:
-        database-platform: org.hibernate.dialect.MySQLDialect
-        defer-datasource-initialization: true
-        hibernate:
-            ddl-auto: update
-        properties:
-            hibernate:
-                format_sql: true
-    mvc:
-        hidden-method:
-            filter:
-                enabled: true
-    sql:
-        init:
-            mode: always
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    password: ${DB_PASSWORD}
+    url: jdbc:mysql://scores-pe-db-18.mysql.database.azure.com:3306/pe_scores?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+#    url: jdbc:mysql://localhost:3306/pe_scores?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: ${DB_USERNAME}
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+  mvc:
+    hidden-method:
+      filter:
+        enabled: true
+  sql:
+    init:
+      mode: always
 
+    hostName: https://pescores.azurewebsites.net/
