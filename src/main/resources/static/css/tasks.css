@@ -55,8 +55,10 @@
 }
 
 .add-todo input{
-    color: #5d54c3;
+    /*color: #5d54c3;*/
+    color:black;
 }
+
 
 .to-do-list label{
     color: #5d54c3;

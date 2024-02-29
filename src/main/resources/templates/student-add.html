@@ -68,7 +68,7 @@
              th:each="err :${#fields.errors('studentName')}"
              th:text="${err}"></div>
 
-        <label for="studentNumber" class="label">Student number</label>
+        <label for="studentNumber" class="label">Number in class</label>
         <input type="number"
                name="studentNumber"
                th:errorclass="is-invalid"

@@ -3,6 +3,7 @@ package pmgkn.pescores.pescores.domain.dto.binding;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import pmgkn.pescores.pescores.validation.common.ValidClassName;
 
 import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMessages.CLASS_NAME_REQUIRED;
 import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMessages.CLASS_NUM_REQUIRED;
@@ -10,6 +11,7 @@ import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMes
 public class ClassAddBindingDto {
 
     @NotEmpty(message = CLASS_NAME_REQUIRED)
+    @ValidClassName
     private String className;
 
     @Positive

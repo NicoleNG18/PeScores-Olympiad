@@ -4,6 +4,7 @@ import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
+import pmgkn.pescores.pescores.validation.common.ValidTaskName;
 
 import java.time.LocalDate;
 
@@ -13,6 +14,7 @@ import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMes
 public class TaskAddBindingDto {
 
     @NotEmpty(message = DESCRIPTION_REQUIRED)
+    @ValidTaskName
     private String description;
 
     @DateTimeFormat(pattern = DATE_PATTERN)

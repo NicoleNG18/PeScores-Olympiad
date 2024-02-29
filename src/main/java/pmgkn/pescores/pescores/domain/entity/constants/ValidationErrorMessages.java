@@ -12,6 +12,8 @@ public enum ValidationErrorMessages {
     public static final String INVALID_PERSON_NAME = "Between 2 and 15 letters.";
     public static final String INVALID_STUDENT_NAME = "Between 2 and 30 letters.";
     public static final String INVALID_EMAIL = "Email should be valid";
+    public static final String INVALID_TASK = "Should be up to 35 symbols";
+    public static final String INVALID_CASS_NAME = "Class name should have grade number";
     public static final String INVALID_SCHOOL_NAME = "At least 15 symbols.";
     public static final String FIELDS_MATCH = "Fields should match";
     public static final String UNIQUE_EMAIL = "Email should be unique.";
