@@ -1,11 +1,11 @@
-.main-section-norm{
+.main-section-norm {
     background-color: #5d54c3;
     justify-content: center;
     align-items: center;
     padding: 4em 6em;
 }
 
-h1{
+h1 {
     color: #d8d7fe;
     margin: 0 auto;
 }
@@ -16,7 +16,7 @@ table, th, td {
     font-size: 16px;
 }
 
-.table table{
+.table table {
     margin: 0 auto;
 }
 
@@ -27,26 +27,26 @@ table, th, td {
     text-align: center;
 }
 
-.table tbody td{
+.table tbody td {
     padding: 0.5em;
     color: #d8d7fe;
     text-align: center;
     font-weight: 500;
 }
 
-.row{
+.row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.row11{
+.row11 {
     display: flex;
     flex-direction: row;
     gap: 4em;
 }
 
-.tables{
+.tables {
     display: flex;
     flex-direction: column;
     gap: 3em;

@@ -25,6 +25,7 @@ public class UserService {
     private final UserRoleService userRoleService;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
     @Autowired
     public UserService(UserRoleService userRoleService,
                        ModelMapper modelMapper,

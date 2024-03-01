@@ -1,4 +1,4 @@
-.main-section{
+.main-section {
     background-color: #5d54c3;
     display: flex;
     justify-content: center;
@@ -7,19 +7,19 @@
     padding: 1em;
 }
 
-.form{
+.form {
     height: 550px;
     width: 400px;
-    background-color: rgba(255,255,255,0.13);
+    background-color: rgba(255, 255, 255, 0.13);
     border-radius: 10px;
     backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 50px 35px;
     justify-content: center;
 }
 
-#studentClass{
+#studentClass {
     background-color: #d8d7fe;
     color: #5d54c3;
     font-size: 16px;
@@ -33,38 +33,38 @@ option {
     background-color: #d8d7fe;
     font-size: 16px;
     font-weight: 500;
-    color:#5d54c3;
+    color: #5d54c3;
 }
 
-.form *{
-    font-family: 'Poppins',sans-serif;
+.form * {
+    font-family: 'Poppins', sans-serif;
     color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
 }
 
-.form h3{
+.form h3 {
     font-size: 30px;
     font-weight: 500;
     line-height: 35px;
     text-align: center;
 }
 
-.label{
+.label {
     display: block;
     margin-top: 20px;
     font-size: 16px;
     font-weight: 500;
 }
 
-.input{
+.input {
     display: block;
     height: 50px;
     width: 95%;
     background-color: #d8d7fe;
     /*color:#5d54c3;*/
-    color:black;
+    color: black;
     border-radius: 3px;
     padding: 0 10px;
     margin-top: 8px;
@@ -73,22 +73,22 @@ option {
     margin-bottom: 10px;
 }
 
-.errors-student{
-    width:250px;
+.errors-student {
+    width: 250px;
     border-radius: 4px;
     text-align: center;
-    font-weight:500;
+    font-weight: 500;
     font-size: 13px;
     background-color: #d8d7fe;
-    color:red;
+    color: red;
     margin: 0 auto;
 }
 
-::placeholder{
+::placeholder {
     color: #362bb7;
 }
 
-.submit-btn{
+.submit-btn {
     margin-top: 1.5em;
     width: 95%;
     background-color: #d8d7fe;
@@ -100,7 +100,7 @@ option {
     cursor: pointer;
 }
 
-.submit-btn:hover{
+.submit-btn:hover {
     background-color: #5d54c3;
     color: #d8d7fe;
 }

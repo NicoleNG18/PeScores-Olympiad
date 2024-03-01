@@ -9,6 +9,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMessages.INVALID_CASS_NAME;
+
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @Constraint(validatedBy = ValidClassNameValidator.class)

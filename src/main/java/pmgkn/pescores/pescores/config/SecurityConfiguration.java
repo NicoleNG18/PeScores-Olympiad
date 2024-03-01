@@ -49,7 +49,7 @@ public class SecurityConfiguration {
                                     // redirect here when we access something which is not allowed.
                                     // also this is the page where we perform login.
                                     .loginPage("/users/login")
-                                    // The names of the input fields (in our case in auth-login.html)
+                                    // The names of the input fields (in our case in login.html)
                                     .usernameParameter("email")
                                     .passwordParameter("password")
                                     .defaultSuccessUrl("/tasks")

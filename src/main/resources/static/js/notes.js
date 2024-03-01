@@ -1,13 +1,13 @@
 function displayTodo(e) {
 
 
-    document.querySelector("#taskDescr").value=document.querySelector("#todo").value;
-    document.querySelector("#dueDateField").value=document.querySelector("#dueDate").value;
+    document.querySelector("#taskDescr").value = document.querySelector("#todo").value;
+    document.querySelector("#dueDateField").value = document.querySelector("#dueDate").value;
 
     let tableBody = document.querySelector(".table-body");
     let tableRow = document.createElement("tr");
     let description = document.querySelector("#todo").value;
-    let date=document.querySelector("#dueDate").value;
+    let date = document.querySelector("#dueDate").value;
 
     tableRow.innerHTML = `
                    <td>${description}</td>
@@ -20,7 +20,7 @@ function displayTodo(e) {
 
     tableBody.appendChild(tableRow);
 
-    document.querySelector("#todo").value="";
-    document.querySelector("#dueDate").value="";
+    document.querySelector("#todo").value = "";
+    document.querySelector("#dueDate").value = "";
 
 }

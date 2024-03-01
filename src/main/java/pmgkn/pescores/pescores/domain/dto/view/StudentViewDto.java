@@ -11,23 +11,16 @@ import java.util.UUID;
 public class StudentViewDto {
 
     private UUID id;
-
     private String studentName;
-
     private Integer studentNumber;
-
     private BigDecimal averageGrade;
-
     private UserEntity teacher;
-
     private ClassEntity studentClass;
-
     private BigDecimal thirtyMeters;
     private BigDecimal twoHundredMeters;
     private BigDecimal tTest;
     private BigDecimal denseBall;
     private BigDecimal jump;
-
     private GenderEnum gender;
 
     public StudentViewDto() {

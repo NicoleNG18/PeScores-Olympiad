@@ -5,7 +5,6 @@
 
 <head>
     <title>Two hundred meters</title>
-<!--    <th:block th:insert="~{/fragments/head}"></th:block>-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +17,8 @@
 
 <div>
     <header xmlns:sec="http://www.w3.org/1999/xhtml">
-        <a sec:authorize="!isAuthenticated()" th:href="@{/}"><img src="/images/pe%20scores-final.png" alt="pe scores logo"/></a>
+        <a sec:authorize="!isAuthenticated()" th:href="@{/}"><img src="/images/pe%20scores-final.png"
+                                                                  alt="pe scores logo"/></a>
         <a sec:authorize="isAuthenticated()" th:href="@{/classes}"><img src="/images/pe%20scores-final.png"
                                                                         alt="pe scores logo"/></a>
 
@@ -46,7 +46,6 @@
             </ul>
         </nav>
     </header>
-<!--    <th:block th:insert="~{/fragments/header}"></th:block>-->
 </div>
 
 <section class="main-section-norm">
@@ -864,8 +863,6 @@
 <footer>
     <p>&copy; 2024 Copyright: PE Scores</p>
 </footer>
-
-<!--<th:block th:insert="~{/fragments/footer}"></th:block>-->
 
 </body>
 

@@ -5,8 +5,6 @@
 
 <head>
     <title th:text="${currentClass.className}">Class page</title>
-<!--    <th:block th:insert="~{/fragments/head}"></th:block>-->
-
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,10 +16,10 @@
 <body>
 
 <div>
-<!--    <th:block th:insert="~{/fragments/header}"></th:block>-->
 
     <header xmlns:sec="http://www.w3.org/1999/xhtml">
-        <a sec:authorize="!isAuthenticated()" th:href="@{/}"><img src="/images/pe%20scores-final.png" alt="pe scores logo"/></a>
+        <a sec:authorize="!isAuthenticated()" th:href="@{/}"><img src="/images/pe%20scores-final.png"
+                                                                  alt="pe scores logo"/></a>
         <a sec:authorize="isAuthenticated()" th:href="@{/classes}"><img src="/images/pe%20scores-final.png"
                                                                         alt="pe scores logo"/></a>
 
@@ -166,8 +164,6 @@
     </div>
 
 </section>
-
-<!--<th:block th:insert="~{/fragments/footer}"></th:block>-->
 
 <footer>
     <p>&copy; 2024 Copyright: PE Scores</p>

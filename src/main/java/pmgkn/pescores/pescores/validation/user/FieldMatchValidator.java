@@ -19,7 +19,8 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
     }
 
     @Override
-    public boolean isValid(Object value, ConstraintValidatorContext context) {
+    public boolean isValid(Object value,
+                           ConstraintValidatorContext context) {
 
         BeanWrapper beanWrapper = PropertyAccessorFactory.
                 forBeanPropertyAccess(value);
