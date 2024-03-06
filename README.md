@@ -10,7 +10,7 @@ Link (https://pescores.icytree-8f6dea9e.northeurope.azurecontainerapps.io)
 Functionalities:
 Firstly, users have to register and log in.
 
-After that they have to add your classes as well with students in them
+After that they have to add their classes as well with students in them
 
 And then they only have to enter students' results and see the average grade.
 
