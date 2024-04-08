@@ -1,7 +1,9 @@
 package pmgkn.pescores.pescores.service;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.domain.entity.UserRoleEntity;
 import pmgkn.pescores.pescores.domain.entity.norms.*;
 import pmgkn.pescores.pescores.domain.enums.UserRoleEnum;
@@ -23,29 +25,50 @@ public class DbInitService {
     private final TTestRepository tTestRepository;
     private final ThirtyMetersRepository thirtyMetersRepository;
     private final TwoHundredMetersRepository twoHundredMetersRepository;
+    private final UserRepository userRepository;
+
+    private final PasswordEncoder passwordEncoder;
 
     public DbInitService(UserRoleRepository userRoleRepository,
                          DenseBallRepository denseBallRepository,
                          JumpRepository jumpRepository,
                          TTestRepository tTestRepository,
                          ThirtyMetersRepository thirtyMetersRepository,
-                         TwoHundredMetersRepository twoHundredMetersRepository) {
+                         TwoHundredMetersRepository twoHundredMetersRepository,
+                         UserRepository userRepository,
+                         PasswordEncoder passwordEncoder) {
         this.userRoleRepository = userRoleRepository;
         this.denseBallRepository = denseBallRepository;
         this.jumpRepository = jumpRepository;
         this.tTestRepository = tTestRepository;
         this.thirtyMetersRepository = thirtyMetersRepository;
         this.twoHundredMetersRepository = twoHundredMetersRepository;
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostConstruct
     public void init() {
+        initSuperAdmin();
         initRoles();
         initDenseBall();
         initJump();
         initTTest();
         initTwoHundredMeters();
         initThirtyMeters();
+    }
+
+    public void initSuperAdmin() {
+        if (this.userRepository.count() == 0) {
+            UserEntity user = new UserEntity()
+                    .setFirstName("Nikol")
+                    .setLastName("Georgieva")
+                    .setEmail("nikol.superadmin@gmail.com")
+                    .setPassword(passwordEncoder.encode("nikol@superadmin"))
+                    .setSchool("PMG prof emanuil ivanov")
+                    .setRoles(userRoleRepository.findAll());
+            this.userRepository.saveAndFlush(user);
+        }
     }
 
     public void initRoles() {
@@ -59,6 +82,7 @@ public class DbInitService {
 
         roles.add(new UserRoleEntity().setRole(UserRoleEnum.USER));
         roles.add(new UserRoleEntity().setRole(UserRoleEnum.ADMIN));
+        roles.add(new UserRoleEntity().setRole(UserRoleEnum.SUPERADMIN));
 
         return roles;
     }
