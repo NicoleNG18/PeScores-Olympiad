@@ -25,11 +25,11 @@ public class SchoolEntity extends BaseEntity {
     private List<StudentEntity> students;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<UserEntity> users;
+    private List<UserEntity> teachers;
 
     public SchoolEntity() {
         this.classes = new ArrayList<>();
-        this.users = new ArrayList<>();
+        this.teachers = new ArrayList<>();
         this.students = new ArrayList<>();
     }
 
@@ -78,12 +78,12 @@ public class SchoolEntity extends BaseEntity {
         return this;
     }
 
-    public List<UserEntity> getUsers() {
-        return users;
+    public List<UserEntity> getTeachers() {
+        return teachers;
     }
 
-    public SchoolEntity setUsers(List<UserEntity> users) {
-        this.users = users;
+    public SchoolEntity setTeachers(List<UserEntity> teachers) {
+        this.teachers = teachers;
         return this;
     }
 }

@@ -1,10 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>All schools</title>
+  <title>All schools</title>
+  <!--    <th:block th:insert="~{/fragments/head}"></th:block>-->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+  <link rel="stylesheet" th:href="@{/css/fragments.css}">
+
+  <link rel="stylesheet" th:href="@{/css/all-schools.css}">
 </head>
 <body>
-Hello schools
+
+<div>
+  <!--    <th:block th:insert="~{/fragments/header}"></th:block>-->
+
+  <header xmlns:sec="http://www.w3.org/1999/xhtml">
+    <a sec:authorize="!isAuthenticated()" th:href="@{/}"><img src="/images/pe%20scores-final.png"
+                                                              alt="pe scores logo"/></a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/classes}"><img src="/images/pe%20scores-final.png"
+                                                                    alt="pe scores logo"/></a>
+
+    <nav class="navbar">
+      <ul class="navbar-buttons" sec:authorize="!isAuthenticated()">
+        <a th:href="@{/users/login}">Log in</a>
+        <a th:href="@{/users/register}">Sign up</a>
+      </ul>
+
+      <ul class="navbar-buttons" sec:authorize="isAuthenticated()">
+        <a th:href="@{/denseBall}">Dense ball</a>
+        <a th:href="@{/jump}">Jump</a>
+        <a th:href="@{/tTest}">T-test</a>
+        <a th:href="@{/thirty}">30 meters</a>
+        <a th:href="@{/twoHundred}">200 meters</a>
+        <a th:href="@{/classes}">Classes</a>
+        <a th:href="@{/tasks}">Tasks</a>
+        <a th:href="@{/classes/add}">Add class</a>
+        <a th:href="@{/students/add}">Add student</a>
+        <a>
+          <form class="logout" th:method="post" th:action="@{/users/logout}">
+            <input class="dropdown-item btn-link nav-link" type="submit" value="Logout">
+          </form>
+        </a>
+      </ul>
+    </nav>
+  </header>
+</div>
+
+<section class="main-section-schools">
+
+  <div class="all-schools">
+    <h2>All schools</h2>
+
+    <ul th:each="school: ${schools}">
+      <li><a class="className" th:text="*{school.schoolName}"
+             th:href="@{/schools/{schoolName}(schoolName=${school.id})}">class</a>
+      </li>
+<!--      <div class="buttons">-->
+<!--        <li>-->
+<!--          <a th:href="@{/classes/edit/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"-->
+<!--             th:object="${class}" class="edit">Edit </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          <form id="deleteForm"-->
+<!--                th:method="post"-->
+<!--                th:action="@{/classes/delete/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"-->
+<!--                th:object="${class}">-->
+<!--            <button class="delete" onclick="document.getElementById('deleteForm').submit();">Delete</button>-->
+<!--          </form>-->
+<!--        </li>-->
+<!--      </div>-->
+    </ul>
+
+  </div>
+
+</section>
+
+<!--<th:block th:insert="~{/fragments/footer}"></th:block>-->
+
+<footer>
+  <p>&copy; 2024 Copyright: PE Scores</p>
+</footer>
+
 </body>
+
 </html>

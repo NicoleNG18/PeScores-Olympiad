@@ -36,12 +36,13 @@ public class SecurityConfiguration {
                                 // Allow anyone to see the home page, the registration page and the login form
                                 .requestMatchers("/users/login"
                                         , "/users/register",
-                                        "/users/login-error","schools/**").permitAll()
+                                        "/users/login-error").permitAll()
                                 .requestMatchers("/tasks",
                                         "/classes/**", "/classes/edit/**", "/classes/delete/**"
                                         , "/students/**",
                                         "/denseBall", "/jump", "/thirty", "/twoHundred", "/tTest").authenticated()
                                 .requestMatchers("/").anonymous()
+                                .requestMatchers("/schools/**").hasRole(UserRoleEnum.SUPERADMIN.name())
                                 // all other requests are authenticated.
                                 .anyRequest().authenticated()
                 ).formLogin(

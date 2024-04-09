@@ -49,8 +49,8 @@ public class DbInitService {
 
     @PostConstruct
     public void init() {
-        initSuperAdmin();
         initRoles();
+        initSuperAdmin();
         initDenseBall();
         initJump();
         initTTest();
