@@ -17,13 +17,17 @@
 .main-section h3 {
     font-size: 40px;
     color: #5d54c3;
-    margin-left: 8em;
+    margin-left: 6em;
     margin-bottom: 1em;
 }
 
 .main-section p {
     font-size: large;
-    font-weight: 500;
+    font-weight: 700;
+    background: linear-gradient(to right, white 51.16%, #5d54c3 48.84%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5em;
 }
 
 .main-section a {

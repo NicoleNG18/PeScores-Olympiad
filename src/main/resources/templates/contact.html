@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-  <title>All schools</title>
-  <!--    <th:block th:insert="~{/fragments/head}"></th:block>-->
+  <title>Contact</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
   <link rel="stylesheet" th:href="@{/css/fragments.css}">
 
-  <link rel="stylesheet" th:href="@{/css/all-schools.css}">
+  <link rel="stylesheet" th:href="@{/css/contact.css}">
 </head>
 <body>
 
 <div>
-  <!--    <th:block th:insert="~{/fragments/header}"></th:block>-->
-
   <header xmlns:sec="http://www.w3.org/1999/xhtml">
     <a sec:authorize="!isAuthenticated()" th:href="@{/}"><img src="/images/pe%20scores-final.png"
                                                               alt="pe scores logo"/></a>
@@ -50,36 +48,17 @@
   </header>
 </div>
 
-<section class="main-section-schools">
+<div sec:authorize="!isAuthenticated()" class="main-section-wrap">
+  <section class="main-section">
+    <div class="main-text">
+      <h3>Welcome to PE Scores.</h3>
+      <p>If you want your school to become part of us, please send us an email to nikol.superadmin@gmail.com with the name of the school,
+        the city and the future username of your admin. Then we will add the school to the platform and the admin
+       will be able to make registration.</p>
 
-  <div class="all-schools">
-    <h2>All schools</h2>
-
-    <ul th:each="school: ${schools}">
-      <li><a class="className" th:text="*{school.schoolName}"
-             th:href="@{/schools/{id}(id=${school.id})}">class</a>
-      </li>
-<!--      <div class="buttons">-->
-<!--        <li>-->
-<!--          <a th:href="@{/classes/edit/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"-->
-<!--             th:object="${class}" class="edit">Edit </a>-->
-<!--        </li>-->
-<!--        <li>-->
-<!--          <form id="deleteForm"-->
-<!--                th:method="post"-->
-<!--                th:action="@{/classes/delete/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"-->
-<!--                th:object="${class}">-->
-<!--            <button class="delete" onclick="document.getElementById('deleteForm').submit();">Delete</button>-->
-<!--          </form>-->
-<!--        </li>-->
-<!--      </div>-->
-    </ul>
-
-  </div>
-
-</section>
-
-<!--<th:block th:insert="~{/fragments/footer}"></th:block>-->
+    </div>
+  </section>
+</div>
 
 <footer>
   <p>&copy; 2024 Copyright: PE Scores</p>
@@ -87,4 +66,3 @@
 
 </body>
 
-</html>

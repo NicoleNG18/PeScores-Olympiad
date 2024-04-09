@@ -24,6 +24,7 @@
 
         <nav class="navbar">
             <ul class="navbar-buttons" sec:authorize="!isAuthenticated()">
+                <a th:href="@{/contact}">How to add your school?</a>
                 <a th:href="@{/users/login}">Log in</a>
                 <a th:href="@{/users/register}">Sign up</a>
             </ul>
