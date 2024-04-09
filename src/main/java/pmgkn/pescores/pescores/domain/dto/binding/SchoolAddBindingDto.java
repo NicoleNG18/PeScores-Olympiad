@@ -9,21 +9,15 @@ public class SchoolAddBindingDto {
 
     @NotEmpty(message = SCHOOL_NAME_REQUIRED)
     @UniqueSchoolName
-    private String name;
+    private String schoolName;
 
     @NotEmpty(message = CITY_NAME_REQUIRED)
     private String city;
 
+//    @NotEmpty(message = ADMIN_NAME_REQUIRED)
+//    private String schoolAdmin;
+
     public SchoolAddBindingDto() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public SchoolAddBindingDto setName(String name) {
-        this.name = name;
-        return this;
     }
 
     public String getCity() {
@@ -34,4 +28,22 @@ public class SchoolAddBindingDto {
         this.city = city;
         return this;
     }
+
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public SchoolAddBindingDto setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
+        return this;
+    }
+
+//    public String getSchoolAdmin() {
+//        return schoolAdmin;
+//    }
+//
+//    public SchoolAddBindingDto setSchoolAdmin(String schoolAdmin) {
+//        this.schoolAdmin = schoolAdmin;
+//        return this;
+//    }
 }

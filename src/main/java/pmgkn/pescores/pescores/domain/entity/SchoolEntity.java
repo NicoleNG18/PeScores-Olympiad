@@ -10,10 +10,13 @@ import java.util.List;
 public class SchoolEntity extends BaseEntity {
 
     @Column(nullable = false, unique = true)
-    private String name;
+    private String schoolName;
 
     @Column(nullable = false)
     private String city;
+
+//    @Column(nullable = false)
+//    private String schoolAdmin;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<ClassEntity> classes;
@@ -30,12 +33,21 @@ public class SchoolEntity extends BaseEntity {
         this.students = new ArrayList<>();
     }
 
+//    public String getSchoolAdmin() {
+//        return schoolAdmin;
+//    }
+//
+//    public SchoolEntity setSchoolAdmin(String schoolAdmin) {
+//        this.schoolAdmin = schoolAdmin;
+//        return this;
+//    }
+
     public String getName() {
-        return name;
+        return schoolName;
     }
 
-    public SchoolEntity setName(String name) {
-        this.name = name;
+    public SchoolEntity setName(String schoolName) {
+        this.schoolName = schoolName;
         return this;
     }
 

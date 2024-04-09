@@ -12,6 +12,7 @@ import org.springframework.security.web.context.DelegatingSecurityContextReposit
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextRepository;
+import pmgkn.pescores.pescores.domain.enums.UserRoleEnum;
 
 @Configuration
 @EnableWebSecurity
@@ -35,7 +36,7 @@ public class SecurityConfiguration {
                                 // Allow anyone to see the home page, the registration page and the login form
                                 .requestMatchers("/users/login"
                                         , "/users/register",
-                                        "/users/login-error").permitAll()
+                                        "/users/login-error","schools/**").permitAll()
                                 .requestMatchers("/tasks",
                                         "/classes/**", "/classes/edit/**", "/classes/delete/**"
                                         , "/students/**",

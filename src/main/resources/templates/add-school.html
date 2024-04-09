@@ -1,0 +1,101 @@
+<head>
+    <title>Add school</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/css/fragments.css}">
+
+    <link rel="stylesheet" th:href="@{/css/add-school.css}">
+</head>
+
+<div>
+    <header xmlns:sec="http://www.w3.org/1999/xhtml">
+        <a sec:authorize="!isAuthenticated()" th:href="@{/}"><img src="/images/pe%20scores-final.png"
+                                                                  alt="pe scores logo"/></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/classes}"><img src="/images/pe%20scores-final.png"
+                                                                        alt="pe scores logo"/></a>
+
+        <nav class="navbar">
+            <ul class="navbar-buttons" sec:authorize="!isAuthenticated()">
+                <a th:href="@{/users/login}">Log in</a>
+                <a th:href="@{/users/register}">Sign up</a>
+            </ul>
+
+            <ul class="navbar-buttons" sec:authorize="isAuthenticated()">
+                <a th:href="@{/denseBall}">Dense ball</a>
+                <a th:href="@{/jump}">Jump</a>
+                <a th:href="@{/tTest}">T-test</a>
+                <a th:href="@{/thirty}">30 meters</a>
+                <a th:href="@{/twoHundred}">200 meters</a>
+                <a th:href="@{/classes}">Classes</a>
+                <a th:href="@{/tasks}">Tasks</a>
+                <a th:href="@{/classes/add}">Add class</a>
+                <a th:href="@{/students/add}">Add student</a>
+                <a>
+                    <form class="logout" th:method="post" th:action="@{/users/logout}">
+                        <input class="dropdown-item btn-link nav-link" type="submit" value="Logout">
+                    </form>
+                </a>
+            </ul>
+        </nav>
+    </header>
+</div>
+
+
+<body>
+
+<section class="main-section">
+
+    <form class="form"
+          th:method="POST"
+          th:action="@{/schools/add}"
+          th:object="${schoolAddDto}">
+
+        <h3>Add school</h3>
+
+        <label for="schoolName" class="label">Name</label>
+        <input type="text"
+               name="schoolName"
+               th:errorclass="is-invalid"
+               th:field="*{schoolName}"
+               placeholder="PMG 'Prof. Emanuil Ivanov'"
+               id="schoolName"
+               class="input">
+        <div class="invalid-feedback errors-class alert-danger"
+             th:each="err :${#fields.errors('schoolName')}"
+             th:text="${err}"></div>
+
+        <label for="city" class="label">City</label>
+        <input type="text"
+               name="city"
+               th:errorclass="is-invalid"
+               th:field="*{city}"
+               placeholder="Kyustendil"
+               id="city"
+               class="input">
+        <div class="invalid-feedback errors-class alert-danger"
+             th:each="err :${#fields.errors('city')}"
+             th:text="${err}"></div>
+
+<!--        <label for="schoolAdmin" class="label">School admin</label>-->
+<!--        <input type="text"-->
+<!--               name="schoolAdmin"-->
+<!--               th:errorclass="is-invalid"-->
+<!--               th:field="*{schoolAdmin}"-->
+<!--               placeholder="ivan.andonov"-->
+<!--               id="schoolAdmin"-->
+<!--               class="input">-->
+<!--        <div class="invalid-feedback errors-class alert-danger"-->
+<!--             th:each="err :${#fields.errors('schoolAdmin')}"-->
+<!--             th:text="${err}"></div>-->
+
+        <button class="submit-btn">Submit</button>
+    </form>
+
+</section>
+
+<footer>
+    <p>&copy; 2024 Copyright: PE Scores</p>
+</footer>
+</body>

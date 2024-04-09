@@ -17,7 +17,7 @@ public class UniqueSchoolNameValidator implements ConstraintValidator<UniqueScho
                            ConstraintValidatorContext context) {
 
         return this.schoolRepository
-                .findByName(schoolName)
+                .findBySchoolName(schoolName)
                 .isEmpty();
     }
 }
