@@ -11,6 +11,7 @@ import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.repositories.SchoolRepository;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,9 +44,9 @@ public class SchoolService {
     }
 
     public String addTeacher(UserEntity userToSave,
-                           String school) {
+                             String school) {
 
-        SchoolEntity schoolEntity=this.getSchoolByName(school);
+        SchoolEntity schoolEntity = this.getSchoolByName(school);
         schoolEntity.addTeacher(userToSave);
 
         this.schoolRepository.saveAndFlush(schoolEntity);
@@ -57,4 +58,7 @@ public class SchoolService {
         return this.schoolRepository.findBySchoolName(school).orElse(null);
     }
 
+    public SchoolEntity getSchoolById(UUID id) {
+       return this.schoolRepository.getReferenceById(id);
+    }
 }

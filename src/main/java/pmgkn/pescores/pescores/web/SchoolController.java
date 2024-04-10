@@ -19,7 +19,7 @@ public class SchoolController {
     private final UserService userService;
 
     public SchoolController(SchoolService schoolService,
-                             UserService userService) {
+                            UserService userService) {
         this.schoolService = schoolService;
         this.userService = userService;
     }
@@ -36,8 +36,8 @@ public class SchoolController {
 
     @PostMapping("/add")
     public String postAddSchool(@Valid SchoolAddBindingDto schoolAddDto,
-                               BindingResult bindingResult,
-                               RedirectAttributes redirectAttributes) {
+                                BindingResult bindingResult,
+                                RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("schoolAddDto", schoolAddDto);
@@ -55,19 +55,20 @@ public class SchoolController {
     @GetMapping("/all")
     public String getAllSchools(Model model) {
 
-        model.addAttribute("schools",this.schoolService.getAllSchools());
+        model.addAttribute("schools", this.schoolService.getAllSchools());
 
         return "all-schools";
     }
 
     @GetMapping("/{id}")
-    public String getSchool(@PathVariable("id") UUID id) {
+    public String getSchool(@PathVariable("id") UUID id,
+                            Model model) {
 
-
+        model.addAttribute("currentSchool", this.schoolService.getSchoolById(id));
+        model.addAttribute("teachers",this.schoolService.getSchoolById(id).getTeachers());
 
         return "school";
     }
-
 
 
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static pmgkn.pescores.pescores.domain.entity.constants.Messages.OWNER;
 import static pmgkn.pescores.pescores.domain.entity.constants.Messages.TEACHER;
@@ -122,6 +123,11 @@ public class UserEntity extends BaseEntity {
     public UserEntity setPassword(String password) {
         this.password = password;
         return this;
+    }
+
+    public boolean isSchoolAdmin() {
+        List<UserRoleEntity> roles = this.getRoles().stream().filter(r -> r.getRole().name().equals("ADMIN")).toList();
+        return roles.size() == 1;
     }
 }
 

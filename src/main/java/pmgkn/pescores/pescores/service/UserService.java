@@ -22,7 +22,6 @@ public class UserService {
     private final UserRoleService userRoleService;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
     private final SchoolService schoolService;
 
     @Autowired
@@ -90,4 +89,23 @@ public class UserService {
         return this.userRepository.findByEmail(name)
                 .getClasses();
     }
+
+    public void makeAdmin(UUID id) {
+        UserEntity user = this.userRepository.getReferenceById(id);
+
+        user.getRoles().add(this.userRoleService.getRole(UserRoleEnum.ADMIN));
+
+        this.userRepository.saveAndFlush(user);
+    }
+
+    public void removeAdmin(UUID id) {
+        UserEntity user = this.userRepository.getReferenceById(id);
+
+        final UserRoleEntity userRole = this.userRoleService.getRole(UserRoleEnum.USER);
+
+        user.setRoles(new ArrayList<>(Collections.singletonList(userRole)));
+
+        this.userRepository.saveAndFlush(user);
+    }
+
 }

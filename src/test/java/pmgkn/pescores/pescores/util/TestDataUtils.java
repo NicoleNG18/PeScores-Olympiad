@@ -40,23 +40,23 @@ public class TestDataUtils {
         }
     }
 
-    public UserEntity createTestUser(String email) {
-        initRoles();
-
-        UserEntity testUser = new UserEntity()
-                .setFirstName("test")
-                .setLastName("testov")
-                .setEmail(email)
-                .setSchool("Pmg Prof. Emanuil Ivanov")
-                .setPassword("topsecret12@")
-                .setTasks(new ArrayList<>())
-                .setClasses(new ArrayList<>())
-                .setRoles(userRoleRepository.findAll().stream()
-                        .filter(r -> r.getRole() == UserRoleEnum.USER)
-                        .toList());
-
-        return userRepository.saveAndFlush(testUser);
-    }
+//    public UserEntity createTestUser(String email) {
+//        initRoles();
+//
+//        UserEntity testUser = new UserEntity()
+//                .setFirstName("test")
+//                .setLastName("testov")
+//                .setEmail(email)
+//                .setSchool("Pmg Prof. Emanuil Ivanov")
+//                .setPassword("topsecret12@")
+//                .setTasks(new ArrayList<>())
+//                .setClasses(new ArrayList<>())
+//                .setRoles(userRoleRepository.findAll().stream()
+//                        .filter(r -> r.getRole() == UserRoleEnum.USER)
+//                        .toList());
+//
+//        return userRepository.saveAndFlush(testUser);
+//    }
 
     public ClassEntity createClass(UserEntity teacher) {
 

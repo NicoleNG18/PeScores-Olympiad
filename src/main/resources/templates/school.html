@@ -1,10 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <title th:text="${currentSchool.name}">School page</title>
+    <!--    <th:block th:insert="~{/fragments/head}"></th:block>-->
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/css/fragments.css}">
+
+    <link rel="stylesheet" th:href="@{/css/school.css}">
 </head>
 <body>
 
+<div>
+    <!--    <th:block th:insert="~{/fragments/header}"></th:block>-->
+
+    <header xmlns:sec="http://www.w3.org/1999/xhtml">
+        <a sec:authorize="!isAuthenticated()" th:href="@{/}"><img src="/images/pe%20scores-final.png"
+                                                                  alt="pe scores logo"/></a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/classes}"><img src="/images/pe%20scores-final.png"
+                                                                        alt="pe scores logo"/></a>
+
+        <nav class="navbar">
+            <ul class="navbar-buttons" sec:authorize="!isAuthenticated()">
+                <a th:href="@{/users/login}">Log in</a>
+                <a th:href="@{/users/register}">Sign up</a>
+            </ul>
+
+            <ul class="navbar-buttons" sec:authorize="isAuthenticated()">
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/denseBall}">Dense
+                    ball</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/jump}">Jump</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/tTest}">T-test</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/thirty}">30 meters</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/twoHundred}">200
+                    meters</a>
+                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/add}">Add school</a>
+                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/all}">Schools</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN','ROLE_USER')" th:href="@{/classes}">Classes</a>
+                <!--               TODO: SMTH LIKE OWN CLASSES OR WHAT-->
+                <!--                <a sec:authorize="hasAnyAuthority('ROLE_USER')" th:href="@{/classes}">Classes</a>-->
+                <a th:href="@{/tasks}">Tasks</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN','ROLE_USER')" th:href="@{/classes/add}">Add
+                    class</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN','ROLE_USER')" th:href="@{/students/add}">Add
+                    student</a>
+                <a>
+                    <form class="logout" th:method="post" th:action="@{/users/logout}">
+                        <input class="dropdown-item btn-link nav-link" type="submit" value="Logout">
+                    </form>
+                </a>
+            </ul>
+        </nav>
+    </header>
+</div>
+
+<section class="main-section-school">
+
+    <div class="school">
+        <h2 th:text="${currentSchool.name}">school name</h2>
+
+        <ul th:each="teacher: ${teachers}" class="row">
+            <li class="teacher" th:text="*{teacher.email}">teacher</li>
+            <li th:unless="${teacher.isSchoolAdmin()}" class="buttonRole">
+                <form th:method="PATCH"
+                      th:action="@{/users/roles/admin/add/{schoolId}/{id}(schoolId=${currentSchool.id},id=${teacher.id})}"
+                      th:object="${teacher}">
+                    <button>Make admin</button>
+                </form>
+            </li>
+            <li th:if="${teacher.isSchoolAdmin()}" class="buttonRole">
+                <form th:method="PATCH"
+                      th:action="@{/users/roles/admin/remove/{schoolId}/{id}(schoolId=${currentSchool.id}, id=${teacher.id})}"
+                      th:object="${teacher}">
+                    <button>Remove admin</button>
+                </form>
+            </li>
+        </ul>
+
+    </div>
+
+</section>
+
+<!--<th:block th:insert="~{/fragments/footer}"></th:block>-->
+
+<footer>
+    <p>&copy; 2024 Copyright: PE Scores</p>
+</footer>
+
 </body>
+
 </html>
