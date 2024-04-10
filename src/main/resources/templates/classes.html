@@ -38,12 +38,10 @@
                 <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/twoHundred}">200 meters</a>
                 <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/add}">Add school</a>
                 <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/all}">Schools</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN','ROLE_USER')" th:href="@{/classes}">Classes</a>
-                <!--               TODO: SMTH LIKE OWN CLASSES OR WHAT-->
-                <!--                <a sec:authorize="hasAnyAuthority('ROLE_USER')" th:href="@{/classes}">Classes</a>-->
+                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes}">Classes</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes/add}">Add class</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/students/add}">Add student</a>
                 <a th:href="@{/tasks}">Tasks</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN','ROLE_USER')" th:href="@{/classes/add}">Add class</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN','ROLE_USER')" th:href="@{/students/add}">Add student</a>
                 <a>
                     <form class="logout" th:method="post" th:action="@{/users/logout}">
                         <input class="dropdown-item btn-link nav-link" type="submit" value="Logout">
