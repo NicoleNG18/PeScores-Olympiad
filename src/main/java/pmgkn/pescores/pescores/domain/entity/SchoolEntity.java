@@ -78,6 +78,10 @@ public class SchoolEntity extends BaseEntity {
         return this;
     }
 
+    public void addTeacher(UserEntity teacher) {
+        this.teachers.add(teacher);
+    }
+
     public List<UserEntity> getTeachers() {
         return teachers;
     }

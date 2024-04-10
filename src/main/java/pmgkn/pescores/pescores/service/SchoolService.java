@@ -2,11 +2,12 @@ package pmgkn.pescores.pescores.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import pmgkn.pescores.pescores.domain.dto.binding.ClassAddBindingDto;
+import org.springframework.transaction.annotation.Transactional;
 import pmgkn.pescores.pescores.domain.dto.binding.SchoolAddBindingDto;
 import pmgkn.pescores.pescores.domain.dto.view.SchoolViewDto;
 import pmgkn.pescores.pescores.domain.entity.ClassEntity;
 import pmgkn.pescores.pescores.domain.entity.SchoolEntity;
+import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.repositories.SchoolRepository;
 
 import java.util.List;
@@ -40,4 +41,20 @@ public class SchoolService {
     public List<SchoolViewDto> getAllSchools() {
         return this.schoolRepository.findAll().stream().map(s -> this.modelMapper.map(s, SchoolViewDto.class)).collect(Collectors.toList());
     }
+
+    public String addTeacher(UserEntity userToSave,
+                           String school) {
+
+        SchoolEntity schoolEntity=this.getSchoolByName(school);
+        schoolEntity.addTeacher(userToSave);
+
+        this.schoolRepository.saveAndFlush(schoolEntity);
+
+        return schoolEntity.getName();
+    }
+
+    public SchoolEntity getSchoolByName(String school) {
+        return this.schoolRepository.findBySchoolName(school).orElse(null);
+    }
+
 }

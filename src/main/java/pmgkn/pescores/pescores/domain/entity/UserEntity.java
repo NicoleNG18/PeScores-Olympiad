@@ -20,8 +20,8 @@ public class UserEntity extends BaseEntity {
     private String lastName;
     @Column(nullable = false, unique = true)
     private String email;
-    @Column(nullable = false)
-    private String school;
+    @ManyToOne
+    private SchoolEntity school;
     @Column(nullable = false)
     private String password;
 
@@ -106,11 +106,11 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
-    public String getSchool() {
+    public SchoolEntity getSchool() {
         return school;
     }
 
-    public UserEntity setSchool(String school) {
+    public UserEntity setSchool(SchoolEntity school) {
         this.school = school;
         return this;
     }

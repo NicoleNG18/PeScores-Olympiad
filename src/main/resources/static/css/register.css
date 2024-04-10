@@ -60,6 +60,23 @@
     font-weight: 300;
 }
 
+option {
+    background-color: #d8d7fe;
+    font-size: 13px;
+    font-weight: 500;
+    color: #5d54c3;
+}
+
+#school {
+    background-color: #d8d7fe;
+    color: #5d54c3;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 0.5em;
+    text-align: center;
+    border-radius: 5px;
+}
+
 ::placeholder {
     color: #362bb7;
 }

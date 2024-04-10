@@ -2,10 +2,12 @@ package pmgkn.pescores.pescores.web;
 
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pmgkn.pescores.pescores.domain.dto.binding.UserRegistrationBindingDto;
+import pmgkn.pescores.pescores.service.SchoolService;
 import pmgkn.pescores.pescores.service.UserService;
 
 @Controller
@@ -13,9 +15,12 @@ import pmgkn.pescores.pescores.service.UserService;
 public class UserRegisterController {
 
     private final UserService userService;
+    private final SchoolService schoolService;
 
-    public UserRegisterController(UserService userService) {
+    public UserRegisterController(UserService userService,
+                                  SchoolService schoolService) {
         this.userService = userService;
+        this.schoolService = schoolService;
     }
 
     @ModelAttribute("registerDto")
@@ -24,7 +29,10 @@ public class UserRegisterController {
     }
 
     @GetMapping("/register")
-    public String getRegister() {
+    public String getRegister(Model model) {
+
+        model.addAttribute("schools",this.schoolService.getAllSchools());
+
         return "register";
     }
 

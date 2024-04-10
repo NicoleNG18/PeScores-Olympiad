@@ -12,6 +12,7 @@ import java.util.UUID;
 public interface SchoolRepository extends JpaRepository<SchoolEntity, UUID> {
 
     Optional<SchoolEntity> findBySchoolName(String name);
+    SchoolEntity findSchoolEntityBySchoolName(String name);
 
     List<SchoolEntity> findAll();
 

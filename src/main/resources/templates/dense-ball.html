@@ -27,17 +27,20 @@
                 <a th:href="@{/users/login}">Log in</a>
                 <a th:href="@{/users/register}">Sign up</a>
             </ul>
-
             <ul class="navbar-buttons" sec:authorize="isAuthenticated()">
-                <a th:href="@{/denseBall}">Dense ball</a>
-                <a th:href="@{/jump}">Jump</a>
-                <a th:href="@{/tTest}">T-test</a>
-                <a th:href="@{/thirty}">30 meters</a>
-                <a th:href="@{/twoHundred}">200 meters</a>
-                <a th:href="@{/classes}">Classes</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/denseBall}">Dense ball</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/jump}">Jump</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/tTest}">T-test</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/thirty}">30 meters</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/twoHundred}">200 meters</a>
+                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/add}">Add school</a>
+                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/all}">Schools</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN','ROLE_USER')" th:href="@{/classes}">Classes</a>
+                <!--               TODO: SMTH LIKE OWN CLASSES OR WHAT-->
+                <!--                <a sec:authorize="hasAnyAuthority('ROLE_USER')" th:href="@{/classes}">Classes</a>-->
                 <a th:href="@{/tasks}">Tasks</a>
-                <a th:href="@{/classes/add}">Add class</a>
-                <a th:href="@{/students/add}">Add student</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN','ROLE_USER')" th:href="@{/classes/add}">Add class</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN','ROLE_USER')" th:href="@{/students/add}">Add student</a>
                 <a>
                     <form class="logout" th:method="post" th:action="@{/users/logout}">
                         <input class="dropdown-item btn-link nav-link" type="submit" value="Logout">

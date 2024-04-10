@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pmgkn.pescores.pescores.domain.dto.binding.UserRegistrationBindingDto;
-import pmgkn.pescores.pescores.domain.entity.ClassEntity;
-import pmgkn.pescores.pescores.domain.entity.TaskEntity;
-import pmgkn.pescores.pescores.domain.entity.UserEntity;
-import pmgkn.pescores.pescores.domain.entity.UserRoleEntity;
+import pmgkn.pescores.pescores.domain.entity.*;
 import pmgkn.pescores.pescores.domain.enums.TaskStatusEnum;
 import pmgkn.pescores.pescores.domain.enums.UserRoleEnum;
 import pmgkn.pescores.pescores.repositories.UserRepository;
@@ -26,15 +23,19 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+    private final SchoolService schoolService;
+
     @Autowired
     public UserService(UserRoleService userRoleService,
                        ModelMapper modelMapper,
                        PasswordEncoder passwordEncoder,
-                       UserRepository userRepository) {
+                       UserRepository userRepository,
+                       SchoolService schoolService) {
         this.userRoleService = userRoleService;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
+        this.schoolService = schoolService;
     }
 
     public UserEntity getUserById(UUID id) {
@@ -51,6 +52,17 @@ public class UserService {
 
         this.userRepository.saveAndFlush(userToSave);
 
+        setSchoolAndTeacher(userRegistrationDTO, userToSave);
+
+        this.userRepository.saveAndFlush(userToSave);
+
+    }
+
+    private void setSchoolAndTeacher(UserRegistrationBindingDto userRegistrationDTO,
+                                     UserEntity userToSave) {
+        String schoolName = this.schoolService.addTeacher(userToSave, userRegistrationDTO.getSchool());
+
+        userToSave.setSchool(this.schoolService.getSchoolByName(schoolName));
     }
 
     public List<TaskEntity> getAllInProgressTasks(String email) {

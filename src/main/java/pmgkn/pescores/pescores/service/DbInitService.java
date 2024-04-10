@@ -3,6 +3,7 @@ package pmgkn.pescores.pescores.service;
 import jakarta.annotation.PostConstruct;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import pmgkn.pescores.pescores.domain.entity.SchoolEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.domain.entity.UserRoleEntity;
 import pmgkn.pescores.pescores.domain.entity.norms.*;
@@ -29,6 +30,8 @@ public class DbInitService {
 
     private final PasswordEncoder passwordEncoder;
 
+    private final SchoolRepository schoolRepository;
+
     public DbInitService(UserRoleRepository userRoleRepository,
                          DenseBallRepository denseBallRepository,
                          JumpRepository jumpRepository,
@@ -36,7 +39,8 @@ public class DbInitService {
                          ThirtyMetersRepository thirtyMetersRepository,
                          TwoHundredMetersRepository twoHundredMetersRepository,
                          UserRepository userRepository,
-                         PasswordEncoder passwordEncoder) {
+                         PasswordEncoder passwordEncoder,
+                         SchoolRepository schoolRepository) {
         this.userRoleRepository = userRoleRepository;
         this.denseBallRepository = denseBallRepository;
         this.jumpRepository = jumpRepository;
@@ -45,10 +49,12 @@ public class DbInitService {
         this.twoHundredMetersRepository = twoHundredMetersRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.schoolRepository = schoolRepository;
     }
 
     @PostConstruct
     public void init() {
+        initSchool();
         initRoles();
         initSuperAdmin();
         initDenseBall();
@@ -58,6 +64,13 @@ public class DbInitService {
         initThirtyMeters();
     }
 
+    private void initSchool() {
+        if(this.schoolRepository.count()==0){
+            SchoolEntity school=new SchoolEntity().setCity("Kyustendil").setName("PMG Prof. Emanuil Ivanov");
+            this.schoolRepository.saveAndFlush(school);
+        }
+    }
+
     public void initSuperAdmin() {
         if (this.userRepository.count() == 0) {
             UserEntity user = new UserEntity()
@@ -65,7 +78,7 @@ public class DbInitService {
                     .setLastName("Georgieva")
                     .setEmail("nikol.superadmin@gmail.com")
                     .setPassword(passwordEncoder.encode("nikol@superadmin"))
-                    .setSchool("PMG prof emanuil ivanov")
+                    .setSchool(this.schoolRepository.findSchoolEntityBySchoolName("PMG Prof. Emanuil Ivanov"))
                     .setRoles(userRoleRepository.findAll());
             this.userRepository.saveAndFlush(user);
         }
