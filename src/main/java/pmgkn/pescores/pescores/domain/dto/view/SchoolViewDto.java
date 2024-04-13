@@ -15,9 +15,6 @@ public class SchoolViewDto {
 
     private String city;
 
-//    private String schoolAdmin;
-
-
     private List<ClassEntity> classes;
 
     private List<StudentEntity> students;

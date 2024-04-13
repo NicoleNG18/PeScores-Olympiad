@@ -15,9 +15,6 @@ public class SchoolEntity extends BaseEntity {
     @Column(nullable = false)
     private String city;
 
-//    @Column(nullable = false)
-//    private String schoolAdmin;
-
     @OneToMany(cascade = CascadeType.ALL)
     private List<ClassEntity> classes;
 
@@ -32,15 +29,6 @@ public class SchoolEntity extends BaseEntity {
         this.teachers = new ArrayList<>();
         this.students = new ArrayList<>();
     }
-
-//    public String getSchoolAdmin() {
-//        return schoolAdmin;
-//    }
-//
-//    public SchoolEntity setSchoolAdmin(String schoolAdmin) {
-//        this.schoolAdmin = schoolAdmin;
-//        return this;
-//    }
 
     public String getName() {
         return schoolName;

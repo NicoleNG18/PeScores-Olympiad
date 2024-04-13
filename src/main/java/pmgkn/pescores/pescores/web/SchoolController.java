@@ -16,12 +16,9 @@ import java.util.UUID;
 @RequestMapping("/schools")
 public class SchoolController {
     private final SchoolService schoolService;
-    private final UserService userService;
 
-    public SchoolController(SchoolService schoolService,
-                            UserService userService) {
+    public SchoolController(SchoolService schoolService) {
         this.schoolService = schoolService;
-        this.userService = userService;
     }
 
     @ModelAttribute("schoolAddDto")

@@ -41,7 +41,7 @@ public class SecurityConfiguration {
                                         "/classes/**", "/classes/edit/**", "/classes/delete/**"
                                         , "/students/**",
                                         "/denseBall", "/jump", "/thirty", "/twoHundred", "/tTest").authenticated()
-                                .requestMatchers("/","/contact").anonymous()
+                                .requestMatchers("/", "/contact").anonymous()
                                 .requestMatchers("/schools/**").hasRole(UserRoleEnum.SUPERADMIN.name())
                                 // all other requests are authenticated.
                                 .anyRequest().authenticated()

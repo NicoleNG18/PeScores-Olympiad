@@ -25,14 +25,11 @@ public class ClassesController {
 
     private final ClassesService classesService;
     private final UserService userService;
-    private final SchoolService schoolService;
 
     public ClassesController(ClassesService classesService,
-                             UserService userService,
-                             SchoolService schoolService) {
+                             UserService userService) {
         this.classesService = classesService;
         this.userService = userService;
-        this.schoolService = schoolService;
     }
 
     @ModelAttribute("classAddDto")

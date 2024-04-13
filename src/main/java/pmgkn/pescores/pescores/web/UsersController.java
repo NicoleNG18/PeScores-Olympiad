@@ -19,19 +19,21 @@ public class UsersController {
     }
 
     @PatchMapping("/roles/admin/add/{schoolId}/{id}")
-    public String makeAdmin(@PathVariable("schoolId") UUID schoolId,@PathVariable("id") UUID id) {
+    public String makeAdmin(@PathVariable("schoolId") UUID schoolId,
+                            @PathVariable("id") UUID id) {
 
         this.userService.makeAdmin(id);
 
-        return "redirect:/schools/"+schoolId;
+        return "redirect:/schools/" + schoolId;
     }
 
     @PatchMapping("/roles/admin/remove/{schoolId}/{id}")
-    public String removeAdmin(@PathVariable("schoolId") UUID schoolId,@PathVariable("id") UUID id) {
+    public String removeAdmin(@PathVariable("schoolId") UUID schoolId,
+                              @PathVariable("id") UUID id) {
 
         this.userService.removeAdmin(id);
 
-        return "redirect:/schools/"+schoolId;
+        return "redirect:/schools/" + schoolId;
     }
 
 }

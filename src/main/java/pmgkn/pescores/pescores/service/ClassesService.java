@@ -79,28 +79,28 @@ public class ClassesService {
 
         SchoolEntity schoolByTeacher = this.userService.getSchoolByTeacher(teacherName);
 
-        ClassEntity classToSave = mapToClassEntity(classAddBindingDto, teacherName,schoolByTeacher);
+        ClassEntity classToSave = mapToClassEntity(classAddBindingDto, teacherName, schoolByTeacher);
 
         this.classRepository.saveAndFlush(classToSave);
 
         this.userService.setClassToTeacher(classToSave, teacherName);
-        this.schoolService.addClassToSchool(schoolByTeacher,classToSave);
+        this.schoolService.addClassToSchool(schoolByTeacher, classToSave);
 
         return this.classRepository.getReferenceById(classToSave.getId()).getId();
     }
 
     private ClassEntity mapToClassEntity(ClassAddBindingDto classAddBindingDto,
-                                         String teacherName,SchoolEntity school) {
+                                         String teacherName,
+                                         SchoolEntity school) {
         return this.modelMapper.map(classAddBindingDto, ClassEntity.class)
                 .setTeacher(this.userService.getUserByEmail(teacherName))
                 .setSchool(school);
     }
 
     @Transactional
-    public List<ClassViewDto> getAllClassesByUser(String name) {
+    public List<ClassViewDto> getAllClassesByUser(String userEmail) {
 
-        List<ClassEntity> classesByUser = this.userService.getClassesByUser(name);
-//        classesByUser.sort((c1, c2) -> c1.getClassName().compareTo(c2.getClassName()));
+        List<ClassEntity> classesByUser = this.userService.getClassesByUser(userEmail);
 
         classesByUser.sort((b1, b2) -> {
             if (b1.getClassNum() >= b2.getClassNum()) {
@@ -179,9 +179,9 @@ public class ClassesService {
     }
 
     @Transactional
-    public List<ClassViewDto> getAllClassesInSchool(String principal) {
+    public List<ClassViewDto> getAllClassesInSchool(String userEmail) {
 
-        List<ClassEntity> classesInSchool = this.userService.getSchoolClassesByAdmin(principal);
+        List<ClassEntity> classesInSchool = this.userService.getSchoolClassesByAdmin(userEmail);
 
         classesInSchool.sort((b1, b2) -> {
             if (b1.getClassNum() >= b2.getClassNum()) {

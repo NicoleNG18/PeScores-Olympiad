@@ -108,9 +108,9 @@ public class UserService {
         this.userRepository.saveAndFlush(user);
     }
 
-    public List<UserEntity> getTeachers(String name) {
+    public List<UserEntity> getTeachers(String schoolName) {
 
-        SchoolEntity school = getSchoolByUser(name);
+        SchoolEntity school = getSchoolByUser(schoolName);
 
         return school.getTeachers();
     }
