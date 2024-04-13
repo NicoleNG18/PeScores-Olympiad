@@ -53,6 +53,25 @@ header img {
     color: #d8d7fe;
 }
 
+select {
+    background-color: #d8d7fe;
+    color: #5d54c3;
+    border-color: #d8d7fe;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+option {
+    font-weight: 600;
+    background-color: #d8d7fe;
+    color:#5d54c3;
+}
+
+option:checked {
+    background-color: #5d54c3;
+    color: #d8d7fe;
+}
+
 .navbar-buttons a {
     cursor: pointer;
     background-color: #d8d7fe;

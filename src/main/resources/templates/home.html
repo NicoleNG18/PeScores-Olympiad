@@ -24,9 +24,21 @@
 
         <nav class="navbar">
             <ul class="navbar-buttons" sec:authorize="!isAuthenticated()">
-                <a th:href="@{/contact}">How to add your school?</a>
-                <a th:href="@{/users/login}">Log in</a>
-                <a th:href="@{/users/register}">Sign up</a>
+                <a th:href="@{/contact}" th:text="#{navbar_add_school}">How to add your school?</a>
+                <a th:href="@{/users/login}" th:text="#{navbar_login}">Log in</a>
+                <a th:href="@{/users/register}" th:text="#{navbar_register}">Register</a>
+                <a class="nav-item">
+                    <form th:method="get">
+                        <label class="text-white" th:text="#{navbar_language}" for="lang"></label>
+                        <select
+                                onchange="this.form.submit()"
+                                id="lang"
+                                name="lang">
+                            <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                            <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                        </select>
+                    </form>
+                </a>
             </ul>
 
             <ul class="navbar-buttons" sec:authorize="isAuthenticated()">
@@ -54,9 +66,10 @@
 <div sec:authorize="!isAuthenticated()" class="main-section-wrap">
     <section class="main-section">
         <div class="main-text">
-            <h3>Welcome to PE Scores.</h3>
-            <p>If you have an account - <a href="/users/login">Log in</a> here.</p>
-            <p>If you don't have an account - <a href="/users/register">Sign up</a> here.</p>
+            <h3 th:text="#{home_welcome}">Welcome to PE Scores</h3>
+<!--            TODO:IF STAYS HERE-->
+<!--            <p th:text="#{home_if_have}">If you have an account - <a href="/users/login" th:text="#{home_login}">Log in</a> here.</p>-->
+<!--            <p th:text="#{home_if_dont_have}">If you don't have an account - <a href="/users/register" th:text="#{home_register}">Sign up</a> here.</p>-->
         </div>
     </section>
 </div>

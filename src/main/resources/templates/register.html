@@ -22,9 +22,21 @@
 
         <nav class="navbar">
             <ul class="navbar-buttons" sec:authorize="!isAuthenticated()">
-                <a th:href="@{/contact}">How to add your school?</a>
-                <a th:href="@{/users/login}">Log in</a>
-                <a th:href="@{/users/register}">Sign up</a>
+                <a th:href="@{/contact}" th:text="#{navbar_add_school}">How to add your school?</a>
+                <a th:href="@{/users/login}" th:text="#{navbar_login}">Log in</a>
+                <a th:href="@{/users/register}" th:text="#{navbar_register}">Register</a>
+                <a class="nav-item">
+                    <form th:method="get">
+                        <label class="text-white" th:text="#{navbar_language}" for="lang"></label>
+                        <select
+                                onchange="this.form.submit()"
+                                id="lang"
+                                name="lang">
+                            <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                            <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                        </select>
+                    </form>
+                </a>
             </ul>
 
             <ul class="navbar-buttons" sec:authorize="isAuthenticated()">
@@ -56,33 +68,32 @@
           th:action="@{/users/register}"
           th:object="${registerDto}">
 
-        <h3>Sign up</h3>
+        <h3 th:text="#{signup_signup}">Register</h3>
 
         <div class="row-form">
             <div class="element">
 
-                <label for="firstname" class="label">First name</label>
+                <label for="firstname" class="label" th:text="#{signup_first_name}">First name</label>
                 <input type="text"
                        name="firstName"
                        th:errorclass="is-invalid"
                        th:field="*{firstName}"
-                       placeholder="First name"
+                       th:placeholder="#{signup_first_name}"
                        id="firstname"
                        class="input"/>
                 <div class="invalid-feedback errors-register alert-danger"
-                     th:each="err :${#fields.errors('firstName')}"
-                     th:text="${err}"/>
+                     th:each="err :${#fields.errors('firstName')}" th:text="#{err_name}"/>
             </div>
 
             <div class="element">
-                <label for="lastname" class="label">Last name</label>
-                <input type="text" placeholder="Last name"
+                <label for="lastname" class="label" th:text="#{signup_last_name}">Last name</label>
+                <input type="text"th:placeholder="#{signup_last_name}"
                        th:field="*{lastName}"
                        th:errorclass="is-invalid"
                        id="lastname" class="input"/>
                 <div class="invalid-feedback errors-register alert-danger"
                      th:each="err :${#fields.errors('lastName')}"
-                     th:text="${err}"/>
+                     th:text="#{err_name}"/>
             </div>
 
         </div>
@@ -90,19 +101,19 @@
         <div class="row-form">
 
             <div class="element">
-                <label for="email" class="label">Email</label>
+                <label for="email" class="label" th:text="#{signup_email}">Email</label>
                 <input
-                        type="text" placeholder="Email"
+                        type="text" th:placeholder="#{signup_email}"
                         th:field="*{email}"
                         th:errorclass="is-invalid"
                         id="email" class="input"/>
                 <div class="invalid-feedback errors-register alert-danger"
                      th:each="err :${#fields.errors('email')}"
-                     th:text="${err}"/>
+                     th:text="#{err_email}"/>
             </div>
 
             <div class="element">
-                <label for="school" class="label">School</label>
+                <label for="school" class="label" th:text="#{signup_school}">School</label>
                 <select id="school"
                         th:field="*{school}"
                         th:errorclass="is-invalid"
@@ -114,7 +125,7 @@
                 </select>
                 <div class="invalid-feedback errors-register alert-danger"
                      th:each="err :${#fields.errors('school')}"
-                     th:text="${err}"/>
+                     th:text="#{err_school}"/>
             </div>
 
         </div>
@@ -123,30 +134,30 @@
 
             <div class="element">
 
-                <label for="password" class="label">Password</label>
+                <label for="password" class="label" th:text="#{signup_pass}">Password</label>
                 <input
-                        type="password" placeholder="Password"
+                        type="password" th:placeholder="#{signup_pass}"
                         th:field="*{password}"
                         th:errorclass="is-invalid"
                         id="password" class="input"/>
                 <div class="invalid-feedback errors-register alert-danger"
                      th:each="err :${#fields.errors('password')}"
-                     th:text="${err}"/>
+                     th:text="#{err_pass}"/>
             </div>
 
             <div class="element">
-                <label for="confirmpassword" class="label">Confirm Password</label>
+                <label for="confirmpassword" class="label" th:text="#{signup_confirm_pass}">Confirm Password</label>
                 <input
                         type="password"
                         th:field="*{confirmPassword}"
                         th:errorclass="is-invalid"
-                        placeholder="Confirm password" id="confirmpassword" class="input"/>
+                        th:placeholder="#{signup_confirm_pass}" id="confirmpassword" class="input"/>
                 <div class="invalid-feedback errors-register alert-danger"
                      th:each="err :${#fields.errors('confirmPassword')}"
-                     th:text="${err}"/>
+                     th:text="#{err_confirm_pass}"/>
             </div>
         </div>
-        <button type="submit" class="register-btn">Sign up</button>
+        <button type="submit" class="register-btn" th:text="#{signup_signup}">Sign up</button>
 
     </form>
 

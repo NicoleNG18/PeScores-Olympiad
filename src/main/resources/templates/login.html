@@ -19,9 +19,21 @@
 
         <nav class="navbar">
             <ul class="navbar-buttons" sec:authorize="!isAuthenticated()">
-                <a th:href="@{/contact}">How to add your school?</a>
-                <a th:href="@{/users/login}">Log in</a>
-                <a th:href="@{/users/register}">Sign up</a>
+                <a th:href="@{/contact}" th:text="#{navbar_add_school}">How to add your school?</a>
+                <a th:href="@{/users/login}" th:text="#{navbar_login}">Log in</a>
+                <a th:href="@{/users/register}" th:text="#{navbar_register}">Register</a>
+                <a class="nav-item">
+                    <form th:method="get">
+                        <label class="text-white" th:text="#{navbar_language}" for="lang"></label>
+                        <select
+                                onchange="this.form.submit()"
+                                id="lang"
+                                name="lang">
+                            <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                            <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                        </select>
+                    </form>
+                </a>
             </ul>
 
             <ul class="navbar-buttons" sec:authorize="isAuthenticated()">
@@ -51,26 +63,26 @@
           th:method="POST"
           th:action="@{/users/login}"
           th:object="${userLoginDto}">
-        <h3>Login</h3>
+        <h3 th:text="#{login_login}">Log in</h3>
 
-        <label for="email" class="label">Email</label>
-        <input type="text" placeholder="Email" id="email"
+        <label for="email" class="label" th:text="#{login_email}">Email</label>
+        <input type="text" th:placeholder="#{login_email}" id="email"
                th:field="*{email}"
                name="email"
                class="input"/>
 
-        <label for="password" class="label">Password</label>
-        <input type="password" placeholder="Password"
+        <label for="password" class="label" th:text="#{login_pass}">Password</label>
+        <input type="password" th:placeholder="#{login_pass}"
                name="password"
                id="password" class="input"/>
 
         <div class="form-group mt-1">
             <div class="label-holder text-white d-flex justify-content-start">
-                <p th:if="${bad_credentials}" class="errors alert-danger errors-login">Invalid username or password.</p>
+                <p th:if="${bad_credentials}" class="errors alert-danger errors-login" th:text="#{login_err}">Invalid username or password.</p>
             </div>
         </div>
 
-        <button class="login-btn">Log In</button>
+        <button class="login-btn" th:text="#{login_login}">Log In</button>
 
     </form>
 
