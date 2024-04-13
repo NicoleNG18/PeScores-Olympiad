@@ -23,8 +23,20 @@ public class ClassEntity extends BaseEntity {
     @ManyToOne
     private UserEntity teacher;
 
+    @ManyToOne
+    private SchoolEntity school;
+
     public ClassEntity() {
         this.students = new ArrayList<>();
+    }
+
+    public SchoolEntity getSchool() {
+        return school;
+    }
+
+    public ClassEntity setSchool(SchoolEntity school) {
+        this.school = school;
+        return this;
     }
 
     public String getClassName() {

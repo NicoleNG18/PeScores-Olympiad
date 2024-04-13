@@ -13,6 +13,7 @@ import pmgkn.pescores.pescores.domain.dto.binding.StudentUpdateBindingDto;
 import pmgkn.pescores.pescores.domain.entity.ClassEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.service.ClassesService;
+import pmgkn.pescores.pescores.service.SchoolService;
 import pmgkn.pescores.pescores.service.UserService;
 
 import java.security.Principal;
@@ -24,11 +25,14 @@ public class ClassesController {
 
     private final ClassesService classesService;
     private final UserService userService;
+    private final SchoolService schoolService;
 
     public ClassesController(ClassesService classesService,
-                             UserService userService) {
+                             UserService userService,
+                             SchoolService schoolService) {
         this.classesService = classesService;
         this.userService = userService;
+        this.schoolService = schoolService;
     }
 
     @ModelAttribute("classAddDto")
@@ -46,12 +50,16 @@ public class ClassesController {
                              Principal principal) {
 
         model.addAttribute("classes", this.classesService.getAllClassesByUser(principal.getName()));
+        model.addAttribute("allClasses", this.classesService.getAllClassesInSchool(principal.getName()));
 
         return "classes";
     }
 
     @GetMapping("/add")
-    public String getAddClass() {
+    public String getAddClass(Model model,Principal principal) {
+
+        model.addAttribute("teachers",this.userService.getTeachers(principal.getName()));
+
         return "add-class";
     }
 
@@ -71,7 +79,7 @@ public class ClassesController {
             return "redirect:/classes/add";
         }
 
-        UUID classId = this.classesService.saveClass(classAddBindingDto, principal.getName());
+        UUID classId = this.classesService.saveClass(classAddBindingDto, classAddBindingDto.getTeacher());
         UserEntity currentUser = this.userService.getUserByEmail(principal.getName());
 
         return "redirect:/classes/" + currentUser.getId() + "/" + classId;

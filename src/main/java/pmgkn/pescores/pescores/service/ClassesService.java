@@ -9,6 +9,7 @@ import pmgkn.pescores.pescores.domain.dto.binding.ClassAddBindingDto;
 import pmgkn.pescores.pescores.domain.dto.view.ClassViewDto;
 import pmgkn.pescores.pescores.domain.dto.view.StudentViewDto;
 import pmgkn.pescores.pescores.domain.entity.ClassEntity;
+import pmgkn.pescores.pescores.domain.entity.SchoolEntity;
 import pmgkn.pescores.pescores.domain.entity.StudentEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.repositories.ClassRepository;
@@ -26,13 +27,17 @@ public class ClassesService {
 
     private final ModelMapper modelMapper;
 
+    private final SchoolService schoolService;
+
     @Autowired
     public ClassesService(ClassRepository classRepository,
                           UserService userService,
-                          ModelMapper modelMapper) {
+                          ModelMapper modelMapper,
+                          SchoolService schoolService) {
         this.classRepository = classRepository;
         this.userService = userService;
         this.modelMapper = modelMapper;
+        this.schoolService = schoolService;
     }
 
     @Scheduled(cron = "0 0 0 15 9 *")
@@ -70,19 +75,25 @@ public class ClassesService {
     }
 
     public UUID saveClass(ClassAddBindingDto classAddBindingDto,
-                          String name) {
+                          String teacherName) {
 
-        ClassEntity classToSave = mapToClassEntity(classAddBindingDto, name);
+        SchoolEntity schoolByTeacher = this.userService.getSchoolByTeacher(teacherName);
+
+        ClassEntity classToSave = mapToClassEntity(classAddBindingDto, teacherName,schoolByTeacher);
 
         this.classRepository.saveAndFlush(classToSave);
+
+        this.userService.setClassToTeacher(classToSave, teacherName);
+        this.schoolService.addClassToSchool(schoolByTeacher,classToSave);
 
         return this.classRepository.getReferenceById(classToSave.getId()).getId();
     }
 
     private ClassEntity mapToClassEntity(ClassAddBindingDto classAddBindingDto,
-                                         String name) {
+                                         String teacherName,SchoolEntity school) {
         return this.modelMapper.map(classAddBindingDto, ClassEntity.class)
-                .setTeacher(this.userService.getUserByEmail(name));
+                .setTeacher(this.userService.getUserByEmail(teacherName))
+                .setSchool(school);
     }
 
     @Transactional
@@ -167,4 +178,18 @@ public class ClassesService {
         this.classRepository.saveAndFlush(studentClass);
     }
 
+    @Transactional
+    public List<ClassViewDto> getAllClassesInSchool(String principal) {
+
+        List<ClassEntity> classesInSchool = this.userService.getSchoolClassesByAdmin(principal);
+
+        classesInSchool.sort((b1, b2) -> {
+            if (b1.getClassNum() >= b2.getClassNum()) {
+                return 1;
+            }
+            return 0;
+        });
+
+        return classesInSchool.stream().map(c -> this.modelMapper.map(c, ClassViewDto.class)).collect(Collectors.toList());
+    }
 }

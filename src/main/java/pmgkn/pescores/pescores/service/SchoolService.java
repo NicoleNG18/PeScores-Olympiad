@@ -2,7 +2,6 @@ package pmgkn.pescores.pescores.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import pmgkn.pescores.pescores.domain.dto.binding.SchoolAddBindingDto;
 import pmgkn.pescores.pescores.domain.dto.view.SchoolViewDto;
 import pmgkn.pescores.pescores.domain.entity.ClassEntity;
@@ -18,7 +17,6 @@ import java.util.stream.Collectors;
 public class SchoolService {
 
     private final SchoolRepository schoolRepository;
-
     private final ModelMapper modelMapper;
 
     public SchoolService(SchoolRepository schoolRepository,
@@ -59,6 +57,12 @@ public class SchoolService {
     }
 
     public SchoolEntity getSchoolById(UUID id) {
-       return this.schoolRepository.getReferenceById(id);
+        return this.schoolRepository.getReferenceById(id);
+    }
+
+    public void addClassToSchool(SchoolEntity schoolByTeacher,
+                                 ClassEntity classToSave) {
+        schoolByTeacher.getClasses().add(classToSave);
+        this.schoolRepository.saveAndFlush(schoolByTeacher);
     }
 }

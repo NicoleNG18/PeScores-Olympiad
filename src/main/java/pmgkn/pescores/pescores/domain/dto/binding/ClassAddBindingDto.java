@@ -18,7 +18,18 @@ public class ClassAddBindingDto {
     @NotNull(message = CLASS_NUM_REQUIRED)
     private int classNum;
 
+    private String teacher;
+
     public ClassAddBindingDto() {
+    }
+
+    public String getTeacher() {
+        return teacher;
+    }
+
+    public ClassAddBindingDto setTeacher(String teacher) {
+        this.teacher = teacher;
+        return this;
     }
 
     public String getClassName() {

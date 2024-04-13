@@ -82,6 +82,20 @@
              th:each="err :${#fields.errors('classNum')}"
              th:text="${err}"></div>
 
+        <label for="teacher" class="label">Teacher</label>
+        <select id="teacher"
+                th:field="*{teacher}"
+                th:errorclass="is-invalid"
+                class="input">
+            <option th:each="teach: ${teachers}"
+                    th:text="${teach.email}"
+                    th:value="${teach.email}">nicole.georgieva
+            </option>
+        </select>
+        <div class="invalid-feedback errors-class alert-danger"
+             th:each="err :${#fields.errors('teacher')}"
+             th:text="${err}"></div>
+
         <button class="submit-btn">Submit</button>
     </form>
 

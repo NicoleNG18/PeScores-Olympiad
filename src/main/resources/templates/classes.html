@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <title>My classes</title>
@@ -52,7 +52,7 @@
     </header>
 </div>
 
-<section class="main-section-classes">
+<section sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" class="main-section-classes">
 
     <div class="my-classes">
         <h2>My classes</h2>
@@ -61,8 +61,37 @@
             <li><a class="className" th:text="*{class.className}"
                    th:href="@{/classes/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}">class</a>
             </li>
+<!--            <div class="buttons">-->
+<!--&lt;!&ndash;                <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a th:href="@{/classes/edit/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"&ndash;&gt;-->
+<!--&lt;!&ndash;                       th:object="${class}" class="edit">Edit </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <form id="deleteForm"&ndash;&gt;-->
+<!--&lt;!&ndash;                          th:method="post"&ndash;&gt;-->
+<!--&lt;!&ndash;                          th:action="@{/classes/delete/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"&ndash;&gt;-->
+<!--&lt;!&ndash;                          th:object="${class}">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <button class="delete" onclick="document.getElementById('deleteForm').submit();">Delete</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </form>&ndash;&gt;-->
+<!--&lt;!&ndash;                </li>&ndash;&gt;-->
+<!--            </div>-->
+        </ul>
+
+    </div>
+
+</section>
+
+<section sec:authorize="hasAuthority('ROLE_ADMIN')" class="main-section-classes">
+
+    <div class="my-classes">
+        <h2>Classes</h2>
+
+        <ul th:each="class: ${allClasses}">
+            <li><a class="className" th:text="*{class.className}"
+                   th:href="@{/classes/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}">class</a>
+            </li>
             <div class="buttons">
-                <li>
+                <li class="edit-btn">
                     <a th:href="@{/classes/edit/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"
                        th:object="${class}" class="edit">Edit </a>
                 </li>

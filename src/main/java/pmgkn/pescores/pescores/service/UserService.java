@@ -108,4 +108,31 @@ public class UserService {
         this.userRepository.saveAndFlush(user);
     }
 
+    public List<UserEntity> getTeachers(String name) {
+
+        SchoolEntity school = getSchoolByUser(name);
+
+        return school.getTeachers();
+    }
+
+    public SchoolEntity getSchoolByUser(String name) {
+        return this.userRepository.findByEmail(name).getSchool();
+    }
+
+    public void setClassToTeacher(ClassEntity classToSave,String teacherName) {
+
+        UserEntity teacher = this.userRepository.findByEmail(teacherName);
+
+        teacher.getClasses().add(classToSave);
+
+        this.userRepository.saveAndFlush(teacher);
+    }
+
+    public List<ClassEntity> getSchoolClassesByAdmin(String principal) {
+        return this.userRepository.findByEmail(principal).getSchool().getClasses();
+    }
+
+    public SchoolEntity getSchoolByTeacher(String teacherName) {
+        return this.userRepository.findByEmail(teacherName).getSchool();
+    }
 }
