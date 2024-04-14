@@ -16,8 +16,8 @@
 <body>
 <section class="main-section-error">
     <div class="main-text">
-        <h3>Hey, captain! Looks like you're heading to a wrong planet</h3>
-        <a th:href="@{/users/logout}" type="submit">Take me back to the homepage</a>
+        <h3 th:text="#{error_captain}">Hey, captain! Looks like you're heading to a wrong planet</h3>
+        <a th:href="@{/users/logout}" type="submit" th:text="#{error_take_back}">Take me back to the homepage</a>
     </div>
 </section>
 
