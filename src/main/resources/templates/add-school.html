@@ -1,5 +1,5 @@
 <head>
-    <title>Add school</title>
+    <title th:text="#{title_add_school}">Add school</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,45 +67,33 @@
           th:action="@{/schools/add}"
           th:object="${schoolAddDto}">
 
-        <h3>Add school</h3>
+        <h3 th:text="#{add_school_x2}">Add school</h3>
 
-        <label for="schoolName" class="label">Name</label>
+        <label for="schoolName" class="label" th:text="#{add_school_name}">Name</label>
         <input type="text"
                name="schoolName"
                th:errorclass="is-invalid"
                th:field="*{schoolName}"
-               placeholder="PMG 'Prof. Emanuil Ivanov'"
+               th:placeholder="#{add_school_pmg}"
                id="schoolName"
                class="input">
         <div class="invalid-feedback errors-class alert-danger"
              th:each="err :${#fields.errors('schoolName')}"
-             th:text="${err}"></div>
+             th:text="#{add_school_err_name}"></div>
 
-        <label for="city" class="label">City</label>
+        <label for="city" class="label" th:text="#{add_school_city}">City</label>
         <input type="text"
                name="city"
                th:errorclass="is-invalid"
                th:field="*{city}"
-               placeholder="Kyustendil"
+               th:placeholder="#{add_school_kn}"
                id="city"
                class="input">
         <div class="invalid-feedback errors-class alert-danger"
              th:each="err :${#fields.errors('city')}"
-             th:text="${err}"></div>
+             th:text="#{add_school_err_city}"></div>
 
-<!--        <label for="schoolAdmin" class="label">School admin</label>-->
-<!--        <input type="text"-->
-<!--               name="schoolAdmin"-->
-<!--               th:errorclass="is-invalid"-->
-<!--               th:field="*{schoolAdmin}"-->
-<!--               placeholder="ivan.andonov"-->
-<!--               id="schoolAdmin"-->
-<!--               class="input">-->
-<!--        <div class="invalid-feedback errors-class alert-danger"-->
-<!--             th:each="err :${#fields.errors('schoolAdmin')}"-->
-<!--             th:text="${err}"></div>-->
-
-        <button class="submit-btn">Submit</button>
+        <button class="submit-btn" th:text="#{add_school_submit}">Submit</button>
     </form>
 
 </section>
