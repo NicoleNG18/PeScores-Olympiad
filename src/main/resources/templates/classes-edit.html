@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>My classes</title>
+    <title th:text="#{title_edit_class}">Edit class</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,21 +69,21 @@
           th:action="@{/classes/edited/{id}(id=${class.id})}"
           th:object="${class}">
 
-        <h3>Edit class</h3>
+        <h3 th:text="#{edit_class}">Edit class</h3>
 
-        <label for="clasName" class="label">Class name</label>
+        <label for="clasName" class="label" th:text="#{edit_class_name}">Class name</label>
         <input type="text"
                name="className"
                th:errorclass="is-invalid"
                th:field="*{className}"
-               placeholder="Ex: 7A"
+               th:placeholder="#{edit_class_name_placeholder}"
                id="clasName"
                class="input">
         <div class="invalid-feedback errors-class alert-danger"
              th:each="err :${#fields.errors('className')}"
-             th:text="${err}"></div>
+             th:text="#{edit_class_err_name}"></div>
 
-        <label for="classNum">Class Number</label>
+        <label for="classNum" th:text="#{edit_class_num}">Class Number</label>
         <input type="number"
                id="classNum"
                name="classNum"
@@ -93,12 +93,12 @@
                min="1"
                max="12"
                step="1"
-               placeholder="classNum">
+               th:placeholder="#{edit_class_num_placeholder}">
         <div class="invalid-feedback errors-class alert-danger"
              th:each="err :${#fields.errors('classNum')}"
-             th:text="${err}"></div>
+             th:text="#{edit_class_err_num}"></div>
 
-        <button class="submit-btn">Edit</button>
+        <button class="submit-btn" th:text="#{edit_class_edit}">Edit</button>
     </form>
 
 

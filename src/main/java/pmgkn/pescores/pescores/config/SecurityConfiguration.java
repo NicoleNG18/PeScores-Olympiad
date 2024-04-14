@@ -60,11 +60,21 @@ public class SecurityConfiguration {
                         }
                 ).logout(
                         logout -> {
-                           logout
-                                    .logoutUrl("/users/logout")
-                                    .logoutSuccessUrl("/")
-                                    .invalidateHttpSession(true)
-                                    .deleteCookies("JSESSIONID","lang");
+                            try {
+                                logout
+                                        // the URL where we should POST something in order to perform the logout
+                                        .logoutUrl("/users/logout")
+                                        // where to go when logged out?
+                                        .logoutSuccessUrl("/")
+                                        // invalidate the HTTP session
+                                        .invalidateHttpSession(true)
+                                        .deleteCookies("JSSESIONID","lang")
+                                        .and().
+                                        securityContext().
+                                        securityContextRepository(securityContextRepository());
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                 )
                 .build();

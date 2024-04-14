@@ -1,5 +1,5 @@
 <head>
-    <title>Add class</title>
+    <title th:text="#{title_add_class}">Add class</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,21 +67,21 @@
           th:action="@{/classes/add}"
           th:object="${classAddDto}">
 
-        <h3>Add class</h3>
+        <h3 th:text="#{add_class}">Add class</h3>
 
-        <label for="clasName" class="label">Class name</label>
+        <label for="clasName" class="label" th:text="#{add_class_name}">Class name</label>
         <input type="text"
                name="className"
                th:errorclass="is-invalid"
                th:field="*{className}"
-               placeholder="Ex: 7A"
+               th:placeholder="#{add_class_name_placeholder}"
                id="clasName"
                class="input">
         <div class="invalid-feedback errors-class alert-danger"
              th:each="err :${#fields.errors('className')}"
-             th:text="${err}"></div>
+             th:text="#{add_class_err_class_name}"></div>
 
-        <label for="classNum">Grade Number</label>
+        <label for="classNum" th:text="#{add_class_grade_number}">Grade Number</label>
         <input type="number"
                id="classNum"
                name="classNum"
@@ -93,9 +93,9 @@
                step="1">
         <div class="invalid-feedback errors-class alert-danger"
              th:each="err :${#fields.errors('classNum')}"
-             th:text="${err}"></div>
+             th:text="#{add_class_err_classNum}"></div>
 
-        <label for="teacher" class="label">Teacher</label>
+        <label for="teacher" class="label" th:text="#{add_class_teacher}">Teacher</label>
         <select id="teacher"
                 th:field="*{teacher}"
                 th:errorclass="is-invalid"
@@ -105,11 +105,8 @@
                     th:value="${teach.email}">nicole.georgieva
             </option>
         </select>
-        <div class="invalid-feedback errors-class alert-danger"
-             th:each="err :${#fields.errors('teacher')}"
-             th:text="${err}"></div>
 
-        <button class="submit-btn">Submit</button>
+        <button class="submit-btn" th:text="#{add_class_submit}">Submit</button>
     </form>
 
 </section>

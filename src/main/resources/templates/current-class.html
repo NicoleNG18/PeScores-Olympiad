@@ -67,7 +67,7 @@
 <section class="main-section-classes">
 
     <div class="my-classes">
-        <h2>My classes</h2>
+        <h2 th:text="#{current_class_classes}">Classes</h2>
 
         <ul th:each="class: ${classes}">
             <li><a th:text="${class.className}"
@@ -83,15 +83,15 @@
             <thead>
             <tr>
                 <th scope="col">№</th>
-                <th scope="col">Name</th>
-                <th scope="col">30m(s)</th>
-                <th scope="col">200m(s)</th>
-                <th scope="col">T-test(s)</th>
-                <th scope="col">Dense ball(m)</th>
-                <th scope="col">Jump(m)</th>
-                <th scope="col">Average score</th>
-                <th scope="col">Submit results</th>
-                <th scope="col">Delete student</th>
+                <th scope="col" th:text="#{current_class_name}">Name</th>
+                <th scope="col" th:text="#{current_class_30m}">30m(s)</th>
+                <th scope="col" th:text="#{current_class_200m}">200m(s)</th>
+                <th scope="col" th:text="#{current_class_t_test}">T-test(s)</th>
+                <th scope="col" th:text="#{current_class_dense_ball}">Dense ball(m)</th>
+                <th scope="col" th:text="#{current_class_jump}">Jump(m)</th>
+                <th scope="col" th:text="#{current_class_avrg_score}">Average score</th>
+                <th scope="col" th:text="#{current_class_submit_results}">Submit results</th>
+                <th scope="col" th:text="#{current_class_delete_student}">Delete student</th>
             </tr>
             </thead>
 
@@ -160,7 +160,7 @@
                     <td th:text="${student.averageGrade}">4.50</td>
 
                     <td>
-                        <button type="submit">Submit</button>
+                        <button type="submit" th:text="#{current_class_submit}">Submit</button>
                     </td>
                 </form>
 
@@ -169,7 +169,7 @@
                           th:method="post"
                           th:action="@{/students/delete/{idTeacher}/{id}(idTeacher=${student.getTeacher().id}, id=${student.id})}"
                           th:object="${student}">
-                        <button class="delete" onclick="document.getElementById('deleteForm').submit();">Delete</button>
+                        <button class="delete" onclick="document.getElementById('deleteForm').submit();" th:text="#{current_class_delete}">Delete</button>
                     </form>
                 </td>
             </tr>

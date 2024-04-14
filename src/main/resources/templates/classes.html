@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>My classes</title>
+    <title th:text="#{classes}">Classes</title>
     <!--    <th:block th:insert="~{/fragments/head}"></th:block>-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -68,7 +68,7 @@
 <section sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" class="main-section-classes">
 
     <div class="my-classes">
-        <h2>My classes</h2>
+        <h2 th:text="#{classes_my}">My classes</h2>
 
         <ul th:each="class: ${classes}">
             <li><a class="className" th:text="*{class.className}"
@@ -97,7 +97,7 @@
 <section sec:authorize="hasAuthority('ROLE_ADMIN')" class="main-section-classes">
 
     <div class="my-classes">
-        <h2>Classes</h2>
+        <h2 th:text="#{classes_all}">Classes</h2>
 
         <ul th:each="class: ${allClasses}">
             <li><a class="className" th:text="*{class.className}"
@@ -106,14 +106,14 @@
             <div class="buttons">
                 <li class="edit-btn">
                     <a th:href="@{/classes/edit/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"
-                       th:object="${class}" class="edit">Edit </a>
+                       th:object="${class}" class="edit" th:text="#{classes_edit}">Edit </a>
                 </li>
                 <li>
                     <form id="deleteForm"
                           th:method="post"
                           th:action="@{/classes/delete/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"
                           th:object="${class}">
-                        <button class="delete" onclick="document.getElementById('deleteForm').submit();">Delete</button>
+                        <button class="delete" onclick="document.getElementById('deleteForm').submit();" th:text="#{classes_delete}">Delete</button>
                     </form>
                 </li>
             </div>

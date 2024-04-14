@@ -1,5 +1,5 @@
 <head>
-    <title>Add student</title>
+    <title th:text="#{title_student_add}">Add student</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,21 +65,21 @@
           th:action="@{/students/add}"
           th:object="${studentAddDto}">
 
-        <h3>Add student</h3>
+        <h3 th:text="#{student_add}">Add student</h3>
 
-        <label for="studentName" class="label">Student name</label>
+        <label for="studentName" class="label" th:text="#{student_add_name}">Student name</label>
         <input type="text"
                name="studentName"
                th:errorclass="is-invalid"
                th:field="*{studentName}"
-               placeholder="Ex: Aleksandur"
+               th:placeholder="#{student_add_name_placeholder}"
                id="studentName"
                class="input">
         <div class="invalid-feedback errors-student alert-danger"
              th:each="err :${#fields.errors('studentName')}"
-             th:text="${err}"></div>
+             th:text="#{student_add_err_name}"></div>
 
-        <label for="studentNumber" class="label">Number in class</label>
+        <label for="studentNumber" class="label" th:text="#{student_add_number}">Number in class</label>
         <input type="number"
                name="studentNumber"
                th:errorclass="is-invalid"
@@ -91,12 +91,12 @@
                step="1">
         <div class="invalid-feedback errors-student alert-danger"
              th:each="err :${#fields.errors('studentNumber')}"
-             th:text="${err}"></div>
+             th:text="#{student_add_err_empty_num}"></div>
         <div class="invalid-feedback errors-student alert-danger"
-             th:if="${isUnique} == false">student number must be unique
+             th:if="${isUnique} == false" th:text="#{student_add_unique}">student number must be unique
         </div>
 
-        <label for="gender" class="label">Label</label>
+        <label for="gender" class="label" th:text="#{student_add_gender}">Label</label>
         <select id="gender"
                 th:field="*{gender}"
                 th:errorclass="is-invalid"
@@ -107,7 +107,7 @@
             </option>
         </select>
 
-        <label for="studentClass" class="label">Student class</label>
+        <label for="studentClass" class="label" th:text="#{student_add_class}">Student class</label>
         <select id="studentClass"
                 th:field="*{studentClass}"
                 th:errorclass="is-invalid"
@@ -117,11 +117,8 @@
                     th:value="${class.className}">7a
             </option>
         </select>
-        <div class="invalid-feedback errors-student alert-danger"
-             th:each="err :${#fields.errors('studentClass')}"
-             th:text="${err}"></div>
 
-        <button class="submit-btn">Submit</button>
+        <button class="submit-btn" th:text="#{student_add_submit}">Submit</button>
 
     </form>
 
