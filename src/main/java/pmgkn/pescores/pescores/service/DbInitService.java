@@ -66,7 +66,7 @@ public class DbInitService {
 
     private void initSchool() {
         if(this.schoolRepository.count()==0){
-            SchoolEntity school=new SchoolEntity().setCity("Kyustendil").setName("PMG Prof. Emanuil Ivanov");
+            SchoolEntity school=new SchoolEntity().setCity("Кюстендил").setName("ПМГ 'Проф. Емануил Иванов'");
             this.schoolRepository.saveAndFlush(school);
         }
     }
@@ -74,11 +74,11 @@ public class DbInitService {
     public void initSuperAdmin() {
         if (this.userRepository.count() == 0) {
             UserEntity user = new UserEntity()
-                    .setFirstName("Nikol")
-                    .setLastName("Georgieva")
+                    .setFirstName("Никол")
+                    .setLastName("Георгиева")
                     .setEmail("nikol.superadmin@gmail.com")
                     .setPassword(passwordEncoder.encode("nikol@superadmin"))
-                    .setSchool(this.schoolRepository.findSchoolEntityBySchoolName("PMG Prof. Emanuil Ivanov"))
+                    .setSchool(this.schoolRepository.findSchoolEntityBySchoolName("ПМГ 'Проф. Емануил Иванов'"))
                     .setRoles(userRoleRepository.findAll());
             this.userRepository.saveAndFlush(user);
         }

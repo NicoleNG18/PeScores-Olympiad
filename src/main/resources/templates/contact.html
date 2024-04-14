@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-  <title>Contact</title>
+  <title th:text="#{title_howto}">How to add your school?</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,8 +24,21 @@
 
     <nav class="navbar">
       <ul class="navbar-buttons" sec:authorize="!isAuthenticated()">
-        <a th:href="@{/users/login}">Log in</a>
-        <a th:href="@{/users/register}">Sign up</a>
+        <a th:href="@{/contact}" th:text="#{navbar_add_school}">How to add your school?</a>
+        <a th:href="@{/users/login}" th:text="#{navbar_login}">Log in</a>
+        <a th:href="@{/users/register}" th:text="#{navbar_register}">Register</a>
+        <a class="nav-item">
+          <form th:method="get">
+            <label class="text-white" th:text="#{navbar_language}" for="lang"></label>
+            <select
+                    onchange="this.form.submit()"
+                    id="lang"
+                    name="lang">
+              <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+              <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+            </select>
+          </form>
+        </a>
       </ul>
 
       <ul class="navbar-buttons" sec:authorize="isAuthenticated()">
@@ -53,8 +66,8 @@
 <div sec:authorize="!isAuthenticated()" class="main-section-wrap">
   <section class="main-section">
     <div class="main-text">
-      <h3>Welcome to PE Scores.</h3>
-      <p>If you want your school to become part of us, please send us an email to nikol.superadmin@gmail.com with the name of the school,
+      <h3 th:text="#{howto_welcome}">Welcome to PE Scores</h3>
+      <p th:text="#{howto_text}">If you want your school to become part of us, please send us an email to nikol.superadmin@gmail.com with the name of the school,
         the city and the future username of your admin. Then we will add the school to the platform and the admin
        will be able to make registration.</p>
 
