@@ -20,18 +20,6 @@
                 <a th:href="@{/contact}" th:text="#{navbar_add_school}">How to add your school?</a>
                 <a th:href="@{/users/login}" th:text="#{navbar_login}">Log in</a>
                 <a th:href="@{/users/register}" th:text="#{navbar_register}">Register</a>
-                <a class="nav-item">
-                    <form th:method="get">
-                        <label class="text-white" th:text="#{navbar_language}" for="lang"></label>
-                        <select
-                                onchange="this.form.submit()"
-                                id="lang"
-                                name="lang">
-                            <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
-                            <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
-                        </select>
-                    </form>
-                </a>
             </ul>
 
             <ul class="navbar-buttons" sec:authorize="isAuthenticated()">
@@ -45,10 +33,22 @@
                 <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes}" th:text="#{navbar_classes}">Classes</a>
                 <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes/add}" th:text="#{navbar_add_class}">Add class</a>
                 <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/students/add}" th:text="#{navbar_add_student}">Add student</a>
-                <a th:href="@{/tasks}">Tasks</a>
+                <a th:href="@{/tasks}" th:text="#{navbar_tasks}">Tasks</a>
                 <a>
                     <form class="logout" th:method="post" th:action="@{/users/logout}" th:text="#{navbar_logout}">
                         <input class="dropdown-item btn-link nav-link" type="submit" value="Logout">
+                    </form>
+                </a>
+                <a class="nav-item">
+                    <form th:method="get">
+                        <label class="text-white" th:text="#{navbar_language}" for="lang"></label>
+                        <select
+                                onchange="this.form.submit()"
+                                id="lang"
+                                name="lang">
+                            <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                            <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                        </select>
                     </form>
                 </a>
             </ul>

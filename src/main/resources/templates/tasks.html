@@ -26,18 +26,6 @@
                 <a th:href="@{/contact}" th:text="#{navbar_add_school}">How to add your school?</a>
                 <a th:href="@{/users/login}" th:text="#{navbar_login}">Log in</a>
                 <a th:href="@{/users/register}" th:text="#{navbar_register}">Register</a>
-                <a class="nav-item">
-                    <form th:method="get">
-                        <label class="text-white" th:text="#{navbar_language}" for="lang"></label>
-                        <select
-                                onchange="this.form.submit()"
-                                id="lang"
-                                name="lang">
-                            <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
-                            <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
-                        </select>
-                    </form>
-                </a>
             </ul>
 
             <ul class="navbar-buttons" sec:authorize="isAuthenticated()">
@@ -51,10 +39,22 @@
                 <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes}" th:text="#{navbar_classes}">Classes</a>
                 <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes/add}" th:text="#{navbar_add_class}">Add class</a>
                 <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/students/add}" th:text="#{navbar_add_student}">Add student</a>
-                <a th:href="@{/tasks}">Tasks</a>
+                <a th:href="@{/tasks}" th:text="#{navbar_tasks}">Tasks</a>
                 <a>
                     <form class="logout" th:method="post" th:action="@{/users/logout}" th:text="#{navbar_logout}">
                         <input class="dropdown-item btn-link nav-link" type="submit" value="Logout">
+                    </form>
+                </a>
+                <a class="nav-item">
+                    <form th:method="get">
+                        <label class="text-white" th:text="#{navbar_language}" for="lang"></label>
+                        <select
+                                onchange="this.form.submit()"
+                                id="lang"
+                                name="lang">
+                            <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                            <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                        </select>
                     </form>
                 </a>
             </ul>
@@ -68,32 +68,32 @@
     <section class="notes-main">
         <div class="to-do-list">
 
-            <h2>To Do List</h2>
+            <h2 th:text="#{tasks_to_do_list}">To Do List</h2>
 
             <form class="add-todo"
                   th:method="POST"
                   th:action="@{/tasks/save}"
                   th:object="${taskDto}">
 
-                <label for="todo">Add ToDo</label>
+                <label for="todo" th:text="#{tasks_add_todo}">Add ToDo</label>
                 <input type="text" id="todo"
                        th:field="*{description}"
                        th:errorclass="is-invalid"
                        th:name="description">
                 <div class="invalid-feedback errors-tasks alert-danger"
                      th:each="err :${#fields.errors('description')}"
-                     th:text="${err}"/>
+                     th:text="#{tasks_err_descr}"/>
 
-                <label for="dueDate">Due date</label>
+                <label for="dueDate" th:text="#{tasks_due_date}">Due date</label>
                 <input type="date" id="dueDate"
                        th:field="*{dueDate}"
                        th:errorclass="is-invalid"
                        th:name="dueDate">
                 <div class="invalid-feedback errors-tasks alert-danger"
                      th:each="err :${#fields.errors('dueDate')}"
-                     th:text="${err}"/>
+                     th:text="#{tasks_err_due_date}"/>
 
-                <button id="add-btn" type="submit" onclick="displayTodo()">Add</button>
+                <button id="add-btn" type="submit" onclick="displayTodo()" th:text="#{tasks_add}">Add</button>
 
                 <input type="hidden" id="taskId" name="taskId">
             </form>
@@ -102,7 +102,7 @@
                 <tbody class="table-body">
                 <tr th:each="task: ${tasks}">
                     <td th:text="*{task.description}">todo text</td>
-                    <td th:text="|Finish until  *{task.dueDate}|">10-01-2024</td>
+                    <td th:text="|#{tasks_finish}  *{task.dueDate}|">10-01-2024</td>
                     <td class="done">
                         <form th:method="PATCH" th:action="@{/tasks/done/(descr=${task.id})}" th:object="${task}">
                             <button type="submit" title="Done">
@@ -122,12 +122,12 @@
 
     <section class="notes-ready">
         <div class="to-do-list-ready">
-            <h2>Done todos</h2>
+            <h2 th:text="#{tasks_done_todos}">Done todos</h2>
             <table class="table-notes">
                 <tbody class="table-body">
                 <tr th:each="taskDone: ${tasksDone}">
                     <td th:text="*{taskDone.description}">todo text</td>
-                    <td th:text="|Was up to  *{taskDone.dueDate}|">10-01-2024</td>
+                    <td th:text="|#{tasks_up_to}  *{taskDone.dueDate}|">10-01-2024</td>
                     <td class="remove">
                         <form th:method="PATCH" th:action="@{/tasks/delete/(descr=${taskDone.id})}"
                               th:object="${taskDone}">
