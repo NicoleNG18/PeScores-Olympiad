@@ -40,19 +40,19 @@
             </ul>
 
             <ul class="navbar-buttons" sec:authorize="isAuthenticated()">
-                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/denseBall}">Dense ball</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/jump}">Jump</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/tTest}">T-test</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/thirty}">30 meters</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/twoHundred}">200 meters</a>
-                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/add}">Add school</a>
-                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/all}">Schools</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes}">Classes</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes/add}">Add class</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/students/add}">Add student</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/denseBall}" th:text="#{navbar_dense_ball}">Dense ball</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/jump}" th:text="#{navbar_jump}">Jump</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/tTest}" th:text="#{navbar_t_test}">T-test</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/thirty}" th:text="#{navbar_30_meters}">30 meters</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/twoHundred}" th:text="#{navbar_200_meters}">200 meters</a>
+                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/add}" th:text="#{navbar_addschool}">Add school</a>
+                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/all}" th:text="#{navbar_schools}">Schools</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes}" th:text="#{navbar_classes}">Classes</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes/add}" th:text="#{navbar_add_class}">Add class</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/students/add}" th:text="#{navbar_add_student}">Add student</a>
                 <a th:href="@{/tasks}">Tasks</a>
                 <a>
-                    <form class="logout" th:method="post" th:action="@{/users/logout}">
+                    <form class="logout" th:method="post" th:action="@{/users/logout}" th:text="#{navbar_logout}">
                         <input class="dropdown-item btn-link nav-link" type="submit" value="Logout">
                     </form>
                 </a>

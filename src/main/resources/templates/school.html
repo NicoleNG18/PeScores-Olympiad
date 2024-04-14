@@ -26,24 +26,37 @@
 
         <nav class="navbar">
             <ul class="navbar-buttons" sec:authorize="!isAuthenticated()">
-                <a th:href="@{/users/login}">Log in</a>
-                <a th:href="@{/users/register}">Sign up</a>
+                <a th:href="@{/contact}" th:text="#{navbar_add_school}">How to add your school?</a>
+                <a th:href="@{/users/login}" th:text="#{navbar_login}">Log in</a>
+                <a th:href="@{/users/register}" th:text="#{navbar_register}">Register</a>
+                <a class="nav-item">
+                    <form th:method="get">
+                        <label class="text-white" th:text="#{navbar_language}" for="lang"></label>
+                        <select
+                                onchange="this.form.submit()"
+                                id="lang"
+                                name="lang">
+                            <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                            <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                        </select>
+                    </form>
+                </a>
             </ul>
 
             <ul class="navbar-buttons" sec:authorize="isAuthenticated()">
-                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/denseBall}">Dense ball</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/jump}">Jump</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/tTest}">T-test</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/thirty}">30 meters</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/twoHundred}">200 meters</a>
-                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/add}">Add school</a>
-                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/all}">Schools</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes}">Classes</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes/add}">Add class</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/students/add}">Add student</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/denseBall}" th:text="#{navbar_dense_ball}">Dense ball</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/jump}" th:text="#{navbar_jump}">Jump</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/tTest}" th:text="#{navbar_t_test}">T-test</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/thirty}" th:text="#{navbar_30_meters}">30 meters</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/twoHundred}" th:text="#{navbar_200_meters}">200 meters</a>
+                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/add}" th:text="#{navbar_addschool}">Add school</a>
+                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/all}" th:text="#{navbar_schools}">Schools</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes}" th:text="#{navbar_classes}">Classes</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes/add}" th:text="#{navbar_add_class}">Add class</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/students/add}" th:text="#{navbar_add_student}">Add student</a>
                 <a th:href="@{/tasks}">Tasks</a>
                 <a>
-                    <form class="logout" th:method="post" th:action="@{/users/logout}">
+                    <form class="logout" th:method="post" th:action="@{/users/logout}" th:text="#{navbar_logout}">
                         <input class="dropdown-item btn-link nav-link" type="submit" value="Logout">
                     </form>
                 </a>
