@@ -44,8 +44,8 @@
                 <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/students/add}" th:text="#{navbar_add_student}">Add student</a>
                 <a th:href="@{/tasks}" th:text="#{navbar_tasks}">Tasks</a>
                 <a>
-                    <form class="logout" th:method="post" th:action="@{/users/logout}" th:text="#{navbar_logout}">
-                        <input class="dropdown-item btn-link nav-link" type="submit" value="Logout">
+                    <form class="logout" th:method="post" th:action="@{/users/logout}">
+                        <input class="dropdown-item btn-link nav-link" type="submit" th:value="#{navbar_logout}">
                     </form>
                 </a>
                 <a class="nav-item">
@@ -76,14 +76,14 @@
                 <form th:method="PATCH"
                       th:action="@{/users/roles/admin/add/{schoolId}/{id}(schoolId=${currentSchool.id},id=${teacher.id})}"
                       th:object="${teacher}">
-                    <button>Make admin</button>
+                    <button th:text="#{school_make_admin}">Make admin</button>
                 </form>
             </li>
             <li th:if="${teacher.isSchoolAdmin()}" class="buttonRole">
                 <form th:method="PATCH"
                       th:action="@{/users/roles/admin/remove/{schoolId}/{id}(schoolId=${currentSchool.id}, id=${teacher.id})}"
                       th:object="${teacher}">
-                    <button>Remove admin</button>
+                    <button th:text="#{school_remove_admin}">Remove admin</button>
                 </form>
             </li>
         </ul>

@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.SecurityContextConfigurer;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -59,21 +60,11 @@ public class SecurityConfiguration {
                         }
                 ).logout(
                         logout -> {
-
-                            try {
-                                logout
-                                        // the URL where we should POST something in order to perform the logout
-                                        .logoutUrl("/users/logout")
-                                        // where to go when logged out?
-                                        .logoutSuccessUrl("/")
-                                        // invalidate the HTTP session
-                                        .invalidateHttpSession(true)
-                                        .and().
-                                        securityContext().
-                                        securityContextRepository(securityContextRepository());
-                            } catch (Exception e) {
-                                throw new RuntimeException(e);
-                            }
+                           logout
+                                    .logoutUrl("/users/logout")
+                                    .logoutSuccessUrl("/")
+                                    .invalidateHttpSession(true)
+                                    .deleteCookies("JSESSIONID","lang");
                         }
                 )
                 .build();

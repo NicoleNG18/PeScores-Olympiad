@@ -35,8 +35,8 @@
                 <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/students/add}" th:text="#{navbar_add_student}">Add student</a>
                 <a th:href="@{/tasks}" th:text="#{navbar_tasks}">Tasks</a>
                 <a>
-                    <form class="logout" th:method="post" th:action="@{/users/logout}" th:text="#{navbar_logout}">
-                        <input class="dropdown-item btn-link nav-link" type="submit" value="Logout">
+                    <form class="logout" th:method="post" th:action="@{/users/logout}">
+                        <input class="dropdown-item btn-link nav-link" type="submit" th:value="#{navbar_logout}">
                     </form>
                 </a>
                 <a class="nav-item">

@@ -14,7 +14,7 @@ public class I18NConfig {
     @Bean
     public LocaleResolver localeResolver() {
         CookieLocaleResolver clr = new CookieLocaleResolver();
-        clr.setCookieName("lang");
+        clr.setCookieDomain("lang");
         return clr;
     }
 //prihvashta koga potrebitelqt iska da smeni ezika
