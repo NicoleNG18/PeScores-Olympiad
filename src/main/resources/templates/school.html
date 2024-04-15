@@ -21,10 +21,10 @@
     <header xmlns:sec="http://www.w3.org/1999/xhtml">
         <a sec:authorize="!isAuthenticated()" th:href="@{/}"><img src="/images/pe%20scores-final.png"
                                                                   alt="pe scores logo"/></a>
-        <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes}"><img src="/images/pe%20scores-final.png"
-                                                                                                alt="pe scores logo"/></a>
-        <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/all}"><img src="/images/pe%20scores-final.png"
-                                                                                         alt="pe scores logo"/></a>
+        <a sec:authorize="isAuthenticated() && !hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes}"><img src="/images/pe%20scores-final.png"
+                                                                                                               alt="pe scores logo"/></a>
+        <a sec:authorize="isAuthenticated() && hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/all}"><img src="/images/pe%20scores-final.png"
+                                                                                                                  alt="pe scores logo"/></a>
 
         <nav class="navbar">
             <ul class="navbar-buttons" sec:authorize="!isAuthenticated()">
