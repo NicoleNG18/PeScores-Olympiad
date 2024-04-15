@@ -40,8 +40,8 @@
                 <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/add}" th:text="#{navbar_addschool}">Add school</a>
                 <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/all}" th:text="#{navbar_schools}">Schools</a>
                 <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes}" th:text="#{navbar_classes}">Classes</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes/add}" th:text="#{navbar_add_class}">Add class</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/students/add}" th:text="#{navbar_add_student}">Add student</a>
+                <a sec:authorize="hasAnyAuthority('ROLE_ADMIN')" th:href="@{/classes/add}" th:text="#{navbar_add_class}">Add class</a>
+                <a sec:authorize="hasAnyAuthority('ROLE_ADMIN')" th:href="@{/students/add}" th:text="#{navbar_add_student}">Add student</a>
                 <a th:href="@{/tasks}" th:text="#{navbar_tasks}">Tasks</a>
                 <a>
                     <form class="logout" th:method="post" th:action="@{/users/logout}">
@@ -74,20 +74,6 @@
             <li><a class="className" th:text="*{class.className}"
                    th:href="@{/classes/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}">class</a>
             </li>
-<!--            <div class="buttons">-->
-<!--&lt;!&ndash;                <li>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <a th:href="@{/classes/edit/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"&ndash;&gt;-->
-<!--&lt;!&ndash;                       th:object="${class}" class="edit">Edit </a>&ndash;&gt;-->
-<!--&lt;!&ndash;                </li>&ndash;&gt;-->
-<!--&lt;!&ndash;                <li>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <form id="deleteForm"&ndash;&gt;-->
-<!--&lt;!&ndash;                          th:method="post"&ndash;&gt;-->
-<!--&lt;!&ndash;                          th:action="@{/classes/delete/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"&ndash;&gt;-->
-<!--&lt;!&ndash;                          th:object="${class}">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <button class="delete" onclick="document.getElementById('deleteForm').submit();">Delete</button>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </form>&ndash;&gt;-->
-<!--&lt;!&ndash;                </li>&ndash;&gt;-->
-<!--            </div>-->
         </ul>
 
     </div>
