@@ -38,12 +38,20 @@ public class SecurityConfiguration {
                                 .requestMatchers("/users/login"
                                         , "/users/register",
                                         "/users/login-error").permitAll()
-                                .requestMatchers("/tasks",
-                                        "/classes/**", "/classes/edit/**", "/classes/delete/**"
-                                        , "/students/**",
-                                        "/denseBall", "/jump", "/thirty", "/twoHundred", "/tTest").authenticated()
+
+                                .requestMatchers("/tasks","/classes").authenticated()
+
                                 .requestMatchers("/", "/contact").anonymous()
-                                .requestMatchers("/schools/**").hasRole(UserRoleEnum.SUPERADMIN.name())
+
+                                .requestMatchers("/schools/**","/users/roles/**").hasRole(UserRoleEnum.SUPERADMIN.name())
+
+                                .requestMatchers("/classes/add","/classes/edit/**",
+                                "/classes/edited/**","/classes/delete/**","/students/**").hasRole(UserRoleEnum.ADMIN.name())
+
+                                .requestMatchers("/denseBall", "/jump",
+                                        "/thirty", "/twoHundred",
+                                        "/tTest","/classes/{idTeacher}/{id}").hasRole(UserRoleEnum.USER.name())
+
                                 // all other requests are authenticated.
                                 .anyRequest().authenticated()
                 ).formLogin(
