@@ -82,6 +82,9 @@
         <div class="invalid-feedback errors-class alert-danger"
              th:each="err :${#fields.errors('className')}"
              th:text="#{add_class_err_class_name}"></div>
+        <div class="invalid-feedback errors-class alert-danger"
+             th:if="${isUnique} == false" th:text="#{class_add_unique}">class name must be unique
+        </div>
 
         <label for="classNum" th:text="#{add_class_grade_number}">Grade Number</label>
         <input type="number"

@@ -192,4 +192,16 @@ public class ClassesService {
 
         return classesInSchool.stream().map(c -> this.modelMapper.map(c, ClassViewDto.class)).collect(Collectors.toList());
     }
+
+    public boolean checkIfClassNameRepeats(String name,
+                                           String className) {
+        for (ClassEntity classEntity : this.userService.getUserByEmail(name).getSchool().getClasses()) {
+            if(classEntity.getClassName().equals(className)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

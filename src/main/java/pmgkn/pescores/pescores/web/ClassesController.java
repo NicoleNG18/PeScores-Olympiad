@@ -76,6 +76,13 @@ public class ClassesController {
             return "redirect:/classes/add";
         }
 
+        if (this.classesService.checkIfClassNameRepeats(principal.getName(), classAddBindingDto.getClassName())) {
+
+            redirectAttributes.addFlashAttribute("isUnique", false);
+
+            return "redirect:/classes/add";
+        }
+
         UUID classId = this.classesService.saveClass(classAddBindingDto, classAddBindingDto.getTeacher());
         UserEntity currentUser = this.userService.getUserByEmail(principal.getName());
 
