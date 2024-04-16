@@ -24,7 +24,7 @@ public class UserRegistrationBindingDto {
     @ValidEmail
     @UniqueUserEmail(message = EMAIL_UNIQUE)
     private String email;
-    @ValidSchool
+
     private String school;
     @ValidPassword
     private String password;

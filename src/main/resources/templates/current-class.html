@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 
 <head>
@@ -170,7 +170,8 @@
                     <form id="deleteForm"
                           th:method="post"
                           th:action="@{/students/delete/{idTeacher}/{id}(idTeacher=${student.getTeacher().id}, id=${student.id})}"
-                          th:object="${student}">
+                          th:object="${student}"
+                          sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
                         <button class="delete" onclick="document.getElementById('deleteForm').submit();" th:text="#{current_class_delete}">Delete</button>
                     </form>
                 </td>

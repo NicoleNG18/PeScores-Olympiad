@@ -6,6 +6,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pmgkn.pescores.pescores.domain.dto.binding.ClassAddBindingDto;
+import pmgkn.pescores.pescores.domain.dto.binding.ClassEditBindingDto;
 import pmgkn.pescores.pescores.domain.dto.view.ClassViewDto;
 import pmgkn.pescores.pescores.domain.dto.view.StudentViewDto;
 import pmgkn.pescores.pescores.domain.entity.ClassEntity;
@@ -120,6 +121,7 @@ public class ClassesService {
                 .setClassName(referenceById.getClassName())
                 .setClassNum(referenceById.getClassNum())
                 .setId(referenceById.getId())
+                .setTeacher(referenceById.getTeacher())
                 .setStudents(referenceById.getStudents());
     }
 
@@ -140,27 +142,50 @@ public class ClassesService {
         return this.classRepository.findByClassNameAndTeacher(className, teacherEntity);
     }
 
+    @Transactional
+    public ClassEntity getClassEntityByLoggedUserAndName(String loggedUser, String className){
+
+       return this.userService.getUserByEmail(loggedUser).getSchool().getClasses().stream().filter(c->c.getClassName().equals(className)).findFirst().get();
+    }
+
     public void editClass(UUID id,
-                          ClassAddBindingDto classEdit) {
+                          ClassEditBindingDto classEdit) {
 
         ClassEntity classEntity = this.classRepository.findClassById(id);
+        UserEntity currentTeacher = classEntity.getTeacher();
+        currentTeacher.getClasses().remove(classEntity);
+        this.userService.saveTeacher(currentTeacher);
+
+        UserEntity newTeacher = this.userService.getUserByEmail(classEdit.getTeacher());
+        this.userService.setClassToTeacher(classEntity,newTeacher.getEmail());
 
         classEntity
-                .setClassName(classEdit.getClassName())
-                .setClassNum(classEdit.getClassNum());
+//                .setClassName(classEdit.getClassName())
+//                .setClassNum(classEdit.getClassNum())
+                .setTeacher(newTeacher);
 
         this.classRepository.saveAndFlush(classEntity);
     }
 
     public void deleteClass(UUID id) {
+
+        ClassEntity classEntity = this.classRepository.findClassById(id);
+        UserEntity currentTeacher = classEntity.getTeacher();
+        currentTeacher.getClasses().remove(classEntity);
+        this.userService.saveTeacher(currentTeacher);
+
+        SchoolEntity school = classEntity.getSchool();
+        school.getClasses().remove(classEntity);
+        this.schoolService.saveSchoolToRepository(school);
+
         this.classRepository.deleteById(id);
     }
 
     public void addStudent(StudentEntity studentToSave,
                            String className,
-                           String teacherName) {
+                           String loggedUser) {
 
-        ClassEntity classEntity = this.getClassEntityByNameAndTeacher(className, teacherName);
+        ClassEntity classEntity = this.getClassEntityByLoggedUserAndName(loggedUser,className);
         classEntity.addStudent(studentToSave);
 
         this.classRepository.saveAndFlush(classEntity);

@@ -20,7 +20,7 @@ public class ClassEntity extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL)
     private List<StudentEntity> students;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private UserEntity teacher;
 
     @ManyToOne

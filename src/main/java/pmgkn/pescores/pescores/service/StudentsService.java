@@ -58,23 +58,23 @@ public class StudentsService {
         this.tTestRepository = tTestRepository;
     }
 
-    public UUID saveStudent(String name,
+    public UUID saveStudent(String loggedUser,
                             StudentAddBindingDto studentAddBindingDto) {
 
-        StudentEntity studentToSave = mapToStudentEntity(studentAddBindingDto, name);
+        StudentEntity studentToSave = mapToStudentEntity(studentAddBindingDto, loggedUser);
 
         this.studentRepository.saveAndFlush(studentToSave);
 
-        this.classesService.addStudent(studentToSave, studentAddBindingDto.getStudentClass(), name);
+        this.classesService.addStudent(studentToSave, studentAddBindingDto.getStudentClass(), loggedUser);
 
         return this.classesService.getClassById(studentToSave.getStudentClass().getId()).getId();
     }
 
     private StudentEntity mapToStudentEntity(StudentAddBindingDto studentAddBindingDto,
-                                             String name) {
+                                             String loggedUser) {
         return this.modelMapper.map(studentAddBindingDto, StudentEntity.class)
-                .setTeacher(this.userService.getUserByEmail(name))
-                .setStudentClass(this.classesService.getClassEntityByNameAndTeacher(studentAddBindingDto.getStudentClass(), name));
+                .setTeacher(this.userService.getUserByEmail(loggedUser))
+                .setStudentClass(this.classesService.getClassEntityByLoggedUserAndName(loggedUser,studentAddBindingDto.getStudentClass()));
     }
 
     public UUID editStudent(StudentUpdateBindingDto studentUpdate,
@@ -170,10 +170,10 @@ public class StudentsService {
     }
 
     public boolean checkIfClassNumRepeats(String studentClass,
-                                          String teacher,
+                                          String loggedUser,
                                           Integer studentNumber) {
 
-        ClassEntity classEntityByNameAndTeacher = this.classesService.getClassEntityByNameAndTeacher(studentClass, teacher);
+        ClassEntity classEntityByNameAndTeacher=this.classesService.getClassEntityByLoggedUserAndName(loggedUser,studentClass);
 
         List<Integer> collect = classEntityByNameAndTeacher.
                 getStudents()

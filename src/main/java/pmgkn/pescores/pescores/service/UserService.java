@@ -135,4 +135,8 @@ public class UserService {
     public SchoolEntity getSchoolByTeacher(String teacherName) {
         return this.userRepository.findByEmail(teacherName).getSchool();
     }
+
+    public void saveTeacher(UserEntity currentTeacher) {
+        this.userRepository.saveAndFlush(currentTeacher);
+    }
 }

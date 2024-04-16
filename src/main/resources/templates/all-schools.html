@@ -76,20 +76,16 @@
       <li><a class="className" th:text="*{school.schoolName}"
              th:href="@{/schools/{id}(id=${school.id})}">class</a>
       </li>
-<!--      <div class="buttons">-->
-<!--        <li>-->
-<!--          <a th:href="@{/classes/edit/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"-->
-<!--             th:object="${class}" class="edit">Edit </a>-->
-<!--        </li>-->
-<!--        <li>-->
-<!--          <form id="deleteForm"-->
-<!--                th:method="post"-->
-<!--                th:action="@{/classes/delete/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"-->
-<!--                th:object="${class}">-->
-<!--            <button class="delete" onclick="document.getElementById('deleteForm').submit();">Delete</button>-->
-<!--          </form>-->
-<!--        </li>-->
-<!--      </div>-->
+      <div class="buttons" th:unless="${school.schoolName.equals(pmg.name)}">
+        <li>
+          <form id="deleteForm"
+                th:method="delete"
+                th:action="@{/schools/delete/{id}(id=${school.id})}"
+                th:object="${school}">
+            <button class="delete" onclick="document.getElementById('deleteForm').submit();" th:text="#{classes_delete}">Delete</button>
+          </form>
+        </li>
+      </div>
     </ul>
 
   </div>

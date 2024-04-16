@@ -74,7 +74,7 @@
 
         <ul th:each="class: ${classes}">
             <li><a class="className" th:text="*{class.className}"
-                   th:href="@{/classes/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}">class</a>
+                   th:href="@{/classes/{id}(id=${class.id})}">class</a>
             </li>
         </ul>
 
@@ -89,17 +89,18 @@
 
         <ul th:each="class: ${allClasses}">
             <li><a class="className" th:text="*{class.className}"
-                   th:href="@{/classes/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}">class</a>
+                   th:href="@{/classes/{id}(id=${class.id})}">class</a>
             </li>
+            <li th:text="|#{classes_teacher}  *{class.teacher.email}|"></li>
             <div class="buttons">
                 <li class="edit-btn">
-                    <a th:href="@{/classes/edit/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"
+                    <a th:href="@{/classes/edit/{id}(id=${class.getId()})}"
                        th:object="${class}" class="edit" th:text="#{classes_edit}">Edit </a>
                 </li>
                 <li>
                     <form id="deleteForm"
                           th:method="post"
-                          th:action="@{/classes/delete/{idTeacher}/{id}(idTeacher=${class.getTeacher().id}, id=${class.id})}"
+                          th:action="@{/classes/delete/{id}(id=${class.id})}"
                           th:object="${class}">
                         <button class="delete" onclick="document.getElementById('deleteForm').submit();" th:text="#{classes_delete}">Delete</button>
                     </form>

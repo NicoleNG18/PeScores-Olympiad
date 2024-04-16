@@ -9,31 +9,41 @@ import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMes
 
 public class ClassEditBindingDto {
 
-    @NotEmpty(message = CLASS_NAME_REQUIRED)
-    private String className;
+//    @NotEmpty(message = CLASS_NAME_REQUIRED)
+//    private String className;
+//
+//    @Positive
+//    @NotNull(message = CLASS_NUM_REQUIRED)
+//    private int classNum;
 
-    @Positive
-    @NotNull(message = CLASS_NUM_REQUIRED)
-    private int classNum;
-
+    private String teacher;
     public ClassEditBindingDto() {
     }
 
-    public String getClassName() {
-        return className;
+    public String getTeacher() {
+        return teacher;
     }
 
-    public ClassEditBindingDto setClassName(String className) {
-        this.className = className;
+    public ClassEditBindingDto setTeacher(String teacher) {
+        this.teacher = teacher;
         return this;
     }
-
-    public int getClassNum() {
-        return classNum;
-    }
-
-    public ClassEditBindingDto setClassNum(int classNum) {
-        this.classNum = classNum;
-        return this;
-    }
+//
+//    public String getClassName() {
+//        return className;
+//    }
+//
+//    public ClassEditBindingDto setClassName(String className) {
+//        this.className = className;
+//        return this;
+//    }
+//
+//    public int getClassNum() {
+//        return classNum;
+//    }
+//
+//    public ClassEditBindingDto setClassNum(int classNum) {
+//        this.classNum = classNum;
+//        return this;
+//    }
 }

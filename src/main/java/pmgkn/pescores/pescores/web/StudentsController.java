@@ -48,7 +48,7 @@ public class StudentsController {
     public String getAddStudent(Model model,
                                 Principal principal) {
 
-        model.addAttribute("classes", this.classesService.getAllClassesByUser(principal.getName()));
+        model.addAttribute("classes", this.classesService.getAllClassesInSchool(principal.getName()));
 
         return "student-add";
     }
@@ -76,9 +76,8 @@ public class StudentsController {
         }
 
         UUID classId = this.studentsService.saveStudent(principal.getName(), studentAddBindingDto);
-        UserEntity currentUser = this.userService.getUserByEmail(principal.getName());
 
-        return "redirect:/classes/" + currentUser.getId() + "/" + classId;
+        return "redirect:/classes/" + classId;
     }
 
     @PostMapping("/update/{id}")

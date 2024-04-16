@@ -10,10 +10,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pmgkn.pescores.pescores.domain.dto.binding.ClassAddBindingDto;
 import pmgkn.pescores.pescores.domain.dto.binding.ClassEditBindingDto;
 import pmgkn.pescores.pescores.domain.dto.binding.StudentUpdateBindingDto;
+import pmgkn.pescores.pescores.domain.dto.view.ClassViewDto;
 import pmgkn.pescores.pescores.domain.entity.ClassEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.service.ClassesService;
-import pmgkn.pescores.pescores.service.SchoolService;
 import pmgkn.pescores.pescores.service.UserService;
 
 import java.security.Principal;
@@ -53,9 +53,10 @@ public class ClassesController {
     }
 
     @GetMapping("/add")
-    public String getAddClass(Model model,Principal principal) {
+    public String getAddClass(Model model,
+                              Principal principal) {
 
-        model.addAttribute("teachers",this.userService.getTeachers(principal.getName()));
+        model.addAttribute("teachers", this.userService.getTeachers(principal.getName()));
 
         return "add-class";
     }
@@ -83,19 +84,16 @@ public class ClassesController {
             return "redirect:/classes/add";
         }
 
-        UUID classId = this.classesService.saveClass(classAddBindingDto, classAddBindingDto.getTeacher());
-        UserEntity currentUser = this.userService.getUserByEmail(principal.getName());
-
-        return "redirect:/classes/" + currentUser.getId() + "/" + classId;
+        return "redirect:/classes";
     }
 
-    @GetMapping("/{idTeacher}/{id}")
-    public String getCurrentClass(@PathVariable("idTeacher") UUID idTeacher,
-                                  @PathVariable("id") UUID id,
+
+    @GetMapping("/{id}")
+    public String getCurrentClass(@PathVariable("id") UUID id,
                                   Model model,
                                   Principal principal) {
 
-        if (!this.userService.getUserById(idTeacher).equals(this.userService.getUserByEmail(principal.getName()))) {
+        if (!this.classesService.getClassById(id).getTeacher().getSchool().getName().equals(this.userService.getUserByEmail(principal.getName()).getSchool().getName())) {
             throw new ObjectNotFoundException("the info is not yours", ClassEntity.class);
         }
 
@@ -108,17 +106,13 @@ public class ClassesController {
         return "current-class";
     }
 
-    @GetMapping("/edit/{idTeacher}/{id}")
-    public String getEditClass(@PathVariable("idTeacher") UUID idTeacher,
-                               @PathVariable("id") UUID id,
+    @GetMapping("/edit/{id}")
+    public String getEditClass(@PathVariable("id") UUID id,
                                Model model,
                                Principal principal) {
 
-        if (!this.userService.getUserById(idTeacher).equals(this.userService.getUserByEmail(principal.getName()))) {
-            throw new ObjectNotFoundException("the info is not yours", ClassEntity.class);
-        }
-
         model.addAttribute("class", this.classesService.getClassById(id));
+        model.addAttribute("teachers", this.userService.getTeachers(principal.getName()));
 
         return "classes-edit";
     }
@@ -126,7 +120,7 @@ public class ClassesController {
     @PatchMapping("/edited/{id}")
     public String editClass(
             @PathVariable("id") UUID id,
-            @Valid ClassAddBindingDto classEdit,
+            @Valid ClassEditBindingDto classEdit,
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes,
             Principal principal) {
@@ -137,22 +131,25 @@ public class ClassesController {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.classEdit"
                     , bindingResult);
 
-            return "redirect:/classes/edit/{idTeacher}/{id}";
+            return "redirect:/classes/edit/{id}";
         }
 
         this.classesService.editClass(id, classEdit);
 
-        UserEntity currentUser = this.userService.getUserByEmail(principal.getName());
+//        UserEntity currentUser = this.userService.getUserByEmail(principal.getName());
 
-        return "redirect:/classes/" + currentUser.getId() + "/" + id;
+//        return "redirect:/classes/" + currentUser.getId() + "/" + id;
+          return "redirect:/classes/"+id;
     }
 
-    @PostMapping("/delete/{idTeacher}/{id}")
-    public String deleteClass(@PathVariable("idTeacher") UUID idTeacher,
-                              @PathVariable("id") UUID id,
+    @PostMapping("/delete/{id}")
+    public String deleteClass(@PathVariable("id") UUID id,
                               Principal principal) {
 
-        if (!this.userService.getUserById(idTeacher).equals(this.userService.getUserByEmail(principal.getName()))) {
+        ClassViewDto classById = this.classesService.getClassById(id);
+        UserEntity loggedUser = this.userService.getUserByEmail(principal.getName());
+
+        if (!classById.getTeacher().getSchool().equals(loggedUser.getSchool())) {
             throw new ObjectNotFoundException("the info is not yours", ClassEntity.class);
         }
 

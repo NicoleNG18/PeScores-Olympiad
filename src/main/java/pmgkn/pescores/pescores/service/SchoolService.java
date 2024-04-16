@@ -2,11 +2,13 @@ package pmgkn.pescores.pescores.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pmgkn.pescores.pescores.domain.dto.binding.SchoolAddBindingDto;
 import pmgkn.pescores.pescores.domain.dto.view.SchoolViewDto;
 import pmgkn.pescores.pescores.domain.entity.ClassEntity;
 import pmgkn.pescores.pescores.domain.entity.SchoolEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
+import pmgkn.pescores.pescores.repositories.ClassRepository;
 import pmgkn.pescores.pescores.repositories.SchoolRepository;
 
 import java.util.List;
@@ -19,10 +21,15 @@ public class SchoolService {
     private final SchoolRepository schoolRepository;
     private final ModelMapper modelMapper;
 
+    private final ClassRepository classRepository;
+
+
     public SchoolService(SchoolRepository schoolRepository,
-                         ModelMapper modelMapper) {
+                         ModelMapper modelMapper,
+                         ClassRepository classRepository) {
         this.schoolRepository = schoolRepository;
         this.modelMapper = modelMapper;
+        this.classRepository = classRepository;
     }
 
     public void saveSchool(SchoolAddBindingDto schoolAddBindingDto) {
@@ -64,5 +71,24 @@ public class SchoolService {
                                  ClassEntity classToSave) {
         schoolByTeacher.getClasses().add(classToSave);
         this.schoolRepository.saveAndFlush(schoolByTeacher);
+    }
+
+    public void saveSchoolToRepository(SchoolEntity school) {
+        this.schoolRepository.saveAndFlush(school);
+    }
+
+
+    public void deleteSchool(UUID id) {
+
+//        SchoolEntity schoolEntity = this.schoolRepository.findById(id).get();
+//        for (ClassEntity classEntity :schoolEntity.getClasses()){
+//            this.classRepository.deleteById(id);
+//        }
+
+        this.schoolRepository.deleteById(id);
+    }
+
+    public SchoolEntity findSchoolByName(String s) {
+        return this.schoolRepository.findBySchoolName(s).get();
     }
 }
