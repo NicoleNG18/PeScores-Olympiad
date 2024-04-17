@@ -13,7 +13,6 @@ import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMes
 
 public class TaskAddBindingDto {
 
-    @NotEmpty(message = DESCRIPTION_REQUIRED)
     @ValidTaskName
     private String description;
 

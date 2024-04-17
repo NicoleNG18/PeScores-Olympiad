@@ -13,6 +13,7 @@ public enum ValidationErrorMessages {
     public static final String DATE_PRESENT = "use present date";
     public static final String MATCHING_PASSWORDS = "Passwords should match.";
     public static final String INVALID_PERSON_NAME = "Between 2 and 15 letters.";
+    public static final String INVALID_CITY_NAME = "Between 2 and 15 letters.";
     public static final String INVALID_STUDENT_NAME = "Between 2 and 30 letters.";
     public static final String INVALID_EMAIL = "Email should be valid";
     public static final String INVALID_TASK = "Should be up to 35 symbols";
