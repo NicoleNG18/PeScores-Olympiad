@@ -84,8 +84,7 @@ public class StudentsController {
     public String editStudent(@PathVariable("id") UUID id,
                               @Valid StudentUpdateBindingDto studentUpdate,
                               BindingResult bindingResult,
-                              RedirectAttributes redirectAttributes,
-                              Principal principal) {
+                              RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
 
@@ -97,9 +96,8 @@ public class StudentsController {
         }
 
         UUID classId = this.studentsService.editStudent(studentUpdate, id);
-        UserEntity currentUser = this.userService.getUserByEmail(principal.getName());
 
-        return "redirect:/classes/" + currentUser.getId() + "/" + classId;
+        return "redirect:/classes/" + classId;
     }
 
     @PostMapping("/delete/{idTeacher}/{id}")

@@ -84,6 +84,8 @@ public class ClassesController {
             return "redirect:/classes/add";
         }
 
+        this.classesService.saveClass(classAddBindingDto, classAddBindingDto.getTeacher());
+
         return "redirect:/classes";
     }
 
@@ -136,9 +138,6 @@ public class ClassesController {
 
         this.classesService.editClass(id, classEdit);
 
-//        UserEntity currentUser = this.userService.getUserByEmail(principal.getName());
-
-//        return "redirect:/classes/" + currentUser.getId() + "/" + id;
           return "redirect:/classes/"+id;
     }
 

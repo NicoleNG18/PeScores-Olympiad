@@ -48,9 +48,11 @@ public class SecurityConfiguration {
                                 .requestMatchers("/classes/add","/classes/edit/**",
                                 "/classes/edited/**","/classes/delete/**","/students/**","/classes/{idTeacher}/{id}","/classes").hasRole(UserRoleEnum.ADMIN.name())
 
+                                .requestMatchers("/students/{id}").hasAnyRole(UserRoleEnum.USER.name(),UserRoleEnum.ADMIN.name())
+
                                 .requestMatchers("/denseBall", "/jump",
                                         "/thirty", "/twoHundred",
-                                        "/tTest","/classes/{idTeacher}/{id}","/classes").hasRole(UserRoleEnum.USER.name())
+                                        "/tTest","/classes/{id}","/classes").hasRole(UserRoleEnum.USER.name())
 
                                 // all other requests are authenticated.
                                 .anyRequest().authenticated()

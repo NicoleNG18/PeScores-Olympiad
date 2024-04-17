@@ -75,7 +75,7 @@ public class ClassesService {
         }
     }
 
-    public UUID saveClass(ClassAddBindingDto classAddBindingDto,
+    public void saveClass(ClassAddBindingDto classAddBindingDto,
                           String teacherName) {
 
         SchoolEntity schoolByTeacher = this.userService.getSchoolByTeacher(teacherName);
@@ -86,8 +86,6 @@ public class ClassesService {
 
         this.userService.setClassToTeacher(classToSave, teacherName);
         this.schoolService.addClassToSchool(schoolByTeacher, classToSave);
-
-        return this.classRepository.getReferenceById(classToSave.getId()).getId();
     }
 
     private ClassEntity mapToClassEntity(ClassAddBindingDto classAddBindingDto,
