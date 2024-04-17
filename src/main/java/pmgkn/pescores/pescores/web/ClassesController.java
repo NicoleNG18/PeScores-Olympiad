@@ -124,8 +124,7 @@ public class ClassesController {
             @PathVariable("id") UUID id,
             @Valid ClassEditBindingDto classEdit,
             BindingResult bindingResult,
-            RedirectAttributes redirectAttributes,
-            Principal principal) {
+            RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
 
@@ -138,7 +137,7 @@ public class ClassesController {
 
         this.classesService.editClass(id, classEdit);
 
-          return "redirect:/classes/"+id;
+          return "redirect:/classes";
     }
 
     @PostMapping("/delete/{id}")

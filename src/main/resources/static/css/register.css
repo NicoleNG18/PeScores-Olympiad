@@ -10,7 +10,7 @@
 .row-form {
     display: flex;
     flex-direction: row;
-    gap: 3em;
+    gap:3em;
 }
 
 .form {
@@ -72,9 +72,9 @@ option {
     color: #5d54c3;
     font-size: 13px;
     font-weight: 500;
-    margin-top: 0.5em;
     text-align: center;
     border-radius: 5px;
+    width: 15em;
 }
 
 ::placeholder {
@@ -82,11 +82,11 @@ option {
 }
 
 .errors-register {
-    width: 95%;
+    width: 70%;
     border-radius: 4px;
     text-align: center;
     font-weight: 500;
-    font-size: 13px;
+    font-size: 11px;
     background-color: #d8d7fe;
     color: red;
     margin: 1em auto;
@@ -103,6 +103,11 @@ option {
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.option-color {
+    color: #362bb7;
+    background-color: #d8d7fe;
 }
 
 .register-btn:hover {

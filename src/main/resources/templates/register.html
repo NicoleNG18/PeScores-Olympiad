@@ -18,10 +18,12 @@
     <header xmlns:sec="http://www.w3.org/1999/xhtml">
         <a sec:authorize="!isAuthenticated()" th:href="@{/}"><img src="/images/pe%20scores-final.png"
                                                                   alt="pe scores logo"/></a>
-        <a sec:authorize="isAuthenticated() && !hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes}"><img src="/images/pe%20scores-final.png"
-                                                                                                               alt="pe scores logo"/></a>
-        <a sec:authorize="isAuthenticated() && hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/all}"><img src="/images/pe%20scores-final.png"
-                                                                                                                  alt="pe scores logo"/></a>
+        <a sec:authorize="isAuthenticated() && !hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes}"><img
+                src="/images/pe%20scores-final.png"
+                alt="pe scores logo"/></a>
+        <a sec:authorize="isAuthenticated() && hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/all}"><img
+                src="/images/pe%20scores-final.png"
+                alt="pe scores logo"/></a>
         <nav class="navbar">
             <ul class="navbar-buttons" sec:authorize="!isAuthenticated()">
                 <a th:href="@{/contact}" th:text="#{navbar_add_school}">How to add your school?</a>
@@ -42,16 +44,26 @@
             </ul>
 
             <ul class="navbar-buttons" sec:authorize="isAuthenticated()">
-                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/denseBall}" th:text="#{navbar_dense_ball}">Dense ball</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/jump}" th:text="#{navbar_jump}">Jump</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/tTest}" th:text="#{navbar_t_test}">T-test</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/thirty}" th:text="#{navbar_30_meters}">30 meters</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/twoHundred}" th:text="#{navbar_200_meters}">200 meters</a>
-                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/add}" th:text="#{navbar_addschool}">Add school</a>
-                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/all}" th:text="#{navbar_schools}">Schools</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes}" th:text="#{navbar_classes}">Classes</a>
-                <a sec:authorize="hasAnyAuthority('ROLE_ADMIN') && !hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes/add}" th:text="#{navbar_add_class}">Add class</a>
-                <a sec:authorize="hasAnyAuthority('ROLE_ADMIN') && !hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/students/add}" th:text="#{navbar_add_student}">Add student</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/denseBall}"
+                   th:text="#{navbar_dense_ball}">Dense ball</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/jump}"
+                   th:text="#{navbar_jump}">Jump</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/tTest}"
+                   th:text="#{navbar_t_test}">T-test</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/thirty}"
+                   th:text="#{navbar_30_meters}">30 meters</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_ADMIN','ROLE_SUPERADMIN')" th:href="@{/twoHundred}"
+                   th:text="#{navbar_200_meters}">200 meters</a>
+                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/add}"
+                   th:text="#{navbar_addschool}">Add school</a>
+                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/all}"
+                   th:text="#{navbar_schools}">Schools</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes}"
+                   th:text="#{navbar_classes}">Classes</a>
+                <a sec:authorize="hasAnyAuthority('ROLE_ADMIN') && !hasAnyAuthority('ROLE_SUPERADMIN')"
+                   th:href="@{/classes/add}" th:text="#{navbar_add_class}">Add class</a>
+                <a sec:authorize="hasAnyAuthority('ROLE_ADMIN') && !hasAnyAuthority('ROLE_SUPERADMIN')"
+                   th:href="@{/students/add}" th:text="#{navbar_add_student}">Add student</a>
                 <a th:href="@{/tasks}" th:text="#{navbar_tasks}">Tasks</a>
                 <a>
                     <form class="logout" th:method="post" th:action="@{/users/logout}">
@@ -89,7 +101,7 @@
 
             <div class="element">
                 <label for="lastname" class="label" th:text="#{signup_last_name}">Last name</label>
-                <input type="text"th:placeholder="#{signup_last_name}"
+                <input type="text" th:placeholder="#{signup_last_name}"
                        th:field="*{lastName}"
                        th:errorclass="is-invalid"
                        id="lastname" class="input"/>
@@ -122,12 +134,10 @@
                         class="input">
                     <option th:each="sch: ${schools}"
                             th:text="${sch.schoolName}"
-                            th:value="${sch.schoolName}">7a
+                            th:value="${sch.schoolName}"
+                            class="option-color">7a
                     </option>
                 </select>
-                <div class="invalid-feedback errors-register alert-danger"
-                     th:each="err :${#fields.errors('school')}"
-                     th:text="#{err_school}"/>
             </div>
 
         </div>

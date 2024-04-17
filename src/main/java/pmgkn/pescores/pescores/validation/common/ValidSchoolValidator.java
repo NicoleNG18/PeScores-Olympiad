@@ -9,7 +9,7 @@ public class ValidSchoolValidator implements ConstraintValidator<ValidSchool, St
     public boolean isValid(String schoolName,
                            ConstraintValidatorContext context) {
 
-        if (schoolName.length() < 15) {
+        if (schoolName.length() < 10 || schoolName.length() > 40) {
             return false;
         }
 

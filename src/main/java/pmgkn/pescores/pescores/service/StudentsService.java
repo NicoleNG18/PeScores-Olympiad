@@ -74,7 +74,7 @@ public class StudentsService {
                                              String loggedUser) {
         return this.modelMapper.map(studentAddBindingDto, StudentEntity.class)
                 .setTeacher(this.userService.getUserByEmail(loggedUser))
-                .setStudentClass(this.classesService.getClassEntityByLoggedUserAndName(loggedUser,studentAddBindingDto.getStudentClass()));
+                .setStudentClass(this.classesService.getClassEntityByLoggedUserAndName(loggedUser, studentAddBindingDto.getStudentClass()));
     }
 
     public UUID editStudent(StudentUpdateBindingDto studentUpdate,
@@ -173,7 +173,7 @@ public class StudentsService {
                                           String loggedUser,
                                           Integer studentNumber) {
 
-        ClassEntity classEntityByNameAndTeacher=this.classesService.getClassEntityByLoggedUserAndName(loggedUser,studentClass);
+        ClassEntity classEntityByNameAndTeacher = this.classesService.getClassEntityByLoggedUserAndName(loggedUser, studentClass);
 
         List<Integer> collect = classEntityByNameAndTeacher.
                 getStudents()
@@ -195,5 +195,9 @@ public class StudentsService {
         this.studentRepository.saveAndFlush(referenceById);
 
         this.studentRepository.deleteById(id);
+    }
+
+    public UUID getStudentClassId(UUID id) {
+        return this.studentRepository.findFirstById(id).getStudentClass().getId();
     }
 }

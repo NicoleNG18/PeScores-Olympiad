@@ -20,7 +20,8 @@
 }
 
 .all-schools {
-    width: 35%;
+    width: 70%;
+    padding: 2em;
     background-color: #d8d7fe;
     text-align: center;
     border-radius: 1em;
@@ -33,8 +34,7 @@
     margin-bottom: 0.5em;
     display: flex;
     flex-direction: row;
-    gap: 2em;
-    justify-content: center;
+    justify-content: space-between;
     padding-bottom: 1em;
     border-bottom: 2px solid #5d54c3;
 }
@@ -97,51 +97,3 @@ form {
     background-color: #d8d7fe;
     border-color: #d8d7fe;
 }
-
-
-/*.classes-table{*/
-/*    width: 80%;*/
-/*    background-color: #d8d7fe;*/
-/*    border-radius:1em;*/
-/*    box-shadow: -4px -3px 45px 21px rgba(0,0,0,0.35);*/
-/*}*/
-
-/*.classes-table h2{*/
-/*    font-weight: 700;*/
-/*    margin-bottom: 1em;*/
-/*    margin-top: 1.5em;*/
-/*    color: #5d54c3;*/
-/*    text-align: center;*/
-/*}*/
-
-/*.classes-table table{*/
-/*    border: 3px solid #5d54c3;*/
-/*    margin: 0 auto;*/
-/*    border-collapse: collapse;*/
-/*    width: 90%;*/
-/*}*/
-
-/*.classes-table thead th{*/
-/*    padding: 0.5em;*/
-/*    font-weight: 400;*/
-/*    color: #5d54c3;*/
-/*    text-align: center;*/
-/*    border-bottom: 2px solid #5d54c3;*/
-/*    border-right: 2px solid #5d54c3;*/
-/*}*/
-
-/*.classes-table tbody td{*/
-/*    padding: 0.5em;*/
-/*    border-bottom: 2px solid #5d54c3;*/
-/*    border-right: 2px solid #5d54c3;*/
-/*}*/
-
-/*.classes-table tbody td input{*/
-/*    width: 98%;*/
-/*    background-color: #d8d7fe;*/
-/*    border: none;*/
-/*    outline: none;*/
-/*    font-weight: 400;*/
-/*    color: #5d54c3;*/
-/*    text-align: left;*/
-/*}*/

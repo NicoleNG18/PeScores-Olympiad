@@ -2,13 +2,14 @@ package pmgkn.pescores.pescores.domain.dto.binding;
 
 import jakarta.validation.constraints.NotEmpty;
 import pmgkn.pescores.pescores.validation.common.UniqueSchoolName;
+import pmgkn.pescores.pescores.validation.common.ValidSchool;
 
 import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMessages.*;
 
 public class SchoolAddBindingDto {
 
-    @NotEmpty(message = SCHOOL_NAME_REQUIRED)
     @UniqueSchoolName
+    @ValidSchool
     private String schoolName;
 
     @NotEmpty(message = CITY_NAME_REQUIRED)

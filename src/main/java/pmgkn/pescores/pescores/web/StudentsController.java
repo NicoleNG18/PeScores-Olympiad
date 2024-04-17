@@ -105,12 +105,14 @@ public class StudentsController {
                                 @PathVariable("id") UUID id,
                                 Principal principal) {
 
-        if (!this.userService.getUserById(idTeacher).equals(this.userService.getUserByEmail(principal.getName()))) {
+        if (!this.userService.getUserById(idTeacher).getSchool().getName().equals(this.userService.getUserByEmail(principal.getName()).getSchool().getName())) {
             throw new ObjectNotFoundException("the info is not yours", ClassEntity.class);
         }
 
+        UUID classId = this.studentsService.getStudentClassId(id);
+
         this.studentsService.deleteStudent(id);
 
-        return "redirect:/classes";
+        return "redirect:/classes/" + classId;
     }
 }

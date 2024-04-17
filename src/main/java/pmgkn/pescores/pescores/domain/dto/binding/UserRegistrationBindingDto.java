@@ -22,7 +22,7 @@ public class UserRegistrationBindingDto {
     @ValidPersonName
     private String lastName;
     @ValidEmail
-    @UniqueUserEmail(message = EMAIL_UNIQUE)
+    @UniqueUserEmail
     private String email;
 
     private String school;
