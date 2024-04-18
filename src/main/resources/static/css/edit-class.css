@@ -8,7 +8,7 @@
 }
 
 .form {
-    height: 400px;
+    height: 300px;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
     border-radius: 10px;
@@ -44,10 +44,10 @@
 .input {
     display: block;
     height: 50px;
-    width: 95%;
+    width: 100%;
     background-color: #d8d7fe;
     /*color:#5d54c3;*/
-    color: black;
+    color: #362bb7;
     border-radius: 3px;
     padding: 0 10px;
     margin-top: 8px;
@@ -56,15 +56,9 @@
     margin-bottom: 10px;
 }
 
-.errors-class {
-    width: 250px;
-    border-radius: 4px;
-    text-align: center;
-    font-weight: 500;
-    font-size: 13px;
+.option-color {
+    color: #362bb7;
     background-color: #d8d7fe;
-    color: red;
-    margin: 1em auto;
 }
 
 ::placeholder {

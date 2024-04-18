@@ -73,39 +73,12 @@
 
         <h3 th:text="#{edit_class}">Edit class</h3>
 
-<!--        <label for="clasName" class="label" th:text="#{edit_class_name}">Class name</label>-->
-<!--        <input type="text"-->
-<!--               name="className"-->
-<!--               th:errorclass="is-invalid"-->
-<!--               th:field="*{className}"-->
-<!--               th:placeholder="#{edit_class_name_placeholder}"-->
-<!--               id="clasName"-->
-<!--               class="input">-->
-<!--        <div class="invalid-feedback errors-class alert-danger"-->
-<!--             th:each="err :${#fields.errors('className')}"-->
-<!--             th:text="#{edit_class_err_name}"></div>-->
-
-<!--        <label for="classNum" th:text="#{edit_class_num}">Class Number</label>-->
-<!--        <input type="number"-->
-<!--               id="classNum"-->
-<!--               name="classNum"-->
-<!--               class="input"-->
-<!--               th:errorclass="is-invalid"-->
-<!--               th:field="*{classNum}"-->
-<!--               min="1"-->
-<!--               max="12"-->
-<!--               step="1"-->
-<!--               th:placeholder="#{edit_class_num_placeholder}">-->
-<!--        <div class="invalid-feedback errors-class alert-danger"-->
-<!--             th:each="err :${#fields.errors('classNum')}"-->
-<!--             th:text="#{edit_class_err_num}"></div>-->
-
         <label for="teacher" class="label" th:text="#{add_class_teacher}">Teacher</label>
         <select id="teacher"
                 th:field="*{teacher}"
                 th:errorclass="is-invalid"
                 class="input">
-            <option th:each="teach: ${teachers}"
+            <option class="option-color" th:each="teach: ${teachers}"
                     th:text="${teach.email}"
                     th:value="${teach.email}">nicole.georgieva
             </option>

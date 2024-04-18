@@ -10,7 +10,6 @@ import static pmgkn.pescores.pescores.domain.entity.constants.ValidationErrorMes
 
 public class ClassAddBindingDto {
 
-    @NotEmpty(message = CLASS_NAME_REQUIRED)
     @ValidClassName
     private String className;
 

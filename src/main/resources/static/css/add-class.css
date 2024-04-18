@@ -71,6 +71,11 @@
     color: #362bb7;
 }
 
+.option-color {
+    color: #362bb7;
+    background-color: #d8d7fe;
+}
+
 .submit-btn {
     margin-top: 1.5em;
     width: 95%;

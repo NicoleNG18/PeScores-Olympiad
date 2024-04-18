@@ -519,7 +519,7 @@
             <table class="table">
                 <thead>
                 <tr>
-                    < <th scope="col" th:text="#{class_table}">Class</th>
+                    <th scope="col" th:text="#{class_table}">Class</th>
                     <th scope="col" th:text="#{gender}">Gender</th>
                     <th scope="col" th:text="#{from}">From</th>
                     <th scope="col" th:text="#{to}">To</th>
@@ -666,7 +666,109 @@
             </table>
         </div>
 
-        <div class="row11">
+        <div class="row11-bg" th:unless="${#locale.toString()} == 'en_US'">
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col" th:text="#{class_table}">Class</th>
+                    <th scope="col" th:text="#{gender}">Gender</th>
+                    <th scope="col" th:text="#{from}">From</th>
+                    <th scope="col" th:text="#{to}">To</th>
+                    <th scope="col" th:text="#{grade}">Grade</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>11</td>
+                    <td th:text="#{male}">MALE</td>
+                    <td>0</td>
+                    <td>1.52</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td th:text="#{male}">MALE</td>
+                    <td>1.53</td>
+                    <td>1.80</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td th:text="#{male}">MALE</td>
+                    <td>1.81</td>
+                    <td>2.30</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td th:text="#{male}">MALE</td>
+                    <td>2.31</td>
+                    <td>2.51</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td th:text="#{male}">MALE</td>
+                    <td>2.52</td>
+                    <td>5.00</td>
+                    <td>6</td>
+                </tr>
+                </tbody>
+            </table>
+
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col" th:text="#{class_table}">Class</th>
+                    <th scope="col" th:text="#{gender}">Gender</th>
+                    <th scope="col" th:text="#{from}">From</th>
+                    <th scope="col" th:text="#{to}">To</th>
+                    <th scope="col" th:text="#{grade}">Grade</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>12</td>
+                    <td th:text="#{male}">MALE</td>
+                    <td>0</td>
+                    <td>1.55</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td th:text="#{male}">MALE</td>
+                    <td>1.56</td>
+                    <td>1.84</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td th:text="#{male}">MALE</td>
+                    <td>1.85</td>
+                    <td>2.35</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td th:text="#{male}">MALE</td>
+                    <td>2.36</td>
+                    <td>2.57</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td th:text="#{male}">MALE</td>
+                    <td>2.58</td>
+                    <td>5.00</td>
+                    <td>6</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row11-en" th:if="${#locale.toString()} == 'en_US'">
 
             <table class="table">
                 <thead>
@@ -769,7 +871,109 @@
         </div>
 
 
-        <div class="row11">
+        <div class="row11-bg" th:unless="${#locale.toString()} == 'en_US'">
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col" th:text="#{class_table}">Class</th>
+                    <th scope="col" th:text="#{gender}">Gender</th>
+                    <th scope="col" th:text="#{from}">From</th>
+                    <th scope="col" th:text="#{to}">To</th>
+                    <th scope="col" th:text="#{grade}">Grade</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>11</td>
+                    <td th:text="#{female}">FEMALE</td>
+                    <td>0</td>
+                    <td>1.12</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td th:text="#{female}">FEMALE</td>
+                    <td>1.13</td>
+                    <td>1.38</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td th:text="#{female}">FEMALE</td>
+                    <td>1.39</td>
+                    <td>1.82</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td th:text="#{female}">FEMALE</td>
+                    <td>1.83</td>
+                    <td>2.01</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td th:text="#{female}">FEMALE</td>
+                    <td>2.02</td>
+                    <td>5.00</td>
+                    <td>6</td>
+                </tr>
+                </tbody>
+            </table>
+
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col" th:text="#{class_table}">Class</th>
+                    <th scope="col" th:text="#{gender}">Gender</th>
+                    <th scope="col" th:text="#{from}">From</th>
+                    <th scope="col" th:text="#{to}">To</th>
+                    <th scope="col" th:text="#{grade}">Grade</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>12</td>
+                    <td th:text="#{female}">FEMALE</td>
+                    <td>0</td>
+                    <td>1.12</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td th:text="#{female}">FEMALE</td>
+                    <td>1.13</td>
+                    <td>1.38</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td th:text="#{female}">FEMALE</td>
+                    <td>1.39</td>
+                    <td>1.82</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td th:text="#{female}">FEMALE</td>
+                    <td>1.83</td>
+                    <td>2.01</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td th:text="#{female}">FEMALE</td>
+                    <td>2.02</td>
+                    <td>5.00</td>
+                    <td>6</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row11-en" th:if="${#locale.toString()} == 'en_US'">
 
             <table class="table">
                 <thead>

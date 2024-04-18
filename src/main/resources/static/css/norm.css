@@ -40,10 +40,16 @@ table, th, td {
     justify-content: space-between;
 }
 
-.row11 {
+.row11-en {
     display: flex;
     flex-direction: row;
     gap: 4em;
+}
+
+.row11-bg {
+    display: flex;
+    flex-direction: row;
+    gap: 7em;
 }
 
 .tables {

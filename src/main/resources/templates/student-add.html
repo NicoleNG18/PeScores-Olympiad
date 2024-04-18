@@ -104,7 +104,7 @@
                 th:field="*{gender}"
                 th:errorclass="is-invalid"
                 class="input">
-            <option th:each="g:${T(pmgkn.pescores.pescores.domain.enums.GenderEnum).values()}"
+            <option th:class="option-color" th:each="g:${T(pmgkn.pescores.pescores.domain.enums.GenderEnum).values()}"
                     th:text="${g.name()}"
                     th:value="${g}">male
             </option>
@@ -115,7 +115,7 @@
                 th:field="*{studentClass}"
                 th:errorclass="is-invalid"
                 class="input">
-            <option th:each="class: ${classes}"
+            <option th:class="option-color" th:each="class: ${classes}"
                     th:text="${class.className}"
                     th:value="${class.className}">7a
             </option>

@@ -20,8 +20,6 @@
 }
 
 #studentClass {
-    background-color: #d8d7fe;
-    color: #5d54c3;
     font-size: 16px;
     font-weight: 500;
     margin-top: 0.5em;
@@ -30,15 +28,17 @@
 }
 
 option {
-    background-color: #d8d7fe;
     font-size: 16px;
     font-weight: 500;
-    color: #5d54c3;
+}
+
+.option-color {
+    color: #362bb7;
+    background-color: #d8d7fe;
 }
 
 .form * {
     font-family: 'Poppins', sans-serif;
-    color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
@@ -49,6 +49,7 @@ option {
     font-weight: 500;
     line-height: 35px;
     text-align: center;
+    color: #ffffff;
 }
 
 .label {
@@ -56,6 +57,7 @@ option {
     margin-top: 20px;
     font-size: 16px;
     font-weight: 500;
+    color: #ffffff;
 }
 
 .input {
@@ -64,7 +66,7 @@ option {
     width: 95%;
     background-color: #d8d7fe;
     /*color:#5d54c3;*/
-    color: black;
+    color: #362bb7;
     border-radius: 3px;
     padding: 0 10px;
     margin-top: 8px;

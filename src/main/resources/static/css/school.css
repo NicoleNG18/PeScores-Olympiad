@@ -22,13 +22,13 @@
 
 .school h2 {
     font-weight: 700;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     margin-top: 1.5em;
     color: #5d54c3;
 }
 
 .school {
-    width: 35%;
+    width: 60%;
     background-color: #d8d7fe;
     text-align: center;
     border-radius: 1em;

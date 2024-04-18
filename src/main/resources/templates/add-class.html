@@ -105,7 +105,7 @@
                 th:field="*{teacher}"
                 th:errorclass="is-invalid"
                 class="input">
-            <option th:each="teach: ${teachers}"
+            <option class="option-color" th:each="teach: ${teachers}"
                     th:text="${teach.email}"
                     th:value="${teach.email}">nicole.georgieva
             </option>
