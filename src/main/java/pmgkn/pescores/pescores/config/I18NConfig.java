@@ -10,21 +10,20 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 @Configuration
 public class I18NConfig {
-//bazirano na requesta razbira kakuv e ezika na koiyo iskame da se vidi saita
     @Bean
     public LocaleResolver localeResolver() {
         CookieLocaleResolver clr = new CookieLocaleResolver();
         clr.setCookieName("lang");
         return clr;
     }
-//prihvashta koga potrebitelqt iska da smeni ezika
+
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
         lci.setParamName("lang");
         return lci;
     }
-//files with keys
+
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource resourceBundleMessageSource = new ResourceBundleMessageSource();

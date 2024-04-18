@@ -38,7 +38,7 @@ public class ClassesController {
     }
 
     @ModelAttribute("classEdit")
-    public ClassEditBindingDto initClassEdit() {
+    public ClassEditBindingDto initClassEditDto() {
         return new ClassEditBindingDto();
     }
 
@@ -137,7 +137,7 @@ public class ClassesController {
 
         this.classesService.editClass(id, classEdit);
 
-          return "redirect:/classes";
+        return "redirect:/classes";
     }
 
     @PostMapping("/delete/{id}")

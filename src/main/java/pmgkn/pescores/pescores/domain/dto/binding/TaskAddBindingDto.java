@@ -1,7 +1,6 @@
 package pmgkn.pescores.pescores.domain.dto.binding;
 
 import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 import pmgkn.pescores.pescores.validation.common.ValidTaskName;

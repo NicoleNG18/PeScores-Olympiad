@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.SecurityContextConfigurer;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -39,20 +38,20 @@ public class SecurityConfiguration {
                                         , "/users/register",
                                         "/users/login-error").permitAll()
 
-                                .requestMatchers("/tasks","/classes").authenticated()
+                                .requestMatchers("/tasks", "/classes").authenticated()
 
                                 .requestMatchers("/", "/contact").anonymous()
 
-                                .requestMatchers("/schools/**","/users/roles/**").hasRole(UserRoleEnum.SUPERADMIN.name())
+                                .requestMatchers("/schools/**", "/users/roles/**").hasRole(UserRoleEnum.SUPERADMIN.name())
 
-                                .requestMatchers("/classes/add","/classes/edit/**",
-                                "/classes/edited/**","/classes/delete/**","/students/**","/classes/{idTeacher}/{id}","/classes").hasRole(UserRoleEnum.ADMIN.name())
+                                .requestMatchers("/classes/add", "/classes/edit/**",
+                                        "/classes/edited/**", "/classes/delete/**", "/classes/{idTeacher}/{id}", "/classes").hasRole(UserRoleEnum.ADMIN.name())
 
-                                .requestMatchers("/students/{id}").hasAnyRole(UserRoleEnum.USER.name(),UserRoleEnum.ADMIN.name())
+                                .requestMatchers("/students/**").hasAnyRole(UserRoleEnum.USER.name(), UserRoleEnum.ADMIN.name())
 
                                 .requestMatchers("/denseBall", "/jump",
                                         "/thirty", "/twoHundred",
-                                        "/tTest","/classes/{id}","/classes").hasRole(UserRoleEnum.USER.name())
+                                        "/tTest", "/classes/{id}", "/classes").hasRole(UserRoleEnum.USER.name())
 
                                 // all other requests are authenticated.
                                 .anyRequest().authenticated()
@@ -78,7 +77,7 @@ public class SecurityConfiguration {
                                         .logoutSuccessUrl("/")
                                         // invalidate the HTTP session
                                         .invalidateHttpSession(true)
-                                        .deleteCookies("JSSESIONID","lang")
+                                        .deleteCookies("JSSESIONID", "lang")
                                         .and().
                                         securityContext().
                                         securityContextRepository(securityContextRepository());

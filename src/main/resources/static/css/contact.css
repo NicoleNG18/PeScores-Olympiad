@@ -27,11 +27,8 @@
     padding: 0.5em;
     font-weight: 700;
     border-radius: 10px;
-    /*background: linear-gradient(to right, white 51.16%, #5d54c3 48.84%);*/
     background-color: #5d54c3;
     color: #d8d7fe;
-    /*-webkit-background-clip: text;*/
-    /*-webkit-text-fill-color: transparent;*/
     margin-bottom: 0.5em;
 }
 

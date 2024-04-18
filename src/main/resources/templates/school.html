@@ -4,7 +4,6 @@
 
 <head>
     <title th:text="${currentSchool.name}">School page</title>
-    <!--    <th:block th:insert="~{/fragments/head}"></th:block>-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,15 +15,16 @@
 <body>
 
 <div>
-    <!--    <th:block th:insert="~{/fragments/header}"></th:block>-->
 
     <header xmlns:sec="http://www.w3.org/1999/xhtml">
         <a sec:authorize="!isAuthenticated()" th:href="@{/}"><img src="/images/pe%20scores-final.png"
                                                                   alt="pe scores logo"/></a>
-        <a sec:authorize="isAuthenticated() && !hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes}"><img src="/images/pe%20scores-final.png"
-                                                                                                               alt="pe scores logo"/></a>
-        <a sec:authorize="isAuthenticated() && hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/all}"><img src="/images/pe%20scores-final.png"
-                                                                                                                  alt="pe scores logo"/></a>
+        <a sec:authorize="isAuthenticated() && !hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes}"><img
+                src="/images/pe%20scores-final.png"
+                alt="pe scores logo"/></a>
+        <a sec:authorize="isAuthenticated() && hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/all}"><img
+                src="/images/pe%20scores-final.png"
+                alt="pe scores logo"/></a>
 
         <nav class="navbar">
             <ul class="navbar-buttons" sec:authorize="!isAuthenticated()">
@@ -39,11 +39,16 @@
                 <a th:href="@{/tTest}" th:text="#{navbar_t_test}">T-test</a>
                 <a th:href="@{/thirty}" th:text="#{navbar_30_meters}">30 meters</a>
                 <a th:href="@{/twoHundred}" th:text="#{navbar_200_meters}">200 meters</a>
-                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/add}" th:text="#{navbar_addschool}">Add school</a>
-                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/all}" th:text="#{navbar_schools}">Schools</a>
-                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes}" th:text="#{navbar_classes}">Classes</a>
-                <a sec:authorize="hasAnyAuthority('ROLE_ADMIN') && !hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes/add}" th:text="#{navbar_add_class}">Add class</a>
-                <a sec:authorize="hasAnyAuthority('ROLE_ADMIN') && !hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/students/add}" th:text="#{navbar_add_student}">Add student</a>
+                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/add}"
+                   th:text="#{navbar_addschool}">Add school</a>
+                <a sec:authorize="hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/schools/all}"
+                   th:text="#{navbar_schools}">Schools</a>
+                <a sec:authorize="!hasAnyAuthority('ROLE_SUPERADMIN')" th:href="@{/classes}"
+                   th:text="#{navbar_classes}">Classes</a>
+                <a sec:authorize="hasAnyAuthority('ROLE_ADMIN') && !hasAnyAuthority('ROLE_SUPERADMIN')"
+                   th:href="@{/classes/add}" th:text="#{navbar_add_class}">Add class</a>
+                <a sec:authorize="hasAnyAuthority('ROLE_ADMIN') && !hasAnyAuthority('ROLE_SUPERADMIN')"
+                   th:href="@{/students/add}" th:text="#{navbar_add_student}">Add student</a>
                 <a th:href="@{/tasks}" th:text="#{navbar_tasks}">Tasks</a>
                 <a>
                     <form class="logout" th:method="post" th:action="@{/users/logout}">
@@ -93,8 +98,6 @@
     </div>
 
 </section>
-
-<!--<th:block th:insert="~{/fragments/footer}"></th:block>-->
 
 <footer>
     <p>&copy; 2024 Copyright: PE Scores</p>

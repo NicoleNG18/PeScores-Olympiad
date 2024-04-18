@@ -2,13 +2,7 @@ package pmgkn.pescores.pescores.domain.entity.constants;
 
 public enum ValidationErrorMessages {
     ;
-    public static final String EMAIL_UNIQUE = "Email should be unique.";
     public static final String NOT_EMPTY_NUMBER = "number must not be empty";
-    public static final String DESCRIPTION_REQUIRED = "description is required";
-    public static final String CLASS_NAME_REQUIRED = "class name is required";
-    public static final String CITY_NAME_REQUIRED = "city name is required";
-    public static final String ADMIN_NAME_REQUIRED = "city name is required";
-    public static final String SCHOOL_NAME_REQUIRED = "school name is required";
     public static final String CLASS_NUM_REQUIRED = "class number is required";
     public static final String DATE_PRESENT = "use present date";
     public static final String MATCHING_PASSWORDS = "Passwords should match.";

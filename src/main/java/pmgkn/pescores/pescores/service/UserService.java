@@ -119,7 +119,8 @@ public class UserService {
         return this.userRepository.findByEmail(name).getSchool();
     }
 
-    public void setClassToTeacher(ClassEntity classToSave,String teacherName) {
+    public void setClassToTeacher(ClassEntity classToSave,
+                                  String teacherName) {
 
         UserEntity teacher = this.userRepository.findByEmail(teacherName);
 

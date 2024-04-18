@@ -132,58 +132,59 @@ public class ClassesService {
     }
 
     @Transactional
-    public ClassEntity getClassEntityByNameAndTeacher(String className,
-                                                      String teacher) {
+    public ClassEntity getClassEntityByLoggedUserAndName(String loggedUser,
+                                                         String className) {
 
-        UserEntity teacherEntity = this.userService.getUserByEmail(teacher);
-
-        return this.classRepository.findByClassNameAndTeacher(className, teacherEntity);
-    }
-
-    @Transactional
-    public ClassEntity getClassEntityByLoggedUserAndName(String loggedUser, String className){
-
-       return this.userService.getUserByEmail(loggedUser).getSchool().getClasses().stream().filter(c->c.getClassName().equals(className)).findFirst().get();
+        return this.userService.getUserByEmail(loggedUser).getSchool().getClasses().stream().filter(c -> c.getClassName().equals(className)).findFirst().get();
     }
 
     public void editClass(UUID id,
                           ClassEditBindingDto classEdit) {
 
         ClassEntity classEntity = this.classRepository.findClassById(id);
+        removeClassFromCurrentTeacher(classEntity);
+
+        UserEntity newTeacher = setClassToNewTeacher(classEdit, classEntity);
+
+        classEntity.setTeacher(newTeacher);
+
+        this.classRepository.saveAndFlush(classEntity);
+    }
+
+    private UserEntity setClassToNewTeacher(ClassEditBindingDto classEdit,
+                                            ClassEntity classEntity) {
+        UserEntity newTeacher = this.userService.getUserByEmail(classEdit.getTeacher());
+        this.userService.setClassToTeacher(classEntity, newTeacher.getEmail());
+        return newTeacher;
+    }
+
+    private void removeClassFromCurrentTeacher(ClassEntity classEntity) {
         UserEntity currentTeacher = classEntity.getTeacher();
         currentTeacher.getClasses().remove(classEntity);
         this.userService.saveTeacher(currentTeacher);
-
-        UserEntity newTeacher = this.userService.getUserByEmail(classEdit.getTeacher());
-        this.userService.setClassToTeacher(classEntity,newTeacher.getEmail());
-
-        classEntity
-//                .setClassName(classEdit.getClassName())
-//                .setClassNum(classEdit.getClassNum())
-                .setTeacher(newTeacher);
-
-        this.classRepository.saveAndFlush(classEntity);
     }
 
     public void deleteClass(UUID id) {
 
         ClassEntity classEntity = this.classRepository.findClassById(id);
-        UserEntity currentTeacher = classEntity.getTeacher();
-        currentTeacher.getClasses().remove(classEntity);
-        this.userService.saveTeacher(currentTeacher);
+        removeClassFromCurrentTeacher(classEntity);
 
+        removeClassFromSchool(classEntity);
+
+        this.classRepository.deleteById(id);
+    }
+
+    private void removeClassFromSchool(ClassEntity classEntity) {
         SchoolEntity school = classEntity.getSchool();
         school.getClasses().remove(classEntity);
         this.schoolService.saveSchoolToRepository(school);
-
-        this.classRepository.deleteById(id);
     }
 
     public void addStudent(StudentEntity studentToSave,
                            String className,
                            String loggedUser) {
 
-        ClassEntity classEntity = this.getClassEntityByLoggedUserAndName(loggedUser,className);
+        ClassEntity classEntity = this.getClassEntityByLoggedUserAndName(loggedUser, className);
         classEntity.addStudent(studentToSave);
 
         this.classRepository.saveAndFlush(classEntity);
@@ -218,8 +219,9 @@ public class ClassesService {
 
     public boolean checkIfClassNameRepeats(String name,
                                            String className) {
+
         for (ClassEntity classEntity : this.userService.getUserByEmail(name).getSchool().getClasses()) {
-            if(classEntity.getClassName().equals(className)){
+            if (classEntity.getClassName().equals(className)) {
                 return true;
             }
         }

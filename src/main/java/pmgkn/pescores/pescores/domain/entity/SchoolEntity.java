@@ -78,4 +78,13 @@ public class SchoolEntity extends BaseEntity {
         this.teachers = teachers;
         return this;
     }
+
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public SchoolEntity setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
+        return this;
+    }
 }

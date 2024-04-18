@@ -1,6 +1,5 @@
 package pmgkn.pescores.pescores.domain.dto.view;
 
-import pmgkn.pescores.pescores.domain.entity.SchoolEntity;
 import pmgkn.pescores.pescores.domain.entity.StudentEntity;
 import pmgkn.pescores.pescores.domain.entity.UserEntity;
 

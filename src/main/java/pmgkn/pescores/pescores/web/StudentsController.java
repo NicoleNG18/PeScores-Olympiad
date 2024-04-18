@@ -10,7 +10,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pmgkn.pescores.pescores.domain.dto.binding.StudentAddBindingDto;
 import pmgkn.pescores.pescores.domain.dto.binding.StudentUpdateBindingDto;
 import pmgkn.pescores.pescores.domain.entity.ClassEntity;
-import pmgkn.pescores.pescores.domain.entity.UserEntity;
 import pmgkn.pescores.pescores.service.ClassesService;
 import pmgkn.pescores.pescores.service.StudentsService;
 import pmgkn.pescores.pescores.service.UserService;

@@ -31,7 +31,7 @@ public class UserRegisterController {
     @GetMapping("/register")
     public String getRegister(Model model) {
 
-        model.addAttribute("schools",this.schoolService.getAllSchools());
+        model.addAttribute("schools", this.schoolService.getAllSchools());
 
         return "register";
     }

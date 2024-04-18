@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static pmgkn.pescores.pescores.domain.entity.constants.Messages.OWNER;
 import static pmgkn.pescores.pescores.domain.entity.constants.Messages.TEACHER;

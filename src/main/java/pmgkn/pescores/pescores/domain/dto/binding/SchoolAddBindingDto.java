@@ -5,7 +5,6 @@ import pmgkn.pescores.pescores.validation.common.ValidCityName;
 import pmgkn.pescores.pescores.validation.common.ValidSchool;
 
 public class SchoolAddBindingDto {
-
     @UniqueSchoolName
     @ValidSchool
     private String schoolName;

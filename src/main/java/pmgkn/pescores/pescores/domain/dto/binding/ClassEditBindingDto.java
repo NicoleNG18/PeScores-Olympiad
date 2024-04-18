@@ -3,6 +3,7 @@ package pmgkn.pescores.pescores.domain.dto.binding;
 public class ClassEditBindingDto {
 
     private String teacher;
+
     public ClassEditBindingDto() {
     }
 

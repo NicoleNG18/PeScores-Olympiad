@@ -64,7 +64,7 @@ select {
 option {
     font-weight: 600;
     background-color: #d8d7fe;
-    color:#5d54c3;
+    color: #5d54c3;
 }
 
 option:checked {

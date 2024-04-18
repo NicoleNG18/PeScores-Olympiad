@@ -1,6 +1,5 @@
 function displayTodo(e) {
 
-
     document.querySelector("#taskDescr").value = document.querySelector("#todo").value;
     document.querySelector("#dueDateField").value = document.querySelector("#dueDate").value;
 

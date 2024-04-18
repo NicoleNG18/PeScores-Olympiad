@@ -1,7 +1,7 @@
 package pmgkn.pescores.pescores.validation.common;
 
-        import jakarta.validation.ConstraintValidator;
-        import jakarta.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class ValidCityNameValidator implements ConstraintValidator<ValidCityName, String> {
     @Override

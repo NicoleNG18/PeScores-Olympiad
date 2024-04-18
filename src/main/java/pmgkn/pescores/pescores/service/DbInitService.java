@@ -27,9 +27,7 @@ public class DbInitService {
     private final ThirtyMetersRepository thirtyMetersRepository;
     private final TwoHundredMetersRepository twoHundredMetersRepository;
     private final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
-
     private final SchoolRepository schoolRepository;
 
     public DbInitService(UserRoleRepository userRoleRepository,
@@ -65,8 +63,8 @@ public class DbInitService {
     }
 
     private void initSchool() {
-        if(this.schoolRepository.count()==0){
-            SchoolEntity school=new SchoolEntity().setCity("Кюстендил").setName("ПМГ 'Проф. Емануил Иванов'");
+        if (this.schoolRepository.count() == 0) {
+            SchoolEntity school = new SchoolEntity().setCity("Кюстендил").setName("ПМГ 'Проф. Емануил Иванов'");
             this.schoolRepository.saveAndFlush(school);
         }
     }
