@@ -8,7 +8,7 @@ public class ValidClassNameValidator implements ConstraintValidator<ValidClassNa
     public boolean isValid(String value,
                            ConstraintValidatorContext context) {
 
-        if (value.length() < 2 || value.length() > 4) {
+        if (value.length() < 2 || value.length() > 3) {
             return false;
         }
 

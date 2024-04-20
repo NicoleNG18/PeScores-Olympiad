@@ -50,7 +50,7 @@ public class SchoolService {
 
         this.schoolRepository.saveAndFlush(schoolEntity);
 
-        return schoolEntity.getName();
+        return schoolEntity.getSchoolName();
     }
 
     public SchoolEntity getSchoolByName(String school) {

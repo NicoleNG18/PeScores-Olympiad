@@ -104,7 +104,7 @@ public class StudentsController {
                                 @PathVariable("id") UUID id,
                                 Principal principal) {
 
-        if (!this.userService.getUserById(idTeacher).getSchool().getName().equals(this.userService.getUserByEmail(principal.getName()).getSchool().getName())) {
+        if (!this.userService.getUserById(idTeacher).getSchool().getSchoolName().equals(this.userService.getUserByEmail(principal.getName()).getSchool().getSchoolName())) {
             throw new ObjectNotFoundException("the info is not yours", ClassEntity.class);
         }
 

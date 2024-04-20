@@ -19,44 +19,102 @@ public class TestDataUtils {
     private final UserRoleRepository userRoleRepository;
     private final ClassRepository classRepository;
 
+    private final SchoolRepository schoolRepository;
+
+    private SchoolEntity school;
+
     @Autowired
     public TestDataUtils(TaskRepository taskRepository,
                          UserRepository userRepository,
                          UserRoleRepository userRoleRepository,
-                         ClassRepository classRepository) {
+                         ClassRepository classRepository,
+                         SchoolRepository schoolRepository) {
         this.taskRepository = taskRepository;
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
         this.classRepository = classRepository;
+        this.schoolRepository = schoolRepository;
     }
 
     private void initRoles() {
         if (userRoleRepository.count() == 0) {
             UserRoleEntity adminRole = new UserRoleEntity().setRole(UserRoleEnum.ADMIN);
             UserRoleEntity userRole = new UserRoleEntity().setRole(UserRoleEnum.USER);
+            UserRoleEntity superadminRole = new UserRoleEntity().setRole(UserRoleEnum.SUPERADMIN);
 
             userRoleRepository.save(adminRole);
             userRoleRepository.save(userRole);
+            userRoleRepository.save(superadminRole);
         }
     }
 
-//    public UserEntity createTestUser(String email) {
-//        initRoles();
-//
-//        UserEntity testUser = new UserEntity()
-//                .setFirstName("test")
-//                .setLastName("testov")
-//                .setEmail(email)
-//                .setSchool("Pmg Prof. Emanuil Ivanov")
-//                .setPassword("topsecret12@")
-//                .setTasks(new ArrayList<>())
-//                .setClasses(new ArrayList<>())
-//                .setRoles(userRoleRepository.findAll().stream()
-//                        .filter(r -> r.getRole() == UserRoleEnum.USER)
-//                        .toList());
-//
-//        return userRepository.saveAndFlush(testUser);
-//    }
+    public SchoolEntity createSchool() {
+
+        this.school = new SchoolEntity()
+                .setSchoolName("PMG Prof. Emanuil Ivanov")
+                .setCity("Kyustendil")
+                .setClasses(new ArrayList<>())
+                .setTeachers(new ArrayList<>())
+                .setStudents(new ArrayList<>());
+
+
+         return schoolRepository.saveAndFlush(school);
+    }
+
+    public UserEntity createTestUser(String email) {
+        initRoles();
+
+        UserEntity testUser = new UserEntity()
+                .setFirstName("user")
+                .setLastName("userov")
+                .setEmail(email)
+                .setSchool(this.school)
+                .setPassword("topsecret12@")
+                .setTasks(new ArrayList<>())
+                .setClasses(new ArrayList<>())
+                .setStudents(new ArrayList<>())
+                .setRoles(userRoleRepository.findAll().stream()
+                        .filter(r -> r.getRole() == UserRoleEnum.USER)
+                        .toList());
+
+        return userRepository.saveAndFlush(testUser);
+    }
+
+    public UserEntity createTestAdmin(String email) {
+        initRoles();
+
+        UserEntity testUser = new UserEntity()
+                .setFirstName("admin")
+                .setLastName("adminov")
+                .setEmail(email)
+                .setSchool(this.school)
+                .setPassword("topsecret12@")
+                .setTasks(new ArrayList<>())
+                .setClasses(new ArrayList<>())
+                .setStudents(new ArrayList<>())
+                .setRoles(userRoleRepository.findAll().stream()
+                        .filter(r -> r.getRole() != UserRoleEnum.SUPERADMIN)
+                        .toList());
+
+        return userRepository.saveAndFlush(testUser);
+    }
+
+    public UserEntity createTestSuperAdmin(String email) {
+        initRoles();
+
+        UserEntity testUser = new UserEntity()
+                .setFirstName("super")
+                .setLastName("admin")
+                .setEmail(email)
+                .setSchool(this.school)
+                .setPassword("topsecret12@")
+                .setTasks(new ArrayList<>())
+                .setClasses(new ArrayList<>())
+                .setStudents(new ArrayList<>())
+                .setRoles(userRoleRepository.findAll());
+
+        return userRepository.saveAndFlush(testUser);
+    }
 
     public ClassEntity createClass(UserEntity teacher) {
 
@@ -83,6 +141,7 @@ public class TestDataUtils {
         classRepository.deleteAll();
         userRepository.deleteAll();
         userRoleRepository.deleteAll();
+        schoolRepository.deleteAll();
     }
 
 

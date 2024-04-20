@@ -30,15 +30,6 @@ public class SchoolEntity extends BaseEntity {
         this.students = new ArrayList<>();
     }
 
-    public String getName() {
-        return schoolName;
-    }
-
-    public SchoolEntity setName(String schoolName) {
-        this.schoolName = schoolName;
-        return this;
-    }
-
     public String getCity() {
         return city;
     }

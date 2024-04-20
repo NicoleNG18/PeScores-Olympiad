@@ -95,7 +95,7 @@ public class ClassesController {
                                   Model model,
                                   Principal principal) {
 
-        if (!this.classesService.getClassById(id).getTeacher().getSchool().getName().equals(this.userService.getUserByEmail(principal.getName()).getSchool().getName())) {
+        if (!this.classesService.getClassById(id).getTeacher().getSchool().getSchoolName().equals(this.userService.getUserByEmail(principal.getName()).getSchool().getSchoolName())) {
             throw new ObjectNotFoundException("the info is not yours", ClassEntity.class);
         }
 

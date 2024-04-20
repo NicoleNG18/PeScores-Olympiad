@@ -64,7 +64,7 @@ public class DbInitService {
 
     private void initSchool() {
         if (this.schoolRepository.count() == 0) {
-            SchoolEntity school = new SchoolEntity().setCity("Кюстендил").setName("ПМГ 'Проф. Емануил Иванов'");
+            SchoolEntity school = new SchoolEntity().setCity("Кюстендил").setSchoolName("ПМГ 'Проф. Емануил Иванов'");
             this.schoolRepository.saveAndFlush(school);
         }
     }

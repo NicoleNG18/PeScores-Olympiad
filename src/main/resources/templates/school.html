@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title th:text="${currentSchool.name}">School page</title>
+    <title th:text="${currentSchool.schoolName}">School page</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,7 +75,7 @@
 <section class="main-section-school">
 
     <div class="school">
-        <h2 th:text="${currentSchool.name}">school name</h2>
+        <h2 th:text="${currentSchool.schoolName}">school name</h2>
 
         <ul th:each="teacher: ${teachers}" class="row">
             <li class="teacher" th:text="*{teacher.email}">teacher</li>

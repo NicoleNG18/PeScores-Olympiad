@@ -81,7 +81,7 @@
             <li><a class="className" th:text="*{school.schoolName}"
                    th:href="@{/schools/{id}(id=${school.id})}">class</a>
             </li>
-            <div class="buttons" th:unless="${school.schoolName.equals(pmg.name)}">
+            <div class="buttons" th:unless="${school.schoolName.equals(pmg.schoolName)}">
                 <li>
                     <form id="deleteForm"
                           th:method="delete"
