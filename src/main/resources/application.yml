@@ -11,10 +11,11 @@ server:
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    password: ${DB_PASSWORD}
-#    url: jdbc:mysql://scores-pe-db.mysql.database.azure.com:3306/pe_scores?serverTimezone=UTC&useSSL=true&requireSSL=false
-    url: jdbc:mysql://localhost:3306/pe_scores?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
-    username: ${DB_USERNAME}
+    password: g1e2i3o4r5g6@
+    url: jdbc:mysql://scores-pe-db-new.mysql.database.azure.com:3306/pe_scores?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSL=true&requireSSL=false
+#    url: jdbc:mysql://localhost:3306/pe_scores?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: scoresPe
+
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     defer-datasource-initialization: true

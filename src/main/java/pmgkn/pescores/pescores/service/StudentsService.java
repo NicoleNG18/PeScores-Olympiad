@@ -82,19 +82,25 @@ public class StudentsService {
 
         StudentEntity studentEntity = this.studentRepository.findFirstById(id);
 
-        Integer classNumQuery = studentEntity.getStudentClass().getClassNum();
-        String genderQuery = studentEntity.getGender().name();
+        if (studentUpdate.gettTest() == null && studentUpdate.getThirtyMeters() == null && studentUpdate.getTwoHundredMeters() == null
+                && studentUpdate.getJump() == null && studentUpdate.getDenseBall() == null) {
+            return studentEntity.getStudentClass().getId();
 
-        setNorms(studentUpdate, studentEntity);
+        }
 
-        int countNorms = getCount(studentEntity);
+            Integer classNumQuery = studentEntity.getStudentClass().getClassNum();
+            String genderQuery = studentEntity.getGender().name();
 
-        int averageGradeSum = getAverageGradeSum(studentEntity, classNumQuery, genderQuery);
+            setNorms(studentUpdate, studentEntity);
 
-        studentEntity.setAverageGrade(BigDecimal.valueOf(averageGradeSum).
-                divide(BigDecimal.valueOf(countNorms), 2, RoundingMode.HALF_UP));
+            int countNorms = getCount(studentEntity);
 
-        this.studentRepository.saveAndFlush(studentEntity);
+            int averageGradeSum = getAverageGradeSum(studentEntity, classNumQuery, genderQuery);
+
+            studentEntity.setAverageGrade(BigDecimal.valueOf(averageGradeSum).
+                    divide(BigDecimal.valueOf(countNorms), 2, RoundingMode.HALF_UP));
+
+            this.studentRepository.saveAndFlush(studentEntity);
 
         return studentEntity.getStudentClass().getId();
     }
