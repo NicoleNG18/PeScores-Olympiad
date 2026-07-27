@@ -1,6 +1,5 @@
 <template>
   <div class="home-page">
-    <!-- Навигационна лента -->
     <nav class="navbar">
       <div class="brand-section">
         <img src="/images/pe-scores-final.png" alt="PE Scores Logo" class="logo-img" />
@@ -8,20 +7,12 @@
       </div>
 
       <div class="nav-right">
-        <!-- Леки бутони без твърд фон -->
         <div class="nav-links">
-          <router-link to="/dashboard" class="nav-link-btn">
-            <span>{{ t('nav.system') }}</span>
+          <router-link to="/login" class="nav-link-btn">
+            <span>{{ t('nav.login') }}</span>
           </router-link>
-          <router-link to="/profile" class="nav-link-btn">
-            <span>{{ t('nav.profile') }}</span>
-          </router-link>
-          <button @click="logout" class="nav-link-btn danger">
-            <span>{{ t('nav.logout') }}</span>
-          </button>
         </div>
 
-        <!-- Компактен панел за Тема и Език -->
         <div class="controls-pill">
           <button @click="toggleTheme" class="control-btn" :title="isDark ? 'Light Mode' : 'Dark Mode'">
             <span class="icon">{{ isDark ? '☀️' : '🌙' }}</span>
@@ -34,7 +25,6 @@
       </div>
     </nav>
 
-    <!-- Основна Hero Секция -->
     <section class="hero-section">
       <div class="hero-content">
         <h1>
@@ -44,7 +34,7 @@
         <p class="subtitle">{{ t('hero.subtitle') }}</p>
 
         <div class="hero-action">
-          <router-link to="/dashboard" class="cta-button">
+          <router-link to="/login" class="cta-button">
             {{ t('hero.cta') }}
             <span class="arrow">→</span>
           </router-link>
@@ -52,7 +42,6 @@
       </div>
     </section>
 
-    <!-- Карти с функционалности (3 на един ред) -->
     <section class="features-section">
       <div class="features-grid">
         <div class="feature-card">
@@ -81,7 +70,6 @@
       </div>
     </section>
 
-    <!-- Футер с достатъчно отстояния -->
     <footer class="app-footer">
       <div class="footer-container">
         <div class="footer-brand">
@@ -95,8 +83,7 @@
         <div class="footer-links-group">
           <h4>{{ t('footer.quickLinks') }}</h4>
           <ul class="footer-nav">
-            <li><router-link to="/dashboard">{{ t('nav.dashboard') }}</router-link></li>
-            <li><router-link to="/profile">{{ t('nav.profile') }}</router-link></li>
+            <li><router-link to="/login">{{ t('nav.login') }}</router-link></li>
             <li><router-link to="/contact">{{ t('footer.contact') }}</router-link></li>
           </ul>
         </div>
@@ -114,12 +101,9 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
 
-const router = useRouter()
 const currentYear = ref(new Date().getFullYear())
 
-// ТЕМА (Dark / Light)
 const isDark = ref(false)
 
 const toggleTheme = () => {
@@ -129,12 +113,11 @@ const toggleTheme = () => {
   localStorage.setItem('theme', theme)
 }
 
-// ПРЕВОДИ (i18n)
 const currentLang = ref('bg')
 
 const translations = {
   bg: {
-    nav: { system: 'Към системата', profile: 'Моят Профил', logout: 'Изход', dashboard: 'Табло' },
+    nav: { login: 'Вход' },
     hero: {
       title1: 'Управление на спортни постижения с ',
       titleGradient: 'лекота',
@@ -160,7 +143,7 @@ const translations = {
     }
   },
   en: {
-    nav: { system: 'To System', profile: 'My Profile', logout: 'Logout', dashboard: 'Dashboard' },
+    nav: { login: 'Login' },
     hero: {
       title1: 'Manage physical performance with ',
       titleGradient: 'ease',
@@ -209,11 +192,6 @@ onMounted(() => {
   const savedLang = localStorage.getItem('lang')
   if (savedLang) currentLang.value = savedLang
 })
-
-const logout = () => {
-  localStorage.removeItem('token')
-  router.push('/login')
-}
 </script>
 
 <style scoped>
@@ -249,7 +227,6 @@ const logout = () => {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Навигация */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -296,7 +273,6 @@ const logout = () => {
   gap: 0.5rem;
 }
 
-/* БЕЗ ФОН - ИЗЧИСТЕНИ ЛИНК БУТОНИ (GHOST BUTTONS) */
 .nav-link-btn {
   background: transparent;
   border: none;
@@ -318,16 +294,6 @@ const logout = () => {
   color: #2563eb;
 }
 
-.nav-link-btn.danger {
-  color: var(--text-muted);
-}
-
-.nav-link-btn.danger:hover {
-  background: rgba(239, 68, 68, 0.08);
-  color: #ef4444;
-}
-
-/* КОМПАКТЕН ПАНЕЛ ЗА ТЕМА И ЕЗИК */
 .controls-pill {
   display: flex;
   align-items: center;
@@ -364,23 +330,11 @@ const logout = () => {
   margin: 0 0.2rem;
 }
 
-/* Hero Секция */
 .hero-section {
   padding: 5rem 2rem 4rem;
   text-align: center;
   max-width: 950px;
   margin: 0 auto;
-}
-
-.badge {
-  display: inline-block;
-  padding: 0.4rem 1rem;
-  background: #dbeafe;
-  color: #1e40af;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
 }
 
 .hero-content h1 {
@@ -422,7 +376,6 @@ const logout = () => {
   transform: translateY(-3px);
 }
 
-/* КАРТИЧКИ НА ЕДИН РЕД (3-Column Layout) */
 .features-section {
   padding: 2rem 2rem 6rem;
   max-width: 1200px;
@@ -474,7 +427,6 @@ const logout = () => {
   line-height: 1.6;
 }
 
-/* ФУТЕР - РАЗДАЛЕЧЕНИ ЛИНКОВЕ И КОЛОНИ */
 .app-footer {
   margin-top: auto;
   background: var(--footer-bg);
@@ -551,7 +503,6 @@ const logout = () => {
   color: #64748b;
 }
 
-/* Мобилна адаптация */
 @media (max-width: 992px) {
   .features-grid {
     grid-template-columns: 1fr;
