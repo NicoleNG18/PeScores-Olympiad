@@ -1,28 +1,16 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.0.1'
-    id 'io.spring.dependency-management' version '1.1.4'
-    id "com.microsoft.azure.azurewebapp" version "1.7.1"
+    id 'org.springframework.boot' version '3.3.0'
+    id 'io.spring.dependency-management' version '1.1.5'
 }
 
-azurewebapp {
-    subscription = 'Azure for Students'
-    resourceGroup = 'scores-rg-pe'
-    appName = 'pescores'
-    pricingTier = 'Basic (B2)'
-    region = 'Central US'
-    runtime {
-        os = 'Windows'
-        webContainer = 'Java SE'
-        javaVersion = 'Java 17'
-    }
-}
-
-group = 'pmgkn.pescores'
-//version = '1.0'
+group = 'bg.pescores'
+version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '17'
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
 }
 
 repositories {
@@ -30,23 +18,30 @@ repositories {
 }
 
 dependencies {
-
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
-    implementation 'org.springframework.boot:spring-boot-starter-cache'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.1'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
-
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    // Core Spring Boot Starters
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    runtimeOnly 'com.mysql:mysql-connector-j:8.2.0'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    // View & Templates
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+
+    // Utilities
+    implementation 'org.modelmapper:modelmapper:3.2.0'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // Swagger / OpenAPI за Spring Boot 3
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
+
+    // Database Driver (без хардкодната версия, Spring Boot я менажира)
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // Testing
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
     testImplementation 'org.hsqldb:hsqldb'
@@ -55,6 +50,3 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
-
-
-
