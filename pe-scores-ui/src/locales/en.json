@@ -1,0 +1,63 @@
+{
+    "nav": {
+        "home": "Home",
+        "login": "Login",
+        "dashboard": "Dashboard",
+        "classes": "Classes",
+        "tasks": "Standards",
+        "logout": "Logout"
+    },
+    "auth": {
+        "loginTitle": "Log in to system",
+        "loginSubtitle": "Enter your credentials to access your account.",
+        "activateTitle": "Register with Code",
+        "activateSubtitle": "Enter your access code.",
+        "email": "Email address",
+        "emailPlaceholder": "name@example.com",
+        "password": "Password",
+        "passwordPlaceholder": "••••••••",
+        "schoolCode": "Access Code (Tenant Code)",
+        "fullName": "Full Name",
+        "loginBtn": "Log In",
+        "activateBtn": "Create Account",
+        "noAccount": "Don't have an account?",
+        "activateLink": "Activate with access code",
+        "hasAccount": "Already have an account?",
+        "loginLink": "Back to Log in",
+        "badCredentials": "Invalid username or password."
+    },
+    "dashboard": {
+        "welcome": "Welcome back",
+        "subtitle": "Analytics hub for student physical performance and fitness tracking"
+    },
+    "widgets": {
+        "radarTitle": "Physical Qualities Profile",
+        "radarSubtitle": "School-wide average level",
+        "quickInputTitle": "Quick Field Recording",
+        "quickInputSubtitle": "Enter results direct from stopwatch or measuring tape",
+        "class": "Class",
+        "discipline": "Discipline",
+        "student": "Student",
+        "result": "Recorded Result",
+        "save": "Save Result",
+        "recordsTitle": "Scouting & Records",
+        "recordsSubtitle": "Top athletes for school teams"
+    },
+    "hero": {
+        "title1": "Manage physical performance with ",
+        "titleGradient": "ease",
+        "subtitle": "Next-generation platform for rapid entry, analysis, and tracking of physical education standards.",
+        "cta": "Get Started"
+    },
+    "features": {
+        "f1Title": "Score Entry",
+        "f1Desc": "Fast and easy recording of points and standards for every student with instant validation.",
+        "f2Title": "Charts & Analytics",
+        "f2Desc": "Visualization of individual and group progress throughout the academic term.",
+        "f3Title": "Report Generator",
+        "f3Desc": "Automated generation of official reports for school administration."
+    },
+    "footer": {
+        "rights": "All rights reserved."
+    }
+}
