@@ -1,8 +1,14 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type RouteRecordRaw, type Router } from 'vue-router'
 import AuthView from '../views/AuthView.vue'
 import DashboardView from '../views/DashboardView.vue'
 
-const routes = [
+declare module 'vue-router' {
+    interface RouteMeta {
+        requiresAuth?: boolean
+    }
+}
+
+const routes: RouteRecordRaw[] = [
     {
         path: '/',
         redirect: '/dashboard'
@@ -20,6 +26,12 @@ const routes = [
         meta: { requiresAuth: true }
     },
     {
+        path: '/standards',
+        name: 'Standards',
+        component: () => import('../views/StandardsView.vue'),
+        meta: { requiresAuth: true }
+    },
+    {
         path: '/login',
         redirect: '/auth'
     },
@@ -29,12 +41,12 @@ const routes = [
     }
 ]
 
-const router = createRouter({
+const router: Router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
     const token = localStorage.getItem('token')
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth !== false)
 

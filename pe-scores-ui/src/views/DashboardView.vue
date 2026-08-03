@@ -42,7 +42,7 @@
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { useTheme } from '../composables/useTheme'
+import { useTheme } from '../composables/useTheme.ts'
 
 import AppNavbar from '../components/AppNavbar.vue'
 import AppFooter from '../components/AppFooter.vue'

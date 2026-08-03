@@ -5,7 +5,7 @@ import en from './locales/en.json'
 const savedLocale = localStorage.getItem('lang') || 'bg'
 
 const i18n = createI18n({
-    legacy: false, // Използваме Composition API
+    legacy: false,
     locale: savedLocale,
     fallbackLocale: 'bg',
     messages: {
@@ -14,4 +14,4 @@ const i18n = createI18n({
     }
 })
 
-export default i18n
+export default i18n as any

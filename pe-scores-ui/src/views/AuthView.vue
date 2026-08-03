@@ -119,7 +119,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
@@ -131,18 +131,27 @@ const router = useRouter()
 const { t } = useI18n()
 const { initTheme } = useTheme()
 
-const isActivation = ref(false)
-const errorMessage = ref('')
+const isActivation = ref<boolean>(false)
+const errorMessage = ref<string>('')
 
-const loginForm = ref({ email: '', password: '' })
-const activateForm = ref({ code: '', fullName: '', email: '', password: '' })
+const loginForm = ref({
+  email: '',
+  password: ''
+})
 
-const toggleMode = (activation) => {
+const activateForm = ref({
+  code: '',
+  fullName: '',
+  email: '',
+  password: ''
+})
+
+const toggleMode = (activation: boolean): void => {
   isActivation.value = activation
   errorMessage.value = ''
 }
 
-const handleLogin = () => {
+const handleLogin = (): void => {
   errorMessage.value = ''
   if (loginForm.value.password.length < 4) {
     errorMessage.value = t('auth.badCredentials')
@@ -152,7 +161,7 @@ const handleLogin = () => {
   router.push('/dashboard')
 }
 
-const handleActivation = () => {
+const handleActivation = (): void => {
   errorMessage.value = ''
   localStorage.setItem('token', 'mock-jwt-token')
   router.push('/dashboard')
@@ -256,7 +265,7 @@ input:focus {
 .submit-btn {
   margin-top: 0.4rem;
   padding: 0.9rem;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover, #1d4ed8) 100%);
   color: #ffffff;
   border: none;
   border-radius: 10px;

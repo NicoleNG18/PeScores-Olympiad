@@ -1,17 +1,28 @@
 <template>
   <nav class="navbar">
-    <router-link to="/" class="brand-section">
+    <router-link to="/dashboard" class="brand-section">
       <img src="/images/pe-scores-final.png" alt="PE Scores Logo" class="logo-img" />
       <span class="brand-title">PE <span class="accent-text">Scores</span></span>
     </router-link>
 
     <div class="nav-right">
       <div class="nav-links">
-        <slot name="links">
-          <router-link to="/login" class="nav-link-btn">
-            <span>{{ $t('nav.login') }}</span>
-          </router-link>
-        </slot>
+        <router-link to="/dashboard" class="nav-link-btn" active-class="active">
+          <span>{{ $t('nav.dashboard') || 'Табло' }}</span>
+        </router-link>
+
+        <router-link to="/standards" class="nav-link-btn" active-class="active">
+          <span>{{ $t('nav.standards') || 'Стандарти' }}</span>
+        </router-link>
+
+        <slot name="extra-links"></slot>
+
+        <button v-if="isAuthenticated" @click="handleLogout" class="nav-link-btn logout-btn">
+          <span>{{ $t('nav.logout') || 'Изход' }}</span>
+        </button>
+        <router-link v-else to="/auth" class="nav-link-btn" active-class="active">
+          <span>{{ $t('nav.login') || 'Вход' }}</span>
+        </router-link>
       </div>
 
       <div class="controls-pill">
@@ -20,24 +31,45 @@
         </button>
         <span class="divider"></span>
         <button @click="toggleLang" class="control-btn lang-btn" title="Смяна на езика / Change language">
-          <!-- Когато е EN показва BG (за превключване към BG) и обратно -->
-          <span>{{ locale === 'en' ? '🇧🇬 BG' : '🇬🇧 EN' }}</span>
+          <span>{{ currentLang === 'en' ? '🇧🇬 BG' : '🇬🇧 EN' }}</span>
         </button>
       </div>
     </div>
   </nav>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { computed, ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useTheme } from '../composables/useTheme'
 
+const router = useRouter()
 const { locale } = useI18n()
 const { isDark, toggleTheme } = useTheme()
 
-const toggleLang = () => {
-  locale.value = locale.value === 'en' ? 'bg' : 'en'
-  localStorage.setItem('lang', locale.value)
+const isAuthenticated = ref<boolean>(false)
+
+const checkAuth = (): void => {
+  isAuthenticated.value = !!localStorage.getItem('token')
+}
+
+onMounted(() => {
+  checkAuth()
+})
+
+const currentLang = computed<string>(() => String(locale.value))
+
+const toggleLang = (): void => {
+  const nextLang: string = currentLang.value === 'en' ? 'bg' : 'en'
+  locale.value = nextLang
+  localStorage.setItem('lang', nextLang)
+}
+
+const handleLogout = (): void => {
+  localStorage.removeItem('token')
+  isAuthenticated.value = false
+  router.push('/auth')
 }
 </script>
 
@@ -98,8 +130,6 @@ const toggleLang = () => {
   gap: 0.5rem;
 }
 
-/* Използваме :deep за линковете, които идват през слота */
-:deep(.nav-link-btn),
 .nav-link-btn {
   color: var(--text-main);
   text-decoration: none;
@@ -107,22 +137,33 @@ const toggleLang = () => {
   font-size: 0.92rem;
   padding: 0.55rem 1rem;
   border-radius: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
   transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-:deep(.nav-link-btn:hover),
 .nav-link-btn:hover {
   background-color: var(--border-color);
   color: var(--primary-color);
 }
 
-:deep(.nav-link-btn.active),
+.nav-link-btn.router-link-active,
 .nav-link-btn.active {
   background-color: rgba(37, 99, 235, 0.1);
   color: var(--primary-color);
+}
+
+.logout-btn {
+  color: #ef4444;
+}
+
+.logout-btn:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
 }
 
 .controls-pill {
