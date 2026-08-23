@@ -11,7 +11,7 @@
         <p class="subtitle">{{ $t('hero.subtitle') }}</p>
 
         <div class="hero-action">
-          <router-link to="/login" class="cta-button">
+          <router-link to="/add-school" class="cta-button">
             {{ $t('hero.cta') }}
             <span class="arrow">→</span>
           </router-link>

@@ -1,27 +1,42 @@
 <template>
   <nav class="navbar">
-    <router-link to="/dashboard" class="brand-section">
+    <router-link to="/" class="brand-section">
       <img src="/images/pe-scores-final.png" alt="PE Scores Logo" class="logo-img" />
       <span class="brand-title">PE <span class="accent-text">Scores</span></span>
     </router-link>
 
     <div class="nav-right">
       <div class="nav-links">
-        <router-link to="/dashboard" class="nav-link-btn" active-class="active">
-          <span>{{ $t('nav.dashboard') || 'Табло' }}</span>
-        </router-link>
+        <template v-if="isAuthenticated">
+          <router-link to="/dashboard" class="nav-link-btn" active-class="active">
+            <span>{{ $t('nav.dashboard') || 'Dashboard' }}</span>
+          </router-link>
 
-        <router-link to="/standards" class="nav-link-btn" active-class="active">
-          <span>{{ $t('nav.standards') || 'Стандарти' }}</span>
-        </router-link>
+          <router-link to="/classes" class="nav-link-btn" active-class="active">
+            <span>{{ $t('nav.classes') || 'Classes' }}</span>
+          </router-link>
 
-        <slot name="extra-links"></slot>
+          <router-link to="/standards" class="nav-link-btn" active-class="active">
+            <span>{{ $t('nav.standards') || 'Standards' }}</span>
+          </router-link>
+
+          <!-- Нови бутони за добавяне при логнат потребител -->
+          <router-link to="/add-school" class="nav-link-btn" active-class="active">
+            <span>{{ $t('nav.addSchool') || 'Add School' }}</span>
+          </router-link>
+
+          <router-link to="/add-class" class="nav-link-btn" active-class="active">
+            <span>{{ $t('nav.addClass') || 'Add Class' }}</span>
+          </router-link>
+
+          <slot name="extra-links"></slot>
+        </template>
 
         <button v-if="isAuthenticated" @click="handleLogout" class="nav-link-btn logout-btn">
-          <span>{{ $t('nav.logout') || 'Изход' }}</span>
+          <span>{{ $t('nav.logout') || 'Logout' }}</span>
         </button>
         <router-link v-else to="/auth" class="nav-link-btn" active-class="active">
-          <span>{{ $t('nav.login') || 'Вход' }}</span>
+          <span>{{ $t('nav.login') || 'Login' }}</span>
         </router-link>
       </div>
 
@@ -30,7 +45,7 @@
           <span class="icon">{{ isDark ? '☀️' : '🌙' }}</span>
         </button>
         <span class="divider"></span>
-        <button @click="toggleLang" class="control-btn lang-btn" title="Смяна на езика / Change language">
+        <button @click="toggleLang" class="control-btn lang-btn" title="Change language">
           <span>{{ currentLang === 'en' ? '🇧🇬 BG' : '🇬🇧 EN' }}</span>
         </button>
       </div>
