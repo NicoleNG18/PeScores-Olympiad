@@ -1,0 +1,20 @@
+{
+  "name": "pe-scores-ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.19.0",
+    "vue": "^3.5.39",
+    "vue-i18n": "^9.14.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.7",
+    "vite": "^8.1.1"
+  }
+}
